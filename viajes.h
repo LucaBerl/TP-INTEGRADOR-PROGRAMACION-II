@@ -23,6 +23,15 @@ Viajes();
 
   // Setters:
 
+void set_chofer(const Choferes &chofer);
+void set_ciudadOrigen(const Ciudades &ciudad_origen);
+void set_ciudadDestino(const Ciudades &ciudad_destino);
+bool set_distancia(float distancia);
+void set_fechaSalida(const  tm &fechaSalida);
+void set_fechaLlegada(const  tm &fechaLlegada);
+bool set_tipoCarga(std::string tipoCarga);
+void set_estado(bool estado);
+
 void set_chofer(const Choferes &chofer){
     _chofer = chofer;
 } 
