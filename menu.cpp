@@ -5,7 +5,7 @@ using namespace std;
 #include "menuCamiones"
 
 
-void menupPrincipal::mostrar(){
+void menuPrincipal::mostrar(){
 
     menuViajes menuV
     menuChoferes menuCh
