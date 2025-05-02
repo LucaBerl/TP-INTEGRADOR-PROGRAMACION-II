@@ -7,10 +7,12 @@ using namespace std;
 
 
 void menuPrincipal::mostrar(){
-
-    menuViajes menuV
-    menuChoferes menuCh
-    menuCamiones menuCa
+    
+    system("cls");
+    
+    menuViajes menuV;
+    menuChoferes menuCh;
+    menuCamiones menuCa;
     int opcion;
     
     do{
