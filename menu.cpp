@@ -1,8 +1,9 @@
 #include <iostream>
 using namespace std;
-#include "menuViajes"
-#include "menuChoferes"
-#include "menuCamiones"
+#include "menuPrincipal.h"
+#include "menuViajes.h"
+#include "menuChoferes.h"
+#include "menuCamiones.h"
 
 
 void menuPrincipal::mostrar(){
