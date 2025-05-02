@@ -1,5 +1,6 @@
 #include "viajes.h"
 
+/// Setters:
 
 void Viajes::set_chofer(const Choferes &chofer){
     _chofer = chofer;
@@ -30,4 +31,31 @@ bool Viajes::set_tipoCarga(std::string tipoCarga){
 }
 void Viajes::set_estado(bool estado){
   _estado = estado;
+}
+
+///Getters:
+
+const Choferes& Viajes::get_chofer() const{
+    return _chofer;
+}
+const Ciudades& Viajes::get_ciudadOrigen() const{
+    return _ciudadOrigen;
+}
+const Ciudades& Viajes::get_ciudadDestino() const{
+    return _ciudadDestino;
+}
+float Viajes::get_distancia() const{
+    return _distancia;
+}
+const tm& Viajes::get_fechaSalida() const{
+    return _fechaSalida;
+}
+const tm& Viajes::get_fechaLlegada() const{
+    return _fechaLlegada;
+}
+string Viajes::get_tipoCarga() const{
+    return _tipoCarga;
+}
+bool Viajes::get_estado() const{
+    return _estado;
 }
