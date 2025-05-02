@@ -19,7 +19,7 @@ void menuPrincipal::mostrar(){
     cout << "========================================================" << endl;
     cout << "1. VIAJES" << endl;
     cout << "2. CHOFERES" << endl;
-    cout << "3. CAMIONESS" << endl;
+    cout << "3. CAMIONES" << endl;
     cout << "4. SALIR" << endl;
     cout << "===============================" << endl;
     cout << "Ingrese una opcion: ";
@@ -45,5 +45,5 @@ void menuPrincipal::mostrar(){
 
       cout << endl << endl;
 
-    } while(opcion != 0);
+    } while(opcion != 4);
 }
