@@ -4,12 +4,14 @@ using namespace std;
 
 void menuViajes::mostrar(){
 
+    system("cls");
+    
     viajesManager vManager;
     int opcion;
     
     do{
     cout << "========================================================" << endl;
-    cout << "        MENÚU VIAJES" << endl;
+    cout << "        MENÚ VIAJES" << endl;
     cout << "========================================================" << endl;
     cout << "1. CREAR NUEVO VIAJE" << endl;
     cout << "2. VIAJES ACTIVOS" << endl;
