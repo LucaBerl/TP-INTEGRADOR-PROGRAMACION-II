@@ -1,3 +1,4 @@
+/*
 #pragma once
 #include "ciudades.h"
 #include "choferes.h"
@@ -46,3 +47,4 @@ std::string get_tipoCarga() const;
 bool get_estado() const;
 
 };
+*/
