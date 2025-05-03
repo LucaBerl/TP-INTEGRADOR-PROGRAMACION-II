@@ -1,3 +1,4 @@
+/*
 #include "camiones.h"
 #include <cstring>
 
@@ -59,4 +60,4 @@ void Camiones::set_disponibilidad(bool disponibilidad){
     _disponibilidad = disponibilidad;
 }
 
-
+*/
