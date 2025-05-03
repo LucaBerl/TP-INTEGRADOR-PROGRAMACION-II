@@ -1,3 +1,4 @@
+/*
 #include "viajes.h"
 #include <cstring>
 
@@ -66,3 +67,4 @@ string Viajes::get_tipoCarga() const{
 bool Viajes::get_estado() const{
     return _estado;
 }
+*/
