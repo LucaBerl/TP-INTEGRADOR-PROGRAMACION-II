@@ -1,4 +1,4 @@
-/* j
+/*
 #include "viajes.h"
 #include <cstring>
 
