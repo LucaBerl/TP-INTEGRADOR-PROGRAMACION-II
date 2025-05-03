@@ -32,10 +32,13 @@ void set_estado(bool estado);
 // Getters:
 
 
+const Choferes& get_chofer() const;
+const Ciudades& get_ciudadOrigen() const;
+const Ciudades& get_ciudadDestino() const;
 float get_distancia() const;
 const tm& get_fechaSalida() const;
 const tm& get_fechaLlegada() const;
-
+string get_tipoCarga() const;
 bool get_estado() const;
 
 };
