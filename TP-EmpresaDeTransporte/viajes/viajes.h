@@ -2,6 +2,7 @@
 #include "ciudades.h"
 #include "choferes.h"
 #include <ctime>
+#include <string>
 
 class Viajes{
 
@@ -41,7 +42,7 @@ const Ciudades& get_ciudadDestino() const;
 float get_distancia() const;
 const tm& get_fechaSalida() const;
 const tm& get_fechaLlegada() const;
-string get_tipoCarga() const;
+std::string get_tipoCarga() const;
 bool get_estado() const;
 
 };
