@@ -1,6 +1,4 @@
 #include "viajes.h"
-#include <string>
-#include<iostream>
 #include <cstring>
 
 // Constructor
