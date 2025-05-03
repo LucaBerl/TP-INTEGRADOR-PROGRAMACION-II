@@ -1,0 +1,51 @@
+# depslib dependency file v1.0
+1584209020 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\main.cpp
+	<iostream>
+
+1746280602 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\camiones\camiones.cpp
+
+1746280602 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\camiones\camionesarchivo.cpp
+
+1746280602 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\camiones\camionesmanager.cpp
+
+1746280602 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\choferes\choferes.cpp
+
+1746280602 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\choferes\choferesarchivo.cpp
+
+1746280602 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\choferes\choferesmanager.cpp
+
+1746280602 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\menúes\menucamiones.cpp
+
+1746280602 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\menúes\menuchoferes.cpp
+
+1746280602 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\viajes\viajesarchivo.cpp
+
+1746280602 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\viajes\viajesmanager.cpp
+
+1746288252 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\menúes\menuprincipal.cpp
+	<iostream>
+	"menuPrincipal.h"
+	"menuViajes.h"
+	"menuChoferes.h"
+	"menuCamiones.h"
+
+1746280602 c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\menúes\menuprincipal.h
+
+1746280602 c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\menúes\menuviajes.h
+
+1746280602 c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\menúes\menuchoferes.h
+
+1746280602 c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\menúes\menucamiones.h
+
+1746288284 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\menúes\menuviajes.cpp
+	<iostream>
+	"menuViajes.h"
+
+1746288315 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\viajes\viajes.cpp
+	"viajes.h"
+	<string>
+	<iostream>
+
+1746287499 c:\users\brand\documents\tp\tp-integrador-programacion-ii\tp-empresadetransporte\viajes\viajes.h
+	<ctime>
+

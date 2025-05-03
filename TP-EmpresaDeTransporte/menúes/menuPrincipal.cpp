@@ -1,22 +1,28 @@
 #include <iostream>
 using namespace std;
+#include "menuPrincipal.h"
 #include "menuViajes.h"
+#include "menuChoferes.h"
+#include "menuCamiones.h"
 
-void menuViajes::mostrar(){
+
+void menuPrincipal::mostrar(){
 
     system("cls");
-    
-    viajesManager vManager;
+
+    menuViajes menuV;
+
+
     int opcion;
-    
+
     do{
     cout << "========================================================" << endl;
-    cout << "        MENÚ VIAJES" << endl;
+    cout << "        SISTEMA GESTION DE LOGISTICA" << endl;
     cout << "========================================================" << endl;
-    cout << "1. CREAR NUEVO VIAJE" << endl;
-    cout << "2. VIAJES ACTIVOS" << endl;
-    cout << "3. HISTORIAL DE VIAJES" << endl;
-    cout << "4. VOLVER AL MENÚ PRINCIPAL" << endl;
+    cout << "1. VIAJES" << endl;
+    cout << "2. CHOFERES" << endl;
+    cout << "3. CAMIONES" << endl;
+    cout << "4. SALIR" << endl;
     cout << "===============================" << endl;
     cout << "Ingrese una opcion: ";
 
@@ -24,14 +30,14 @@ void menuViajes::mostrar(){
 
     switch(opcion) {
             case 1:
-                vManager.crearViaje();             
+                menuV.mostrar();
                 break;
             case 2:
-                vManager.viajesActivos();
+
                 break;
             case 3:
-                vManager.historiaViajes();
-                break;       
+
+                break;
             case 4:
                 return;
                 break;

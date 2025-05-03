@@ -1,28 +1,22 @@
 #include <iostream>
 using namespace std;
-#include "menuPrincipal.h"
 #include "menuViajes.h"
-#include "menuChoferes.h"
-#include "menuCamiones.h"
 
+void menuViajes::mostrar(){
 
-void menuPrincipal::mostrar(){
-    
     system("cls");
-    
-    menuViajes menuV;
-    menuChoferes menuCh;
-    menuCamiones menuCa;
+
+
     int opcion;
-    
+
     do{
     cout << "========================================================" << endl;
-    cout << "        SISTEMA GESTION DE LOGISTICA" << endl;
+    cout << "        MENÚ VIAJES" << endl;
     cout << "========================================================" << endl;
-    cout << "1. VIAJES" << endl;
-    cout << "2. CHOFERES" << endl;
-    cout << "3. CAMIONES" << endl;
-    cout << "4. SALIR" << endl;
+    cout << "1. CREAR NUEVO VIAJE" << endl;
+    cout << "2. VIAJES ACTIVOS" << endl;
+    cout << "3. HISTORIAL DE VIAJES" << endl;
+    cout << "4. VOLVER AL MENÚ PRINCIPAL" << endl;
     cout << "===============================" << endl;
     cout << "Ingrese una opcion: ";
 
@@ -30,14 +24,14 @@ void menuPrincipal::mostrar(){
 
     switch(opcion) {
             case 1:
-                menuV.mostrar();               
+
                 break;
             case 2:
-                menuCh.mostrar();
+
                 break;
             case 3:
-                menuCa.mostrar();
-                break;       
+
+                break;
             case 4:
                 return;
                 break;
