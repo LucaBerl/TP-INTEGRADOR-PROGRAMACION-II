@@ -1,4 +1,4 @@
-
+/*
 #pragma once
 #include "fecha.h"
 #include <string>
@@ -55,3 +55,4 @@ bool get_disponibilidad()const;
 
 
 };
+*/
