@@ -32,6 +32,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Ciudades/ciudades.cpp" />
+		<Unit filename="Ciudades/ciudades.h" />
+		<Unit filename="Fecha/fecha.cpp" />
+		<Unit filename="Fecha/fecha.h" />
 		<Unit filename="camiones/camiones.cpp" />
 		<Unit filename="camiones/camiones.h" />
 		<Unit filename="camiones/camionesArchivo.cpp" />
