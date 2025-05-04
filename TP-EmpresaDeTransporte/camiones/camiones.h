@@ -1,4 +1,4 @@
-
+/*
 #pragma once
 #include "fecha.h"
 #include <string>
@@ -34,7 +34,8 @@ bool set_modelo(std::string modelo);
 bool set_anio(int anio);
 bool set_pesoCarga(float pesoCarga);
 bool set_volumenCarga(float volumenCarga);
-bool set_kmMensuales(float km,int mes);
+void set_kmMensuales();                     //Setea en 0 todo el array
+bool set_kmMensuales(float km,int mes);    // Lleva la cuenta de los km mensuales
 void set_ultimaVerificacion(const Fecha &ultimaVerificacion);
 void set_aptoCircular(bool aptoCircular);
 void set_disponibilidad(bool disponibilidad);

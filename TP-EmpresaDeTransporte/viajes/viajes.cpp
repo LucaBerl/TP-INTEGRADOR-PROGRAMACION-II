@@ -4,7 +4,19 @@
 
 // Constructor
 
-Viajes();
+Viajes::Viajes(){
+
+set_chofer(Choferes());
+set_ciudadOrigen(Ciudades());
+set_ciudadDestino(Ciudades());
+set_distancia(1);
+set_fechaSalida({});
+set_fechaLlegada({});
+set_tipoCarga("");
+set_estado(0);
+
+
+}
 
 // Setters:
 
@@ -67,4 +79,4 @@ string Viajes::get_tipoCarga() const{
 bool Viajes::get_estado() const{
     return _estado;
 }
-*/
+

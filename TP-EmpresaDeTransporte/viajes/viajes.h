@@ -13,10 +13,10 @@ private:
   Ciudades _ciudadDestino;
   float _distancia;
   struct tm _fechaSalida;
-  struct tm _fechaLlegada; 
+  struct tm _fechaLlegada;
   char _tipoCarga[30];
   bool _estado;
-  
+
 public:
 
 // Constructor
@@ -47,4 +47,5 @@ std::string get_tipoCarga() const;
 bool get_estado() const;
 
 };
-*/
+
+

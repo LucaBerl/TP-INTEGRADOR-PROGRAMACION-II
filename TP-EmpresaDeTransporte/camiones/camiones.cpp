@@ -1,6 +1,27 @@
+/*
 #include "camiones.h"
 #include <cstring>
 
+
+// Constructor
+
+Camiones::Camiones(){
+
+set_idCamion(0);
+set_patente("");
+set_marca("");
+set_modelo("");
+set_anio(0);
+set_pesoCarga(501);
+set_volumenCarga(2);
+set_kmMensuales();
+set_ultimaVerificacion(Fecha()); //Llama a constructor vacio de Fecha
+set_aptoCircular(1);
+set_disponibilidad(1);
+
+
+
+}
 
 // Setters:
 
@@ -43,6 +64,11 @@ bool Camiones::set_volumenCarga(float volumenCarga){
         return true;
     }else{return false;}
 }
+void Camiones::set_kmMensuales(){
+    for(int i = 0; i < 12; i++){
+        _kmMensuales[i] = 0;
+    }
+}
 bool Camiones::set_kmMensuales(float km,int mes){
     if (mes > 0 && mes < 13){
         _kmMensuales[mes-1] += km;
@@ -59,4 +85,38 @@ void Camiones::set_disponibilidad(bool disponibilidad){
     _disponibilidad = disponibilidad;
 }
 
+// Getters:
 
+int Camiones::get_idCamion()const{
+    return _idCamion;
+}
+std::string Camiones::get_patente()const{
+    return _patente;
+}
+std::string Camiones::get_marca()const{
+    return _marca;
+}
+std::string Camiones::get_modelo()const{
+    return _modelo;
+}
+int Camiones::get_anio()const{
+    return _anio;
+}
+float Camiones::get_pesoCarga()const{
+    return _pesoCarga;
+}
+float Camiones::get_volumenCarga()const{
+    return _volumenCarga;
+}
+const float* Camiones::get_kmMensuales()const{  // devuelve 12 elementos
+    return _kmMensuales;
+}
+const Fecha& Camiones::get_ultimaVerificacion()const{
+    return _ultimaVerificacion;
+}
+bool Camiones::get_aptoCircular()const{
+    return _aptoCircular;
+}
+bool Camiones::get_disponibilidad()const{
+    return _disponibilidad;
+}
