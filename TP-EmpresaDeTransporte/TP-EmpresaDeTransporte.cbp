@@ -32,7 +32,33 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="camiones/camiones.cpp" />
+		<Unit filename="camiones/camiones.h" />
+		<Unit filename="camiones/camionesArchivo.cpp" />
+		<Unit filename="camiones/camionesArchivo.h" />
+		<Unit filename="camiones/camionesManager.cpp" />
+		<Unit filename="camiones/camionesManager.h" />
+		<Unit filename="choferes/choferes.cpp" />
+		<Unit filename="choferes/choferes.h" />
+		<Unit filename="choferes/choferesArchivo.cpp" />
+		<Unit filename="choferes/choferesArchivo.h" />
+		<Unit filename="choferes/choferesManager.cpp" />
+		<Unit filename="choferes/choferesManager.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="menúes/menuCamiones.cpp" />
+		<Unit filename="menúes/menuCamiones.h" />
+		<Unit filename="menúes/menuChoferes.cpp" />
+		<Unit filename="menúes/menuChoferes.h" />
+		<Unit filename="menúes/menuPrincipal.cpp" />
+		<Unit filename="menúes/menuPrincipal.h" />
+		<Unit filename="menúes/menuViajes.cpp" />
+		<Unit filename="menúes/menuViajes.h" />
+		<Unit filename="viajes/viajes.cpp" />
+		<Unit filename="viajes/viajes.h" />
+		<Unit filename="viajes/viajesArchivo.cpp" />
+		<Unit filename="viajes/viajesArchivo.h" />
+		<Unit filename="viajes/viajesManager.cpp" />
+		<Unit filename="viajes/viajesManager.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

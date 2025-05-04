@@ -1,9 +1,13 @@
 #include <iostream>
-
+#include "menúes/menuPrincipal.h"
 using namespace std;
 
 int main()
 {
-    cout << "Test" << endl;
+
+    menuPrincipal mp;
+
+    mp.mostrar();
+
     return 0;
 }

@@ -11,19 +11,23 @@ void menuPrincipal::mostrar(){
     system("cls");
 
     menuViajes menuV;
+    menuChoferes menuCh;
+
 
 
     int opcion;
 
     do{
-    cout << "========================================================" << endl;
-    cout << "        SISTEMA GESTION DE LOGISTICA" << endl;
-    cout << "========================================================" << endl;
+    system("cls");
+    cout << "=======================================" << endl;
+    cout << "     SISTEMA GESTION DE LOGISTICA" << endl;
+    cout << "=======================================" << endl;
     cout << "1. VIAJES" << endl;
     cout << "2. CHOFERES" << endl;
     cout << "3. CAMIONES" << endl;
+    cout << endl;
     cout << "4. SALIR" << endl;
-    cout << "===============================" << endl;
+    cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
     cin >> opcion;
@@ -33,7 +37,7 @@ void menuPrincipal::mostrar(){
                 menuV.mostrar();
                 break;
             case 2:
-
+                menuCh.mostrar();
                 break;
             case 3:
 
