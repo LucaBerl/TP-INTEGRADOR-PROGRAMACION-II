@@ -1,6 +1,7 @@
-/*
+
 #pragma once
-#include "fecha.h"
+/* esta linea la comento porque no esta creado el archivo fecha.h
+#include "fecha.h"*/
 #include <string>
 
 
@@ -15,7 +16,7 @@ private:
   float _pesoCarga;
   float _volumenCarga;
   float _kmMensuales[12];
-  Fecha _ultimaVerificacion;
+ /* Fecha _ultimaVerificacion; fecha no  esta creada  */
   bool _aptoCircular;
   bool _disponibilidad;
 
@@ -36,7 +37,10 @@ bool set_pesoCarga(float pesoCarga);
 bool set_volumenCarga(float volumenCarga);
 void set_kmMensuales();                     //Setea en 0 todo el array
 bool set_kmMensuales(float km,int mes);    // Lleva la cuenta de los km mensuales
-void set_ultimaVerificacion(const Fecha &ultimaVerificacion);
+/*
+void set_ultimaVerificacion(const Fecha &ultimaVerificacion);       fecha no  esta creada
+
+*/
 void set_aptoCircular(bool aptoCircular);
 void set_disponibilidad(bool disponibilidad);
 
@@ -50,10 +54,12 @@ int get_anio()const;
 float get_pesoCarga()const;
 float get_volumenCarga()const;
 const float* get_kmMensuales()const; // devuelve 12 elementos
-const Fecha& get_ultimaVerificacion()const;
+/*
+const Fecha& get_ultimaVerificacion()const;  fecha no creada
+*/
 bool get_aptoCircular()const;
 bool get_disponibilidad()const;
 
 
 };
-*/
+

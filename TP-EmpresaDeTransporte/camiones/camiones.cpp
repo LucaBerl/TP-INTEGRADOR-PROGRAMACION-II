@@ -1,4 +1,4 @@
-/*
+
 #include "camiones.h"
 #include <cstring>
 
@@ -15,7 +15,10 @@ set_anio(0);
 set_pesoCarga(501);
 set_volumenCarga(2);
 set_kmMensuales();
+/*
 set_ultimaVerificacion(Fecha()); //Llama a constructor vacio de Fecha
+
+*/
 set_aptoCircular(1);
 set_disponibilidad(1);
 
@@ -75,9 +78,13 @@ bool Camiones::set_kmMensuales(float km,int mes){
         return true;
     }else{return false;}
 }
+
+/*
 void Camiones::set_ultimaVerificacion(const Fecha &ultimaVerificacion){
     _ultimaVerificacion = ultimaVerificacion;
 }
+
+*/
 void Camiones::set_aptoCircular(bool aptoCircular){
     _aptoCircular = aptoCircular;
 }
@@ -112,15 +119,17 @@ float Camiones::get_volumenCarga()const{
 const float* Camiones::get_kmMensuales()const{  // devuelve 12 elementos
     return _kmMensuales;
 }
-const Fecha& Camiones::get_ultimaVerificacion()const{
+/*
+const Fecha& Camiones::get_ultimaVerificacion()const{  fecha no creada
     return _ultimaVerificacion;
 }
+*/
 bool Camiones::get_aptoCircular()const{
     return _aptoCircular;
 }
 bool Camiones::get_disponibilidad()const{
     return _disponibilidad;
 }
-=======
-*/
+
+
 
