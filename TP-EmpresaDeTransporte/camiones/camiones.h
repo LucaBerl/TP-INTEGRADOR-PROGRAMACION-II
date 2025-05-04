@@ -56,3 +56,4 @@ bool get_disponibilidad()const;
 
 
 };
+*/

@@ -85,6 +85,7 @@ void Camiones::set_disponibilidad(bool disponibilidad){
     _disponibilidad = disponibilidad;
 }
 
+
 // Getters:
 
 int Camiones::get_idCamion()const{
@@ -120,3 +121,6 @@ bool Camiones::get_aptoCircular()const{
 bool Camiones::get_disponibilidad()const{
     return _disponibilidad;
 }
+=======
+*/
+
