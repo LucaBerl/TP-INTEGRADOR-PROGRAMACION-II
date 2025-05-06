@@ -1,7 +1,7 @@
-/*
+
 #pragma once
-#include "ciudades.h"
-#include "choferes.h"
+#include "../Ciudades/ciudades.h"
+#include "../choferes/choferes.h"
 #include <ctime>
 #include <string>
 

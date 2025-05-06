@@ -1,7 +1,7 @@
 #pragma once
 
-#include "camiones.h"
-#include "fecha.h"
+#include "../camiones/camiones.h"
+#include "../Fecha/fecha.h"
 #include <string>
 
 class Choferes{

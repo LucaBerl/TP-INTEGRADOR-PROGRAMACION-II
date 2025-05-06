@@ -1,6 +1,7 @@
-/*
+
 #include "viajes.h"
 #include <cstring>
+
 
 // Constructor
 
@@ -73,11 +74,11 @@ const tm& Viajes::get_fechaSalida() const{
 const tm& Viajes::get_fechaLlegada() const{
     return _fechaLlegada;
 }
-string Viajes::get_tipoCarga() const{
+std::string Viajes::get_tipoCarga() const{
     return _tipoCarga;
 }
 bool Viajes::get_estado() const{
     return _estado;
 }
 
-*/
+

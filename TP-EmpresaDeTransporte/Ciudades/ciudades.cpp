@@ -180,7 +180,7 @@ Ciudades Ciudades::buscarCiudad(){
         pfile = fopen("datos2.bin", "rb");
         if (pfile == nullptr) {
         cout << "Error al abrir el archivo." << endl;
-        return ciudadd;  // Salir con error si no se pudo abrir el archivo
+        return ciudadd;
         }
 
         do{

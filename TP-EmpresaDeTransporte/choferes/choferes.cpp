@@ -1,5 +1,6 @@
 
 #include "choferes.h"
+#include "../camiones/camiones.h"
 #include <cstring>
 
 
@@ -41,14 +42,14 @@ bool Choferes::set_dni(int dni){
     else{return false;}
 }
 bool Choferes::set_nombre(std::string nombre){
-    if(nombre.length < sizeof(_nombre)){
+    if(nombre.length() < sizeof(_nombre)){
         strcpy(_nombre,nombre.c_str());
         return true;
     }
     else{return false;}
 }
 bool Choferes::set_apellido(std::string apellido){
-    if(apellido.length < sizeof(_apellido)){
+    if(apellido.length() < sizeof(_apellido)){
         strcpy(_apellido,apellido.c_str());
         return true;
     }
