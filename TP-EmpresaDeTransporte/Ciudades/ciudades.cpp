@@ -75,7 +75,7 @@ void Ciudades::mostrarCoincidencias(string nombre){
 
         strcpy(ciudadArchivo,nombre.c_str());
 
-        pfile = fopen("datos2.bin", "rb");
+        pfile = fopen("Ciudades/datos2.bin", "rb");
 
         if (pfile == nullptr) {
             cout << "Error al abrir el archivo." << endl;
@@ -177,7 +177,7 @@ Ciudades Ciudades::buscarCiudad(){
         FILE *pfile;
         int desicion;
 
-        pfile = fopen("datos2.bin", "rb");
+        pfile = fopen("Ciudades/datos2.bin", "rb");
         if (pfile == nullptr) {
         cout << "Error al abrir el archivo." << endl;
         return ciudadd;
