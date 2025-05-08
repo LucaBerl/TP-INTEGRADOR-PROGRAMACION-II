@@ -9,5 +9,7 @@ public:
     void seleccionarCarga(Viajes &viaje);
     void seleccionarChofer(Viajes &viaje);
     void seleccionarCiudades(Viajes &viaje);
+    void calcularTiempo(Viajes &viaje);
+    void mostrarResumen(Viajes &viaje);
 
 };

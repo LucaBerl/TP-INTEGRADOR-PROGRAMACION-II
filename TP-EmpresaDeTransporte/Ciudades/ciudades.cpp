@@ -193,13 +193,16 @@ Ciudades Ciudades::buscarCiudad(){
                     ciudad = ciudadd;
                     ciudad.mostrar_ciudad();
 
-
-                    cout << endl << "Esta es la ciudad buscada? 1 para SI y 0 para NO" << endl;
+                    do{
+                    cout << endl << "Esta es la ciudad buscada? (SI = 1 / NO = 0)" << endl;
                     cin >> desicion;
+                    if (desicion != 1 && desicion != 0){cout << endl << "Ingreso incorrecto, intenta de nuevo" << endl;}
+                    }while (desicion != 1 && desicion != 0);
                     cin.ignore();
                     cout << endl;
                     if(desicion == 1){ciudadEncontrada = true;
                         break;}
+
                 }
             }
             if (ciudadEncontrada == false){
