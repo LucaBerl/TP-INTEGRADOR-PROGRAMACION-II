@@ -20,7 +20,8 @@ private:
 
 public:
 
-double segundosRestantes();
+int segundosRestantes();
+void mostrarViajeActivo();
 
 // Constructor
 

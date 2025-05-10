@@ -28,7 +28,7 @@ void menuViajes::mostrar(){
                 vManager.crearViaje();
                 break;
             case 2:
-
+                vManager.listarActivos();
                 break;
             case 3:
 

@@ -1,22 +1,11 @@
 
 #include "viajes.h"
 #include <cstring>
-
-double Viajes::segundosRestantes(){
-
-    time_t t0 = time(NULL); ///Tiempo actual
-    tm llegada = get_fechaLlegada();
-    time_t t1 = mktime(&llegada);
-
-    if (t1 < t0){
-
-        return 0; //Viaje finalizado
-    }
+#include <iomanip>
+#include <iostream>
+using namespace std;
 
 
-    return t1 - t0; // Segundos restantes
-
-}
 
 // Constructor
 
@@ -101,4 +90,46 @@ bool Viajes::get_estado() const{
     return _estado;
 }
 
+/////////////////////////////////////////////////////////////////
 
+int Viajes::segundosRestantes(){
+
+    time_t t0 = time(NULL); ///Tiempo actual
+    tm llegada = get_fechaLlegada();
+    time_t t1 = mktime(&llegada);
+
+    if (t1 < t0){
+
+        return 0; //Viaje finalizado
+    }
+
+
+    return t1 - t0; // Segundos restantes
+
+}
+
+void Viajes::mostrarViajeActivo(){
+
+    int segundos = segundosRestantes();
+    int horas = segundos / 3600;
+    int minutos = (segundos % 3600) / 60;
+    //int segundos = segundos % 60;
+
+    cout << left; // Alinear a la izquierda todo
+
+// Línea separadora
+cout << string(135, '-') << endl;
+
+// Datos del viaje
+string choferCompleto = get_chofer().get_nombre() + " " + get_chofer().get_apellido();
+
+cout << setw(5)  << get_id()
+     << setw(40) << choferCompleto
+     << setw(15) << get_ciudadOrigen().getCiudad()
+     << setw(15) << get_ciudadDestino().getCiudad()
+     << setw(40) << get_tipoCarga();
+
+// Mostrar tiempo restante
+cout << horas << "h " << minutos << "m" << endl;
+
+}

@@ -12,5 +12,6 @@ public:
     void calcularTiempo(Viajes &viaje);
     void mostrarResumen(Viajes &viaje);
     bool actualizarEstados();
+    void listarActivos();
 
 };

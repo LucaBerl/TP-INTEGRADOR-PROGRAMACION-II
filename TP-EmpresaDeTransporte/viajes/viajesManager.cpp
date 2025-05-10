@@ -232,3 +232,41 @@ bool viajesManager::actualizarEstados(){
     return true;
 
 }
+
+void viajesManager::listarActivos(){
+
+    system("cls");
+    viajesArchivo vArchivo;
+    Viajes viaje;
+
+    actualizarEstados();
+
+    int cantidadRegistros = vArchivo.get_cantidadRegistros();
+
+    cout << left; // Alinear a la izquierda todo
+
+    // Encabezado
+cout << setw(5)  << "ID"
+     << setw(40) << "Chofer"
+     << setw(15) << "Origen"
+     << setw(15) << "Destino"
+     << setw(40) << "Carga"
+     << setw(20) << "Llegada en" << endl;
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(vArchivo.leerViaje(i,viaje)){
+
+            if(viaje.get_estado() == true){
+
+                viaje.mostrarViajeActivo();
+
+            }
+
+        }else{cout << "No se pudo leer el viaje";}
+
+    }
+
+    cout << endl << endl;
+    system("pause");
+}
