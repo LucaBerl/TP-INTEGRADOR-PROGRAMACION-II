@@ -20,6 +20,8 @@ private:
 
 public:
 
+double segundosRestantes();
+
 // Constructor
 
 Viajes();

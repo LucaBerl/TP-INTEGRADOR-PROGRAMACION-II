@@ -92,4 +92,16 @@ int viajesArchivo::get_ultimoID(){
 
 }
 
+bool viajesArchivo::guardarViajeModificado(int pos,const Viajes &viaje){
+
+    FILE *pfile = fopen("viajes.dat", "rb+");
+    if(pfile == NULL){
+        return false;
+    }
+    fseek(pfile, sizeof(Viajes) * pos, SEEK_SET);
+    bool modifico = fwrite(&viaje, sizeof(Viajes), 1, pfile);
+    fclose(pfile);
+    return modifico;
+
+}
 

@@ -2,6 +2,21 @@
 #include "viajes.h"
 #include <cstring>
 
+double Viajes::segundosRestantes(){
+
+    time_t t0 = time(NULL); ///Tiempo actual
+    tm llegada = get_fechaLlegada();
+    time_t t1 = mktime(&llegada);
+
+    if (t1 < t0){
+
+        return 0; //Viaje finalizado
+    }
+
+
+    return t1 - t0; // Segundos restantes
+
+}
 
 // Constructor
 

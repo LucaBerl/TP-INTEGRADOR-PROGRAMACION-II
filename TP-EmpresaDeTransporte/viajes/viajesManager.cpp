@@ -198,12 +198,37 @@ cout << endl << "Chofer: " << viaje.get_chofer().get_nombre() << "  " << viaje.g
 cout << endl << "Origen: " << viaje.get_ciudadOrigen().getCiudad() << " -- " << viaje.get_ciudadOrigen().getProvincia();
 cout << endl << "Destino: " << viaje.get_ciudadDestino().getCiudad() << " -- " << viaje.get_ciudadDestino().getProvincia();
 cout << endl << "Distancia: " << setprecision(1) << viaje.get_distancia() << " km";
-cout << endl << "Salida: " << viaje.get_fechaSalida().tm_mday << "/" << viaje.get_fechaSalida().tm_mon << "/" << viaje.get_fechaSalida().tm_year << "   " << viaje.get_fechaSalida().tm_hour << ":" << viaje.get_fechaSalida().tm_min;
-cout << endl << "Llegada: " << viaje.get_fechaLlegada().tm_mday << "/" << viaje.get_fechaLlegada().tm_mon << "/" << viaje.get_fechaLlegada().tm_year << "   " << viaje.get_fechaLlegada().tm_hour << ":" << viaje.get_fechaLlegada().tm_min;
+cout << endl << "Salida: " << viaje.get_fechaSalida().tm_mday << "/" << viaje.get_fechaSalida().tm_mon+1 << "/" << viaje.get_fechaSalida().tm_year+1900 << "   " << viaje.get_fechaSalida().tm_hour << ":" << viaje.get_fechaSalida().tm_min;
+cout << endl << "Llegada: " << viaje.get_fechaLlegada().tm_mday << "/" << viaje.get_fechaLlegada().tm_mon+1 << "/" << viaje.get_fechaLlegada().tm_year+1900 << "   " << viaje.get_fechaLlegada().tm_hour << ":" << viaje.get_fechaLlegada().tm_min;
 cout << endl << "Carga transportada: " << viaje.get_tipoCarga();
 cout << endl << endl;
 
 
+}
 
+
+bool viajesManager::actualizarEstados(){
+
+    viajesArchivo vArchivo;
+    Viajes viaje;
+
+    int cantidadRegistros = vArchivo.get_cantidadRegistros();
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(vArchivo.leerViaje(i,viaje)){
+
+            if (viaje.get_estado() == 1 && viaje.segundosRestantes() == 0){
+
+                viaje.set_estado(0);
+                if(!vArchivo.guardarViajeModificado(i,viaje)){return false;}
+
+            }
+
+        }else{return false;}
+
+    }
+
+    return true;
 
 }

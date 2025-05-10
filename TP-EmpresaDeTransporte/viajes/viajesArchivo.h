@@ -8,4 +8,5 @@ public:
     int get_cantidadRegistros();
     bool leerViaje(int pos,Viajes &viaje);
     int get_ultimoID();
+    bool guardarViajeModificado(int pos,const Viajes &viaje);
 };
