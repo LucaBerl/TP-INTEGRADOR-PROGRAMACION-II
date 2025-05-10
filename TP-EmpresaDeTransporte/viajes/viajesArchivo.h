@@ -1,1 +1,11 @@
+#pragma oce
+#include "viajes.h"
 
+class viajesArchivo {
+
+public:
+    bool guardarViaje(Viajes &viaje);
+    int get_cantidadRegistros();
+    bool leerViaje(int pos,Viajes &viaje);
+    int get_ultimoID();
+};

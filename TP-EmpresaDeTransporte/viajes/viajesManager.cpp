@@ -1,7 +1,9 @@
 
 #include "viajesManager.h"
+#include "viajesArchivo.h"
 #include "../Carga/carga.h"
 #include "../Ciudades/ciudades.h"
+#include <iomanip>
 #include <iostream>
 using namespace std;
 
@@ -153,12 +155,14 @@ system("cls");
 
     struct tm tm_info = *localtime(&t);  /// localtime me convierte esos segundos a una fecha legible, y al asignarlo a la struct tm me queda cada valor separado(int hora, int minutos, int segundos, etc)
 
+    viaje.set_fechaSalida(tm_info);
 
     tm_info.tm_sec += segundos; ///Le agrego a la estructura con la fecha y hora ACTUAL, los segundos del tiempo estimado.
 
 
     mktime(&tm_info);  /// mktime() normaliza la estructura, es decir, convierte el exceso de segundos en horas y minutos.
 
+    viaje.set_fechaLlegada(tm_info);
 
     cout << endl << "Fecha de llegada: "; /// Despues podemos mostrar cada campo de la estructura por separado para visualizar la fecha de llegada.
 
@@ -173,6 +177,8 @@ system("cls");
 
     system("pause");
 
+
+
 }
 
 // Paso 6 y 7:
@@ -181,8 +187,23 @@ void viajesManager::mostrarResumen(Viajes &viaje){
 
 /// Aca vamos a mostrar el resumen del viaje y confirmarlo. Luego lo guardamos en archivo.
 
+viajesArchivo vArchivo;
+
 system("cls");
 cout << endl << "Espacio para mostrar resumen y guardar viaje." << endl << endl;
 system("pause");
+
+cout << endl << "ID: " << vArchivo.get_ultimoID();
+cout << endl << "Chofer: " << viaje.get_chofer().get_nombre() << "  " << viaje.get_chofer().get_apellido();
+cout << endl << "Origen: " << viaje.get_ciudadOrigen().getCiudad() << " -- " << viaje.get_ciudadOrigen().getProvincia();
+cout << endl << "Destino: " << viaje.get_ciudadDestino().getCiudad() << " -- " << viaje.get_ciudadDestino().getProvincia();
+cout << endl << "Distancia: " << setprecision(1) << viaje.get_distancia() << " km";
+cout << endl << "Salida: " << viaje.get_fechaSalida().tm_mday << "/" << viaje.get_fechaSalida().tm_mon << "/" << viaje.get_fechaSalida().tm_year << "   " << viaje.get_fechaSalida().tm_hour << ":" << viaje.get_fechaSalida().tm_min;
+cout << endl << "Llegada: " << viaje.get_fechaLlegada().tm_mday << "/" << viaje.get_fechaLlegada().tm_mon << "/" << viaje.get_fechaLlegada().tm_year << "   " << viaje.get_fechaLlegada().tm_hour << ":" << viaje.get_fechaLlegada().tm_min;
+cout << endl << "Carga transportada: " << viaje.get_tipoCarga();
+cout << endl << endl;
+
+
+
 
 }

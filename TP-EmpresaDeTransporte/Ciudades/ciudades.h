@@ -14,11 +14,11 @@ private:
 public:
 
     Ciudades();
-    std::string getCodigo();
-    std::string getProvincia();
-    std::string getCiudad();
-    double getLat();
-    double getLng();
+    std::string getCodigo()const;
+    std::string getProvincia()const;
+    std::string getCiudad()const;
+    double getLat()const;
+    double getLng()const;
 
 
     std::string convertirMayusculas(std::string palabra);

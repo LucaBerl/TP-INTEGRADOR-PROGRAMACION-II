@@ -25,27 +25,27 @@ Ciudades::Ciudades(){
 
 }
 
-string Ciudades::getCodigo(){
+string Ciudades::getCodigo()const{
 
     return codigo;
 
 }
-string Ciudades::getProvincia(){
+string Ciudades::getProvincia()const{
 
     return provincia;
 
 }
-string Ciudades::getCiudad(){
+string Ciudades::getCiudad()const{
 
     return ciudad;
 
 }
-double Ciudades::getLat(){
+double Ciudades::getLat()const{
 
     return lat;
 
 }
-double Ciudades::getLng(){
+double Ciudades::getLng()const{
 
     return lng;
 

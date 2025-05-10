@@ -7,6 +7,7 @@
 
 Viajes::Viajes(){
 
+set_id(-1);
 set_chofer(Choferes());
 set_ciudadOrigen(Ciudades());
 set_ciudadDestino(Ciudades());
@@ -20,7 +21,9 @@ set_estado(0);
 }
 
 // Setters:
-
+void Viajes::set_id(int ultimo){
+    _id = ultimo + 1;
+}
 void Viajes::set_chofer(const Choferes &chofer){
     _chofer = chofer;
 }
@@ -55,7 +58,9 @@ void Viajes::set_estado(bool estado){
 
 ///Getters:
 
-
+int Viajes::get_id() const{
+    return _id;
+}
 const Choferes& Viajes::get_chofer() const{
     return _chofer;
 }
