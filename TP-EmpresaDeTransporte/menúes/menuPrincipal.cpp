@@ -12,6 +12,7 @@ void menuPrincipal::mostrar(){
 
     menuViajes menuV;
     menuChoferes menuCh;
+    menuCamiones menuCa;
 
 
 
@@ -40,7 +41,7 @@ void menuPrincipal::mostrar(){
                 menuCh.mostrar();
                 break;
             case 3:
-
+                menuCa.mostrar();
                 break;
             case 4:
                 return;

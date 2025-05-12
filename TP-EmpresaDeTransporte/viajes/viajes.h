@@ -1,13 +1,14 @@
-/*
+
 #pragma once
-#include "ciudades.h"
-#include "choferes.h"
+#include "../Ciudades/ciudades.h"
+#include "../choferes/choferes.h"
 #include <ctime>
 #include <string>
 
 class Viajes{
 
 private:
+  int _id;
   Choferes _chofer;
   Ciudades _ciudadOrigen;
   Ciudades _ciudadDestino;
@@ -19,12 +20,16 @@ private:
 
 public:
 
+int segundosRestantes();
+void mostrarViajeActivo();
+void mostrarViaje();
+
 // Constructor
 
 Viajes();
 
 // Setters:
-
+void set_id(int ultimo);
 void set_chofer(const Choferes &chofer);
 void set_ciudadOrigen(const Ciudades &ciudad_origen);
 void set_ciudadDestino(const Ciudades &ciudad_destino);
@@ -36,7 +41,7 @@ void set_estado(bool estado);
 
 // Getters:
 
-
+int get_id() const;
 const Choferes& get_chofer() const;
 const Ciudades& get_ciudadOrigen() const;
 const Ciudades& get_ciudadDestino() const;

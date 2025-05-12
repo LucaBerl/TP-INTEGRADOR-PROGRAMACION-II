@@ -25,27 +25,27 @@ Ciudades::Ciudades(){
 
 }
 
-string Ciudades::getCodigo(){
+string Ciudades::getCodigo()const{
 
     return codigo;
 
 }
-string Ciudades::getProvincia(){
+string Ciudades::getProvincia()const{
 
     return provincia;
 
 }
-string Ciudades::getCiudad(){
+string Ciudades::getCiudad()const{
 
     return ciudad;
 
 }
-double Ciudades::getLat(){
+double Ciudades::getLat()const{
 
     return lat;
 
 }
-double Ciudades::getLng(){
+double Ciudades::getLng()const{
 
     return lng;
 
@@ -75,7 +75,7 @@ void Ciudades::mostrarCoincidencias(string nombre){
 
         strcpy(ciudadArchivo,nombre.c_str());
 
-        pfile = fopen("datos2.bin", "rb");
+        pfile = fopen("Ciudades/datos2.bin", "rb");
 
         if (pfile == nullptr) {
             cout << "Error al abrir el archivo." << endl;
@@ -177,10 +177,10 @@ Ciudades Ciudades::buscarCiudad(){
         FILE *pfile;
         int desicion;
 
-        pfile = fopen("datos2.bin", "rb");
+        pfile = fopen("Ciudades/datos2.bin", "rb");
         if (pfile == nullptr) {
         cout << "Error al abrir el archivo." << endl;
-        return ciudadd;  // Salir con error si no se pudo abrir el archivo
+        return ciudadd;
         }
 
         do{
@@ -193,13 +193,16 @@ Ciudades Ciudades::buscarCiudad(){
                     ciudad = ciudadd;
                     ciudad.mostrar_ciudad();
 
-
-                    cout << endl << "Esta es la ciudad buscada? 1 para SI y 0 para NO" << endl;
+                    do{
+                    cout << endl << "Esta es la ciudad buscada? (SI = 1 / NO = 0)" << endl;
                     cin >> desicion;
+                    if (desicion != 1 && desicion != 0){cout << endl << "Ingreso incorrecto, intenta de nuevo" << endl;}
+                    }while (desicion != 1 && desicion != 0);
                     cin.ignore();
                     cout << endl;
                     if(desicion == 1){ciudadEncontrada = true;
                         break;}
+
                 }
             }
             if (ciudadEncontrada == false){

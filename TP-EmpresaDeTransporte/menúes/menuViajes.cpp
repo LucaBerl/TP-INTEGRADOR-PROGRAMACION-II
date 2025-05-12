@@ -1,13 +1,12 @@
 #include <iostream>
 using namespace std;
 #include "menuViajes.h"
+#include "../viajes/viajesManager.h"
 
 void menuViajes::mostrar(){
 
-
-
-
     int opcion;
+    viajesManager vManager;
 
     do{
     system("cls");
@@ -26,13 +25,13 @@ void menuViajes::mostrar(){
 
     switch(opcion) {
             case 1:
-
+                vManager.crearViaje();
                 break;
             case 2:
-
+                vManager.listarActivos();
                 break;
             case 3:
-
+                vManager.listarHistorial();
                 break;
             case 4:
                 return;

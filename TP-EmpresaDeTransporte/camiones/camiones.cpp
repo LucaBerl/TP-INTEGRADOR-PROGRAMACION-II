@@ -1,5 +1,6 @@
 
 #include "camiones.h"
+
 #include <cstring>
 
 
@@ -7,7 +8,7 @@
 
 Camiones::Camiones(){
 
-set_idCamion(0);
+set_idCamion(-1);
 set_patente("");
 set_marca("");
 set_modelo("");
@@ -15,21 +16,17 @@ set_anio(0);
 set_pesoCarga(501);
 set_volumenCarga(2);
 set_kmMensuales();
-/*
-set_ultimaVerificacion(Fecha()); //Llama a constructor vacio de Fecha
-
-*/
+set_ultimaVerificacion(Fecha());
 set_aptoCircular(1);
 set_disponibilidad(1);
-
 
 
 }
 
 // Setters:
 
-void Camiones::set_idCamion(int idCamion){
-    _idCamion = idCamion;
+void Camiones::set_idCamion(int ultimo){
+    _idCamion = ultimo +1;
 }
 bool Camiones::set_patente(std::string patente){
     if (patente.length() < sizeof(_patente) && patente.length() >= 6){
@@ -56,13 +53,13 @@ bool Camiones::set_anio(int anio){
     }else{return false;}
 }
 bool Camiones::set_pesoCarga(float pesoCarga){
-    if (pesoCarga > 500 && pesoCarga < 70000){
+    if (pesoCarga >= 500 && pesoCarga <= 70000){
         _pesoCarga = pesoCarga;
         return true;
     }else{return false;}
 }
 bool Camiones::set_volumenCarga(float volumenCarga){
-    if(volumenCarga > 1 && volumenCarga < 150 ){
+    if(volumenCarga >= 1 && volumenCarga <= 150 ){
         _volumenCarga = volumenCarga;
         return true;
     }else{return false;}
@@ -79,12 +76,12 @@ bool Camiones::set_kmMensuales(float km,int mes){
     }else{return false;}
 }
 
-/*
+
 void Camiones::set_ultimaVerificacion(const Fecha &ultimaVerificacion){
     _ultimaVerificacion = ultimaVerificacion;
 }
 
-*/
+
 void Camiones::set_aptoCircular(bool aptoCircular){
     _aptoCircular = aptoCircular;
 }
@@ -119,11 +116,11 @@ float Camiones::get_volumenCarga()const{
 const float* Camiones::get_kmMensuales()const{  // devuelve 12 elementos
     return _kmMensuales;
 }
-/*
-const Fecha& Camiones::get_ultimaVerificacion()const{  fecha no creada
+
+const Fecha& Camiones::get_ultimaVerificacion()const{
     return _ultimaVerificacion;
 }
-*/
+
 bool Camiones::get_aptoCircular()const{
     return _aptoCircular;
 }

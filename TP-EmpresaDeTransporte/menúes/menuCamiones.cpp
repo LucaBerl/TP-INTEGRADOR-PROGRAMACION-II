@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 #include "menuCamiones.h"
+#include "../camiones/camionesManager.h"
 
 void menuCamiones::mostrar(){
 
@@ -45,12 +46,13 @@ void menuCamiones::mostrar(){
 
 void menuCamiones::menu_abm(){
 
-    system("cls");
 
+    camionesManager caManager;
 
     int opcion;
 
     do{
+    system("cls");
     cout << "=======================================" << endl;
     cout << "        ALTA/BAJA/MODIFICACIÓN" << endl;
     cout << "=======================================" << endl;
@@ -66,7 +68,7 @@ void menuCamiones::menu_abm(){
 
     switch(opcion) {
             case 1:
-
+                caManager.altaCamion();
                 break;
             case 2:
 
@@ -88,12 +90,13 @@ void menuCamiones::menu_abm(){
 
 void menuCamiones::menu_listados(){
 
-    system("cls");
+
 
 
     int opcion;
 
     do{
+    system("cls");
     cout << "=======================================" << endl;
     cout << "        LISTADOS" << endl;
     cout << "=======================================" << endl;
@@ -132,11 +135,12 @@ void menuCamiones::menu_listados(){
 
 void menuCamiones::menu_informes(){
 
-    system("cls");
+
 
     int opcion;
 
     do{
+    system("cls");
     cout << "=======================================" << endl;
     cout << "        INFORMES" << endl;
     cout << "=======================================" << endl;
