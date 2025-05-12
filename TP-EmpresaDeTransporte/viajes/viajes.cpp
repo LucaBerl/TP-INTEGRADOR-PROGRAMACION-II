@@ -117,19 +117,35 @@ void Viajes::mostrarViajeActivo(){
 
     cout << left; // Alinear a la izquierda todo
 
-// Línea separadora
-cout << string(135, '-') << endl;
-
 // Datos del viaje
-string choferCompleto = get_chofer().get_nombre() + " " + get_chofer().get_apellido();
+    string choferCompleto = get_chofer().get_nombre() + " " + get_chofer().get_apellido();
 
-cout << setw(5)  << get_id()
+    cout << setw(3)  << get_id()
      << setw(40) << choferCompleto
-     << setw(15) << get_ciudadOrigen().getCiudad()
-     << setw(15) << get_ciudadDestino().getCiudad()
-     << setw(40) << get_tipoCarga();
+     << setw(33) << get_ciudadOrigen().getCiudad()
+     << setw(33) << get_ciudadDestino().getCiudad()
+     << setw(30) << get_tipoCarga();
 
 // Mostrar tiempo restante
-cout << horas << "h " << minutos << "m" << endl;
+    cout << horas << "h " << minutos << "m" << endl;
+
+}
+
+void Viajes::mostrarViaje(){
+
+
+    cout << left;
+
+    string choferCompleto = get_chofer().get_nombre() + " " + get_chofer().get_apellido();
+
+    cout << setw(3)  << get_id()
+     << setw(40) << choferCompleto
+     << setw(33) << get_ciudadOrigen().getCiudad()
+     << setw(33) << get_ciudadDestino().getCiudad()
+     << setw(30) << get_tipoCarga()
+     << setw(15) << get_distancia()
+     << setw(11) << get_fechaSalida().tm_mday<<"/"<<get_fechaSalida().tm_mon+1<<"/"<<get_fechaSalida().tm_year+1900
+     << setw(11) << get_fechaLlegada().tm_mday<<"/"<<get_fechaLlegada().tm_mon+1<<"/"<<get_fechaLlegada().tm_year+1900;
+
 
 }

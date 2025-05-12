@@ -2,7 +2,7 @@
 #include "viajes.h"
 
 
-bool viajesArchivo::guardarViaje(Viajes &viaje){
+bool viajesArchivo::guardarViaje(const Viajes &viaje){
 
 
     FILE *pfile;
@@ -22,7 +22,7 @@ bool viajesArchivo::guardarViaje(Viajes &viaje){
 
 int viajesArchivo::get_cantidadRegistros(){
 
-    int tamRegistro, total, cantidad;
+    int total, cantidad;
     FILE* pFile;
 
     pFile = fopen("viajes.dat", "rb");
@@ -44,7 +44,7 @@ int viajesArchivo::get_cantidadRegistros(){
 
 }
 
-bool viajesArchivo::leerViaje(int pos,Viajes &viaje){
+bool viajesArchivo::leerViaje(int pos, Viajes &viaje){
 
     FILE* pFile;
     bool lecturaCorrecta;

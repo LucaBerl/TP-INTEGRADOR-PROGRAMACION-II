@@ -13,5 +13,6 @@ public:
     void mostrarResumen(Viajes &viaje);
     bool actualizarEstados();
     void listarActivos();
+    void listarHistorial();
 
 };

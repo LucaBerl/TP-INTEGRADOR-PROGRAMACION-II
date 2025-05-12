@@ -22,6 +22,7 @@ public:
 
 int segundosRestantes();
 void mostrarViajeActivo();
+void mostrarViaje();
 
 // Constructor
 

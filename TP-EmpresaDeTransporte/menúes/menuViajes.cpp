@@ -31,7 +31,7 @@ void menuViajes::mostrar(){
                 vManager.listarActivos();
                 break;
             case 3:
-
+                vManager.listarHistorial();
                 break;
             case 4:
                 return;

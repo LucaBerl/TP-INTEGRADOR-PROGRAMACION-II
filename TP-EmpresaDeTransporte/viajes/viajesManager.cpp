@@ -5,6 +5,7 @@
 #include "../Ciudades/ciudades.h"
 #include <iomanip>
 #include <iostream>
+#include <conio.h>
 using namespace std;
 
 void viajesManager::crearViaje(){
@@ -15,6 +16,7 @@ void viajesManager::crearViaje(){
 
 //    Pasos:
 //
+
 //        Paso 1: Elegir tipo de carga(lista predefinida), peso y volumen.
 //        Paso 2 : Mostrar choferes disponibles segun: disponibilidad, peso maximo de camion asignado y volumen maximo de camion asignado.
 //        Paso 3 : Elegir chofer para viaje
@@ -55,16 +57,17 @@ cin >> opcionCarga;
 
 if(opcionCarga>0 && opcionCarga<22){
     if(viaje.set_tipoCarga(tCarga.get_tipoCarga(opcionCarga-1))){
-        cout << endl << "Opcion guardada" << endl;
+
+        cout << endl << "Opcion guardada '" << viaje.get_tipoCarga() << "' , presione cualquier tecla para continuar ..." << _getch() << endl;
     }
     else{cout << endl << "No se pudo guardar la carga" << endl;}
-}else{cout << endl << "Opcion invalida, intente de vuelta" << endl;}
-//system("pause");
+}else{cout << endl << "Opcion invalida, presione cualquier tecla para volver a intentar ..." << _getch() <<  endl;}
+
 }while (opcionCarga<1 || opcionCarga>21);
 
-cout << endl << viaje.get_tipoCarga() << endl << endl;
 
-system("pause");
+
+
 
 }
 
@@ -246,12 +249,15 @@ void viajesManager::listarActivos(){
     cout << left; // Alinear a la izquierda todo
 
     // Encabezado
-cout << setw(5)  << "ID"
+    cout << setw(3)  << "ID"
      << setw(40) << "Chofer"
-     << setw(15) << "Origen"
-     << setw(15) << "Destino"
-     << setw(40) << "Carga"
-     << setw(20) << "Llegada en" << endl;
+     << setw(33) << "Origen"
+     << setw(33) << "Destino"
+     << setw(30) << "Carga"
+     << setw(20) << "Llegada en" ;
+
+     // Línea separadora
+    cout << endl << string(159, '-') << endl;
 
     for(int i = 0;i < cantidadRegistros; i++){
 
@@ -260,6 +266,47 @@ cout << setw(5)  << "ID"
             if(viaje.get_estado() == true){
 
                 viaje.mostrarViajeActivo();
+
+            }
+
+        }else{cout << "No se pudo leer el viaje";}
+
+    }
+
+    cout << endl << endl;
+    system("pause");
+}
+
+void viajesManager::listarHistorial(){
+
+    system("cls");
+    viajesArchivo vArchivo;
+    Viajes viaje;
+
+    actualizarEstados();
+
+    int cantidadRegistros = vArchivo.get_cantidadRegistros();
+
+    cout << left;
+    cout << setw(3)  << "ID"
+     << setw(40) << "Chofer"
+     << setw(33) << "Origen"
+     << setw(33) << "Destino"
+     << setw(30) << "Carga"
+     << setw(15) << "Distancia"
+     << setw(11) << "Salida"
+     << setw(11) << "Llegada" ;
+
+     // Línea separadora
+    cout << endl << string(176, '-') << endl;
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(vArchivo.leerViaje(i,viaje)){
+
+            if(viaje.get_estado() == false){
+
+                viaje.mostrarViaje();
 
             }
 

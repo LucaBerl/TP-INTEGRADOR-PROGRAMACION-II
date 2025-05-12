@@ -27,7 +27,7 @@ Camiones();
 
 // Setters:
 
-void set_idCamion(int idCamion);
+void set_idCamion(int ultimo);
 bool set_patente(std::string patente);
 bool set_marca(std::string marca);
 bool set_modelo(std::string modelo);
