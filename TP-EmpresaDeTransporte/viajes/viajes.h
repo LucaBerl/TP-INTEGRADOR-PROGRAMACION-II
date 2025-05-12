@@ -48,4 +48,4 @@ bool get_estado() const;
 
 };
 
-
+*/
