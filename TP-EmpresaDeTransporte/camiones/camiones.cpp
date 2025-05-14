@@ -1,6 +1,5 @@
 
 #include "camiones.h"
-
 #include <cstring>
 
 
@@ -29,7 +28,7 @@ void Camiones::set_idCamion(int ultimo){
     _idCamion = ultimo +1;
 }
 bool Camiones::set_patente(std::string patente){
-    if (patente.length() < sizeof(_patente) && patente.length() >= 6){
+    if (patente.length() < sizeof(_patente) && ( patente.length() == 6 || patente.length() == 8 )){
         strcpy(_patente,patente.c_str());
         return true;
     } else {return false;}
@@ -47,7 +46,7 @@ bool Camiones::set_modelo(std::string modelo){
     } else {return false;}
 }
 bool Camiones::set_anio(int anio){
-    if ( anio > 1960 && anio < 2026){
+    if ( anio >= 1960 && anio < 2026){
         _anio = anio;
         return true;
     }else{return false;}

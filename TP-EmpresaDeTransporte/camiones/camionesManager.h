@@ -1,5 +1,6 @@
 
 #pragma once
+#include "../Fecha/fecha.h"
 
 
 class camionesManager{
@@ -8,6 +9,7 @@ class camionesManager{
 public:
 
     bool altaCamion();
+    bool verificacionVencida(Fecha &fecha);
 
 
 

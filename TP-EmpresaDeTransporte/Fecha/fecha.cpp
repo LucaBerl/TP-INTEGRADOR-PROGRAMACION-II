@@ -39,7 +39,17 @@ int Fecha::get_Anio(){return _anio;}
 
 
 void Fecha::Mostrar(){
-    cout<<_dia<<"/"<<_mes<<"/"<<_anio<<endl;
+    if(_dia < 10){cout << "0" <<_dia<<"/";}else{cout << _dia<<"/";}
+    if(_mes < 10){cout << "0" <<_mes<<"/";}else{cout << _mes<<"/";}
+    cout << _anio ;
+}
+
+void Fecha::Mostrar(int dia, int mes, int anio){
+
+    if(dia < 10){cout << "0" <<dia<<"/";}else{cout << dia<<"/";}
+    if(mes < 10){cout << "0" <<mes<<"/";}else{cout << mes<<"/";}
+    cout << anio ;
+
 }
 
 bool Fecha::Cargar(int dia, int mes, int anio){

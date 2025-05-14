@@ -12,6 +12,7 @@ class Fecha{
 
         bool Cargar(int dia, int mes, int anio);
         void Mostrar();
+        void Mostrar(int dia, int mes, int anio);
 
         bool set_Dia(int dia);
         bool set_Mes(int mes);
