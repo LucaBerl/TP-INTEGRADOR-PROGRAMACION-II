@@ -145,7 +145,7 @@ system("cls");
 
     int tiempoEstimadoMinutos = (tiempoEstimado-tiempoEstimadoHoras)*60;
 
-    cout << "Tiempo Estimado: " << tiempoEstimadoHoras << ":" << tiempoEstimadoMinutos << " horas " << "(para una velocidad promedio de " << velocidad_promedio << " km/h)" << endl;
+    cout << "Tiempo Estimado: " << tiempoEstimadoHoras << "hs " << tiempoEstimadoMinutos << "min " << "(para una velocidad promedio de " << velocidad_promedio << " km/h)" << endl;
 
     /// A partir de aca lo que se hace es convertir el tiempo estimado a segundos, para agregarlo a la estructura "struct tm tm_info" en el campo "tm_sec".
 

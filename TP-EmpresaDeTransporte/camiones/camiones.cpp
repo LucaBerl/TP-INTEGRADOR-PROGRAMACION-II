@@ -28,7 +28,10 @@ void Camiones::set_idCamion(int ultimo){
     _idCamion = ultimo +1;
 }
 bool Camiones::set_patente(std::string patente){
-    if (patente.length() < sizeof(_patente) && ( patente.length() == 6 || patente.length() == 8 )){
+    if (patente.length() < sizeof(_patente) && ( patente.length() == 6 || patente.length() == 7 )){
+        for (char &c : patente) {
+            c = toupper(c);
+        }
         strcpy(_patente,patente.c_str());
         return true;
     } else {return false;}

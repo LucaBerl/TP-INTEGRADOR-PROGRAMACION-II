@@ -1,5 +1,5 @@
 #include <iostream>
-#include "menúes/menuPrincipal.h"
+#include "menues/menuPrincipal.h"
 
 using namespace std;
 

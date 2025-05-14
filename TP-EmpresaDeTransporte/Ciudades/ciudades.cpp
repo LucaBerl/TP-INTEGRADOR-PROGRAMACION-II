@@ -64,16 +64,16 @@ string Ciudades::convertirMayusculas(string palabra){
     return palabra;
 }
 
-void Ciudades::mostrarCoincidencias(string nombre){
+void Ciudades::mostrarCoincidencias(string ciudadIngresada){
 
 
         FILE *pfile;
         Ciudades ciudadd;
-        char ciudadArchivo[50] = {};
+
         int cont;
         bool coincidenciaEncontrada = false;
 
-        strcpy(ciudadArchivo,nombre.c_str());
+        ciudadIngresada = convertirMayusculas(ciudadIngresada);
 
         pfile = fopen("Ciudades/datos2.bin", "rb");
 
@@ -83,17 +83,20 @@ void Ciudades::mostrarCoincidencias(string nombre){
         }
 
         cout << endl << "ERROR EN LA BUSQUEDA, ESTAS SON ALGUNAS SUGERENCIAS: " << endl;
-        ///convertirMayusculas(ciudadArchivo);
+
         while (fread(&ciudadd, sizeof(Ciudades), 1, pfile) == 1) {
 
             ///convertirMayusculas(ciudadd.ciudad);
+            string ciudadArchivo = convertirMayusculas(string(ciudadd.ciudad));
+            ///Vemos cual tiene menos caracteres para establecer el limite del for, si no capaz comparamos con basura.
+            int minLen = min(ciudadArchivo.length(), ciudadIngresada.length());
 
             cont = 0;
 
-            for (int i = 0;i<strlen(ciudadArchivo);i++){
+            for (int i = 0;i<minLen;i++){
 
 
-                if (ciudadd.ciudad[i] == ciudadArchivo[i] && ciudadd.ciudad[i] != ' '){
+                if (ciudadArchivo[i] == ciudadIngresada[i] && ciudadArchivo[i] != ' '){
 
                     cont++;
                 }
@@ -101,26 +104,26 @@ void Ciudades::mostrarCoincidencias(string nombre){
             }
 
 
-             if (strlen(ciudadArchivo) < 6 ) {
+             if (ciudadIngresada.length() < 6 ) {
 
-                if (cont >= (strlen(ciudadArchivo) - 2 ) ){
+                if (cont >= (ciudadIngresada.length() - 2 ) ){
                 coincidenciaEncontrada = true;
                 cout  << ciudadd.ciudad << " -- " << ciudadd.provincia <<  endl;
                 }
 
             }
 
-            else if (strlen(ciudadArchivo) < 9 && strlen(ciudadArchivo) > 5) {
+            else if (ciudadIngresada.length() < 9 && ciudadIngresada.length() > 5) {
 
-                if (cont >= (strlen(ciudadArchivo) - 3 ) ){
+                if (cont >= (ciudadIngresada.length() - 3 ) ){
                 coincidenciaEncontrada = true;
                 cout  << ciudadd.ciudad << " -- " << ciudadd.provincia <<  endl;
                 }
 
             }
-            else if (strlen(ciudadArchivo) >= 9 ){
+            else if (ciudadIngresada.length() >= 9 ){
 
-                if (cont >= (strlen(ciudadArchivo) - 4 ) ){
+                if (cont >= (ciudadIngresada.length() - 4 ) ){
                 coincidenciaEncontrada = true;
                 cout  << ciudadd.ciudad << " -- " << ciudadd.provincia <<  endl;
                 }
@@ -200,15 +203,16 @@ Ciudades Ciudades::buscarCiudad(){
                     }while (desicion != 1 && desicion != 0);
                     cin.ignore();
                     cout << endl;
-                    if(desicion == 1){ciudadEncontrada = true;
+                    if(desicion == 1){
+                        ciudadEncontrada = true;
                         break;}
 
                 }
             }
             if (ciudadEncontrada == false){
 
-            ciudad.mostrarCoincidencias(nombreCiudad2);
-            fseek(pfile, 0, SEEK_SET);
+                ciudad.mostrarCoincidencias(nombreCiudad2);
+                fseek(pfile, 0, SEEK_SET);
             }
 
         }while(ciudadEncontrada == false);

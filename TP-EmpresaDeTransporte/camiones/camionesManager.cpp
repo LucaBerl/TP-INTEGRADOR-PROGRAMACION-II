@@ -4,9 +4,10 @@ using namespace std;
 #include "camiones.h"
 #include "camionesArchivo.h"
 #include <ctime>
+#include <conio.h>
 
 
-bool camionesManager::altaCamion(){
+void camionesManager::altaCamion(){
 
     system("cls");
 
@@ -62,7 +63,7 @@ bool camionesManager::altaCamion(){
         if (validacion) {
             cout << " Guardado correcto ✔" << endl;
         } else {
-            cout << endl << "Patente inválida. Debe tener 6 u 8 caracteres. Intente de vuelta" << endl;
+            cout << endl << "Patente inválida. Debe tener 6 O 7 caracteres. Intente de vuelta" << endl;
         }
 
     }while (!validacion);
@@ -181,7 +182,7 @@ bool camionesManager::altaCamion(){
     if(verificacionVencida(fechaVerificacion)){
         cout << endl << "Verificacion vencida, el camion se dará de alta como 'no apto para circular' hasta modificar la verificacion.";
         camion.set_aptoCircular(0);
-    }
+    }else{cout << endl << "Apto Circular ✔";}
 
     cout << endl << "Peso máximo: " << camion.get_pesoCarga();
 
@@ -200,7 +201,16 @@ bool camionesManager::altaCamion(){
         cin >> opcion;
     }while (opcion != 1 && opcion != 2);
 
-    system("pause");
+    if (opcion == 1){
+        if(caArchivo.guardarCamion(camion)){
+            system("cls");
+            cout << "GUARDADO CORRECTO ✔ " << endl << _getch() ;
+
+        }
+    }
+    else {return;}
+
+
 
 }
 

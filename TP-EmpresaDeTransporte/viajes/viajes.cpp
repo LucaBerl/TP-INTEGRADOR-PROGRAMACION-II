@@ -139,13 +139,13 @@ void Viajes::mostrarViaje(){
     string choferCompleto = get_chofer().get_nombre() + " " + get_chofer().get_apellido();
 
     cout << setw(3)  << get_id()
-     << setw(40) << choferCompleto
-     << setw(33) << get_ciudadOrigen().getCiudad()
-     << setw(33) << get_ciudadDestino().getCiudad()
-     << setw(30) << get_tipoCarga()
-     << setw(15) << get_distancia()
-     << setw(11) << get_fechaSalida().tm_mday<<"/"<<get_fechaSalida().tm_mon+1<<"/"<<get_fechaSalida().tm_year+1900
-     << setw(11) << get_fechaLlegada().tm_mday<<"/"<<get_fechaLlegada().tm_mon+1<<"/"<<get_fechaLlegada().tm_year+1900;
+    << setw(40) << choferCompleto
+    << setw(33) << get_ciudadOrigen().getCiudad()
+    << setw(33) << get_ciudadDestino().getCiudad()
+    << setw(30) << get_tipoCarga()
+    << setw(15) << get_distancia()
+    << setw(11) << get_fechaSalida().tm_mday<<"/"<<get_fechaSalida().tm_mon+1<<"/"<<get_fechaSalida().tm_year+1900
+    << setw(11) << get_fechaLlegada().tm_mday<<"/"<<get_fechaLlegada().tm_mon+1<<"/"<<get_fechaLlegada().tm_year+1900;
 
 
 }

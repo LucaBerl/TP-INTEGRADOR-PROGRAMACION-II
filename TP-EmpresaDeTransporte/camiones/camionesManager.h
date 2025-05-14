@@ -8,7 +8,7 @@ class camionesManager{
 
 public:
 
-    bool altaCamion();
+    void altaCamion();
     bool verificacionVencida(Fecha &fecha);
 
 
