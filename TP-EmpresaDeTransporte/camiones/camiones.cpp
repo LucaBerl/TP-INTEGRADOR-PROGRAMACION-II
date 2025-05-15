@@ -1,6 +1,8 @@
-
+#include <iostream>
+using namespace std;
 #include "camiones.h"
 #include <cstring>
+#include <iomanip>
 
 
 // Constructor
@@ -131,4 +133,24 @@ bool Camiones::get_disponibilidad()const{
 }
 
 
+////////////////////////////
 
+void Camiones::mostrar()const{
+
+    string aptoCircular, disponibilidad;
+
+    if (get_aptoCircular()){aptoCircular = "✔";}else{aptoCircular = "❌";}
+    if (get_disponibilidad()){disponibilidad = "✔";}else{disponibilidad = "❌";}
+    cout << left;
+    cout << setw(3) << get_idCamion()
+    << setw(10) << get_patente()
+    << setw(30) << get_marca()
+    << setw(30) << get_modelo()
+    << setw(6) << get_anio()
+    << setw(7) << get_pesoCarga()
+    << setw(10) << get_volumenCarga()
+    << setw(16) << get_ultimaVerificacion().toString()
+    << setw(8) << aptoCircular
+    << setw(6) << disponibilidad;
+
+}

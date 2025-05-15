@@ -5,6 +5,7 @@ using namespace std;
 #include "camionesArchivo.h"
 #include <ctime>
 #include <conio.h>
+#include <iomanip>
 
 
 void camionesManager::altaCamion(){
@@ -229,4 +230,41 @@ bool camionesManager::verificacionVencida(Fecha &fecha){
     return (tiempoActual >= tiempoVencimiento); /// Devuelve true si la verificacion está vencida, y false si todavia no lo está. (1 año de vigencia)
 }
 
+void camionesManager::listarTodos(){
 
+    camionesArchivo caArchivo;
+    Camiones camion;
+
+    system("cls");
+
+    cout << left;
+    cout << setw(3) << "ID"
+    << setw(10) << "PATENTE"
+    << setw(30) << "MARCA"
+    << setw(30) << "MODELO"
+    << setw(7) << "AÑO"
+    << setw(7) << "PESO"
+    << setw(10) << "VOLUMEN"
+    << setw(16) << "VERIFICACION"
+    << setw(6) << "APTO"
+    << setw(6) << "DISP.";
+
+    cout << endl << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
+
+
+    int cantidadRegistros = caArchivo.get_cantidadRegistros();
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(caArchivo.leerCamion(i,camion)){
+
+            camion.mostrar();
+            cout << endl;
+
+        }
+
+    }
+
+    cout << endl << endl;
+    system("pause");
+}

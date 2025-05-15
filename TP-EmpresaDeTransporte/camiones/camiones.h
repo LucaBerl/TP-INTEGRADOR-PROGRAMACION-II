@@ -21,6 +21,9 @@ private:
 
 public:
 
+void mostrar()const;
+
+
 // Constructor
 
 Camiones();

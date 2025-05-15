@@ -91,7 +91,7 @@ void menuCamiones::menu_abm(){
 void menuCamiones::menu_listados(){
 
 
-
+    camionesManager caManager;
 
     int opcion;
 
@@ -112,7 +112,7 @@ void menuCamiones::menu_listados(){
 
     switch(opcion) {
             case 1:
-
+                caManager.listarTodos();
                 break;
             case 2:
 
