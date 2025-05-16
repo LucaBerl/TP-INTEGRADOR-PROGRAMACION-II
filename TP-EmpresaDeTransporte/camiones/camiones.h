@@ -16,8 +16,10 @@ private:
   float _volumenCarga;
   float _kmMensuales[12];
   Fecha _ultimaVerificacion;
-  bool _aptoCircular;
-  bool _disponibilidad;
+  bool _aptoCircular; /// Si transcurrio menos de 1 año desde la fecha de la ultima verificacion, entonces es apto
+  bool _enViaje;  /// Si se encuentra en viaje = 1 , si no es 0
+  bool _choferAsignado;  /// Si le asignamos un camion a un chofer, el estado pasa a 1
+  bool _estado;  /// Si damos de baja el camion, el estado pasa a 0
 
 public:
 
@@ -41,7 +43,9 @@ void set_kmMensuales();                     //Setea en 0 todo el array
 bool set_kmMensuales(float km,int mes);    // Lleva la cuenta de los km mensuales
 void set_ultimaVerificacion(const Fecha &ultimaVerificacion);
 void set_aptoCircular(bool aptoCircular);
-void set_disponibilidad(bool disponibilidad);
+void set_enViaje(bool disponibilidad);
+void set_choferAsignado(bool asignado);
+void set_estado(bool estado);
 
 // Getters:
 
@@ -55,7 +59,9 @@ float get_volumenCarga()const;
 const float* get_kmMensuales()const; // devuelve 12 elementos
 const Fecha& get_ultimaVerificacion()const;
 bool get_aptoCircular()const;
-bool get_disponibilidad()const;
+bool get_enViaje()const;
+bool get_choferAsignado()const;
+bool get_estado()const;
 
 
 };

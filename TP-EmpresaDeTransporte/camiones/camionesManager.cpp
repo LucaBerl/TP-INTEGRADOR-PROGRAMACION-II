@@ -230,10 +230,49 @@ bool camionesManager::verificacionVencida(Fecha &fecha){
     return (tiempoActual >= tiempoVencimiento); /// Devuelve true si la verificacion está vencida, y false si todavia no lo está. (1 año de vigencia)
 }
 
+bool camionesManager::actualizarVerificacion(){
+
+    camionesArchivo caArchivo;
+    Camiones camion;
+
+    int cantidadRegistros = caArchivo.get_cantidadRegistros();
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(caArchivo.leerCamion(i,camion)){
+
+            if (camion.get_estado() == true && camion.get_aptoCircular() == true){
+
+                Fecha ultimaVerificacion = camion.get_ultimaVerificacion();
+                if(verificacionVencida(ultimaVerificacion)){
+
+                    camion.set_aptoCircular(0);
+                    if(!caArchivo.guardarCamion(camion)){
+
+                        cout << "Actualizacion incorrecta";
+                        system("pause");
+                        break;
+                    }
+                }
+            }
+        }else{cout << "Lectura incorrecta";}
+
+    }
+
+    bool actualizacionCorrecta = true;
+    return actualizacionCorrecta;
+
+}
+
 void camionesManager::listarTodos(){
 
     camionesArchivo caArchivo;
     Camiones camion;
+
+    if(!actualizarVerificacion()){
+        cout << "Error al actualizar datos";
+        return;
+    }
 
     system("cls");
 
@@ -257,11 +296,11 @@ void camionesManager::listarTodos(){
     for(int i = 0;i < cantidadRegistros; i++){
 
         if(caArchivo.leerCamion(i,camion)){
-
-            camion.mostrar();
-            cout << endl;
-
-        }
+            if (camion.get_estado() == 1){
+                camion.mostrar();
+                cout << endl;
+            }
+        }else{cout << "Lectura incorrecta";}
 
     }
 

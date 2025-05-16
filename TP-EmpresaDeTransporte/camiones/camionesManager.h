@@ -10,6 +10,7 @@ public:
 
     void altaCamion();
     bool verificacionVencida(Fecha &fecha);
+    bool actualizarVerificacion();
     void listarTodos();
 
 
