@@ -153,7 +153,7 @@ void Camiones::mostrar()const{
 
     string aptoCircular, disponibilidad;
 
-    if (get_aptoCircular()){aptoCircular = "✔";}else{aptoCircular = "❌";}
+    if (get_aptoCircular()){aptoCircular = "✔";}else{aptoCircular = "🚫";}
     if (get_enViaje()){disponibilidad = "❌";}else{disponibilidad = "✔";}
     cout << left;
     cout << setw(3) << get_idCamion()
@@ -165,6 +165,6 @@ void Camiones::mostrar()const{
     << setw(10) << get_volumenCarga()
     << setw(16) << get_ultimaVerificacion().toString()
     << setw(8) << aptoCircular
-    << setw(6) << disponibilidad;
+    << setw(12) << disponibilidad;
 
 }

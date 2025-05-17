@@ -91,3 +91,16 @@ bool camionesArchivo::guardarCamion(const Camiones &camion){
     return guardo;
 
 }
+
+bool camionesArchivo::guardarCamionModificado(int pos, Camiones &camion){
+
+    FILE *pfile = fopen("camiones.dat", "rb+");
+    if(pfile == NULL){
+        return false;
+    }
+    fseek(pfile, sizeof(Camiones) * pos, SEEK_SET);
+    bool modifico = fwrite(&camion, sizeof(Camiones), 1, pfile);
+    fclose(pfile);
+    return modifico;
+
+}

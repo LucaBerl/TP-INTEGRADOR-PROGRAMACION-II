@@ -211,7 +211,92 @@ void camionesManager::altaCamion(){
     }
     else {return;}
 
+}
 
+void camionesManager::bajaCamion(){
+
+    system("cls");
+
+    Camiones camion;
+    camionesArchivo caArchivo;
+
+    int opcionNumerica;
+
+    actualizarVerificacion();
+    listarTodos();
+
+    cout << endl << endl << "Por favor, seleccionar el ID del camión a dar de baja: ";
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || opcionNumerica <= 0) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else{
+
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            cout << endl << "ID seleccionado: " << opcionNumerica << endl << endl;
+            system("pause");
+            break; // Salir del bucle, entrada válida
+        }
+    }
+
+    system("cls");
+
+    int posicion, cantidadRegistros = caArchivo.get_cantidadRegistros();
+    bool idEncontrado = false;
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(caArchivo.leerCamion(i,camion)){
+            if (camion.get_idCamion() == opcionNumerica && camion.get_estado() == 1){
+                camion.mostrar();
+                posicion = i;
+                idEncontrado = true;
+                cout << endl << endl << "Desea dar de baja este camion?";
+                cout << endl << "1. SI" << endl << "2. NO" << endl;
+                break;
+            }
+        }else{
+            cout << "Lectura incorrecta";
+            system("pause");
+            return;
+        }
+
+    }
+
+    if(!idEncontrado){
+        cout << endl << "El ID seleccionado no existe en los registros" << endl << endl;
+        system("pause");
+        return;
+    }
+
+    cout << endl;
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2)) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else if(opcionNumerica == 1){
+            camion.set_estado(0);
+            if(caArchivo.guardarCamionModificado(posicion,camion)){
+                system("cls");
+                cout << "GUARDADO CORRECTO ✔ " << endl << _getch() ;
+                return;
+            }else{
+                cout << "Error en el guardado" << _getch() ;
+                return;
+            }
+        }else if(opcionNumerica == 2){
+            return;
+        }
+
+    }
 
 }
 

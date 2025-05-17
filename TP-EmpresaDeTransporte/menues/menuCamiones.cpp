@@ -71,7 +71,7 @@ void menuCamiones::menu_abm(){
                 caManager.altaCamion();
                 break;
             case 2:
-
+                caManager.bajaCamion();
                 break;
             case 3:
 
