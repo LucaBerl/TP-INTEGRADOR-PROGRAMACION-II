@@ -10,9 +10,14 @@ public:
 
     void altaCamion();
     void bajaCamion();
-    bool verificacionVencida(Fecha &fecha);
+    bool verificacionVencida(const Fecha &fecha);
     bool actualizarVerificacion();
     void listarTodos();
+    void mostrarKmPorCamion();
+    void listarEnViaje();
+    void listarSinAsignar();
+    void mostrarVerificaciones();
+    void modificarVerificacion();
 
 
 

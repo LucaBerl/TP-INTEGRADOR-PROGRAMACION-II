@@ -300,7 +300,7 @@ void camionesManager::bajaCamion(){
 
 }
 
-bool camionesManager::verificacionVencida(Fecha &fecha){
+bool camionesManager::verificacionVencida(const Fecha &fecha){
 
     struct tm fechaVencimiento = {};
     /// Fecha de vencimiento = fecha original + 1 año
@@ -354,6 +354,8 @@ void camionesManager::listarTodos(){
     camionesArchivo caArchivo;
     Camiones camion;
 
+    ///Actualizar en viaje o no
+
     if(!actualizarVerificacion()){
         cout << "Error al actualizar datos";
         return;
@@ -391,4 +393,339 @@ void camionesManager::listarTodos(){
 
     cout << endl << endl;
     system("pause");
+}
+
+void camionesManager::listarEnViaje(){
+
+    camionesArchivo caArchivo;
+    Camiones camion;
+
+    ///Actualizar en viaje o no
+
+    if(!actualizarVerificacion()){
+        cout << "Error al actualizar datos";
+        return;
+    }
+
+    system("cls");
+
+    cout << left;
+    cout << setw(3) << "ID"
+    << setw(30) << "MARCA"
+    << setw(30) << "MODELO" << endl;
+
+    cout << "--------------------------------------------------------------" << endl;
+
+
+    int cantidadRegistros = caArchivo.get_cantidadRegistros();
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(caArchivo.leerCamion(i,camion)){
+            if (camion.get_estado() == 1 && camion.get_enViaje() == 1){
+                cout << setw(3) << camion.get_idCamion()
+                << setw(30) << camion.get_marca()
+                << setw(30) << camion.get_modelo()
+                << setw (10) << "En viaje 🚚🧭";
+
+            }
+            cout << endl;
+        }else{cout << "Lectura incorrecta";}
+
+    }
+
+    cout << endl << endl;
+    system("pause");
+
+
+
+}
+
+void camionesManager::listarSinAsignar(){
+
+    camionesArchivo caArchivo;
+    Camiones camion;
+
+    ///Actualizar en viaje o no
+
+    if(!actualizarVerificacion()){
+        cout << "Error al actualizar datos";
+        return;
+    }
+
+    system("cls");
+
+    cout << left;
+    cout << setw(3) << "ID"
+    << setw(10) << "PATENTE"
+    << setw(30) << "MARCA"
+    << setw(30) << "MODELO"
+    << setw(8) << "AÑO"
+    << setw(7) << "PESO"
+    << setw(10) << "VOLUMEN"
+    << setw(16) << "VERIFICACION"
+    << setw(6) << "APTO";
+
+    cout << endl << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
+
+
+    int cantidadRegistros = caArchivo.get_cantidadRegistros();
+    string aptoCircular;
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(caArchivo.leerCamion(i,camion)){
+            if (camion.get_estado() == 1 && camion.get_choferAsignado() == 0){
+                if (camion.get_aptoCircular() == 1){aptoCircular = "✔";}else{aptoCircular = "🚫";}
+                cout << setw(3) << camion.get_idCamion()
+                << setw(10) << camion.get_patente()
+                << setw(30) << camion.get_marca()
+                << setw(30) << camion.get_modelo()
+                << setw(7) << camion.get_anio()
+                << setw(7) << camion.get_pesoCarga()
+                << setw(10) << camion.get_volumenCarga()
+                << setw(16) << camion.get_ultimaVerificacion().toString()
+                << setw(6) << aptoCircular;
+                cout << endl;
+            }
+        }else{cout << "Lectura incorrecta";}
+
+    }
+
+    cout << endl << endl;
+    system("pause");
+
+}
+
+void camionesManager::mostrarKmPorCamion(){
+
+    camionesArchivo caArchivo;
+    Camiones camion;
+
+    ///Actualizar en viaje o no
+
+    if(!actualizarVerificacion()){
+        cout << "Error al actualizar datos";
+        return;
+    }
+
+    system("cls");
+
+    cout << left;
+    cout << setw(3) << "ID"
+    << setw(30) << "MARCA"
+    << setw(30) << "MODELO"
+    << setw(5) << "ENE"
+    << setw(5) << "FEB"
+    << setw(5) << "MAR"
+    << setw(5) << "ABR"
+    << setw(5) << "MAY"
+    << setw(5) << "JUN"
+    << setw(5) << "JUL"
+    << setw(5) << "AGO"
+    << setw(5) << "SEP"
+    << setw(5) << "OCT"
+    << setw(5) << "NOV"
+    << setw(5) << "DIC" << endl;
+
+    cout << "--------------------------------------------------------------------------------------------------------------------------" << endl;
+
+
+    int cantidadRegistros = caArchivo.get_cantidadRegistros();
+    const float *km;
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(caArchivo.leerCamion(i,camion)){
+            if (camion.get_estado() == 1){
+                km = camion.get_kmMensuales();
+                cout << setw(3) << camion.get_idCamion()
+                << setw(30) << camion.get_marca()
+                << setw(30) << camion.get_modelo();
+                for (int j = 0;j < 12; j++){
+                    cout << setw(5) << km[i];
+                }
+
+            }
+            cout << endl;
+        }else{cout << "Lectura incorrecta";}
+
+    }
+
+    cout << endl << endl;
+    system("pause");
+
+}
+
+void camionesManager::mostrarVerificaciones(){
+
+    camionesArchivo caArchivo;
+    Camiones camion;
+
+    ///Actualizar en viaje o no
+
+    if(!actualizarVerificacion()){
+        cout << "Error al actualizar datos";
+        return;
+    }
+
+    system("cls");
+
+    cout << left;
+    cout << setw(3) << "ID"
+    << setw(30) << "MARCA"
+    << setw(30) << "MODELO"
+    << setw(15) << "ULT. VERIF."
+    << setw(10) << "ESTADO" << endl;
+
+    cout << "---------------------------------------------------------------------------------------" << endl;
+
+
+    int cantidadRegistros = caArchivo.get_cantidadRegistros();
+    string  estado;
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(caArchivo.leerCamion(i,camion)){
+            if (camion.get_estado() == 1){
+                if (verificacionVencida(camion.get_ultimaVerificacion())){estado = "❗VENCIDA";}else{estado = "✔";}
+                cout << setw(3) << camion.get_idCamion()
+                << setw(30) << camion.get_marca()
+                << setw(30) << camion.get_modelo()
+                << setw(15) << camion.get_ultimaVerificacion().toString()
+                << setw (10) << estado;
+
+            }
+            cout << endl;
+        }else{cout << "Lectura incorrecta";}
+
+    }
+
+    cout << endl << endl;
+    system("pause");
+
+
+}
+
+void camionesManager::modificarVerificacion(){
+
+    camionesArchivo caArchivo;
+    Camiones camion;
+
+    ///Actualizar en viaje o no
+
+    if(!actualizarVerificacion()){
+        cout << "Error al actualizar datos";
+        return;
+    }
+
+    system("cls");
+
+    cout << left;
+    cout << setw(3) << "ID"
+    << setw(30) << "MARCA"
+    << setw(30) << "MODELO"
+    << setw(15) << "ULT. VERIF."
+    << setw(10) << "ESTADO" << endl;
+
+    cout << "---------------------------------------------------------------------------------------" << endl;
+
+
+    int cantidadRegistros = caArchivo.get_cantidadRegistros();
+    string  estado = "❗VENCIDA";
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(caArchivo.leerCamion(i,camion)){
+            if (camion.get_estado() == 1 && verificacionVencida(camion.get_ultimaVerificacion()) == 1){
+                cout << setw(3) << camion.get_idCamion()
+                << setw(30) << camion.get_marca()
+                << setw(30) << camion.get_modelo()
+                << setw(15) << camion.get_ultimaVerificacion().toString()
+                << setw (10) << estado;
+                cout << endl;
+            }
+
+        }else{cout << "Lectura incorrecta";}
+
+    }
+
+    cout << endl << endl;
+
+    cout << endl << endl << "Por favor, seleccionar el ID del camión para actualizar verificación: ";
+
+    int opcionNumerica;
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || opcionNumerica <= 0) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else{
+
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            cout << endl << "ID seleccionado: " << opcionNumerica << endl << endl;
+            system("pause");
+            break; // Salir del bucle, entrada válida
+        }
+    }
+
+    int posicion;
+    bool idEncontrado = false;
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(caArchivo.leerCamion(i,camion)){
+            if (camion.get_idCamion() == opcionNumerica){
+                posicion = i;
+                idEncontrado = true;
+                break;
+            }
+        }else{
+            cout << "Lectura incorrecta";
+            system("pause");
+            return;
+        }
+
+    }
+
+    if (!idEncontrado){
+        system("cls");
+        cout << "El ID no existe o no pertenece a un camion que tenga que actualizar su verificacion" << endl << endl;
+        system("pause");
+        return;
+    }
+    else{
+        system("cls");
+
+        cout << "SE ACTUALIZARA LA FECHA DEL CAMION PARA EL DIA DE HOY" << endl;
+        cout << endl << "1.Confirmar";
+        cout << endl << "2.Volver";
+
+        while (true) {
+            cin >> opcionNumerica;
+
+            if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2)) {
+                cin.clear(); // Limpia el estado de error
+                cin.ignore(1000, '\n'); // Descarta el resto de la línea
+                cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            }else if(opcionNumerica == 1){
+                Fecha fechaHoy; /// Aca tego que hacer una fecha para qe me tome la fecha de hoy y se la pase  a ultimaVerificacion
+                camion.set_ultimaVerificacion(fechaHoy);
+                if(caArchivo.guardarCamionModificado(posicion,camion)){
+                    system("cls");
+                    cout << "GUARDADO CORRECTO ✔ " << endl << _getch() ;
+                    return;
+                }else{
+                    cout << "Error en el guardado" << _getch() ;
+                    return;
+                }
+            }else if(opcionNumerica == 2){
+                return;
+            }
+
+        }
+    }
+
 }
