@@ -9,7 +9,15 @@ class camionesManager{
 public:
 
     void altaCamion();
-    bool verificacionVencida(Fecha &fecha);
+    void bajaCamion();
+    bool verificacionVencida(const Fecha &fecha);
+    bool actualizarVerificacion();
+    void listarTodos();
+    void mostrarKmPorCamion();
+    void listarEnViaje();
+    void listarSinAsignar();
+    void mostrarVerificaciones();
+    void modificarVerificacion();
 
 
 

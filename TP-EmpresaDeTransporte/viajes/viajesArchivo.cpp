@@ -92,7 +92,7 @@ int viajesArchivo::get_ultimoID(){
 
 }
 
-bool viajesArchivo::guardarViajeModificado(int pos,const Viajes &viaje){
+bool viajesArchivo::guardarViajeModificado(int pos, Viajes &viaje){
 
     FILE *pfile = fopen("viajes.dat", "rb+");
     if(pfile == NULL){

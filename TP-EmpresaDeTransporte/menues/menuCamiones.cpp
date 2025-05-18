@@ -58,7 +58,7 @@ void menuCamiones::menu_abm(){
     cout << "=======================================" << endl;
     cout << "1. ALTA NUEVO CAMION" << endl;
     cout << "2. BAJA CAMION" << endl;
-    cout << "3. MODIFICAR CAMION" << endl;
+    cout << "3. ACTUALIZAR VERIFICACION" << endl;
     cout << endl;
     cout << "4. VOLVER AL MENÚ CAMIONES" << endl;
     cout << "=======================================" << endl;
@@ -71,10 +71,10 @@ void menuCamiones::menu_abm(){
                 caManager.altaCamion();
                 break;
             case 2:
-
+                caManager.bajaCamion();
                 break;
             case 3:
-
+                caManager.modificarVerificacion();
                 break;
             case 4:
                 return;
@@ -91,7 +91,7 @@ void menuCamiones::menu_abm(){
 void menuCamiones::menu_listados(){
 
 
-
+    camionesManager caManager;
 
     int opcion;
 
@@ -102,7 +102,7 @@ void menuCamiones::menu_listados(){
     cout << "=======================================" << endl;
     cout << "1. LISTAR TODOS" << endl;
     cout << "2. LISTAR EN VIAJE" << endl;
-    cout << "3. LISTAR DISPONIBLES" << endl;
+    cout << "3. LISTAR DISPONIBLES PARA ASIGNAR A CHOFER" << endl;
     cout << endl;
     cout << "4. VOLVER AL MENÚ CAMIONES" << endl;
     cout << "=======================================" << endl;
@@ -112,13 +112,13 @@ void menuCamiones::menu_listados(){
 
     switch(opcion) {
             case 1:
-
+                caManager.listarTodos();
                 break;
             case 2:
-
+                caManager.listarEnViaje();
                 break;
             case 3:
-
+                caManager.listarSinAsignar();
                 break;
             case 4:
                 return;
@@ -135,7 +135,7 @@ void menuCamiones::menu_listados(){
 
 void menuCamiones::menu_informes(){
 
-
+    camionesManager caManager;
 
     int opcion;
 
@@ -155,10 +155,10 @@ void menuCamiones::menu_informes(){
 
     switch(opcion) {
             case 1:
-
+                caManager.mostrarKmPorCamion();
                 break;
             case 2:
-
+                caManager.mostrarVerificaciones();
                 break;
             case 3:
                 return;

@@ -31,20 +31,31 @@ bool Fecha::set_Anio(int anio){
     else{return false;}
 }
 
-int Fecha::get_Dia(){return _dia;}
+int Fecha::get_Dia()const{return _dia;}
 
-int Fecha::get_Mes(){return _mes;}
+int Fecha::get_Mes()const{return _mes;}
 
-int Fecha::get_Anio(){return _anio;}
+int Fecha::get_Anio()const{return _anio;}
 
+string Fecha::toString()const{
 
-void Fecha::Mostrar(){
+    int dia = get_Dia();
+    int mes = get_Mes();
+    int anio = get_Anio();
+    string Fecha = to_string(dia) + "/" + to_string(mes) + "/" + to_string(anio);
+
+    return Fecha;
+
+}
+
+void Fecha::Mostrar()const{
+
     if(_dia < 10){cout << "0" <<_dia<<"/";}else{cout << _dia<<"/";}
     if(_mes < 10){cout << "0" <<_mes<<"/";}else{cout << _mes<<"/";}
     cout << _anio ;
 }
 
-void Fecha::Mostrar(int dia, int mes, int anio){
+void Fecha::Mostrar(int dia, int mes, int anio)const{
 
     if(dia < 10){cout << "0" <<dia<<"/";}else{cout << dia<<"/";}
     if(mes < 10){cout << "0" <<mes<<"/";}else{cout << mes<<"/";}

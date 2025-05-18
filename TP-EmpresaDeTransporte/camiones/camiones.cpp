@@ -1,6 +1,8 @@
-
+#include <iostream>
+using namespace std;
 #include "camiones.h"
 #include <cstring>
+#include <iomanip>
 
 
 // Constructor
@@ -17,7 +19,10 @@ set_volumenCarga(2);
 set_kmMensuales();
 set_ultimaVerificacion(Fecha());
 set_aptoCircular(1);
-set_disponibilidad(1);
+set_enViaje(0);
+set_choferAsignado(0);
+set_estado(1);
+
 
 
 }
@@ -87,10 +92,15 @@ void Camiones::set_ultimaVerificacion(const Fecha &ultimaVerificacion){
 void Camiones::set_aptoCircular(bool aptoCircular){
     _aptoCircular = aptoCircular;
 }
-void Camiones::set_disponibilidad(bool disponibilidad){
-    _disponibilidad = disponibilidad;
+void Camiones::set_enViaje(bool disponibilidad){
+    _enViaje = disponibilidad;
 }
-
+void Camiones::set_choferAsignado(bool asignado){
+    _choferAsignado = asignado;
+}
+void Camiones::set_estado(bool estado){
+    _estado = estado;
+}
 
 // Getters:
 
@@ -126,9 +136,35 @@ const Fecha& Camiones::get_ultimaVerificacion()const{
 bool Camiones::get_aptoCircular()const{
     return _aptoCircular;
 }
-bool Camiones::get_disponibilidad()const{
-    return _disponibilidad;
+bool Camiones::get_enViaje()const{
+    return _enViaje;
+}
+bool Camiones::get_choferAsignado()const{
+    return _choferAsignado;
+}
+bool Camiones::get_estado()const{
+    return _estado;
 }
 
 
+////////////////////////////
 
+void Camiones::mostrar()const{
+
+    string aptoCircular, disponibilidad;
+
+    if (get_aptoCircular()){aptoCircular = "✔";}else{aptoCircular = "🚫";}
+    if (get_enViaje()){disponibilidad = "❌";}else{disponibilidad = "✔";}
+    cout << left;
+    cout << setw(3) << get_idCamion()
+    << setw(10) << get_patente()
+    << setw(30) << get_marca()
+    << setw(30) << get_modelo()
+    << setw(6) << get_anio()
+    << setw(7) << get_pesoCarga()
+    << setw(10) << get_volumenCarga()
+    << setw(16) << get_ultimaVerificacion().toString()
+    << setw(8) << aptoCircular
+    << setw(12) << disponibilidad;
+
+}
