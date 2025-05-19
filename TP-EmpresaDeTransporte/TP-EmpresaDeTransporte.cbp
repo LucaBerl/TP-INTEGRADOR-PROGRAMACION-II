@@ -36,6 +36,8 @@
 		<Unit filename="Carga/carga.h" />
 		<Unit filename="Ciudades/ciudades.cpp" />
 		<Unit filename="Ciudades/ciudades.h" />
+		<Unit filename="Clientes/Clientes.h" />
+		<Unit filename="Clientes/ClientesArchivo.h" />
 		<Unit filename="Fecha/fecha.cpp" />
 		<Unit filename="Fecha/fecha.h" />
 		<Unit filename="camiones/camiones.cpp" />
@@ -50,6 +52,8 @@
 		<Unit filename="choferes/choferesArchivo.h" />
 		<Unit filename="choferes/choferesManager.cpp" />
 		<Unit filename="choferes/choferesManager.h" />
+		<Unit filename="clientes.cpp" />
+		<Unit filename="clientesArchivo.cpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="menues/menuCamiones.cpp" />
 		<Unit filename="menues/menuCamiones.h" />

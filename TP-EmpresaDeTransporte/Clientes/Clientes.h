@@ -6,7 +6,7 @@
 class Clientes{
 
 private:
-  int _idCiente;
+  int _idCliente;
   char _nombre_RazonSocial[50];
   char _direccion[50];
   char _telefono[15];
@@ -54,4 +54,4 @@ void set_CantidadViajesRealizados(int cantidadViajesRealizados);
 
  int get_Cantidad_Viajes_Realizados()const;
 
-}
+};
