@@ -9,6 +9,7 @@ class Fecha{
     public:
 
         Fecha();
+        Fecha(int dia, int mes, int anio);
 
         bool Cargar(int dia, int mes, int anio);
         void Mostrar()const;

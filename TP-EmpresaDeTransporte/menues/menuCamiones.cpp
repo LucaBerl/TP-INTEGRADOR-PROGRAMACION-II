@@ -12,7 +12,7 @@ void menuCamiones::mostrar(){
     cout << "=======================================" << endl;
     cout << "        MENÚ CAMIONES" << endl;
     cout << "=======================================" << endl;
-    cout << "1. ALTA/BAJA/MODIFICACIÓN" << endl;
+    cout << "1. ALTA/BAJA/ACTUALIZACIÓN" << endl;
     cout << "2. LISTADOS" << endl;
     cout << "3. INFORMES" << endl;
     cout << endl;

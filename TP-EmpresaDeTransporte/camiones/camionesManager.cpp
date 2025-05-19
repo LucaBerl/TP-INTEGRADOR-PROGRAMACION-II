@@ -332,20 +332,36 @@ bool camionesManager::actualizarVerificacion(){
                 if(verificacionVencida(ultimaVerificacion)){
 
                     camion.set_aptoCircular(0);
-                    if(!caArchivo.guardarCamion(camion)){
+                    if(!caArchivo.guardarCamionModificado(i,camion)){
 
                         cout << "Actualizacion incorrecta";
                         system("pause");
-                        break;
+                        return false;
                     }
                 }
+            }else if(camion.get_estado() == true && camion.get_aptoCircular() == false){
+
+                Fecha ultimaVerificacion = camion.get_ultimaVerificacion();
+                if(!verificacionVencida(ultimaVerificacion)){
+                    camion.set_aptoCircular(1);
+                    if(!caArchivo.guardarCamionModificado(i,camion)){
+
+                        cout << "Actualizacion incorrecta";
+                        system("pause");
+                        return false;
+                    }
+                }
+
             }
-        }else{cout << "Lectura incorrecta";}
+        }else{
+            cout << "Lectura incorrecta en la posicion: " << i << endl;
+            return false;
+        }
 
     }
 
-    bool actualizacionCorrecta = true;
-    return actualizacionCorrecta;
+
+    return true;
 
 }
 
@@ -544,9 +560,9 @@ void camionesManager::mostrarKmPorCamion(){
                 for (int j = 0;j < 12; j++){
                     cout << setw(5) << km[i];
                 }
-
+                cout << endl;
             }
-            cout << endl;
+
         }else{cout << "Lectura incorrecta";}
 
     }
@@ -593,10 +609,14 @@ void camionesManager::mostrarVerificaciones(){
                 << setw(30) << camion.get_modelo()
                 << setw(15) << camion.get_ultimaVerificacion().toString()
                 << setw (10) << estado;
-
+                cout << endl;
             }
-            cout << endl;
-        }else{cout << "Lectura incorrecta";}
+
+        }else{
+            cout << "Lectura incorrecta en la posicion: " << i << endl;
+            system("pause");
+            break;
+        }
 
     }
 
@@ -645,7 +665,11 @@ void camionesManager::modificarVerificacion(){
                 cout << endl;
             }
 
-        }else{cout << "Lectura incorrecta";}
+        }else{
+            cout << "Lectura incorrecta en la posicion: " << i << endl;
+            system("pause");
+            break;
+        }
 
     }
 
@@ -677,7 +701,7 @@ void camionesManager::modificarVerificacion(){
     for(int i = 0;i < cantidadRegistros; i++){
 
         if(caArchivo.leerCamion(i,camion)){
-            if (camion.get_idCamion() == opcionNumerica){
+            if (camion.get_idCamion() == opcionNumerica && verificacionVencida(camion.get_ultimaVerificacion()) == 1){
                 posicion = i;
                 idEncontrado = true;
                 break;
@@ -699,9 +723,14 @@ void camionesManager::modificarVerificacion(){
     else{
         system("cls");
 
-        cout << "SE ACTUALIZARA LA FECHA DEL CAMION PARA EL DIA DE HOY" << endl;
+        time_t t = time(NULL);
+        struct tm tiempoHoy = *localtime(&t);
+        Fecha fechaHoy(tiempoHoy.tm_mday,tiempoHoy.tm_mon+1,tiempoHoy.tm_year+1900);
+
+
+        cout << "SE ACTUALIZARA LA FECHA DEL CAMION PARA EL DIA DE HOY " << fechaHoy.toString() << endl;
         cout << endl << "1.Confirmar";
-        cout << endl << "2.Volver";
+        cout << endl << "2.Volver" << endl;
 
         while (true) {
             cin >> opcionNumerica;
@@ -711,7 +740,6 @@ void camionesManager::modificarVerificacion(){
                 cin.ignore(1000, '\n'); // Descarta el resto de la línea
                 cout << endl << "Ingreso incorrecto, intente nuevamente: ";
             }else if(opcionNumerica == 1){
-                Fecha fechaHoy; /// Aca tego que hacer una fecha para qe me tome la fecha de hoy y se la pase  a ultimaVerificacion
                 camion.set_ultimaVerificacion(fechaHoy);
                 if(caArchivo.guardarCamionModificado(posicion,camion)){
                     system("cls");

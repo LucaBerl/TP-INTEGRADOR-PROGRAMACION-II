@@ -7,7 +7,7 @@
 class Choferes{
 
 private:
-    int _id; //En revision, se puede quitar
+    int _id;
     bool _asignado;  //booleano para verificar si tiene o no tiene camion asignado
     Camiones _camionAsignado;  //Objeto del camion que se le asigna al chofer
     int _dni;
@@ -16,8 +16,9 @@ private:
     int _experiencia;
     Fecha _vencimientoLicencia;
     bool _aptoCircular;
-    bool _disponibilidad;
+    bool _disponibilidad; // en viaje o no
     float _kmMensuales[12];
+    bool estado; // Dado de alta o dado de baja
 
 
 public:

@@ -59,10 +59,6 @@
 		<Unit filename="menues/menuPrincipal.h" />
 		<Unit filename="menues/menuViajes.cpp" />
 		<Unit filename="menues/menuViajes.h" />
-		<Unit filename="menúes/menuCamiones.h" />
-		<Unit filename="menúes/menuChoferes.h" />
-		<Unit filename="menúes/menuPrincipal.h" />
-		<Unit filename="menúes/menuViajes.h" />
 		<Unit filename="viajes/viajes.cpp" />
 		<Unit filename="viajes/viajes.h" />
 		<Unit filename="viajes/viajesArchivo.cpp" />
