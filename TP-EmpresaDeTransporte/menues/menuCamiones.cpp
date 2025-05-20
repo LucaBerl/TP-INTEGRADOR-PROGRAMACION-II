@@ -13,10 +13,9 @@ void menuCamiones::mostrar(){
     cout << "        MENÚ CAMIONES" << endl;
     cout << "=======================================" << endl;
     cout << "1. ALTA/BAJA/ACTUALIZACIÓN" << endl;
-    cout << "2. LISTADOS" << endl;
-    cout << "3. INFORMES" << endl;
+    cout << "2. LISTADOS/REPORTES" << endl;
     cout << endl;
-    cout << "4. VOLVER AL MENÚ PRINCIPAL" << endl;
+    cout << "3. VOLVER AL MENÚ PRINCIPAL" << endl;
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
@@ -30,9 +29,6 @@ void menuCamiones::mostrar(){
                 menu_listados();
                 break;
             case 3:
-                menu_informes();
-                break;
-            case 4:
                 return;
                 break;
             default:
@@ -41,7 +37,7 @@ void menuCamiones::mostrar(){
 
       cout << endl << endl;
 
-    } while(opcion != 4);
+    } while(opcion != 3);
 }
 
 void menuCamiones::menu_abm(){
@@ -98,13 +94,16 @@ void menuCamiones::menu_listados(){
     do{
     system("cls");
     cout << "=======================================" << endl;
-    cout << "        LISTADOS" << endl;
+    cout << "        LISTADOS DE CAMIONES" << endl;
     cout << "=======================================" << endl;
     cout << "1. LISTAR TODOS" << endl;
     cout << "2. LISTAR EN VIAJE" << endl;
     cout << "3. LISTAR DISPONIBLES PARA ASIGNAR A CHOFER" << endl;
+    cout << "4. LISTAR CAMIONES POR ANTIGÜEDAD" << endl;
+    cout << "5. INFORMAR CANTIDAD DE KM POR CAMION" << endl;
+    cout << "6. INFORMAR ESTADO DE VERIFICACIONES" << endl;
     cout << endl;
-    cout << "4. VOLVER AL MENÚ CAMIONES" << endl;
+    cout << "7. VOLVER AL MENÚ CAMIONES" << endl;
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
@@ -121,46 +120,15 @@ void menuCamiones::menu_listados(){
                 caManager.listarSinAsignar();
                 break;
             case 4:
-                return;
+
                 break;
-            default:
-                cout << "Opción inválida. Por favor, intente de nuevo." << endl;
-        }
-
-      cout << endl << endl;
-
-    } while(opcion != 4);
-
-}
-
-void menuCamiones::menu_informes(){
-
-    camionesManager caManager;
-
-    int opcion;
-
-    do{
-    system("cls");
-    cout << "=======================================" << endl;
-    cout << "        INFORMES" << endl;
-    cout << "=======================================" << endl;
-    cout << "1. CANTIDAD DE KM POR CAMION" << endl;
-    cout << "2. REGISTRO DE VERIFICACIONES" << endl;
-    cout << endl;
-    cout << "3. VOLVER AL MENÚ CAMIONES" << endl;
-    cout << "=======================================" << endl;
-    cout << "Ingrese una opcion: ";
-
-    cin >> opcion;
-
-    switch(opcion) {
-            case 1:
+            case 5:
                 caManager.mostrarKmPorCamion();
                 break;
-            case 2:
+            case 6:
                 caManager.mostrarVerificaciones();
                 break;
-            case 3:
+            case 7:
                 return;
                 break;
             default:
@@ -169,5 +137,45 @@ void menuCamiones::menu_informes(){
 
       cout << endl << endl;
 
-    } while(opcion != 4);
+    } while(opcion != 7);
+
 }
+
+//void menuCamiones::menu_informes(){
+//
+//    camionesManager caManager;
+//
+//    int opcion;
+//
+//    do{
+//    system("cls");
+//    cout << "=======================================" << endl;
+//    cout << "        INFORMES" << endl;
+//    cout << "=======================================" << endl;
+//    cout << "1. CANTIDAD DE KM POR CAMION" << endl;
+//    cout << "2. REGISTRO DE VERIFICACIONES" << endl;
+//    cout << endl;
+//    cout << "3. VOLVER AL MENÚ CAMIONES" << endl;
+//    cout << "=======================================" << endl;
+//    cout << "Ingrese una opcion: ";
+//
+//    cin >> opcion;
+//
+//    switch(opcion) {
+//            case 1:
+//                caManager.mostrarKmPorCamion();
+//                break;
+//            case 2:
+//                caManager.mostrarVerificaciones();
+//                break;
+//            case 3:
+//                return;
+//                break;
+//            default:
+//                cout << "Opción inválida. Por favor, intente de nuevo." << endl;
+//        }
+//
+//      cout << endl << endl;
+//
+//    } while(opcion != 4);
+//}

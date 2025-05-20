@@ -369,6 +369,7 @@ void camionesManager::listarTodos(){
 
     camionesArchivo caArchivo;
     Camiones camion;
+    cout << left << fixed << setprecision(0);
 
     ///Actualizar en viaje o no
 
@@ -415,6 +416,7 @@ void camionesManager::listarEnViaje(){
 
     camionesArchivo caArchivo;
     Camiones camion;
+    cout << left << fixed << setprecision(0);
 
     ///Actualizar en viaje o no
 
@@ -461,6 +463,7 @@ void camionesManager::listarSinAsignar(){
 
     camionesArchivo caArchivo;
     Camiones camion;
+    cout << left << fixed << setprecision(0);
 
     ///Actualizar en viaje o no
 
@@ -517,6 +520,7 @@ void camionesManager::mostrarKmPorCamion(){
 
     camionesArchivo caArchivo;
     Camiones camion;
+    cout << left << fixed << setprecision(0);
 
     ///Actualizar en viaje o no
 
@@ -576,6 +580,7 @@ void camionesManager::mostrarVerificaciones(){
 
     camionesArchivo caArchivo;
     Camiones camion;
+    cout << left << fixed << setprecision(0);
 
     ///Actualizar en viaje o no
 
@@ -630,6 +635,7 @@ void camionesManager::modificarVerificacion(){
 
     camionesArchivo caArchivo;
     Camiones camion;
+    cout << left << fixed << setprecision(0);
 
     ///Actualizar en viaje o no
 

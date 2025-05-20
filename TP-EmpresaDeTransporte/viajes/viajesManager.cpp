@@ -129,7 +129,7 @@ system("cls");
 //  int tm_wday;  // día de la semana (0–6) --> domingo = 0
 //  int tm_yday;  // día del año (0–365)
 //  int tm_isdst; // horario de verano (positivo si está activo, 0 si no)
-//};
+//}
 
     float segundos;
 
