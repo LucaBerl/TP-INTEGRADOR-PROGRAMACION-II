@@ -4,10 +4,11 @@
 #include "../Fecha/fecha.h"
 #include <string>
 
-class Choferes{
+class Choferes
+{
 
 private:
-    int _id;
+    int _id; //En revision, se puede quitar
     bool _asignado;  //booleano para verificar si tiene o no tiene camion asignado
     Camiones _camionAsignado;  //Objeto del camion que se le asigna al chofer
     int _dni;
@@ -16,10 +17,9 @@ private:
     int _experiencia;
     Fecha _vencimientoLicencia;
     bool _aptoCircular;
-    bool _disponibilidad; // en viaje o no
+    bool _disponibilidad;
     float _kmMensuales[12];
-    bool estado; // Dado de alta o dado de baja
-
+    bool estado; //define si el registro esta o no activo
 
 public:
     //Constructor:
@@ -40,6 +40,8 @@ public:
     void set_disponibilidad(bool disponibilidad);
     bool set_kmMensuales(float km,int mes); //Lo saremos para ir sumando los kilometros mensuales
     void set_kmMensuales(); //inicializa el vector en 0
+    std::string toCSV();
+    bool setestado(bool e){estado=e;}
 
     //Getters:
 
@@ -53,7 +55,5 @@ public:
     bool get_aptoCircular()const;
     bool get_disponibilidad()const;
     const float* get_kmMensuales()const; //Devuelve el vector entero
-
-
-
+    bool getestado(){return estado;}
 };
