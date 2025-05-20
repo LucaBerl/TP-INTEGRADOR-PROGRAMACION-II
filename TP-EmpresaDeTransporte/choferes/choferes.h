@@ -19,7 +19,11 @@ private:
     bool _aptoCircular;
     bool _disponibilidad;
     float _kmMensuales[12];
+
     bool _estado; //define si el registro esta o no activo
+
+
+
 
 public:
     //Constructor:
@@ -41,7 +45,11 @@ public:
     bool set_kmMensuales(float km,int mes); //Lo saremos para ir sumando los kilometros mensuales
     void set_kmMensuales(); //inicializa el vector en 0
     std::string toCSV();
+
     bool set_estado(bool e){_estado=e;}
+
+
+
 
     //Getters:
 
@@ -55,7 +63,11 @@ public:
     bool get_aptoCircular()const;
     bool get_disponibilidad()const;
     const float* get_kmMensuales()const; //Devuelve el vector entero
+
     bool get_estado(){return _estado;}
+
+
+
 
 
 
