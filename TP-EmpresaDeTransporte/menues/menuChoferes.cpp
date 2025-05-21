@@ -17,10 +17,9 @@ void menuChoferes::mostrar()
         cout << "        MENÚ CHOFERES" << endl;
         cout << "=======================================" << endl;
         cout << "1. ALTA/BAJA/MODIFICACIÓN" << endl;
-        cout << "2. LISTADOS" << endl;
-        cout << "3. INFORMES" << endl;
+        cout << "2. LISTADOS/REPORTES" << endl;
         cout << endl;
-        cout << "4. VOLVER AL MENÚ PRINCIPAL" << endl;
+        cout << "3. VOLVER AL MENÚ PRINCIPAL" << endl;
         cout << "=======================================" << endl;
         cout << "Ingrese una opcion: ";
 
@@ -35,9 +34,6 @@ void menuChoferes::mostrar()
             menu_listados();
             break;
         case 3:
-            menu_informes();
-            break;
-        case 4:
             return;
             break;
         default:
@@ -47,7 +43,7 @@ void menuChoferes::mostrar()
         cout << endl << endl;
 
     }
-    while(opcion != 4);
+    while(opcion != 3);
 }
 
 void menuChoferes::menu_abm()
@@ -112,10 +108,12 @@ void menuChoferes::menu_listados()
         cout << "=======================================" << endl;
         cout << "1. LISTAR TODOS" << endl;
         cout << "2. LISTAR EN VIAJE" << endl;
-        cout << "3. LISTAR DISPONIBLES" << endl;
-        cout << "4. MOSTRAR CANTIDAD DE REGISTROS" << endl;
+        cout << "3. LISTAR CHOFERES SIN CAMION" << endl; //ESTABA LISTAR DISPONIBLES, PERO ESTE TITULO SE ENTIENDE MEJOR LO QUE HACE LA FUNCION
+        cout << "4. MOSTRAR CANTIDAD DE REGISTROS" << endl; //ESTE NO DEBERIA IR
+        cout << "5. INFORMAR CANTIDAD DE KM POR CHOFER" << endl;
+        cout << "6. INFORMAR ESTADO DE LICENCIAS" << endl; //ESTABA HORAS MANEJADAS, PERO ES DIFICIL.
         cout << endl;
-        cout << "5. VOLVER AL MENÚ CHOFERES" << endl;
+        cout << "7. VOLVER AL MENÚ CHOFERES" << endl;
         cout << "=======================================" << endl;
         cout << "Ingrese una opcion: ";
 
@@ -136,6 +134,12 @@ void menuChoferes::menu_listados()
             cManager.mostrarCantidadRegistros();
             break;
         case 5:
+
+            break;
+        case 6:
+
+            break;
+        case 7:
             return;
             break;
         default:
@@ -145,48 +149,48 @@ void menuChoferes::menu_listados()
         cout << endl << endl;
 
     }
-    while(opcion != 5);
+    while(opcion != 7);
 
 }
 
-void menuChoferes::menu_informes()
-{
-
-    system("cls");
-
-    int opcion;
-
-    do
-    {
-        cout << "=======================================" << endl;
-        cout << "        INFORMES" << endl;
-        cout << "=======================================" << endl;
-        cout << "1. CANTIDAD DE KM POR CHOFER" << endl;
-        cout << "2. HORAS MANEJADAS POR CHOFER" << endl;
-        cout << endl;
-        cout << "3. VOLVER AL MENÚ CHOFERES" << endl;
-        cout << "=======================================" << endl;
-        cout << "Ingrese una opcion: ";
-
-        cin >> opcion;
-
-        switch(opcion)
-        {
-        case 1:
-
-            break;
-        case 2:
-
-            break;
-        case 3:
-            return;
-            break;
-        default:
-            cout << "Opción inválida. Por favor, intente de nuevo." << endl;
-        }
-
-        cout << endl << endl;
-
-    }
-    while(opcion != 4);
-}
+//void menuChoferes::menu_informes()
+//{
+//
+//    system("cls");
+//
+//    int opcion;
+//
+//    do
+//    {
+//        cout << "=======================================" << endl;
+//        cout << "        INFORMES" << endl;
+//        cout << "=======================================" << endl;
+//        cout << "1. CANTIDAD DE KM POR CHOFER" << endl;
+//        cout << "2. HORAS MANEJADAS POR CHOFER" << endl;
+//        cout << endl;
+//        cout << "3. VOLVER AL MENÚ CHOFERES" << endl;
+//        cout << "=======================================" << endl;
+//        cout << "Ingrese una opcion: ";
+//
+//        cin >> opcion;
+//
+//        switch(opcion)
+//        {
+//        case 1:
+//
+//            break;
+//        case 2:
+//
+//            break;
+//        case 3:
+//            return;
+//            break;
+//        default:
+//            cout << "Opción inválida. Por favor, intente de nuevo." << endl;
+//        }
+//
+//        cout << endl << endl;
+//
+//    }
+//    while(opcion != 4);
+//}

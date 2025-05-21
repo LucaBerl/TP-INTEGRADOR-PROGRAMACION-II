@@ -18,6 +18,7 @@ public:
     void listarSinAsignar();
     void mostrarVerificaciones();
     void modificarVerificacion();
+    void mostrarPorAntiguedad();
 
 
 

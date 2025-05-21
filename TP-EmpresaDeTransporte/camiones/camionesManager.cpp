@@ -71,94 +71,129 @@ void camionesManager::altaCamion(){
 
 ///AÑO///////////////////////////////////////////////////////////////////////////////////////////////
 
-    do{
-    cout << endl << endl << "Ingresar año de patentamiento: ";
-    cin >> anio;
-    validacion = camion.set_anio(anio);
-
-        if (validacion) {
-            cout << " Guardado correcto ✔" << endl;
-        } else {
-            cout << endl << "Año invalido, ingrese de vuelta (Rango 1960 a 2025)" << endl;
+    while (true) {
+        cout << endl << endl << "Ingresar año de patentamiento: ";
+        cin >> anio;
+        if (cin.fail()) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            continue;
         }
+        if (camion.set_anio(anio)){
+            cout << " Guardado correcto ✔" << endl;
+            cin.ignore(1000, '\n'); // Por si quedan residuos
 
-    }while (!validacion);
+            break; // Salir del bucle, entrada válida
+        }else {
+            cout << "Año inválido. Debe estar entre 1960 y 2025." << endl;
+        }
+    }
 
 ///VERIFICACION//////////////////////////////////////////////////////////////////////////////////////
 
     cout << endl << endl << "Ingresar fecha de última verificacion: ";
-    do{
-    cout << endl << "Dia: ";
-    cin >> dia;
-    validacion = fechaVerificacion.set_Dia(dia);
 
-        if (validacion) {
-            cout << " Guardado correcto ✔" << endl;
-        } else {
-            cout << endl << "Dia invalido, ingrese nuevamente" << endl;
+    while (true) {
+        cout << endl << "Dia: ";
+        cin >> dia;
+        if (cin.fail()) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            continue;
         }
-
-    }while (!validacion);
-
-
-
-    do{
-    cout << "Mes: ";
-    cin >> mes;
-     validacion = fechaVerificacion.set_Mes(mes);
-
-        if (validacion) {
+        if (fechaVerificacion.set_Dia(dia)){
             cout << " Guardado correcto ✔" << endl;
-        } else {
-            cout << endl << "Mes invalido, ingrese nuevamente" << endl;
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+
+            break; // Salir del bucle, entrada válida
+        }else {
+            cout << "Dia inválido, ingrese nuevamente" << endl;
         }
+    }
 
-    }while (!validacion);
-
-    do{
-    cout << "Año: ";
-    cin >> anioFecha;
-     validacion = fechaVerificacion.set_Anio(anioFecha);
-
-
-        if (validacion) {
+    while (true) {
+        cout << endl << "Mes: ";
+        cin >> mes;
+        if (cin.fail()) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            continue;
+        }
+        if (fechaVerificacion.set_Mes(mes)){
             cout << " Guardado correcto ✔" << endl;
-        } else {
-            cout << endl << "Año invalido, ingrese nuevamente" << endl;
-        }
+            cin.ignore(1000, '\n'); // Por si quedan residuos
 
-    }while (!validacion);
+            break; // Salir del bucle, entrada válida
+        }else {
+            cout << "Mes inválido, ingrese nuevamente" << endl;
+        }
+    }
+
+    while (true) {
+        cout << "Año: ";
+        cin >> anioFecha;
+        if (cin.fail()) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            continue;
+        }
+        if (fechaVerificacion.set_Anio(anioFecha)){
+            cout << " Guardado correcto ✔" << endl;
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+
+            break; // Salir del bucle, entrada válida
+        }else {
+            cout << "Año inválido, ingrese nuevamente" << endl;
+        }
+    }
+
     camion.set_ultimaVerificacion(fechaVerificacion);
 
 ///PESO//////////////////////////////////////////////////////////////////////////////////////////////
 
-    do{
-    cout << endl << endl << "Peso máximo soportado (Entre 500 y 70.000 kg): ";
-    cin >> peso;
-     validacion = camion.set_pesoCarga(peso);
-
-        if (validacion) {
-            cout << " Guardado correcto ✔" << endl;
-        } else {
-            cout << endl << "Peso fuera de rango, intente de vuelta" << endl;
+    while (true) {
+        cout << endl << endl << "Peso máximo soportado (Entre 500 y 70.000 kg): ";
+        cin >> peso;
+        if (cin.fail()) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            continue;
         }
+        if (camion.set_pesoCarga(peso)){
+            cout << " Guardado correcto ✔" << endl;
+            cin.ignore(1000, '\n'); // Por si quedan residuos
 
-    }while (!validacion);
+            break; // Salir del bucle, entrada válida
+        }else {
+            cout << "Peso fuera de rango, intente de vuelta" << endl;
+        }
+    }
 
 /// VOLUMEN /////////////////////////////////////////////////////////////////////////////////////////
 
-    do{
-    cout << endl << endl << "Volumen máximo de carga (Entre 1 y 150 mts\u00B3): ";
-    cin >> volumen;
-    validacion = camion.set_volumenCarga(volumen);
-
-        if (validacion) {
-            cout << " Guardado correcto ✔" << endl;
-        } else {
-            cout << endl << "Volumen fuera de rango, intente de vuelta" << endl;
+    while (true) {
+        cout << endl << endl << "Volumen máximo de carga (Entre 1 y 150 mts\u00B3): ";
+        cin >> volumen;
+        if (cin.fail()) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            continue;
         }
+        if (camion.set_volumenCarga(volumen)){
+            cout << " Guardado correcto ✔" << endl;
+            cin.ignore(1000, '\n'); // Por si quedan residuos
 
-    }while (!validacion);
+            break; // Salir del bucle, entrada válida
+        }else {
+            cout << "Volumen fuera de rango, intente de vuelta" << endl;
+        }
+    }
 
     camion.set_idCamion(caArchivo.get_ultimoID());
     system("cls");
@@ -761,5 +796,111 @@ void camionesManager::modificarVerificacion(){
 
         }
     }
+
+}
+
+void camionesManager::mostrarPorAntiguedad(){
+
+    camionesArchivo caArchivo;
+    Camiones camion;
+    cout << left << fixed << setprecision(0);
+
+    ///Actualizar en viaje o no
+
+    if(!actualizarVerificacion()){
+        cout << "Error al actualizar datos";
+        return;
+    }
+
+    system("cls");
+
+    int cantidadRegistros = caArchivo.get_cantidadRegistros();
+    int cant = 0;
+
+    /// Obtengo cantidad de registros activos (esto podria ser funcion aparte)
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(caArchivo.leerCamion(i,camion)){
+            if (camion.get_estado() == 1){
+                cant++;
+            }
+        }else{cout << "Lectura incorrecta";}
+    }
+
+    // cant = Cantidad de camiones con estado activo:
+
+    Camiones *pcamion;
+
+    /// Creo vector dinamico de objetos del tamaño de la cantidad de registros activos y lo lleno con los objetos camiones
+
+    pcamion = new Camiones[cant];
+
+    if (pcamion == nullptr){
+        cout << "Memoria no disponible" << endl ;
+        system("pause");
+        return;
+    }
+
+    int j = 0;
+    for(int i = 0; i < cantidadRegistros; i++) {
+        if (caArchivo.leerCamion(i, camion)) {
+            if (camion.get_estado() == 1) {
+                pcamion[j] = camion;
+                j++;
+            }
+        }else {cout << "Lectura incorrecta";}
+    }
+    /// Lo ordeno de mayor a menor
+
+    for (int i = 0; i < cant - 1; i++) {
+        for (j = 0; j < cant - 1 - i; j++) {
+            if (pcamion[j].get_anio() < pcamion[j + 1].get_anio()) {
+                Camiones aux = pcamion[j];
+                pcamion[j] = pcamion[j + 1];
+                pcamion[j + 1] = aux;
+            }
+        }
+    }
+
+    ///Muestro la lista ordenada
+
+    cout << left;
+    cout << setw(3) << "ID"
+    << setw(10) << "PATENTE"
+    << setw(30) << "MARCA"
+    << setw(30) << "MODELO"
+    << setw(8) << "AÑO"
+    << setw(7) << "PESO"
+    << setw(10) << "VOLUMEN"
+    << setw(16) << "VERIFICACION"
+    << setw(6) << "APTO"
+    << setw(10) << "ASIGNADO";
+
+    cout << endl << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
+
+    string aptoCircular;
+    string asignado;
+
+    for (int i = 0; i < cant ; i++) {
+        if (pcamion[i].get_aptoCircular() == 1){aptoCircular = "✔";}else{aptoCircular = "🚫";}
+        if (pcamion[i].get_choferAsignado() == 0){asignado = "✖";}else{aptoCircular = "✔";}
+        cout << setw(3) << pcamion[i].get_idCamion()
+        << setw(10) << pcamion[i].get_patente()
+        << setw(30) << pcamion[i].get_marca()
+        << setw(30) << pcamion[i].get_modelo()
+        << setw(7) << pcamion[i].get_anio()
+        << setw(7) << pcamion[i].get_pesoCarga()
+        << setw(10) << pcamion[i].get_volumenCarga()
+        << setw(16) << pcamion[i].get_ultimaVerificacion().toString()
+        << setw(10) << aptoCircular
+        << setw(10) << asignado;
+        cout << endl;
+    }
+
+    cout << endl << endl;
+    delete pcamion;
+    system("pause");
+
 
 }

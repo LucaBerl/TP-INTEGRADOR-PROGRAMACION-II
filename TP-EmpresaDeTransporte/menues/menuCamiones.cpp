@@ -120,7 +120,7 @@ void menuCamiones::menu_listados(){
                 caManager.listarSinAsignar();
                 break;
             case 4:
-
+                caManager.mostrarPorAntiguedad();
                 break;
             case 5:
                 caManager.mostrarKmPorCamion();
