@@ -2,10 +2,12 @@
 using namespace std;
 #include "menuViajes.h"
 #include "../viajes/viajesManager.h"
+#include <conio.h>
+#include <windows.h>
 
 void menuViajes::mostrar(){
 
-    int opcion;
+    char opcion;
     viajesManager vManager;
 
     do{
@@ -21,19 +23,19 @@ void menuViajes::mostrar(){
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
-    cin >> opcion;
+    opcion = getch();
 
     switch(opcion) {
-            case 1:
+            case '1':
                 vManager.crearViaje();
                 break;
-            case 2:
+            case '2':
                 vManager.listarActivos();
                 break;
-            case 3:
+            case '3':
                 vManager.listarHistorial();
                 break;
-            case 4:
+            case '4':
                 return;
                 break;
             default:
@@ -42,5 +44,5 @@ void menuViajes::mostrar(){
 
       cout << endl << endl;
 
-    } while(opcion != 4);
+    } while(opcion != '4');
 }

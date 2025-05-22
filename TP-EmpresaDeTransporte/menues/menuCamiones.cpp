@@ -2,10 +2,12 @@
 using namespace std;
 #include "menuCamiones.h"
 #include "../camiones/camionesManager.h"
+#include <conio.h>
+#include <windows.h>
 
 void menuCamiones::mostrar(){
 
-    int opcion;
+    char opcion;
 
     do{
     system("cls");
@@ -19,16 +21,16 @@ void menuCamiones::mostrar(){
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
-    cin >> opcion;
+    opcion = getch();
 
     switch(opcion) {
-            case 1:
+            case '1':
                 menu_abm();
                 break;
-            case 2:
+            case '2':
                 menu_listados();
                 break;
-            case 3:
+            case '3':
                 return;
                 break;
             default:
@@ -37,7 +39,10 @@ void menuCamiones::mostrar(){
 
       cout << endl << endl;
 
-    } while(opcion != 3);
+    } while(opcion != '3');
+
+
+
 }
 
 void menuCamiones::menu_abm(){
@@ -45,7 +50,7 @@ void menuCamiones::menu_abm(){
 
     camionesManager caManager;
 
-    int opcion;
+    char opcion;
 
     do{
     system("cls");
@@ -60,19 +65,19 @@ void menuCamiones::menu_abm(){
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
-    cin >> opcion;
+    opcion = getch();
 
     switch(opcion) {
-            case 1:
+            case '1':
                 caManager.altaCamion();
                 break;
-            case 2:
+            case '2':
                 caManager.bajaCamion();
                 break;
-            case 3:
+            case '3':
                 caManager.modificarVerificacion();
                 break;
-            case 4:
+            case '4':
                 return;
                 break;
             default:
@@ -81,7 +86,7 @@ void menuCamiones::menu_abm(){
 
       cout << endl << endl;
 
-    } while(opcion != 4);
+    } while(opcion != '4');
 }
 
 void menuCamiones::menu_listados(){
@@ -89,7 +94,7 @@ void menuCamiones::menu_listados(){
 
     camionesManager caManager;
 
-    int opcion;
+    char opcion;
 
     do{
     system("cls");
@@ -107,28 +112,28 @@ void menuCamiones::menu_listados(){
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
-    cin >> opcion;
+    opcion = getch();
 
     switch(opcion) {
-            case 1:
+            case '1':
                 caManager.listarTodos();
                 break;
-            case 2:
+            case '2':
                 caManager.listarEnViaje();
                 break;
-            case 3:
+            case '3':
                 caManager.listarSinAsignar();
                 break;
-            case 4:
+            case '4':
                 caManager.mostrarPorAntiguedad();
                 break;
-            case 5:
+            case '5':
                 caManager.mostrarKmPorCamion();
                 break;
-            case 6:
+            case '6':
                 caManager.mostrarVerificaciones();
                 break;
-            case 7:
+            case '7':
                 return;
                 break;
             default:
@@ -137,7 +142,7 @@ void menuCamiones::menu_listados(){
 
       cout << endl << endl;
 
-    } while(opcion != 7);
+    } while(opcion != '7');
 
 }
 

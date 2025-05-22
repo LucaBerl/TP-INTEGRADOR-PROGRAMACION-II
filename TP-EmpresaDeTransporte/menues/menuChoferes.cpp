@@ -2,14 +2,13 @@
 #include "../choferes/choferesManager.h"
 #include <iostream>
 using namespace std;
+#include <conio.h>
+#include <windows.h>
 
 void menuChoferes::mostrar()
 {
-
-
-
-
-    int opcion;
+    choferesManager cManager;
+    char opcion;
     do
     {
         system("cls");
@@ -18,22 +17,26 @@ void menuChoferes::mostrar()
         cout << "=======================================" << endl;
         cout << "1. ALTA/BAJA/MODIFICACIÓN" << endl;
         cout << "2. LISTADOS/REPORTES" << endl;
+        cout << "3. ASIGNAR CAMIÓN" << endl;
         cout << endl;
-        cout << "3. VOLVER AL MENÚ PRINCIPAL" << endl;
+        cout << "4. VOLVER AL MENÚ PRINCIPAL" << endl;
         cout << "=======================================" << endl;
-        cout << "Ingrese una opcion: ";
+        cout << "Ingrese una opción: ";
 
-        cin >> opcion;
+        opcion = getch();
 
         switch(opcion)
         {
-        case 1:
+        case '1':
             menu_abm();
             break;
-        case 2:
+        case '2':
             menu_listados();
             break;
-        case 3:
+        case '3':
+            // cManager.asignarCamion();
+            break;
+        case '4':
             return;
             break;
         default:
@@ -43,7 +46,7 @@ void menuChoferes::mostrar()
         cout << endl << endl;
 
     }
-    while(opcion != 3);
+    while(opcion != '4');
 }
 
 void menuChoferes::menu_abm()
@@ -52,7 +55,7 @@ void menuChoferes::menu_abm()
     system("cls");
 
 
-    int opcion;
+    char opcion;
     choferesManager cManager;
     do
     {
@@ -65,22 +68,22 @@ void menuChoferes::menu_abm()
         cout << endl;
         cout << "4. VOLVER AL MENÚ CHOFERES" << endl;
         cout << "=======================================" << endl;
-        cout << "Ingrese una opcion: ";
+        cout << "Ingrese una opción: ";
 
-        cin >> opcion;
+        opcion = getch();
 
         switch(opcion)
         {
-        case 1:
+        case '1':
             cManager.cargarChofer();
             break;
-        case 2:
+        case '2':
             cManager.bajaChofer();
             break;
-        case 3:
+        case '3':
             cManager.modificarChofer();
             break;
-        case 4:
+        case '4':
             return;
             break;
         default:
@@ -90,7 +93,7 @@ void menuChoferes::menu_abm()
         cout << endl << endl;
 
     }
-    while(opcion != 4);
+    while(opcion != '4');
 }
 
 void menuChoferes::menu_listados()
@@ -99,7 +102,7 @@ void menuChoferes::menu_listados()
     system("cls");
 
     choferesManager cManager;
-    int opcion;
+    char opcion;
 
     do
     {
@@ -115,31 +118,31 @@ void menuChoferes::menu_listados()
         cout << endl;
         cout << "7. VOLVER AL MENÚ CHOFERES" << endl;
         cout << "=======================================" << endl;
-        cout << "Ingrese una opcion: ";
+        cout << "Ingrese una opción: ";
 
-        cin >> opcion;
+        opcion = getch();
 
         switch(opcion)
         {
-        case 1:
+        case '1':
             cManager.listarTodos();
             break;
-        case 2:
+        case '2':
             cManager.listarEnViaje();
             break;
-        case 3:
+        case '3':
             cManager.listarDisponibles();
             break;
-        case 4:
+        case '4':
             cManager.mostrarCantidadRegistros();
             break;
-        case 5:
+        case '5':
 
             break;
-        case 6:
+        case '6':
 
             break;
-        case 7:
+        case '7':
             return;
             break;
         default:
@@ -149,7 +152,7 @@ void menuChoferes::menu_listados()
         cout << endl << endl;
 
     }
-    while(opcion != 7);
+    while(opcion != '7');
 
 }
 
