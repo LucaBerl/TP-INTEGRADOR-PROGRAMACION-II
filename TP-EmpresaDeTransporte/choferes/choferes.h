@@ -19,7 +19,6 @@ private:
     bool _aptoCircular;
     bool _disponibilidad; /// CAMBIAR A _ENVIAJE
     float _kmMensuales[12];
-
     bool _estado; //define si el registro esta o no activo
 
 
