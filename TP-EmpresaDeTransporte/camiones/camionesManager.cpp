@@ -26,8 +26,8 @@ void camionesManager::altaCamion(){
     cout << endl << "ALTA DE CAMION";
      do {
         cout << endl << endl << "Ingresar marca: ";
-        cin.ignore();
-        getline(cin, marca);
+
+        getline(cin >> ws, marca);
 
         validacion = camion.set_marca(marca);
 
