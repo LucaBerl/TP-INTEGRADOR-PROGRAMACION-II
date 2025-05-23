@@ -52,13 +52,14 @@ void menuChoferes::mostrar()
 void menuChoferes::menu_abm()
 {
 
-    system("cls");
+
 
 
     char opcion;
     choferesManager cManager;
     do
     {
+        system("cls");
         cout << "=======================================" << endl;
         cout << "        ALTA/BAJA/MODIFICACIÓN" << endl;
         cout << "=======================================" << endl;
@@ -99,13 +100,14 @@ void menuChoferes::menu_abm()
 void menuChoferes::menu_listados()
 {
 
-    system("cls");
+
 
     choferesManager cManager;
     char opcion;
 
     do
     {
+        system("cls");
         cout << "=======================================" << endl;
         cout << "        LISTADOS" << endl;
         cout << "=======================================" << endl;

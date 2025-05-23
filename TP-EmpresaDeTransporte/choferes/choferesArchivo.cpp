@@ -111,3 +111,29 @@ bool choferesArchivo::modificarChofer(Choferes reg, int pos) {
     return escribio;
 }
 
+int choferesArchivo::get_ultimoID(){
+
+    FILE* pFile;
+
+    Choferes chofer;
+
+    pFile = fopen("choferes.dat", "rb");
+
+    if(pFile == nullptr){return 0;}
+
+    if (getCantidadRegistros() == 0){
+        fclose(pFile);
+        return 0;
+    }
+
+    fseek(pFile,-sizeof(Choferes),SEEK_END);
+
+    fread(&chofer,sizeof(Choferes),1,pFile);
+
+    int ultimo = chofer.get_id();
+
+    fclose(pFile);
+
+    return ultimo;
+
+}

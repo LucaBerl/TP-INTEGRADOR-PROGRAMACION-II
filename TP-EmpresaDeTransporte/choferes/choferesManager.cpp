@@ -331,6 +331,11 @@ void choferesManager::listarTodos()
 
     ///Actualizar en viaje o no
 
+    if(!actualizarLicencia()){
+        cout << "Error al actualizar datos";
+        return;
+    }
+
     system("cls");
 
     cout << left;
@@ -424,4 +429,54 @@ bool choferesManager::licenciaVencida(const Fecha &fecha)
     time_t tiempoActual = time(NULL);
 
     return (tiempoActual >= tiempoVencimiento); /// Devuelve true si la licencia está vencida, y false si todavia no lo está.
+}
+
+bool choferesManager::actualizarLicencia(){
+
+    choferesArchivo cArchivo;
+    Choferes chofer;
+
+    int cantidadRegistros = cArchivo.getCantidadRegistros();
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(cArchivo.leerChoferes(i,chofer)){
+
+            if (chofer.get_estado() == true && chofer.get_aptoCircular() == true){
+
+                Fecha ultimaVerificacion = chofer.get_vencimientoLicencia();
+                if(licenciaVencida(ultimaVerificacion)){
+
+                    chofer.set_aptoCircular(0);
+                    if(!cArchivo.modificarChofer(chofer,i)){
+
+                        cout << "Actualizacion incorrecta";
+                        system("pause");
+                        return false;
+                    }
+                }
+            }else if(chofer.get_estado() == true && chofer.get_aptoCircular() == false){
+
+                Fecha ultimaVerificacion = chofer.get_vencimientoLicencia();
+               if(!licenciaVencida(ultimaVerificacion)){
+                    chofer.set_aptoCircular(1);
+                    if(!cArchivo.modificarChofer(chofer,i)){
+
+                        cout << "Actualizacion incorrecta";
+                        system("pause");
+                        return false;
+                    }
+                }
+
+            }
+        }else{
+            cout << "Lectura incorrecta en la posicion: " << i << endl;
+            return false;
+        }
+
+    }
+
+
+    return true;
+
 }

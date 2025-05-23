@@ -21,7 +21,7 @@ Choferes::Choferes()
     set_apellido("");
     set_experiencia(0);
     set_vencimientoLicencia(Fecha());
-    set_aptoCircular(0);
+    set_aptoCircular(1);
     set_enViaje(0);
     set_kmMensuales();
 

@@ -8,6 +8,7 @@ public:
 
 void cargarChofer();
 bool licenciaVencida(const Fecha &fecha);
+bool actualizarLicencia();
 bool bajaChofer();
 void modificarChofer();
 void mostrarCantidadRegistros();

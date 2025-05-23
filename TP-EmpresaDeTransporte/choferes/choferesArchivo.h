@@ -19,4 +19,5 @@ public:
     bool modificarChofer(Choferes reg, int pos);
 
     bool leerChoferes(int pos,  Choferes &choferes);
+    int get_ultimoID();
 };
