@@ -34,7 +34,7 @@ void menuChoferes::mostrar()
             menu_listados();
             break;
         case '3':
-            // cManager.asignarCamion();
+            cManager.asignarCamion();
             break;
         case '4':
             return;
@@ -133,7 +133,7 @@ void menuChoferes::menu_listados()
 //        cManager.listarEnViaje();
             break;
         case '3':
-//        cManager.listarDisponibles();
+            cManager.listarSinCamion();
             break;
         case '4':
 //        cManager.mostrarCantidadRegistros();

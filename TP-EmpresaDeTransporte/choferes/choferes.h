@@ -34,7 +34,7 @@ public:
 
     //Setters:
 
-    bool set_id(int id);
+    void set_id(int ultimo);
     void set_asignado(bool asignado);
     void set_camionAsignado(const Camiones& camionasignado);
     bool set_dni(int dni);
@@ -47,8 +47,8 @@ public:
     bool set_kmMensuales(float km,int mes); //Lo saremos para ir sumando los kilometros mensuales
     void set_kmMensuales(); //inicializa el vector en 0
     std::string toCSV();
+    void set_estado(bool e);
 
-    bool set_estado(bool e){_estado=e;}
 
 
 
@@ -56,6 +56,7 @@ public:
     //Getters:
 
     int get_id()const;
+    bool get_asignado()const;
     const Camiones& get_camionAsignado()const;
     int get_dni()const;
     std::string get_nombre()const;
@@ -65,8 +66,7 @@ public:
     bool get_aptoCircular()const;
     bool get_enViaje()const;
     const float* get_kmMensuales()const; //Devuelve el vector entero
-
-    bool get_estado(){return _estado;}
+    bool get_estado();
 
 
 

@@ -13,6 +13,7 @@ bool bajaChofer();
 void modificarChofer();
 void mostrarCantidadRegistros();
 void listarTodos();
-void listarDisponibles();
+void listarSinCamion();
 void listarEnViaje();
+void asignarCamion();
 };

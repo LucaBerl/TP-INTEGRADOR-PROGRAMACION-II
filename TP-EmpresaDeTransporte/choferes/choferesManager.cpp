@@ -1,9 +1,10 @@
 #include "choferesManager.h"
 #include "choferes.h"
-#include <string>
 #include <iostream>
 #include "choferesArchivo.h"
-#include <sstream>
+#include "../camiones/camiones.h"
+#include "../camiones/camionesManager.h"
+#include "../camiones/camionesArchivo.h"
 #include <ctime>
 #include <conio.h>
 #include <iomanip>
@@ -29,29 +30,33 @@ void choferesManager::cargarChofer()
 
 ///ID///////////////////////////////////////////////////////////////////////
 
-    while (true)
-    {
-        cout << endl << endl << "Ingresar ID: ";
-        cin >> id;
-        if (cin.fail())
-        {
-            cin.clear(); // Limpia el estado de error
-            cin.ignore(1000, '\n'); // Descarta el resto de la línea
-            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
-            continue;
-        }
-        if (choferes.set_id(id))
-        {
-            cout << " Guardado correcto ✔" << endl;
-            cin.ignore(1000, '\n'); // Por si quedan residuos
+//    while (true)
+//    {
+//        cout << endl << endl << "Ingresar ID: ";
+//        cin >> id;
+//        if (cin.fail())
+//        {
+//            cin.clear(); // Limpia el estado de error
+//            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+//            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+//            continue;
+//        }
+//        if (choferes.set_id(id))
+//        {
+//            cout << " Guardado correcto ✔" << endl;
+//            cin.ignore(1000, '\n'); // Por si quedan residuos
+//
+//            break; // Salir del bucle, entrada válida
+//        }
+//        else
+//        {
+//            cout << "ID invalido." << endl;
+//        }
+//    }
 
-            break; // Salir del bucle, entrada válida
-        }
-        else
-        {
-            cout << "ID invalido." << endl;
-        }
-    }
+/// Creacion de ID automatica
+
+    choferes.set_id(cArchivo.get_ultimoID());
 
 
 ///DNI///////////////////////////////////////////////////////////
@@ -367,29 +372,49 @@ void choferesManager::listarTodos()
     system("pause");
 }
 
-/*void choferesManager::listarDisponibles()
+void choferesManager::listarSinCamion()
 {
     choferesArchivo cArchivo;
-    Choferes reg;
+    Choferes choferes;
+    cout << left << fixed << setprecision(0);
 
-    int cantidad = cArchivo.getCantidadRegistros();
-    cout<<"Los choferes disponibles son: "<<endl;
-    for(int i=0; i<cantidad; i++)
-    {
-        reg=cArchivo.leer(i);
+    ///Actualizar en viaje o no
 
-        if(reg.get_enViaje())
-        {
-            cout<<"----------"<<endl;
-            cout<<"ID: "<<reg.get_id()<<endl;
-            cout<<"dni: "<<reg.get_dni()<<endl;
-            cout<<"Apellido: "<<reg.get_apellido()<<endl;
-            cout<<"Nombre: "<<reg.get_nombre()<<endl;
-            cout<<"Experiencia: "<<reg.get_experiencia()<<endl;
-            cout<<"Es apto para circular: "<<reg.get_aptoCircular()<<endl;
-        }
+    if(!actualizarLicencia()){
+        cout << "Error al actualizar datos";
+        return;
     }
-}*/
+
+    system("cls");
+
+    cout << left;
+    cout << setw(6) << "ID"
+    << setw(10) << "DNI"
+    << setw(20) << "NOMBRE"
+    << setw(20) << "APELLIDO"
+    << setw(20) << "EXPERIENCIA"
+    << setw(20) << "VENCIMIENTO/LIC"
+    << setw(10) << "APTO";
+
+    cout << endl << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
+
+
+    int cantidadRegistros = cArchivo.getCantidadRegistros();
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(cArchivo.leerChoferes(i,choferes)){
+            if (choferes.get_estado() == true && choferes.get_asignado() == false){
+                choferes.mostrar();
+                cout << endl;
+            }
+        }else{cout << "Lectura incorrecta";}
+
+    }
+
+    cout << endl << endl;
+    system("pause");
+}
 
 /*void choferesManager::listarEnViaje()
 {
@@ -479,4 +504,84 @@ bool choferesManager::actualizarLicencia(){
 
     return true;
 
+}
+
+void choferesManager::asignarCamion(){
+
+    choferesArchivo cArchivo;
+    Choferes chofer;
+
+    listarSinCamion();
+
+    cout << endl << endl << "Por favor, seleccionar ID de chofer para asignarle camión: ";
+
+    int opcion;
+
+    while (true) {
+        cin >> opcion;
+
+        if (cin.fail() || opcion <= 0) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else{
+
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            cout << endl << "ID seleccionado: " << opcion << endl << endl;
+            system("pause");
+            break; // Salir del bucle, entrada válida
+        }
+    }
+
+    int posicion;
+    bool idEncontrado = false;
+    int cantidadRegistros = cArchivo.getCantidadRegistros();
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(cArchivo.leerChoferes(i,chofer)){
+            if (chofer.get_id() == opcion && chofer.get_estado() == true){
+                posicion = i;
+                idEncontrado = true;
+                break;
+            }
+        }else{
+            cout << "Lectura incorrecta";
+            system("pause");
+            return;
+        }
+
+    }
+
+    if (!idEncontrado){
+        system("cls");
+        cout << "El ID no existe o no pertenece a un chofer al que se le pueda asignar un camión" << endl << endl;
+        system("pause");
+        return;
+    }
+    else{
+        system("cls");
+        Camiones camion;
+        camionesManager caManager;
+
+        caManager.listarSinAsignar();
+
+        cout << endl << endl << "Por favor, seleccionar el ID de camión para asignarle al chofer: ";
+
+        while (true) {
+            cin >> opcion;
+
+            if (cin.fail() || opcion <= 0) {
+                cin.clear(); // Limpia el estado de error
+                cin.ignore(1000, '\n'); // Descarta el resto de la línea
+                cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            }else{
+
+                cin.ignore(1000, '\n'); // Por si quedan residuos
+                cout << endl << "ID seleccionado: " << opcion << endl << endl;
+                system("pause");
+                break; // Salir del bucle, entrada válida
+            }
+        }
+    }
 }

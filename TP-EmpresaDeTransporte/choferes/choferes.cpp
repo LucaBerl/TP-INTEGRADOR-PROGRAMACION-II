@@ -1,8 +1,6 @@
 #include "choferes.h"
 #include "../camiones/camiones.h"
 #include <cstring>
-#include <sstream>  // Necesario para std::stringstream
-#include <string>
 #include <iomanip>
 #include <iostream>
 using namespace std;
@@ -13,9 +11,9 @@ using namespace std;
 Choferes::Choferes()
 {
 
-    set_id(0);
+    set_id(-1);
     set_asignado(0);
-    set_camionAsignado({});
+    set_camionAsignado(Camiones());
     set_dni(1000000);
     set_nombre("");
     set_apellido("");
@@ -24,15 +22,16 @@ Choferes::Choferes()
     set_aptoCircular(1);
     set_enViaje(0);
     set_kmMensuales();
+    set_estado(1);
 
 
 }
 
 ///Setters:
 
-bool Choferes::set_id(int id)
+void Choferes::set_id(int ultimo)
 {
-    _id = id;
+    _id = ultimo + 1;
 }
 void Choferes::set_asignado(bool asignado)
 {
@@ -122,11 +121,19 @@ void Choferes::set_kmMensuales()
     }
 }
 
+void Choferes::set_estado(bool e){
+    _estado = e;
+}
+
 ///Getters:
 
 int Choferes::get_id()const
 {
     return _id;
+}
+bool Choferes::get_asignado()const
+{
+    return _asignado;
 }
 const Camiones& Choferes::get_camionAsignado()const
 {
@@ -163,6 +170,10 @@ bool Choferes::get_enViaje()const
 const float* Choferes::get_kmMensuales()const
 {
     return _kmMensuales;                        //devuelve todo el vector
+}
+bool Choferes::get_estado()
+{
+    return _estado;
 }
 
 
