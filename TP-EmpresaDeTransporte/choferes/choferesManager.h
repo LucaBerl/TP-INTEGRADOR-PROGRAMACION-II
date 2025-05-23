@@ -1,12 +1,14 @@
 #pragma once
 #include <string>
+#include "../Fecha/fecha.h"
 class choferesManager{
 private:
 
 public:
 
 void cargarChofer();
-void bajaChofer();
+bool licenciaVencida(const Fecha &fecha);
+bool bajaChofer();
 void modificarChofer();
 void mostrarCantidadRegistros();
 void listarTodos();

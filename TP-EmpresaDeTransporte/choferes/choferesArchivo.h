@@ -13,8 +13,10 @@ public:
     choferesArchivo();
     choferesArchivo(std::string nombreArchivo);
 
-    bool guardar(Choferes registro);
+    bool guardarChofer(Choferes registro);
     int getCantidadRegistros();
+    int buscarRegistro(int id);
+    bool modificarChofer(Choferes reg, int pos);
 
-    Choferes leer(int pos);
+    bool leerChoferes(int pos,  Choferes &choferes);
 };

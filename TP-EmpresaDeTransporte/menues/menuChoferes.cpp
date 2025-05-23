@@ -78,10 +78,10 @@ void menuChoferes::menu_abm()
             cManager.cargarChofer();
             break;
         case '2':
-            cManager.bajaChofer();
+//            cManager.bajaChofer();
             break;
         case '3':
-            cManager.modificarChofer();
+            //         cManager.modificarChofer();
             break;
         case '4':
             return;
@@ -128,13 +128,13 @@ void menuChoferes::menu_listados()
             cManager.listarTodos();
             break;
         case '2':
-            cManager.listarEnViaje();
+//        cManager.listarEnViaje();
             break;
         case '3':
-            cManager.listarDisponibles();
+//        cManager.listarDisponibles();
             break;
         case '4':
-            cManager.mostrarCantidadRegistros();
+//        cManager.mostrarCantidadRegistros();
             break;
         case '5':
 

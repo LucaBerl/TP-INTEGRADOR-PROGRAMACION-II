@@ -2,8 +2,10 @@
 #include "../camiones/camiones.h"
 #include <cstring>
 #include <sstream>  // Necesario para std::stringstream
-
-
+#include <string>
+#include <iomanip>
+#include <iostream>
+using namespace std;
 
 
 ///Constructor:
@@ -20,7 +22,7 @@ Choferes::Choferes()
     set_experiencia(0);
     set_vencimientoLicencia(Fecha());
     set_aptoCircular(0);
-    set_disponibilidad(0);
+    set_enViaje(0);
     set_kmMensuales();
 
 
@@ -28,7 +30,7 @@ Choferes::Choferes()
 
 ///Setters:
 
-void Choferes::set_id(int id)
+bool Choferes::set_id(int id)
 {
     _id = id;
 }
@@ -96,9 +98,9 @@ void Choferes::set_aptoCircular(bool aptoCircular)
 {
     _aptoCircular = aptoCircular;
 }
-void Choferes::set_disponibilidad(bool disponibilidad)
+void Choferes::set_enViaje(bool enViaje)
 {
-    _disponibilidad = disponibilidad;
+   _enViaje = enViaje;
 }
 bool Choferes::set_kmMensuales(float km,int mes)
 {
@@ -154,13 +156,34 @@ bool Choferes::get_aptoCircular()const
 {
     return _aptoCircular;
 }
-bool Choferes::get_disponibilidad()const
+bool Choferes::get_enViaje()const
 {
-    return _disponibilidad;
+    return _enViaje;
 }
 const float* Choferes::get_kmMensuales()const
 {
     return _kmMensuales;                        //devuelve todo el vector
+}
+
+
+////////////////////////////
+
+void Choferes::mostrar()const{
+
+    string aptoCircular;
+
+    if (get_aptoCircular()){aptoCircular = "✔";} else{aptoCircular = "🚫";}
+    //if (get_enViaje()){disponibilidad = "❌";}else{disponibilidad = "✔";}
+    cout << left;
+    cout << setw(6) << get_id()
+    << setw(10) << get_dni()
+    << setw(20) << get_nombre()
+    << setw(20) << get_apellido()
+    << setw(20) << get_experiencia()
+    << setw(20) << get_vencimientoLicencia().toString()
+    << setw(10) << aptoCircular;
+    //<< setw(12) << disponibilidad;
+
 }
 
 

@@ -1,4 +1,6 @@
 #include "choferesArchivo.h"
+#include <iostream>
+using namespace std;
 
 choferesArchivo::choferesArchivo()
 {
@@ -10,7 +12,7 @@ choferesArchivo::choferesArchivo(std::string nombreArchivo)
     _nombreArchivo= nombreArchivo;
 }
 
-bool choferesArchivo::guardar(Choferes registro)
+bool choferesArchivo::guardarChofer(Choferes registro)
 {
     FILE*pFile;
     bool result;
@@ -55,24 +57,57 @@ int choferesArchivo::getCantidadRegistros()
     return cantidad;
 }
 
-Choferes choferesArchivo::leer(int pos)
+bool choferesArchivo::leerChoferes(int pos, Choferes &choferes)
 {
-    FILE *pFile;
+    FILE* pFile;
+    bool lecturaCorrecta;
 
-    Choferes reg;
 
-    pFile = fopen(_nombreArchivo.c_str(), "rb");
+    pFile = fopen("choferes.dat", "rb");
 
-    if(pFile == nullptr)
-    {
-        return reg;
-    }
+    if(pFile == nullptr){return false;}
 
-    fseek(pFile, sizeof(Choferes)* pos, SEEK_SET);
+    fseek(pFile,sizeof(Choferes)*pos,SEEK_SET);
 
-    fread(&reg, sizeof(Choferes),1, pFile);
+    lecturaCorrecta = fread(&choferes,sizeof(Choferes),1,pFile);
 
     fclose(pFile);
 
-    return reg;
+    return lecturaCorrecta;
 }
+
+int choferesArchivo::buscarRegistro(int id) {
+    FILE *pFile;
+    int tamRegistro = sizeof(Choferes);
+    Choferes registro;
+    int posicion = 0;
+
+    pFile = fopen(_nombreArchivo.c_str(), "rb");
+    if (pFile == nullptr) {
+        cout << "No se pudo abrir el archivo" << endl;
+        return -2;
+    }
+
+    while (fread(&registro, tamRegistro, 1, pFile) == 1) {
+        if (registro.get_id() == id) {
+            fclose(pFile);
+            return posicion;
+        }
+        posicion++;
+    }
+
+    fclose(pFile);
+    return -1;
+}
+
+bool choferesArchivo::modificarChofer(Choferes reg, int pos) {
+    FILE* pFile;
+    pFile = fopen("choferes.dat", "rb+");
+    if (pFile == NULL) return false;
+
+    fseek(pFile, pos * sizeof(Choferes), 0);
+    bool escribio = fwrite(&reg, sizeof(Choferes), 1, pFile);
+    fclose(pFile);
+    return escribio;
+}
+

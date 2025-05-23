@@ -17,7 +17,7 @@ private:
     int _experiencia;
     Fecha _vencimientoLicencia;
     bool _aptoCircular;
-    bool _disponibilidad; /// CAMBIAR A _ENVIAJE
+    bool _enViaje; /// CAMBIAR A _ENVIAJE
     float _kmMensuales[12];
     bool _estado; //define si el registro esta o no activo
 
@@ -25,13 +25,16 @@ private:
 
 
 public:
+
+    void mostrar () const;
+
     //Constructor:
 
     Choferes();
 
     //Setters:
 
-    void set_id(int id);
+    bool set_id(int id);
     void set_asignado(bool asignado);
     void set_camionAsignado(const Camiones& camionasignado);
     bool set_dni(int dni);
@@ -40,7 +43,7 @@ public:
     bool set_experiencia(int experiencia);
     void set_vencimientoLicencia(const Fecha &fechaVencimiento);
     void set_aptoCircular(bool aptoCircular);
-    void set_disponibilidad(bool disponibilidad);
+    void set_enViaje(bool enViaje);
     bool set_kmMensuales(float km,int mes); //Lo saremos para ir sumando los kilometros mensuales
     void set_kmMensuales(); //inicializa el vector en 0
     std::string toCSV();
@@ -60,7 +63,7 @@ public:
     int get_experiencia()const;
     const Fecha& get_vencimientoLicencia()const;
     bool get_aptoCircular()const;
-    bool get_disponibilidad()const;
+    bool get_enViaje()const;
     const float* get_kmMensuales()const; //Devuelve el vector entero
 
     bool get_estado(){return _estado;}
