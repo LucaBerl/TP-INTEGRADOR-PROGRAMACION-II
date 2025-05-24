@@ -114,7 +114,7 @@ void menuChoferes::menu_listados()
         cout << "1. LISTAR TODOS" << endl;
         cout << "2. LISTAR EN VIAJE" << endl;
         cout << "3. LISTAR CHOFERES SIN CAMION" << endl; //ESTABA LISTAR DISPONIBLES, PERO ESTE TITULO SE ENTIENDE MEJOR LO QUE HACE LA FUNCION
-        cout << "4. MOSTRAR CANTIDAD DE REGISTROS" << endl; //ESTE NO DEBERIA IR
+        cout << "4. LISTAR CHOFERES CON CAMIÓN" << endl;
         cout << "5. INFORMAR CANTIDAD DE KM POR CHOFER" << endl;
         cout << "6. INFORMAR ESTADO DE LICENCIAS" << endl; //ESTABA HORAS MANEJADAS, PERO ES DIFICIL.
         cout << endl;
@@ -136,7 +136,7 @@ void menuChoferes::menu_listados()
             cManager.listarSinCamion();
             break;
         case '4':
-//        cManager.mostrarCantidadRegistros();
+            cManager.listarConCamion();
             break;
         case '5':
 

@@ -14,6 +14,7 @@ void modificarChofer();
 void mostrarCantidadRegistros();
 void listarTodos();
 void listarSinCamion();
+void listarConCamion();
 void listarEnViaje();
 void asignarCamion();
 };

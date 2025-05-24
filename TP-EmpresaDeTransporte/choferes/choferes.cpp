@@ -182,18 +182,23 @@ bool Choferes::get_estado()
 void Choferes::mostrar()const{
 
     string aptoCircular;
+    string enviaje;
+    string camion;
 
     if (get_aptoCircular()){aptoCircular = "✔";} else{aptoCircular = "🚫";}
-    //if (get_enViaje()){disponibilidad = "❌";}else{disponibilidad = "✔";}
+    if (get_enViaje()){enviaje = "✔" ;}else{enviaje = "❌" ;}
+    if (get_asignado()){camion = string(get_camionAsignado().get_marca()) + " " + string(get_camionAsignado().get_modelo());}else{camion = "❌"; }
+
     cout << left;
     cout << setw(6) << get_id()
     << setw(10) << get_dni()
     << setw(20) << get_nombre()
     << setw(20) << get_apellido()
-    << setw(20) << get_experiencia()
-    << setw(20) << get_vencimientoLicencia().toString()
-    << setw(10) << aptoCircular;
-    //<< setw(12) << disponibilidad;
+    << setw(7) << get_experiencia()
+    << setw(15) << get_vencimientoLicencia().toString()
+    << setw(12) << aptoCircular
+    << setw(12) << enviaje
+    << setw(30) << camion;
 
 }
 
