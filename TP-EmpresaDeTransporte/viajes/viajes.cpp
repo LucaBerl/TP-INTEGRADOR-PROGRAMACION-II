@@ -19,6 +19,8 @@ set_distancia(1);
 set_fechaSalida({});
 set_fechaLlegada({});
 set_tipoCarga("");
+set_pesoTransportado(0);
+set_volumenTransportado(1);
 set_estado(0);
 
 
@@ -55,6 +57,18 @@ bool Viajes::set_tipoCarga(std::string tipoCarga){
         return true;
     } else { return false;}
 }
+bool Viajes::set_pesoTransportado(float pesoCarga){
+    if (pesoCarga >= 0 && pesoCarga <= 70000){
+        _pesoTransportado = pesoCarga;
+        return true;
+    }else{return false;}
+}
+bool Viajes::set_volumenTransportado(float volumenCarga){
+    if(volumenCarga >= 1 && volumenCarga <= 150 ){
+        _volumenTransportado = volumenCarga;
+        return true;
+    }else{return false;}
+}
 void Viajes::set_estado(bool estado){
   _estado = estado;
 }
@@ -85,6 +99,12 @@ const tm& Viajes::get_fechaLlegada() const{
 }
 std::string Viajes::get_tipoCarga() const{
     return _tipoCarga;
+}
+float Viajes::get_pesoTransportado()const{
+    return _pesoTransportado;
+}
+float Viajes::get_volumenTransportado()const{
+    return _volumenTransportado;
 }
 bool Viajes::get_estado() const{
     return _estado;

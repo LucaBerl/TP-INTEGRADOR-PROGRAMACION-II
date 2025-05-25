@@ -591,7 +591,7 @@ void choferesManager::asignarCamion(){
     for(int i = 0;i < cantidadRegistrosChoferes; i++){
 
         if(cArchivo.leerChoferes(i,chofer)){
-            if (chofer.get_id() == opcion && chofer.get_estado() == true){
+            if (chofer.get_id() == opcion && chofer.get_estado() == true && chofer.get_asignado() == false){
                 posicionChofer = i;
                 idChoferEncontrado = true;
                 break;
@@ -702,3 +702,151 @@ void choferesManager::asignarCamion(){
 
 }
 
+void choferesManager::desasignarCamion(){
+
+    choferesArchivo cArchivo;
+    Choferes chofer;
+
+    listarConCamion();
+
+    cout << endl << endl << "Por favor, seleccionar ID de chofer para quitar camión asignado: ";
+
+    int opcion;
+
+    while (true) {
+        cin >> opcion;
+
+        if (cin.fail() || opcion <= 0) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else{
+
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            cout << endl << "ID seleccionado: " << opcion << endl << endl;
+            system("pause");
+            break; // Salir del bucle, entrada válida
+        }
+    }
+
+    int posicionChofer;
+    bool idChoferEncontrado = false;
+    int cantidadRegistrosChoferes = cArchivo.getCantidadRegistros();
+
+    for(int i = 0;i < cantidadRegistrosChoferes; i++){
+
+        if(cArchivo.leerChoferes(i,chofer)){
+            if (chofer.get_id() == opcion && chofer.get_estado() == true && chofer.get_asignado() == true){
+                posicionChofer = i;
+                idChoferEncontrado = true;
+                break;
+            }
+        }else{
+            cout << "Lectura incorrecta";
+            system("pause");
+            return;
+        }
+
+    }
+
+    if (!idChoferEncontrado){
+        system("cls");
+        cout << "El ID no existe o no pertenece a un chofer al que se le pueda quitar la asignación de un camión" << endl << endl;
+        system("pause");
+        return;
+    }
+
+    system("cls");
+
+    Camiones camion;
+    camionesManager caManager;
+    camionesArchivo caArchivo;
+
+    cout << "Al chofer: '" << chofer.get_nombre() << " " << chofer.get_apellido() << "' Se le quitará la asignación del camion: '" << chofer.get_camionAsignado().get_marca()
+    << " " << chofer.get_camionAsignado().get_modelo() << "'" << endl << endl << "1. Confirmar" << endl << "2.Volver" << endl;
+
+
+
+    while (true) {
+        cin >> opcion;
+
+        if (cin.fail() || (opcion != 1 && opcion != 2)) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else if(opcion == 1){
+
+            int cantidadRegistrosCamiones = caArchivo.get_cantidadRegistros();
+            int idCamion = chofer.get_camionAsignado().get_idCamion();
+            int posicionCamion;
+
+            for(int i = 0;i < cantidadRegistrosCamiones; i++){
+
+                if(caArchivo.leerCamion(i,camion)){
+                    if (camion.get_idCamion() == idCamion && camion.get_estado() == true){
+                        posicionCamion = i;
+                        break;
+                    }
+                }else{
+                    cout << "Lectura incorrecta";
+                    system("pause");
+                    return;
+                }
+
+            }
+            camion.set_choferAsignado(0);
+            chofer.set_asignado(0);
+            chofer.set_camionAsignado(Camiones());
+            if(caArchivo.guardarCamionModificado(posicionCamion,camion) && cArchivo.modificarChofer(chofer,posicionChofer)){
+                system("cls");
+                cout << "DESASIGNACIÓN CORRECTA ✔ " << endl << _getch() ;
+                return;
+            }else{
+                cout << "Error en el guardado" << _getch() ;
+                return;
+            }
+        }else if(opcion == 2){
+            return;
+        }
+
+    }
+
+    system("pause");
+
+
+}
+
+bool choferesManager::sincronizarCamionesAsignados() {
+
+    choferesArchivo cArchivo;
+    camionesArchivo caArchivo;
+    Choferes chofer;
+    Camiones camion;
+
+    int cantidadChoferes = cArchivo.getCantidadRegistros();
+
+    for (int i = 0; i < cantidadChoferes; i++) {
+
+        if (cArchivo.leerChoferes(i, chofer)) {
+
+            if (chofer.get_estado() && chofer.get_asignado()) {
+
+                int idCamion = chofer.get_camionAsignado().get_idCamion();
+
+                if (caArchivo.buscarCamionPorId(idCamion, camion)) {
+
+                    chofer.set_camionAsignado(camion);
+
+                    if (!cArchivo.modificarChofer(chofer, i)) {
+
+                        cout << "Error actualizando chofer en posición " << i << endl;
+                        return false;
+
+                    }
+                }
+            }
+        }
+    }
+
+    return true;
+}

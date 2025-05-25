@@ -16,6 +16,8 @@ private:
   struct tm _fechaSalida;
   struct tm _fechaLlegada;
   char _tipoCarga[30];
+  float _pesoTransportado;
+  float _volumenTransportado;
   bool _estado;
 
 public:
@@ -37,6 +39,8 @@ bool set_distancia(float distancia);
 void set_fechaSalida(const  tm &fechaSalida);
 void set_fechaLlegada(const  tm &fechaLlegada);
 bool set_tipoCarga(std::string tipoCarga);
+bool set_pesoTransportado(float pesoCarga);
+bool set_volumenTransportado(float volumenCarga);
 void set_estado(bool estado);
 
 // Getters:
@@ -49,6 +53,8 @@ float get_distancia() const;
 const tm& get_fechaSalida() const;
 const tm& get_fechaLlegada() const;
 std::string get_tipoCarga() const;
+float get_pesoTransportado()const;
+float get_volumenTransportado()const;
 bool get_estado() const;
 
 };

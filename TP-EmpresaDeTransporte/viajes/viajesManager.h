@@ -14,5 +14,6 @@ public:
     bool actualizarEstados();
     void listarActivos();
     void listarHistorial();
+    void listarChoferesDisponibles();
 
 };

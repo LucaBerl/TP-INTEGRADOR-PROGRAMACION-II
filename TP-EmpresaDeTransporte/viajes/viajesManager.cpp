@@ -3,6 +3,10 @@
 #include "viajesArchivo.h"
 #include "../Carga/carga.h"
 #include "../Ciudades/ciudades.h"
+#include "../choferes/choferes.h"
+#include "../choferes/choferesArchivo.h"
+#include "../choferes/choferesManager.h"
+#include "../camiones/camionesManager.h"
 #include <iomanip>
 #include <iostream>
 #include <conio.h>
@@ -45,30 +49,65 @@ system("pause");
 
 void viajesManager::seleccionarCarga(Viajes &viaje){
 
-int opcionCarga;
-Carga tCarga;
-do{
-system("cls");
-cout << endl << "Por favor, seleccionar el ID de tipo de carga a transportar: " << endl << endl;
+    int opcionCarga;
+    Carga tCarga;
+    do{
+        system("cls");
+        cout << endl << "Por favor, seleccionar el ID de tipo de carga a transportar: " << endl << endl;
 
-tCarga.mostrar();
+        tCarga.mostrar();
 
-cout << endl;
-cin >> opcionCarga;
+        cout << endl;
+        cin >> opcionCarga;
 
-if(opcionCarga>0 && opcionCarga<22){
-    if(viaje.set_tipoCarga(tCarga.get_tipoCarga(opcionCarga-1))){
+        if(opcionCarga>0 && opcionCarga<22){
+            if(viaje.set_tipoCarga(tCarga.get_tipoCarga(opcionCarga-1))){
 
-        cout << endl << "Opcion guardada '" << viaje.get_tipoCarga() << "' , presione cualquier tecla para continuar ..." << _getch() << endl;
+                cout << endl << "Opcion guardada '" << viaje.get_tipoCarga() << "' , presione cualquier tecla para continuar ..." << _getch() << endl;
+            }
+            else{cout << endl << "No se pudo guardar la carga" << endl;}
+        }else{cout << endl << "Opcion invalida, presione cualquier tecla para volver a intentar ..." << _getch() <<  endl;}
+
+    }while (opcionCarga<1 || opcionCarga>21);
+
+
+    cout << endl << endl << "Indicar peso de la carga a transportar (máximo 70 mil kg.) : ";
+    float pesoCarga;
+
+    while (true) {
+        cin >> pesoCarga;
+
+        if (cin.fail() || pesoCarga <= 0 || pesoCarga > 70000 ) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else{
+
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            cout << " Guardado correcto ✔" << endl;
+            break; // Salir del bucle, entrada válida
+        }
     }
-    else{cout << endl << "No se pudo guardar la carga" << endl;}
-}else{cout << endl << "Opcion invalida, presione cualquier tecla para volver a intentar ..." << _getch() <<  endl;}
 
-}while (opcionCarga<1 || opcionCarga>21);
+    cout << endl << endl << "Indicar volumen de la carga a transportar (máximo 150 mts\u00B3) : ";
+    float volumenCarga;
 
+    while (true) {
+        cin >> volumenCarga;
 
+        if (cin.fail() || volumenCarga <= 0 || volumenCarga > 150) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else{
 
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            cout << " Guardado correcto ✔" << endl;
+            break; // Salir del bucle, entrada válida
+        }
+    }
 
+    ///GUARDAR LOS VALORES
 
 }
 
@@ -76,12 +115,18 @@ if(opcionCarga>0 && opcionCarga<22){
 
 void viajesManager::seleccionarChofer(Viajes &viaje){
 
-system("cls");
-cout << endl << "Aca vamos a elegir al chofer, cuando tengamos los archivos listos" << endl << endl;
+    system("cls");
 
-/// Hace falta la clase chofer casi terminada. Aca se va a guardar el chofer asignado. Es necesario leer el archivo choferes.
-system("pause");
+    cout << endl << "A continuación, se mostrará una lista con los choferes disponibles para realizar el viaje";
+    cout << endl << endl << "Recordar: ";
+    cout << endl << endl << "- Para que un chofer aparezca como opción, debe tener un camion asignado previamente";
+    cout << endl << "- Los choferes se mostrarán, si es que sus camiones pueden transportar la carga de acuerdo al peso y volumen.";
+    cout << endl << "- El chofer estará disponible, solo si tiene vigente la licencia, y su camión tiene vigente la verificicación técnica.";
+    cout << endl << endl;
 
+    system("pause");
+
+    listarChoferesDisponibles();
 }
 
 /// Paso 4:
@@ -318,4 +363,68 @@ void viajesManager::listarHistorial(){
 
     cout << "Ingresar un ID de viaje para obtener informacion mas detallada del mismo" << endl << endl;
     system("pause");
+}
+
+void viajesManager::listarChoferesDisponibles(){
+
+    choferesManager cManager;
+    choferesArchivo cArchivo;
+    Choferes chofer;
+    camionesManager caManager;
+
+    cout << left << fixed << setprecision(0);
+
+    ///Actualizar en viaje o no
+
+    if(!cManager.actualizarLicencia()){
+        cout << "Error al actualizar datos";
+        system("pause");
+        return;
+    }
+
+    if(!caManager.actualizarVerificacion()){
+        cout << "Error al actualizar datos";
+        system("pause");
+        return;
+    }
+
+    if(!cManager.sincronizarCamionesAsignados()){
+        cout << "Error al actualizar datos";
+        system("pause");
+        return;
+    }
+
+    system("cls");
+
+    cout << left;
+    cout << setw(6) << "ID"
+    << setw(10) << "DNI"
+    << setw(20) << "NOMBRE"
+    << setw(20) << "APELLIDO"
+    << setw(7) << "EXP."
+    << setw(15) << "VENC. LIC."
+    << setw(8) << "APTO"
+    << setw(12) << "EN VIAJE"
+    << setw(30) << "CAMIÓN";
+
+    cout << endl << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
+
+
+    int cantidadRegistros = cArchivo.getCantidadRegistros();
+
+    for(int i = 0;i < cantidadRegistros; i++){
+        ///AGREGAR LOS BOOL DE PESO Y VOLUMEN
+        if(cArchivo.leerChoferes(i,chofer)){
+            if (chofer.get_estado() && chofer.get_asignado() && chofer.get_aptoCircular() && !chofer.get_enViaje()  && chofer.get_camionAsignado().get_aptoCircular() ){
+                chofer.mostrar();
+                cout << endl;
+            }
+        }else{cout << "Lectura incorrecta";}
+
+    }
+
+    cout << endl << endl;
+    system("pause");
+
+
 }
