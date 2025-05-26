@@ -24,7 +24,8 @@ void camionesManager::altaCamion(){
 ///MARCA/////////////////////////////////////////////////////////////////////////////////////////////
 
      do {
-        cout << endl << "ALTA DE CAMION" <<endl<<endl;
+        cout << endl << "        ALTA DE CAMION        "<< endl << endl;
+        cout << "------------------------------"<<endl<<endl;
         camion.listarMarcas();
         cout << endl << endl << "Seleccionar: ";
 
@@ -53,8 +54,9 @@ void camionesManager::altaCamion(){
 ///MODELO////////////////////////////////////////////////////////////////////////////////////////////
 
     do{
-    cout << endl << "ALTA DE CAMION" <<endl;
-    cout << marca << endl <<endl;
+    cout << endl << "        ALTA DE CAMION        "<< endl;
+    cout << marca << endl;
+    cout << "------------------------------"<<endl<<endl;
     cout << endl << endl << "Ingresar modelo: ";
     getline(cin >> ws, modelo);
     validacion = camion.set_modelo(modelo);
@@ -70,8 +72,9 @@ void camionesManager::altaCamion(){
 ///PATENTE///////////////////////////////////////////////////////////////////////////////////////////
 
     do{
-    cout << endl << "ALTA DE CAMION" <<endl;
-    cout << marca << " - " << modelo << endl <<endl;
+    cout << endl << "        ALTA DE CAMION        "<< endl;
+    cout << marca << " - " << modelo << endl;
+    cout << "------------------------------"<<endl<<endl;
     cout << endl << endl << "Ingresar patente (AA123AA o AAA123): ";
     getline(cin, patente);
     validacion = camion.set_patente(patente);
@@ -87,8 +90,9 @@ void camionesManager::altaCamion(){
 ///AÑO///////////////////////////////////////////////////////////////////////////////////////////////
 
     while (true) {
-        cout << endl << "ALTA DE CAMION" <<endl;
-        cout << marca << " - " << modelo << " (" << patente << ")" <<endl <<endl;
+        cout << endl << "        ALTA DE CAMION        "<< endl;
+        cout << marca << " - " << modelo << " (" << patente << ")" <<endl;
+        cout << "------------------------------"<<endl<<endl;
         cout << endl << endl << "Ingresar año de patentamiento: ";
         cin >> anio;
         if (cin.fail()) {
@@ -110,8 +114,9 @@ void camionesManager::altaCamion(){
 ///VERIFICACION//////////////////////////////////////////////////////////////////////////////////////
 
     system("cls");
-    cout << endl << "ALTA DE CAMION" <<endl;
-    cout << marca << " - " << modelo << " (" << patente << ")" <<endl <<endl;
+    cout << endl << "        ALTA DE CAMION        "<< endl;
+    cout << marca << " - " << modelo << " (" << patente << ")" <<endl;
+    cout << "------------------------------"<<endl<<endl;
     cout << endl << endl << "Ingresar fecha de última verificacion: ";
 
     while (true) {
