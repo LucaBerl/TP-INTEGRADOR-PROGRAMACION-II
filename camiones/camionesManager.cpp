@@ -109,6 +109,8 @@ void camionesManager::altaCamion(){
         }else {
             cout << "Año inválido. Debe estar entre 1960 y 2025." << endl;
         }
+
+        system("cls");
     }
 
 ///VERIFICACION//////////////////////////////////////////////////////////////////////////////////////
@@ -181,6 +183,10 @@ void camionesManager::altaCamion(){
 ///PESO//////////////////////////////////////////////////////////////////////////////////////////////
 
     while (true) {
+        system("cls");
+        cout << endl << "        ALTA DE CAMION        "<< endl;
+        cout << marca << " - " << modelo << " (" << patente << ")" <<endl;
+        cout << "------------------------------"<<endl<<endl;
         cout << endl << endl << "Peso máximo soportado (Entre 500 y 70.000 kg): ";
         cin >> peso;
         if (cin.fail()) {
@@ -202,6 +208,9 @@ void camionesManager::altaCamion(){
 /// VOLUMEN /////////////////////////////////////////////////////////////////////////////////////////
 
     while (true) {
+        system("cls");
+        cout << endl << "        ALTA DE CAMION        "<< endl;
+        cout << marca << " - " << modelo << " (" << patente << ")" <<endl;
         cout << endl << endl << "Volumen máximo de carga (Entre 1 y 150 mts\u00B3): ";
         cin >> volumen;
         if (cin.fail()) {
