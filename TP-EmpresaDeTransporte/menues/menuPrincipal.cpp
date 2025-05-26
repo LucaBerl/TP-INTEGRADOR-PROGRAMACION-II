@@ -4,8 +4,7 @@ using namespace std;
 #include "menuViajes.h"
 #include "menuChoferes.h"
 #include "menuCamiones.h"
-#include <conio.h>
-#include <windows.h>
+#include "menuClientes.h"
 
 
 void menuPrincipal::mostrar(){
@@ -15,10 +14,11 @@ void menuPrincipal::mostrar(){
     menuViajes menuV;
     menuChoferes menuCh;
     menuCamiones menuCa;
+    menuClientes menuClient;
 
 
 
-    char opcion;
+    int opcion;
 
     do{
     system("cls");
@@ -28,24 +28,29 @@ void menuPrincipal::mostrar(){
     cout << "1. VIAJES" << endl;
     cout << "2. CHOFERES" << endl;
     cout << "3. CAMIONES" << endl;
+    cout << "4. CLIENTES" << endl;
     cout << endl;
-    cout << "4. SALIR" << endl;
+    cout << "5. SALIR" << endl;
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
-    opcion = getch();
+    cin >> opcion;
 
     switch(opcion) {
-            case '1':
+            case 1:
                 menuV.mostrar();
                 break;
-            case '2':
+            case 2:
                 menuCh.mostrar();
                 break;
-            case '3':
+            case 3:
                 menuCa.mostrar();
                 break;
-            case '4':
+
+            case 4:
+                menuClient.mostrar();
+                break;
+            case 5:
                 return;
                 break;
             default:
@@ -54,5 +59,5 @@ void menuPrincipal::mostrar(){
 
       cout << endl << endl;
 
-    } while(opcion != '4');
+    } while(opcion != 4);
 }
