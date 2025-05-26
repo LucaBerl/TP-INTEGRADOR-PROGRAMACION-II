@@ -34,7 +34,9 @@ void viajesManager::crearViaje(){
 ///Paso 1:
 seleccionarCarga(viaje);
 ///Paso 2 y 3:
-seleccionarChofer(viaje);
+if(!seleccionarChofer(viaje)){
+    return;
+}
 ///Paso 4:
 seleccionarCiudades(viaje);
 ///Paso 5:
@@ -82,10 +84,11 @@ void viajesManager::seleccionarCarga(Viajes &viaje){
             cin.ignore(1000, '\n'); // Descarta el resto de la línea
             cout << endl << "Ingreso incorrecto, intente nuevamente: ";
         }else{
-
-            cin.ignore(1000, '\n'); // Por si quedan residuos
-            cout << " Guardado correcto ✔" << endl;
-            break; // Salir del bucle, entrada válida
+            if(viaje.set_pesoTransportado(pesoCarga)){
+                cin.ignore(1000, '\n'); // Por si quedan residuos
+                cout << " Guardado correcto ✔" << endl;
+                break; // Salir del bucle, entrada válida
+            }
         }
     }
 
@@ -100,20 +103,19 @@ void viajesManager::seleccionarCarga(Viajes &viaje){
             cin.ignore(1000, '\n'); // Descarta el resto de la línea
             cout << endl << "Ingreso incorrecto, intente nuevamente: ";
         }else{
-
-            cin.ignore(1000, '\n'); // Por si quedan residuos
-            cout << " Guardado correcto ✔" << endl;
-            break; // Salir del bucle, entrada válida
+            if(viaje.set_volumenTransportado(volumenCarga)){
+                cin.ignore(1000, '\n'); // Por si quedan residuos
+                cout << " Guardado correcto ✔" << endl;
+                break; // Salir del bucle, entrada válida
+            }
         }
     }
-
-    ///GUARDAR LOS VALORES
 
 }
 
 ///Paso 2 y 3:
 
-void viajesManager::seleccionarChofer(Viajes &viaje){
+bool viajesManager::seleccionarChofer(Viajes &viaje){
 
     system("cls");
 
@@ -126,7 +128,11 @@ void viajesManager::seleccionarChofer(Viajes &viaje){
 
     system("pause");
 
-    listarChoferesDisponibles();
+    if(!listarChoferesDisponibles(viaje)){
+        return false;
+    }
+
+    return true;
 }
 
 /// Paso 4:
@@ -231,13 +237,15 @@ cout << endl << "Espacio para mostrar resumen y guardar viaje." << endl << endl;
 system("pause");
 
 cout << endl << "🆔 Viaje: " << vArchivo.get_ultimoID();
-cout << endl << "🧑‍✈️ Chofer: " << viaje.get_chofer().get_nombre() << "  " << viaje.get_chofer().get_apellido();
+cout << endl << "🧑‍✈️ Chofer: " << viaje.get_chofer().get_nombre() << "  " << viaje.get_chofer().get_apellido() << " (ID = " << viaje.get_chofer().get_id() << ")";
 cout << endl << "📍 Origen: " << viaje.get_ciudadOrigen().getCiudad() << " -- " << viaje.get_ciudadOrigen().getProvincia();
 cout << endl << "🏁 Destino: " << viaje.get_ciudadDestino().getCiudad() << " -- " << viaje.get_ciudadDestino().getProvincia();
 cout << endl << "🛣️ Distancia: " << setprecision(1) << viaje.get_distancia() << " km";
 cout << endl << "⏱️ Salida: " << viaje.get_fechaSalida().tm_mday << "/" << viaje.get_fechaSalida().tm_mon+1 << "/" << viaje.get_fechaSalida().tm_year+1900 << "   " << viaje.get_fechaSalida().tm_hour << ":" << viaje.get_fechaSalida().tm_min;
 cout << endl << "⏱️ Llegada: " << viaje.get_fechaLlegada().tm_mday << "/" << viaje.get_fechaLlegada().tm_mon+1 << "/" << viaje.get_fechaLlegada().tm_year+1900 << "   " << viaje.get_fechaLlegada().tm_hour << ":" << viaje.get_fechaLlegada().tm_min;
 cout << endl << "📦 Carga transportada: " << viaje.get_tipoCarga();
+cout << endl << "⚖️ Peso transportado: " << viaje.get_pesoTransportado();
+cout << endl << "🧊 Volumen transportado: " << viaje.get_volumenTransportado();
 cout << endl << endl;
 
 cout << "🚚";
@@ -365,7 +373,7 @@ void viajesManager::listarHistorial(){
     system("pause");
 }
 
-void viajesManager::listarChoferesDisponibles(){
+bool viajesManager::listarChoferesDisponibles(Viajes &viaje){
 
     choferesManager cManager;
     choferesArchivo cArchivo;
@@ -379,19 +387,19 @@ void viajesManager::listarChoferesDisponibles(){
     if(!cManager.actualizarLicencia()){
         cout << "Error al actualizar datos";
         system("pause");
-        return;
+        return false;
     }
 
     if(!caManager.actualizarVerificacion()){
         cout << "Error al actualizar datos";
         system("pause");
-        return;
+        return false;
     }
 
     if(!cManager.sincronizarCamionesAsignados()){
         cout << "Error al actualizar datos";
         system("pause");
-        return;
+        return false;
     }
 
     system("cls");
@@ -411,20 +419,40 @@ void viajesManager::listarChoferesDisponibles(){
 
 
     int cantidadRegistros = cArchivo.getCantidadRegistros();
+    int contador = 0;
 
-    for(int i = 0;i < cantidadRegistros; i++){
-        ///AGREGAR LOS BOOL DE PESO Y VOLUMEN
-        if(cArchivo.leerChoferes(i,chofer)){
-            if (chofer.get_estado() && chofer.get_asignado() && chofer.get_aptoCircular() && !chofer.get_enViaje()  && chofer.get_camionAsignado().get_aptoCircular() ){
+    for(int i = 0; i < cantidadRegistros; i++) {
+        if (cArchivo.leerChoferes(i, chofer)) {
+            bool cumpleCondiciones =
+                chofer.get_estado() &&   /// El chofer está dado de alta?
+                chofer.get_asignado() &&    /// El chofer tiiene camion asignado?
+                chofer.get_aptoCircular() &&    /// El chofer tiene la licencia vigente?
+                !chofer.get_enViaje() &&    /// El chofer ya se encuentra en viaje ?
+                chofer.get_camionAsignado().get_aptoCircular() &&   /// El camion asignado al chofer, tiene la verificacion vigente ?
+                viaje.get_pesoTransportado() < chofer.get_camionAsignado().get_pesoCarga() &&   /// El camion asignado al chofer, soporta el peso de la carga?
+                viaje.get_volumenTransportado() < chofer.get_camionAsignado().get_volumenCarga();   /// El camion asignado al chofer, soporta el volumen de la carga?
+
+            if (cumpleCondiciones) {
                 chofer.mostrar();
+                contador++;
                 cout << endl;
             }
-        }else{cout << "Lectura incorrecta";}
+        } else {
+            cout << "Lectura incorrecta";
+        }
+    }
 
+    if (contador == 0){
+        system("cls");
+        cout << endl << endl << "No hay choferes disponibles en este momento" << endl << endl;
+        system("pause");
+        return false;
     }
 
     cout << endl << endl;
     system("pause");
+
+    return true;
 
 
 }

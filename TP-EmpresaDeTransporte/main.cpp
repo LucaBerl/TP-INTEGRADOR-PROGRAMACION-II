@@ -25,4 +25,4 @@ int main()
 /// -Clase Usuarios
 
 /// si damos de baja un camion con chofer, el chofer debe quedar sin asignacion y viceversa.
-/// la actualizacion de verificacion tambien tiene que hacerse en los camiones asignados a choferes.
+/// la actualizacion de verificacion tambien tiene que hacerse en los camiones asignados a choferes. V
