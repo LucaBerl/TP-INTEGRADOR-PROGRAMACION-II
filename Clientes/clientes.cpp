@@ -1,4 +1,4 @@
-#include "Clientes/Clientes.h"
+#include "Clientes.h"
 #include <cstring>  // para strcpy y strlen
 
 // Constructor
@@ -66,3 +66,4 @@ std::string Clientes::get_Email() const {
 int Clientes::get_Cantidad_Viajes_Realizados() const {
     return _cantidadViajesRealizados;
 }
+
