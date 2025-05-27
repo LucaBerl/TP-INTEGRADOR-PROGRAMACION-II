@@ -87,12 +87,9 @@ void menuChoferes::menu_abm()
             cManager.bajaChofer();
             break;
         case '3':
-            cManager.modificarChofer();
-            break;
-        case '4':
             cManager.actualizarLicencia();
             break;
-        case '5':
+        case '4':
             return;
             break;
         default:
@@ -102,7 +99,7 @@ void menuChoferes::menu_abm()
         cout << endl << endl;
 
     }
-    while(opcion != '5');
+    while(opcion != '4');
 }
 
 void menuChoferes::menu_listados()

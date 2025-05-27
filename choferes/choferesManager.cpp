@@ -290,12 +290,8 @@ void choferesManager::cargarChofer()
     }
 
 }
-void choferesManager::modificarChofer()
-{
 
-}
-
-
+//BAJA/////////////////////////////////////////
 void choferesManager::bajaChofer(){
 
     system("cls");
