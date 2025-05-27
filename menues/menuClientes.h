@@ -6,8 +6,7 @@ class menuClientes {
   public:
 
     void mostrar();
-     void menu_abm();
-
-
+    void menu_abm();
+    void menulistados();
 
 };

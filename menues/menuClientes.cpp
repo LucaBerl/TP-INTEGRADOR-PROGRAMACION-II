@@ -1,11 +1,13 @@
 #include <iostream>
 using namespace std;
 #include "menuClientes.h"
-#include "../Clientes/clientesManager.h"
+#include "../Clientes/ClientesManager.h"
+#include <conio.h>
+#include <windows.h>
 
 void menuClientes::mostrar(){
 
-    int opcion;
+    char opcion;
 
     do{
     system("cls");
@@ -13,22 +15,26 @@ void menuClientes::mostrar(){
     cout << "        MENÚ CLIENTES" << endl;
     cout << "=======================================" << endl;
     cout << "1. ALTA/BAJA/ACTUALIZACIÓN" << endl;
-    cout << "2. LISTADOS/REPORTES" << endl;
+    cout << "2. LISTADOS" << endl;
+    cout << "3. LISTADOS" << endl;
     cout << endl;
-    cout << "3. VOLVER AL MENÚ PRINCIPAL" << endl;
+    cout << "4. VOLVER AL MENÚ PRINCIPAL" << endl;
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
-    cin >> opcion;
+    opcion = getch();
 
     switch(opcion) {
-            case 1:
+            case '1':
                 menu_abm();
                 break;
-            case 2:
-              //  menu_listados();
+            case '2':
+                menulistados();
                 break;
-            case 3:
+            case '3':
+                menulistados();
+                break;
+            case '4':
                 return;
                 break;
             default:
@@ -37,15 +43,18 @@ void menuClientes::mostrar(){
 
       cout << endl << endl;
 
-    } while(opcion != 3);
+    } while(opcion != '4');
+
+
+
 }
 
 void menuClientes::menu_abm(){
 
 
-    clientesManager clientManager;
+   clientesManager clientManager;
 
-    int opcion;
+    char opcion;
 
     do{
     system("cls");
@@ -56,23 +65,23 @@ void menuClientes::menu_abm(){
     cout << "2. BAJA CLIENTE" << endl;
     cout << "3. ACTUALIZAR CLIENTE" << endl;
     cout << endl;
-    cout << "4. VOLVER AL MENÚ CLIENTE" << endl;
+    cout << "4. VOLVER AL MENÚ CLIENTES" << endl;
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
-    cin >> opcion;
+    opcion = getch();
 
     switch(opcion) {
-            case 1:
+            case '1':
                 clientManager.altaCliente();
                 break;
-            case 2:
-              //  caManager.bajaCamion();
+            case '2':
+                clientManager.bajaCliente();
                 break;
-            case 3:
-               // caManager.modificarVerificacion();
+            case '3':
+                clientManager.actualizarCliente();
                 break;
-            case 4:
+            case '4':
                 return;
                 break;
             default:
@@ -81,5 +90,51 @@ void menuClientes::menu_abm(){
 
       cout << endl << endl;
 
-    } while(opcion != 4);
+    } while(opcion != '4');
+}
+
+
+void menuClientes::menulistados(){
+
+
+    clientesManager clientManager;
+
+    char opcion;
+
+    do{
+    system("cls");
+    cout << "=======================================" << endl;
+    cout << "        LISTADOS DE CLIENTES" << endl;
+    cout << "=======================================" << endl;
+    cout << "1. LISTAR TODOS" << endl;
+    cout << "2. LISTAR EN VIAJE" << endl;
+    cout << "3. LISTAR DISPONIBLES INACTIVOS" << endl;
+    cout << endl;
+    cout << "4. VOLVER AL MENÚ CLIENTES" << endl;
+    cout << "=======================================" << endl;
+    cout << "Ingrese una opcion: ";
+
+    opcion = getch();
+
+    switch(opcion) {
+            case '1':
+
+                break;
+            case '2':
+
+                break;
+            case '3':
+
+                break;
+            case '4':
+                return;
+                break;
+            default:
+                cout << "Opción inválida. Por favor, intente de nuevo." << endl;
+        }
+
+      cout << endl << endl;
+
+    } while(opcion != '4');
+
 }

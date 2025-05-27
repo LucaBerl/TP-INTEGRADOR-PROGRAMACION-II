@@ -1,27 +1,25 @@
 # depslib dependency file v1.0
-1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\camiones\camiones.cpp
+1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\camiones\camiones.cpp
 	<iostream>
 	"camiones.h"
 	<cstring>
 	<iomanip>
-	<vector>
 
-1748266361 c:\users\brand\documents\tp\tp-integrador-programacion-ii\camiones\camiones.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\camiones\camiones.h
 	"../Fecha/fecha.h"
 	<string>
-	<vector>
 
-1748266361 c:\users\brand\documents\tp\tp-integrador-programacion-ii\fecha\fecha.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\fecha\fecha.h
 	<string>
 
-1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\camiones\camionesarchivo.cpp
+1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\camiones\camionesarchivo.cpp
 	"camionesArchivo.h"
 	"camiones.h"
 
-1748266361 c:\users\brand\documents\tp\tp-integrador-programacion-ii\camiones\camionesarchivo.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\camiones\camionesarchivo.h
 	"camiones.h"
 
-1748289983 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\camiones\camionesmanager.cpp
+1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\camiones\camionesmanager.cpp
 	<iostream>
 	"camionesManager.h"
 	"camiones.h"
@@ -30,38 +28,38 @@
 	<conio.h>
 	<iomanip>
 
-1748266361 c:\users\brand\documents\tp\tp-integrador-programacion-ii\camiones\camionesmanager.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\camiones\camionesmanager.h
 	"../Fecha/fecha.h"
 
-1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\carga\carga.cpp
+1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\carga\carga.cpp
 	<iostream>
 	<cstring>
 	"carga.h"
 
-1748266361 c:\users\brand\documents\tp\tp-integrador-programacion-ii\carga\carga.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\carga\carga.h
 	<string>
 
-1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferes.cpp
+1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferes.cpp
 	"choferes.h"
 	"../camiones/camiones.h"
 	<cstring>
 	<iomanip>
 	<iostream>
 
-1748266361 c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferes.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferes.h
 	"../camiones/camiones.h"
 	"../Fecha/fecha.h"
 	<string>
 
-1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferesarchivo.cpp
+1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferesarchivo.cpp
 	"choferesArchivo.h"
 	<iostream>
 
-1748266361 c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferesarchivo.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferesarchivo.h
 	<string>
 	"choferes.h"
 
-1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferesmanager.cpp
+1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferesmanager.cpp
 	"choferesManager.h"
 	"choferes.h"
 	<iostream>
@@ -73,11 +71,11 @@
 	<conio.h>
 	<iomanip>
 
-1748266361 c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferesmanager.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferesmanager.h
 	<string>
 	"../Fecha/fecha.h"
 
-1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\ciudades\ciudades.cpp
+1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\ciudades\ciudades.cpp
 	<iostream>
 	<cstdio>
 	<iomanip>
@@ -85,127 +83,129 @@
 	<cmath>
 	"ciudades.h"
 
-1748266361 c:\users\brand\documents\tp\tp-integrador-programacion-ii\ciudades\ciudades.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\ciudades\ciudades.h
 	<string>
 
 1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes.cpp
 	"Clientes/Clientes.h"
 	<cstring>
 
-1747590504 c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientes.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientes.h
 	<string>
 
 1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientesarchivo.cpp
 
-1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\fecha\fecha.cpp
+1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\fecha\fecha.cpp
 	<iostream>
 	"fecha.h"
 
-1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\main.cpp
+1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\main.cpp
 	<iostream>
 	"menues/menuPrincipal.h"
 	<windows.h>
 
-1748266361 c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuprincipal.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuprincipal.h
 
-1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menucamiones.cpp
+1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menucamiones.cpp
 	<iostream>
 	"menuCamiones.h"
 	"../camiones/camionesManager.h"
 	<conio.h>
 	<windows.h>
 
-1748266361 c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menucamiones.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menucamiones.h
 
-1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuchoferes.cpp
+1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuchoferes.cpp
 	"menuChoferes.h"
 	"../choferes/choferesManager.h"
 	<iostream>
 	<conio.h>
 	<windows.h>
 
-1748266361 c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuchoferes.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuchoferes.h
 
-1748289983 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuprincipal.cpp
+1748345899 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuprincipal.cpp
 	<iostream>
 	"menuPrincipal.h"
 	"menuViajes.h"
 	"menuChoferes.h"
 	"menuCamiones.h"
 	"menuClientes.h"
-	<conio.h>
-	<windows.h>
 
-1748266361 c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuviajes.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuviajes.h
 
-1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuviajes.cpp
+1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuviajes.cpp
 	<iostream>
 	"menuViajes.h"
 	"../viajes/viajesManager.h"
 	<conio.h>
 	<windows.h>
 
-1748302057 c:\users\brand\documents\tp\tp-integrador-programacion-ii\viajes\viajesmanager.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\viajes\viajesmanager.h
 	"viajes.h"
 
-1748266361 c:\users\brand\documents\tp\tp-integrador-programacion-ii\viajes\viajes.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\viajes\viajes.h
 	"../Ciudades/ciudades.h"
 	"../choferes/choferes.h"
 	<ctime>
 	<string>
 
-1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\viajes\viajes.cpp
+1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\viajes\viajes.cpp
 	"viajes.h"
 	<cstring>
 	<iomanip>
 	<iostream>
 
-1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\viajes\viajesarchivo.cpp
+1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\viajes\viajesarchivo.cpp
 	"viajesArchivo.h"
 	"viajes.h"
 
-1748266361 c:\users\brand\documents\tp\tp-integrador-programacion-ii\viajes\viajesarchivo.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\viajes\viajesarchivo.h
 	"viajes.h"
 
-1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\viajes\viajesmanager.cpp
+1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\viajes\viajesmanager.cpp
 	"viajesManager.h"
 	"viajesArchivo.h"
 	"../Carga/carga.h"
 	"../Ciudades/ciudades.h"
+	"../choferes/choferes.h"
+	"../choferes/choferesArchivo.h"
+	"../choferes/choferesManager.h"
+	"../camiones/camionesManager.h"
 	<iomanip>
 	<iostream>
 	<conio.h>
 	<windows.h>
 
-1748289983 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientesmanager.cpp
+1748343419 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientesmanager.cpp
 	<iostream>
-	"ClientesManager.h"
-	"Clientes.h"
-	"ClientesArchivo.h"
+	"clientesManager.h"
+	"clientes.h"
+	"clientesArchivo.h"
 	<ctime>
 	<conio.h>
 	<iomanip>
+	"clientesManager.h"
 
-1748290194 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientes.cpp
+1748340349 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientes.cpp
 	"Clientes.h"
 	<cstring>
 
-1748290316 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientesarchivo.cpp
-	"clientes.h"
-	"clientesArchivo.h"
+1748340409 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientesarchivo.cpp
+	"Clientes.h"
+	"ClientesArchivo.h"
 
-1748289983 c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientesarchivo.h
+1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientesarchivo.h
 	"clientes.h"
 
-1748290626 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuclientes.cpp
+1748345781 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuclientes.cpp
 	<iostream>
 	"menuClientes.h"
 	"../Clientes/ClientesManager.h"
 	<conio.h>
 	<windows.h>
 
-1748290448 c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuclientes.h
+1748345790 c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuclientes.h
 
-1748289983 c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientesmanager.h
-	"../Fecha/fecha.h"
+1748343212 c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientesmanager.h
 

@@ -1,5 +1,6 @@
-#include  "clientes.h"
-#include  "clientesArchivo.h"
+
+#include  "Clientes.h"
+#include  "ClientesArchivo.h"
 
 
 
