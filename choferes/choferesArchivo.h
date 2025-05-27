@@ -17,6 +17,7 @@ public:
     int getCantidadRegistros();
     int buscarRegistro(int id);
     bool modificarChofer(Choferes reg, int pos);
+    bool guardarChoferModificado(int pos, Choferes &choferes);
 
     bool leerChoferes(int pos,  Choferes &choferes);
     int get_ultimoID();

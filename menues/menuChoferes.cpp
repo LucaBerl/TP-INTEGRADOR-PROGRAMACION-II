@@ -69,9 +69,10 @@ void menuChoferes::menu_abm()
         cout << "=======================================" << endl;
         cout << "1. ALTA NUEVO CHOFER" << endl;
         cout << "2. BAJA CHOFER" << endl;
-        cout << "3. ACTUALIZAR LICENCIA" << endl;
+        cout << "3. MODIFICAR CHOFER" << endl;
+        cout << "4. ACTUALIZAR LICENCIA" << endl;
         cout << endl;
-        cout << "4. VOLVER AL MENÚ CHOFERES" << endl;
+        cout << "5. VOLVER AL MENÚ CHOFERES" << endl;
         cout << "=======================================" << endl;
         cout << "Ingrese una opción: ";
 
@@ -83,12 +84,15 @@ void menuChoferes::menu_abm()
             cManager.cargarChofer();
             break;
         case '2':
-//            cManager.bajaChofer();
+            cManager.bajaChofer();
             break;
         case '3':
-            //         cManager.modificarChofer();
+            cManager.modificarChofer();
             break;
         case '4':
+            cManager.actualizarLicencia();
+            break;
+        case '5':
             return;
             break;
         default:
@@ -98,7 +102,7 @@ void menuChoferes::menu_abm()
         cout << endl << endl;
 
     }
-    while(opcion != '4');
+    while(opcion != '5');
 }
 
 void menuChoferes::menu_listados()

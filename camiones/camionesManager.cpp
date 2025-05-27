@@ -899,7 +899,7 @@ void camionesManager::mostrarPorAntiguedad(){
     }
 
     cout << endl << endl;
-    delete pcamion;
+    delete []pcamion;
     system("pause");
 
 
