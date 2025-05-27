@@ -48,7 +48,7 @@ void menuPrincipal::mostrar(){
                 break;
 
             case 4:
-                menuClient.mostrar();
+                //menuClient.mostrar();
                 break;
             case 5:
                 return;
