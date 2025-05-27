@@ -3,6 +3,10 @@
 #include "viajesArchivo.h"
 #include "../Carga/carga.h"
 #include "../Ciudades/ciudades.h"
+#include "../choferes/choferes.h"
+#include "../choferes/choferesArchivo.h"
+#include "../choferes/choferesManager.h"
+#include "../camiones/camionesManager.h"
 #include <iomanip>
 #include <iostream>
 #include <conio.h>
@@ -30,7 +34,9 @@ void viajesManager::crearViaje(){
 ///Paso 1:
 seleccionarCarga(viaje);
 ///Paso 2 y 3:
-seleccionarChofer(viaje);
+if(!seleccionarChofer(viaje)){
+    return;
+}
 ///Paso 4:
 seleccionarCiudades(viaje);
 ///Paso 5:
@@ -45,43 +51,88 @@ system("pause");
 
 void viajesManager::seleccionarCarga(Viajes &viaje){
 
-int opcionCarga;
-Carga tCarga;
-do{
-system("cls");
-cout << endl << "Por favor, seleccionar el ID de tipo de carga a transportar: " << endl << endl;
+    int opcionCarga;
+    Carga tCarga;
+    do{
+        system("cls");
+        cout << endl << "Por favor, seleccionar el ID de tipo de carga a transportar: " << endl << endl;
 
-tCarga.mostrar();
+        tCarga.mostrar();
 
-cout << endl;
-cin >> opcionCarga;
+        cout << endl;
+        cin >> opcionCarga;
 
-if(opcionCarga>0 && opcionCarga<22){
-    if(viaje.set_tipoCarga(tCarga.get_tipoCarga(opcionCarga-1))){
+        if(opcionCarga>0 && opcionCarga<22){
+            if(viaje.set_tipoCarga(tCarga.get_tipoCarga(opcionCarga-1))){
 
-        cout << endl << "Opcion guardada '" << viaje.get_tipoCarga() << "' , presione cualquier tecla para continuar ..." << _getch() << endl;
+                cout << endl << "Opcion guardada '" << viaje.get_tipoCarga() << "' , presione cualquier tecla para continuar ..." << _getch() << endl;
+            }
+            else{cout << endl << "No se pudo guardar la carga" << endl;}
+        }else{cout << endl << "Opcion invalida, presione cualquier tecla para volver a intentar ..." << _getch() <<  endl;}
+
+    }while (opcionCarga<1 || opcionCarga>21);
+
+
+    cout << endl << endl << "Indicar peso de la carga a transportar (máximo 70 mil kg.) : ";
+    float pesoCarga;
+
+    while (true) {
+        cin >> pesoCarga;
+
+        if (cin.fail() || pesoCarga <= 0 || pesoCarga > 70000 ) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else{
+            if(viaje.set_pesoTransportado(pesoCarga)){
+                cin.ignore(1000, '\n'); // Por si quedan residuos
+                cout << " Guardado correcto ✔" << endl;
+                break; // Salir del bucle, entrada válida
+            }
+        }
     }
-    else{cout << endl << "No se pudo guardar la carga" << endl;}
-}else{cout << endl << "Opcion invalida, presione cualquier tecla para volver a intentar ..." << _getch() <<  endl;}
 
-}while (opcionCarga<1 || opcionCarga>21);
+    cout << endl << endl << "Indicar volumen de la carga a transportar (máximo 150 mts\u00B3) : ";
+    float volumenCarga;
 
+    while (true) {
+        cin >> volumenCarga;
 
-
-
+        if (cin.fail() || volumenCarga <= 0 || volumenCarga > 150) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else{
+            if(viaje.set_volumenTransportado(volumenCarga)){
+                cin.ignore(1000, '\n'); // Por si quedan residuos
+                cout << " Guardado correcto ✔" << endl;
+                break; // Salir del bucle, entrada válida
+            }
+        }
+    }
 
 }
 
 ///Paso 2 y 3:
 
-void viajesManager::seleccionarChofer(Viajes &viaje){
+bool viajesManager::seleccionarChofer(Viajes &viaje){
 
-system("cls");
-cout << endl << "Aca vamos a elegir al chofer, cuando tengamos los archivos listos" << endl << endl;
+    system("cls");
 
-/// Hace falta la clase chofer casi terminada. Aca se va a guardar el chofer asignado. Es necesario leer el archivo choferes.
-system("pause");
+    cout << endl << "A continuación, se mostrará una lista con los choferes disponibles para realizar el viaje";
+    cout << endl << endl << "Recordar: ";
+    cout << endl << endl << "- Para que un chofer aparezca como opción, debe tener un camion asignado previamente";
+    cout << endl << "- Los choferes se mostrarán, si es que sus camiones pueden transportar la carga de acuerdo al peso y volumen.";
+    cout << endl << "- El chofer estará disponible, solo si tiene vigente la licencia, y su camión tiene vigente la verificicación técnica.";
+    cout << endl << endl;
 
+    system("pause");
+
+    if(!listarChoferesDisponibles(viaje)){
+        return false;
+    }
+
+    return true;
 }
 
 /// Paso 4:
@@ -186,13 +237,15 @@ cout << endl << "Espacio para mostrar resumen y guardar viaje." << endl << endl;
 system("pause");
 
 cout << endl << "🆔 Viaje: " << vArchivo.get_ultimoID();
-cout << endl << "🧑‍✈️ Chofer: " << viaje.get_chofer().get_nombre() << "  " << viaje.get_chofer().get_apellido();
+cout << endl << "🧑‍✈️ Chofer: " << viaje.get_chofer().get_nombre() << "  " << viaje.get_chofer().get_apellido() << " (ID = " << viaje.get_chofer().get_id() << ")";
 cout << endl << "📍 Origen: " << viaje.get_ciudadOrigen().getCiudad() << " -- " << viaje.get_ciudadOrigen().getProvincia();
 cout << endl << "🏁 Destino: " << viaje.get_ciudadDestino().getCiudad() << " -- " << viaje.get_ciudadDestino().getProvincia();
 cout << endl << "🛣️ Distancia: " << setprecision(1) << viaje.get_distancia() << " km";
 cout << endl << "⏱️ Salida: " << viaje.get_fechaSalida().tm_mday << "/" << viaje.get_fechaSalida().tm_mon+1 << "/" << viaje.get_fechaSalida().tm_year+1900 << "   " << viaje.get_fechaSalida().tm_hour << ":" << viaje.get_fechaSalida().tm_min;
 cout << endl << "⏱️ Llegada: " << viaje.get_fechaLlegada().tm_mday << "/" << viaje.get_fechaLlegada().tm_mon+1 << "/" << viaje.get_fechaLlegada().tm_year+1900 << "   " << viaje.get_fechaLlegada().tm_hour << ":" << viaje.get_fechaLlegada().tm_min;
 cout << endl << "📦 Carga transportada: " << viaje.get_tipoCarga();
+cout << endl << "⚖️ Peso transportado: " << viaje.get_pesoTransportado();
+cout << endl << "🧊 Volumen transportado: " << viaje.get_volumenTransportado();
 cout << endl << endl;
 
 cout << "🚚";
@@ -318,4 +371,88 @@ void viajesManager::listarHistorial(){
 
     cout << "Ingresar un ID de viaje para obtener informacion mas detallada del mismo" << endl << endl;
     system("pause");
+}
+
+bool viajesManager::listarChoferesDisponibles(Viajes &viaje){
+
+    choferesManager cManager;
+    choferesArchivo cArchivo;
+    Choferes chofer;
+    camionesManager caManager;
+
+    cout << left << fixed << setprecision(0);
+
+    ///Actualizar en viaje o no
+
+    if(!cManager.actualizarLicencia()){
+        cout << "Error al actualizar datos";
+        system("pause");
+        return false;
+    }
+
+    if(!caManager.actualizarVerificacion()){
+        cout << "Error al actualizar datos";
+        system("pause");
+        return false;
+    }
+
+    if(!cManager.sincronizarCamionesAsignados()){
+        cout << "Error al actualizar datos";
+        system("pause");
+        return false;
+    }
+
+    system("cls");
+
+    cout << left;
+    cout << setw(6) << "ID"
+    << setw(10) << "DNI"
+    << setw(20) << "NOMBRE"
+    << setw(20) << "APELLIDO"
+    << setw(7) << "EXP."
+    << setw(15) << "VENC. LIC."
+    << setw(8) << "APTO"
+    << setw(12) << "EN VIAJE"
+    << setw(30) << "CAMIÓN";
+
+    cout << endl << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
+
+
+    int cantidadRegistros = cArchivo.getCantidadRegistros();
+    int contador = 0;
+
+    for(int i = 0; i < cantidadRegistros; i++) {
+        if (cArchivo.leerChoferes(i, chofer)) {
+            bool cumpleCondiciones =
+                chofer.get_estado() &&   /// El chofer está dado de alta?
+                chofer.get_asignado() &&    /// El chofer tiiene camion asignado?
+                chofer.get_aptoCircular() &&    /// El chofer tiene la licencia vigente?
+                !chofer.get_enViaje() &&    /// El chofer ya se encuentra en viaje ?
+                chofer.get_camionAsignado().get_aptoCircular() &&   /// El camion asignado al chofer, tiene la verificacion vigente ?
+                viaje.get_pesoTransportado() < chofer.get_camionAsignado().get_pesoCarga() &&   /// El camion asignado al chofer, soporta el peso de la carga?
+                viaje.get_volumenTransportado() < chofer.get_camionAsignado().get_volumenCarga();   /// El camion asignado al chofer, soporta el volumen de la carga?
+
+            if (cumpleCondiciones) {
+                chofer.mostrar();
+                contador++;
+                cout << endl;
+            }
+        } else {
+            cout << "Lectura incorrecta";
+        }
+    }
+
+    if (contador == 0){
+        system("cls");
+        cout << endl << endl << "No hay choferes disponibles en este momento" << endl << endl;
+        system("pause");
+        return false;
+    }
+
+    cout << endl << endl;
+    system("pause");
+
+    return true;
+
+
 }

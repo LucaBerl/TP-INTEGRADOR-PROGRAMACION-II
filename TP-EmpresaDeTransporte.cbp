@@ -36,8 +36,10 @@
 		<Unit filename="Carga/carga.h" />
 		<Unit filename="Ciudades/ciudades.cpp" />
 		<Unit filename="Ciudades/ciudades.h" />
+		<Unit filename="ClientesManager.h" />
 		<Unit filename="Clientes/Clientes.h" />
 		<Unit filename="Clientes/ClientesArchivo.h" />
+		<Unit filename="Clientes/clientesManager.cpp" />
 		<Unit filename="Fecha/fecha.cpp" />
 		<Unit filename="Fecha/fecha.h" />
 		<Unit filename="camiones/camiones.cpp" />

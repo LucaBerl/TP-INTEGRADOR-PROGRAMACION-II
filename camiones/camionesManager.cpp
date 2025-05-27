@@ -17,48 +17,33 @@ void camionesManager::altaCamion(){
     camionesArchivo caArchivo;
 
     string marca, modelo, patente;
-    int dia, mes, anioFecha,anio, seleccion_marca;
+    int dia, mes, anioFecha,anio;
     float peso, volumen;
     bool validacion;
 
 ///MARCA/////////////////////////////////////////////////////////////////////////////////////////////
 
+    cout << endl << "ALTA DE CAMION";
      do {
-        cout << endl << "        ALTA DE CAMION        "<< endl << endl;
-        cout << "------------------------------"<<endl<<endl;
-        camion.listarMarcas();
-        cout << endl << endl << "Seleccionar: ";
+        cout << endl << endl << "Ingresar marca: ";
 
-        cin >> seleccion_marca;
-
-        marca = camion.validarMarca(seleccion_marca);
-
-        if(marca == "Otra"){
-            cout << "Ingreso manual: ";
-            getline(cin >> ws, marca);
-        }
+        getline(cin >> ws, marca);
 
         validacion = camion.set_marca(marca);
 
-
         if (validacion) {
-            cout << " Guardado correcto ✔ - (" << marca << ")" << endl;
+            cout << " Guardado correcto ✔" << endl;
         } else {
             cout << endl << "Nombre inválido, o demasiado largo. Intente de vuelta" << endl;
         }
-
-        system("cls");
 
     } while (!validacion);
 
 ///MODELO////////////////////////////////////////////////////////////////////////////////////////////
 
     do{
-    cout << endl << "        ALTA DE CAMION        "<< endl;
-    cout << marca << endl;
-    cout << "------------------------------"<<endl<<endl;
     cout << endl << endl << "Ingresar modelo: ";
-    getline(cin >> ws, modelo);
+    getline(cin, modelo);
     validacion = camion.set_modelo(modelo);
 
         if (validacion) {
@@ -66,15 +51,12 @@ void camionesManager::altaCamion(){
         } else {
             cout << endl << "Nombre inválido, o demasiado largo. Intente de vuelta" << endl;
         }
-        system("cls");
+
     }while (!validacion);
 
 ///PATENTE///////////////////////////////////////////////////////////////////////////////////////////
 
     do{
-    cout << endl << "        ALTA DE CAMION        "<< endl;
-    cout << marca << " - " << modelo << endl;
-    cout << "------------------------------"<<endl<<endl;
     cout << endl << endl << "Ingresar patente (AA123AA o AAA123): ";
     getline(cin, patente);
     validacion = camion.set_patente(patente);
@@ -84,15 +66,12 @@ void camionesManager::altaCamion(){
         } else {
             cout << endl << "Patente inválida. Debe tener 6 O 7 caracteres. Intente de vuelta" << endl;
         }
-    system("cls");
+
     }while (!validacion);
 
 ///AÑO///////////////////////////////////////////////////////////////////////////////////////////////
 
     while (true) {
-        cout << endl << "        ALTA DE CAMION        "<< endl;
-        cout << marca << " - " << modelo << " (" << patente << ")" <<endl;
-        cout << "------------------------------"<<endl<<endl;
         cout << endl << endl << "Ingresar año de patentamiento: ";
         cin >> anio;
         if (cin.fail()) {
@@ -109,16 +88,10 @@ void camionesManager::altaCamion(){
         }else {
             cout << "Año inválido. Debe estar entre 1960 y 2025." << endl;
         }
-
-        system("cls");
     }
 
 ///VERIFICACION//////////////////////////////////////////////////////////////////////////////////////
 
-    system("cls");
-    cout << endl << "        ALTA DE CAMION        "<< endl;
-    cout << marca << " - " << modelo << " (" << patente << ")" <<endl;
-    cout << "------------------------------"<<endl<<endl;
     cout << endl << endl << "Ingresar fecha de última verificacion: ";
 
     while (true) {
@@ -183,10 +156,6 @@ void camionesManager::altaCamion(){
 ///PESO//////////////////////////////////////////////////////////////////////////////////////////////
 
     while (true) {
-        system("cls");
-        cout << endl << "        ALTA DE CAMION        "<< endl;
-        cout << marca << " - " << modelo << " (" << patente << ")" <<endl;
-        cout << "------------------------------"<<endl<<endl;
         cout << endl << endl << "Peso máximo soportado (Entre 500 y 70.000 kg): ";
         cin >> peso;
         if (cin.fail()) {
@@ -208,9 +177,6 @@ void camionesManager::altaCamion(){
 /// VOLUMEN /////////////////////////////////////////////////////////////////////////////////////////
 
     while (true) {
-        system("cls");
-        cout << endl << "        ALTA DE CAMION        "<< endl;
-        cout << marca << " - " << modelo << " (" << patente << ")" <<endl;
         cout << endl << endl << "Volumen máximo de carga (Entre 1 y 150 mts\u00B3): ";
         cin >> volumen;
         if (cin.fail()) {

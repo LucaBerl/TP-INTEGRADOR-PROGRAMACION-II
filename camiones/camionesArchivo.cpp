@@ -104,3 +104,21 @@ bool camionesArchivo::guardarCamionModificado(int pos, Camiones &camion){
     return modifico;
 
 }
+
+bool camionesArchivo::buscarCamionPorId(int idBuscado,Camiones &camionEncontrado){
+
+    Camiones camion;
+    int cantidad = get_cantidadRegistros();
+
+    for (int i = 0; i < cantidad; i++) {
+        if (leerCamion(i, camion)) {
+            if (camion.get_idCamion() == idBuscado) {
+                camionEncontrado = camion;
+                return true;
+            }
+        }
+    }
+
+    return false;
+
+}

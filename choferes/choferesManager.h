@@ -1,8 +1,10 @@
 #pragma once
 #include <string>
 #include "../Fecha/fecha.h"
+
+
 class choferesManager{
-private:
+
 
 public:
 
@@ -17,4 +19,7 @@ void listarSinCamion();
 void listarConCamion();
 void listarEnViaje();
 void asignarCamion();
+void desasignarCamion();
+bool sincronizarCamionesAsignados();
+
 };
