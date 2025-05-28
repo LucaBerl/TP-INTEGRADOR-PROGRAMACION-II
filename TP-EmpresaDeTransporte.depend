@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\camiones\camiones.cpp
+1748443315 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\camiones\camiones.cpp
 	<iostream>
 	"camiones.h"
 	<cstring>
@@ -19,7 +19,7 @@
 1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\camiones\camionesarchivo.h
 	"camiones.h"
 
-1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\camiones\camionesmanager.cpp
+1748435090 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\camiones\camionesmanager.cpp
 	<iostream>
 	"camionesManager.h"
 	"camiones.h"
@@ -51,15 +51,15 @@
 	"../Fecha/fecha.h"
 	<string>
 
-1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferesarchivo.cpp
+1748426857 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferesarchivo.cpp
 	"choferesArchivo.h"
 	<iostream>
 
-1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferesarchivo.h
+1748426857 c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferesarchivo.h
 	<string>
 	"choferes.h"
 
-1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferesmanager.cpp
+1748426857 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferesmanager.cpp
 	"choferesManager.h"
 	"choferes.h"
 	<iostream>
@@ -71,7 +71,7 @@
 	<conio.h>
 	<iomanip>
 
-1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferesmanager.h
+1748426857 c:\users\brand\documents\tp\tp-integrador-programacion-ii\choferes\choferesmanager.h
 	<string>
 	"../Fecha/fecha.h"
 
@@ -90,7 +90,7 @@
 	"Clientes/Clientes.h"
 	<cstring>
 
-1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientes.h
+1748443319 c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientes.h
 	<string>
 
 1748266361 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientesarchivo.cpp
@@ -115,7 +115,7 @@
 
 1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menucamiones.h
 
-1748307055 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuchoferes.cpp
+1748426857 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuchoferes.cpp
 	"menuChoferes.h"
 	"../choferes/choferesManager.h"
 	<iostream>
@@ -177,7 +177,7 @@
 	<conio.h>
 	<windows.h>
 
-1748343419 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientesmanager.cpp
+1748436054 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientesmanager.cpp
 	<iostream>
 	"clientesManager.h"
 	"clientes.h"
@@ -187,18 +187,20 @@
 	<iomanip>
 	"clientesManager.h"
 
-1748340349 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientes.cpp
+1748443396 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientes.cpp
 	"Clientes.h"
 	<cstring>
+	<iostream>
+	<iomanip>
 
-1748340409 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientesarchivo.cpp
+1748443342 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientesarchivo.cpp
 	"Clientes.h"
 	"ClientesArchivo.h"
 
-1748307055 c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientesarchivo.h
+1748441375 c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientesarchivo.h
 	"clientes.h"
 
-1748345781 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuclientes.cpp
+1748439577 source:c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuclientes.cpp
 	<iostream>
 	"menuClientes.h"
 	"../Clientes/ClientesManager.h"
@@ -207,7 +209,7 @@
 
 1748345790 c:\users\brand\documents\tp\tp-integrador-programacion-ii\menues\menuclientes.h
 
-1748343212 c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientesmanager.h
+1748443909 c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientesmanager.h
 
 1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\camiones\camiones.cpp
 	<iostream>

@@ -16,6 +16,8 @@ private:
 
 public:
 
+    void mostrar()const;
+
  // constructor
 
     Clientes();
@@ -27,13 +29,13 @@ public:
 
 void set_IdCliente(int idCliente);
 
-void set_Nombre_RazonSocial(const char* nombre_RazonSocial);
+bool set_Nombre_RazonSocial(std::string  nombre_RazonSocial);
 
-void set_Direccion(const char* direccion);
+bool set_Direccion(std::string  direccion);
 
-void set_Telefono(const char* telefono);
+bool set_Telefono(std::string  telefono);
 
-void set_Email(const char* email);
+bool set_Email(std::string  email);
 
 void set_CantidadViajesRealizados(int cantidadViajesRealizados);
 

@@ -118,7 +118,7 @@ void menuClientes::menulistados(){
 
     switch(opcion) {
             case '1':
-
+                clientManager.mostrarTodos();
                 break;
             case '2':
 
