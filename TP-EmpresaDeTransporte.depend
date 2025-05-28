@@ -209,3 +209,207 @@
 
 1748343212 c:\users\brand\documents\tp\tp-integrador-programacion-ii\clientes\clientesmanager.h
 
+1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\camiones\camiones.cpp
+	<iostream>
+	"camiones.h"
+	<cstring>
+	<iomanip>
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\camiones\camiones.h
+	"../Fecha/fecha.h"
+	<string>
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\fecha\fecha.h
+	<string>
+
+1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\camiones\camionesarchivo.cpp
+	"camionesArchivo.h"
+	"camiones.h"
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\camiones\camionesarchivo.h
+	"camiones.h"
+
+1748356286 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\camiones\camionesmanager.cpp
+	<iostream>
+	"camionesManager.h"
+	"camiones.h"
+	"camionesArchivo.h"
+	<ctime>
+	<conio.h>
+	<iomanip>
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\camiones\camionesmanager.h
+	"../Fecha/fecha.h"
+
+1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\carga\carga.cpp
+	<iostream>
+	<cstring>
+	"carga.h"
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\carga\carga.h
+	<string>
+
+1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\choferes\choferes.cpp
+	"choferes.h"
+	"../camiones/camiones.h"
+	<cstring>
+	<iomanip>
+	<iostream>
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\choferes\choferes.h
+	"../camiones/camiones.h"
+	"../Fecha/fecha.h"
+	<string>
+
+1748360170 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\choferes\choferesarchivo.cpp
+	"choferesArchivo.h"
+	<iostream>
+
+1748360158 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\choferes\choferesarchivo.h
+	<string>
+	"choferes.h"
+
+1748360149 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\choferes\choferesmanager.cpp
+	"choferesManager.h"
+	"choferes.h"
+	<iostream>
+	"choferesArchivo.h"
+	"../camiones/camiones.h"
+	"../camiones/camionesManager.h"
+	"../camiones/camionesArchivo.h"
+	<ctime>
+	<conio.h>
+	<iomanip>
+
+1748360208 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\choferes\choferesmanager.h
+	<string>
+	"../Fecha/fecha.h"
+
+1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\ciudades\ciudades.cpp
+	<iostream>
+	<cstdio>
+	<iomanip>
+	<cstring>
+	<cmath>
+	"ciudades.h"
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\ciudades\ciudades.h
+	<string>
+
+1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\clientes\clientes.cpp
+	"Clientes.h"
+	<cstring>
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\clientes\clientes.h
+	<string>
+
+1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\clientes\clientesarchivo.cpp
+	"Clientes.h"
+	"ClientesArchivo.h"
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\clientes\clientesarchivo.h
+	"clientes.h"
+
+1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\clientes\clientesmanager.cpp
+	<iostream>
+	"clientesManager.h"
+	"clientes.h"
+	"clientesArchivo.h"
+	<ctime>
+	<conio.h>
+	<iomanip>
+	"clientesManager.h"
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\clientes\clientesmanager.h
+
+1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\fecha\fecha.cpp
+	<iostream>
+	"fecha.h"
+
+1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\main.cpp
+	<iostream>
+	"menues/menuPrincipal.h"
+	<windows.h>
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\menues\menuprincipal.h
+
+1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\menues\menucamiones.cpp
+	<iostream>
+	"menuCamiones.h"
+	"../camiones/camionesManager.h"
+	<conio.h>
+	<windows.h>
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\menues\menucamiones.h
+
+1748360662 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\menues\menuchoferes.cpp
+	"menuChoferes.h"
+	"../choferes/choferesManager.h"
+	<iostream>
+	<conio.h>
+	<windows.h>
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\menues\menuchoferes.h
+
+1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\menues\menuclientes.cpp
+	<iostream>
+	"menuClientes.h"
+	"../Clientes/ClientesManager.h"
+	<conio.h>
+	<windows.h>
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\menues\menuclientes.h
+
+1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\menues\menuprincipal.cpp
+	<iostream>
+	"menuPrincipal.h"
+	"menuViajes.h"
+	"menuChoferes.h"
+	"menuCamiones.h"
+	"menuClientes.h"
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\menues\menuviajes.h
+
+1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\menues\menuviajes.cpp
+	<iostream>
+	"menuViajes.h"
+	"../viajes/viajesManager.h"
+	<conio.h>
+	<windows.h>
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\viajes\viajesmanager.h
+	"viajes.h"
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\viajes\viajes.h
+	"../Ciudades/ciudades.h"
+	"../choferes/choferes.h"
+	<ctime>
+	<string>
+
+1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\viajes\viajes.cpp
+	"viajes.h"
+	<cstring>
+	<iomanip>
+	<iostream>
+
+1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\viajes\viajesarchivo.cpp
+	"viajesArchivo.h"
+	"viajes.h"
+
+1748353794 d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\viajes\viajesarchivo.h
+	"viajes.h"
+
+1748353794 source:d:\desktop\cursos\programacion utn\tp-integrador-programacion-ii\viajes\viajesmanager.cpp
+	"viajesManager.h"
+	"viajesArchivo.h"
+	"../Carga/carga.h"
+	"../Ciudades/ciudades.h"
+	"../choferes/choferes.h"
+	"../choferes/choferesArchivo.h"
+	"../choferes/choferesManager.h"
+	"../camiones/camionesManager.h"
+	<iomanip>
+	<iostream>
+	<conio.h>
+	<windows.h>
+

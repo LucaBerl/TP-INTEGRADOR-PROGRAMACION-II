@@ -290,30 +290,94 @@ void choferesManager::cargarChofer()
     }
 
 }
-void choferesManager::modificarChofer()
-{
+
+//BAJA/////////////////////////////////////////
+void choferesManager::bajaChofer(){
+
+    system("cls");
+
+    Choferes choferes;
+    choferesArchivo cArchivo;
+
+    int opcionNumerica;
+
+    listarTodos();
+
+    cout << endl << endl << "Por favor, seleccionar el ID del camión a dar de baja: ";
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || opcionNumerica <= 0) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else{
+
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            cout << endl << "ID seleccionado: " << opcionNumerica << endl << endl;
+            system("pause");
+            break; // Salir del bucle, entrada válida
+        }
+    }
+
+    system("cls");
+
+    int posicion, cantidadRegistros = cArchivo.getCantidadRegistros();
+    bool idEncontrado = false;
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(cArchivo.leerChoferes(i,choferes)){
+            if (choferes.get_id() == opcionNumerica && choferes.get_estado() == 1){
+                choferes.mostrar();
+                posicion = i;
+                idEncontrado = true;
+                cout << endl << endl << "Desea dar de baja este chofer?";
+                cout << endl << "1. SI" << endl << "2. NO" << endl;
+                break;
+            }
+        }else{
+            cout << "Lectura incorrecta";
+            system("pause");
+            return;
+        }
+
+    }
+
+    if(!idEncontrado){
+        cout << endl << "El ID seleccionado no existe en los registros" << endl << endl;
+        system("pause");
+        return;
+    }
+
+    cout << endl;
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2)) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else if(opcionNumerica == 1){
+            choferes.set_estado(0);
+            if(cArchivo.guardarChoferModificado(posicion,choferes)){
+                system("cls");
+                cout << "GUARDADO CORRECTO ✔ " << endl << _getch() ;
+                return;
+            }else{
+                cout << "Error en el guardado" << _getch() ;
+                return;
+            }
+        }else if(opcionNumerica == 2){
+            return;
+        }
+
+    }
 
 }
 
-/*bool choferesManager::bajaChofer()
-{
-    Choferes reg;
-    choferesArchivo archivo;
-
-    int id;
-
-    cout<<"Ingrese el ID del chofer para dar de baja: "<<endl;
-    cin>>id;
-
-    int pos = archivo.buscarRegistro(id);
-    if(pos==-1) return false;
-
-//leer registro del archivo choferes
-
-//    reg=archivo.leer(pos);//en reg esta el registro a borrar
-    reg.set_estado(false);
-    return archivo.modificarChofer(reg, pos);
-}*/
 
 
 void choferesManager::mostrarCantidadRegistros()
