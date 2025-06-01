@@ -8,12 +8,13 @@ using namespace std;
 
 // Constructor
 Clientes::Clientes() {
-    set_IdCliente(0);
+    set_IdCliente(-1);
     set_Nombre_RazonSocial("");
     set_Direccion("");
     set_Telefono("");
     set_Email("");
     set_CantidadViajesRealizados(0);
+    set_estado(1);
 }
 
 // Setters
@@ -66,6 +67,10 @@ void Clientes::set_CantidadViajesRealizados(int cantidadViajesRealizados) {
     _cantidadViajesRealizados = cantidadViajesRealizados;
 }
 
+void Clientes::set_estado(bool estado){
+    _estado = estado;
+}
+
 // Getters
 
 int Clientes::get_idCliente() const {
@@ -90,6 +95,10 @@ std::string Clientes::get_Email() const {
 
 int Clientes::get_Cantidad_Viajes_Realizados() const {
     return _cantidadViajesRealizados;
+}
+
+bool Clientes::get_estado()const{
+    return _estado;
 }
 
 void Clientes::mostrar()const{

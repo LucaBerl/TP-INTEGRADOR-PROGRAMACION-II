@@ -31,12 +31,12 @@ void clientesManager::mostrarTodos(){
     system("cls");
 
     cout << left;
-    cout << setw(6) << "ID"
+    cout << setw(3) << "ID   "
     << setw(15) << "RAZON SOCIAL / NOMBRE   "
     << setw(15) << "DIRECCION"
     << setw(15) << "TELEFONO"
-    << setw(10) << "EMAIL"
-    << setw(10) << "CANTIDAD VIAJES REALIZADOS";
+    << setw(15) << "EMAIL"
+    << setw(3) << "CANTIDAD VIAJES REALIZADOS";
 
 
     cout << endl << "----------------------------------------------------------------------------------------------------------------" << endl;
@@ -47,8 +47,15 @@ void clientesManager::mostrarTodos(){
     for(int i = 0;i < cantidadRegistros; i++){
 
         if(clientArchivo.leerClientes(i,clientes)){
-              clientes.mostrar();
-                cout << endl;
+                 if (clientes.get_estado() == 1){
+
+                    clientes.mostrar();
+                    cout << endl;
+
+
+                }
+
+
             }else{cout << "Lectura incorrecta";}
 
    }
@@ -81,37 +88,13 @@ void clientesManager::altaCliente(){
 
     cout<< endl << "ALTA CLIENTE";
 
-///ID///////////////////////////////////////////////////////////////////////
 
-//    while (true)
-//    {
-//        cout << endl << endl << "Ingresar ID: ";
-//        cin >> id;
-//        if (cin.fail())
-//        {
-//            cin.clear(); // Limpia el estado de error
-//            cin.ignore(1000, '\n'); // Descarta el resto de la línea
-//            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
-//            continue;
-//        }
-//        if (choferes.set_id(id))
-//        {
-//            cout << " Guardado correcto ✔" << endl;
-//            cin.ignore(1000, '\n'); // Por si quedan residuos
-//
-//            break; // Salir del bucle, entrada válida
-//        }
-//        else
-//        {
-//            cout << "ID invalido." << endl;
-//        }
-//    }
 
 /// Creacion de ID automatica
 
     cliente.set_IdCliente(clienteArchivo.get_ultimoID());
 
-    cin.ignore();
+   cin.ignore();
 
 
 ///Razon social//////////////////////////////////////////////////////
@@ -212,6 +195,13 @@ void clientesManager::altaCliente(){
 
     cout << endl << "Email " << cliente.get_Email();
 
+    cout << endl << "Estado " << cliente.get_estado();
+
+
+
+
+    cout << endl << "ultimo id  " << clienteArchivo.get_ultimoID() << endl << endl;
+
 
 
 ///CONFIRMACION Y GUARDADO//////////////////////////////////
@@ -248,6 +238,94 @@ void clientesManager::altaCliente(){
 
 
 
+
+}
+void clientesManager::bajaCliente(){
+
+    system("cls");
+
+  Clientes cliente;
+  clientesArchivo clienteArchivo;
+
+    int opcionNumerica;
+
+
+      mostrarTodos();
+
+    cout << endl << endl << "Por favor, seleccionar el ID del Cliente a dar de baja: ";
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || opcionNumerica <= 0) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else{
+
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            cout << endl << "ID seleccionado: " << opcionNumerica << endl << endl;
+            system("pause");
+            break; // Salir del bucle, entrada válida
+        }
+    }
+
+    system("cls");
+
+    int posicion;
+    int cantidadRegistros = clienteArchivo.getCantidadClientes();
+    bool idEncontrado = false;
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(clienteArchivo.leerClientes(i,cliente)){
+            if (cliente.get_idCliente()==opcionNumerica&& cliente.get_estado()==1){
+                cliente.mostrar();
+                posicion = i;
+                idEncontrado = true;
+                cout << endl << endl << "Desea dar de baja este Cliente?";
+                cout << endl << "1. SI" << endl << "2. NO" << endl;
+                break;
+            }
+        }else{
+            cout << "Lectura incorrecta";
+            system("pause");
+            return;
+        }
+
+    }
+
+    if(!idEncontrado){
+        cout << endl << "El ID seleccionado no existe en los registros" << endl << endl;
+        system("pause");
+        return;
+    }
+
+    cout << endl;
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2)) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else if(opcionNumerica == 1){
+             cliente.set_estado(0);
+            if(clienteArchivo.guardarClienteModificado(posicion, cliente)){
+                system("cls");
+                cout << "GUARDADO CORRECTO ✔ " << endl << _getch() ;
+                return;
+            }else{
+                cout << "Error en el guardado" << _getch() ;
+                return;
+            }
+        }else if(opcionNumerica == 2){
+            return;
+        }
+
+    }
+
 }
 
 
@@ -283,6 +361,6 @@ while (true)
 }
 
 */
-void clientesManager::bajaCliente(){}
+
 
 bool clientesManager::actualizarCliente(){}

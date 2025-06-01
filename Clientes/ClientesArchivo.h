@@ -16,8 +16,7 @@ public:
 
     int get_ultimoID();
 
-
-
+    bool guardarClienteModificado(int pos,Clientes &cliente);
 
 
 

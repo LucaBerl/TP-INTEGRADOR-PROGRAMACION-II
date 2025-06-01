@@ -7,11 +7,13 @@ class Clientes{
 
 private:
   int _idCliente;
+
   char _nombre_RazonSocial[50];
   char _direccion[50];
-  char _telefono[15];
+  char _telefono[25];
   char _email[50];
   int _cantidadViajesRealizados;
+  bool _estado;
 
 
 public:
@@ -39,6 +41,8 @@ bool set_Email(std::string  email);
 
 void set_CantidadViajesRealizados(int cantidadViajesRealizados);
 
+void set_estado(bool estado);
+
 
 
  // getters
@@ -55,5 +59,7 @@ void set_CantidadViajesRealizados(int cantidadViajesRealizados);
  std::string get_Email()const;
 
  int get_Cantidad_Viajes_Realizados()const;
+
+ bool get_estado()const;
 
 };
