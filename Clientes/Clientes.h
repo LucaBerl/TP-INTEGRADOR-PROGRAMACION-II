@@ -7,14 +7,18 @@ class Clientes{
 
 private:
   int _idCliente;
+
   char _nombre_RazonSocial[50];
   char _direccion[50];
-  char _telefono[15];
+  char _telefono[25];
   char _email[50];
   int _cantidadViajesRealizados;
+  bool _estado;
 
 
 public:
+
+    void mostrar()const;
 
  // constructor
 
@@ -27,15 +31,17 @@ public:
 
 void set_IdCliente(int idCliente);
 
-void set_Nombre_RazonSocial(const char* nombre_RazonSocial);
+bool set_Nombre_RazonSocial(std::string  nombre_RazonSocial);
 
-void set_Direccion(const char* direccion);
+bool set_Direccion(std::string  direccion);
 
-void set_Telefono(const char* telefono);
+bool set_Telefono(std::string  telefono);
 
-void set_Email(const char* email);
+bool set_Email(std::string  email);
 
 void set_CantidadViajesRealizados(int cantidadViajesRealizados);
+
+void set_estado(bool estado);
 
 
 
@@ -53,5 +59,7 @@ void set_CantidadViajesRealizados(int cantidadViajesRealizados);
  std::string get_Email()const;
 
  int get_Cantidad_Viajes_Realizados()const;
+
+ bool get_estado()const;
 
 };

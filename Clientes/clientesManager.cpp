@@ -9,209 +9,358 @@ using namespace std;
 #include "clientesManager.h"
 
 
-void clientesManager::altaCliente(){
-
- /*   system("cls");
-
-    Camiones camion;
-    Fecha fechaVerificacion;
-    camionesArchivo caArchivo;
-
-    string marca, modelo, patente;
-    int dia, mes, anioFecha,anio;
-    float peso, volumen;
-    bool validacion;
-
-///MARCA/////////////////////////////////////////////////////////////////////////////////////////////
-
-    cout << endl << "ALTA DE CAMION";
-     do {
-        cout << endl << endl << "Ingresar marca: ";
-        cin.ignore();
-        getline(cin, marca);
-
-        validacion = camion.set_marca(marca);
-
-        if (validacion) {
-            cout << " Guardado correcto ✔" << endl;
-        } else {
-            cout << endl << "Nombre inválido, o demasiado largo. Intente de vuelta" << endl;
-        }
-
-    } while (!validacion);
-
-///MODELO////////////////////////////////////////////////////////////////////////////////////////////
-
-    do{
-    cout << endl << endl << "Ingresar modelo: ";
-    getline(cin, modelo);
-    validacion = camion.set_modelo(modelo);
-
-        if (validacion) {
-            cout << " Guardado correcto ✔" << endl;
-        } else {
-            cout << endl << "Nombre inválido, o demasiado largo. Intente de vuelta" << endl;
-        }
-
-    }while (!validacion);
-
-///PATENTE///////////////////////////////////////////////////////////////////////////////////////////
-
-    do{
-    cout << endl << endl << "Ingresar patente (AA123AA o AAA123): ";
-    getline(cin, patente);
-    validacion = camion.set_patente(patente);
-
-        if (validacion) {
-            cout << " Guardado correcto ✔" << endl;
-        } else {
-            cout << endl << "Patente inválida. Debe tener 6 O 7 caracteres. Intente de vuelta" << endl;
-        }
-
-    }while (!validacion);
-
-///AÑO///////////////////////////////////////////////////////////////////////////////////////////////
-
-    do{
-    cout << endl << endl << "Ingresar año de patentamiento: ";
-    cin >> anio;
-    validacion = camion.set_anio(anio);
-
-        if (validacion) {
-            cout << " Guardado correcto ✔" << endl;
-        } else {
-            cout << endl << "Año invalido, ingrese de vuelta (Rango 1960 a 2025)" << endl;
-        }
-
-    }while (!validacion);
-
-///VERIFICACION//////////////////////////////////////////////////////////////////////////////////////
-
-    cout << endl << endl << "Ingresar fecha de última verificacion: ";
-    do{
-    cout << endl << "Dia: ";
-    cin >> dia;
-    validacion = fechaVerificacion.set_Dia(dia);
-
-        if (validacion) {
-            cout << " Guardado correcto ✔" << endl;
-        } else {
-            cout << endl << "Dia invalido, ingrese nuevamente" << endl;
-        }
-
-    }while (!validacion);
+void clientesManager::mostrarTodos(){
+{
 
 
+    clientesArchivo clientArchivo;
+    Clientes clientes;
+    cout << left << fixed << setprecision(0);
 
-    do{
-    cout << "Mes: ";
-    cin >> mes;
-     validacion = fechaVerificacion.set_Mes(mes);
-
-        if (validacion) {
-            cout << " Guardado correcto ✔" << endl;
-        } else {
-            cout << endl << "Mes invalido, ingrese nuevamente" << endl;
-        }
-
-    }while (!validacion);
-
-    do{
-    cout << "Año: ";
-    cin >> anioFecha;
-     validacion = fechaVerificacion.set_Anio(anioFecha);
+  /*
+  int _idCliente;
+  char _nombre_RazonSocial[50];
+  char _direccion[50];
+  char _telefono[15];
+  char _email[50];
+  int _cantidadViajesRealizados;
 
 
-        if (validacion) {
-            cout << " Guardado correcto ✔" << endl;
-        } else {
-            cout << endl << "Año invalido, ingrese nuevamente" << endl;
-        }
+  */
 
-    }while (!validacion);
-    camion.set_ultimaVerificacion(fechaVerificacion);
-
-///PESO//////////////////////////////////////////////////////////////////////////////////////////////
-
-    do{
-    cout << endl << endl << "Peso máximo soportado (Entre 500 y 70.000 kg): ";
-    cin >> peso;
-     validacion = camion.set_pesoCarga(peso);
-
-        if (validacion) {
-            cout << " Guardado correcto ✔" << endl;
-        } else {
-            cout << endl << "Peso fuera de rango, intente de vuelta" << endl;
-        }
-
-    }while (!validacion);
-
-/// VOLUMEN /////////////////////////////////////////////////////////////////////////////////////////
-
-    do{
-    cout << endl << endl << "Volumen máximo de carga (Entre 1 y 150 mts\u00B3): ";
-    cin >> volumen;
-    validacion = camion.set_volumenCarga(volumen);
-
-        if (validacion) {
-            cout << " Guardado correcto ✔" << endl;
-        } else {
-            cout << endl << "Volumen fuera de rango, intente de vuelta" << endl;
-        }
-
-    }while (!validacion);
-
-    camion.set_idCamion(caArchivo.get_ultimoID());
     system("cls");
 
-/// RESUMEN /////////////////////////////////////////////////////////////////////////////////////////
+    cout << left;
+    cout << setw(3) << "ID   "
+    << setw(15) << "RAZON SOCIAL / NOMBRE   "
+    << setw(15) << "DIRECCION"
+    << setw(15) << "TELEFONO"
+    << setw(15) << "EMAIL"
+    << setw(3) << "CANTIDAD VIAJES REALIZADOS";
 
+
+    cout << endl << "----------------------------------------------------------------------------------------------------------------" << endl;
+
+
+    int cantidadRegistros = clientArchivo.getCantidadClientes();
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(clientArchivo.leerClientes(i,clientes)){
+                 if (clientes.get_estado() == 1){
+
+                    clientes.mostrar();
+                    cout << endl;
+
+
+                }
+
+
+            }else{cout << "Lectura incorrecta";}
+
+   }
+
+    cout << endl << endl;
+    system("pause");
+}
+
+
+}
+
+void clientesManager::altaCliente(){
+
+
+
+    system("cls");
+
+    Clientes cliente; //crea el objeto llamando al constructor vacio
+    clientesArchivo clienteArchivo;
+
+
+
+
+    int id, cantidadViajesRealizados;
+    string nombreRazonsocial, direccion, telefono,email;
+    bool validacion;
+
+
+///ALTA CHOFER//////////////////////////////////////////////////////////////
+
+    cout<< endl << "ALTA CLIENTE";
+
+
+
+/// Creacion de ID automatica
+
+    cliente.set_IdCliente(clienteArchivo.get_ultimoID());
+
+   cin.ignore();
+
+
+///Razon social//////////////////////////////////////////////////////
+
+    do
+    {
+        cout << endl << endl << "Ingresar Razon social o nombre : ";
+        getline(cin, nombreRazonsocial);
+
+        validacion = cliente.set_Nombre_RazonSocial(nombreRazonsocial);
+
+        if (validacion)
+        {
+            cout << " Guardado correcto ✔" << endl;
+        }
+        else
+        {
+            cout << endl << "Nombre inválido, o demasiado largo. Intente de vuelta" << endl;
+        }
+
+    }
+    while (!validacion);
+
+///direccion//////////////////////////////////////////////////
+
+    do
+    {
+        cout << endl << endl << "Ingresar direccion: ";
+        getline(cin, direccion);
+
+        validacion = cliente.set_Direccion(direccion);
+
+        if (validacion)
+        {
+            cout << " Guardado correcto ✔" << endl;
+        }
+        else
+        {
+            cout << endl << "Direccion inválida, o demasiado largo. Intente de vuelta" << endl;
+        }
+
+    }
+    while (!validacion);
+
+///Telefono////////////////////////////////////////
+
+     do
+    {
+        cout << endl << endl << "Ingresar Telefono: ";
+        getline(cin, telefono);
+
+        validacion = cliente.set_Telefono(telefono);
+
+        if (validacion)
+        {
+            cout << " Guardado correcto ✔" << endl;
+        }
+        else
+        {
+            cout << endl << "Telefono inválido, o demasiado largo. Intente de vuelta" << endl;
+        }
+
+    }
+    while (!validacion);
+
+///Email//////////////////////////////////////
+
+    do
+    {
+        cout << endl << endl << "Ingresar Email: ";
+        getline(cin, email);
+
+        validacion = cliente.set_Email(email);
+
+        if (validacion)
+        {
+            cout << " Guardado correcto ✔" << endl;
+        }
+        else
+        {
+            cout << endl << "Apellido inválido, o demasiado largo. Intente de vuelta" << endl;
+        }
+
+    }
+    while (!validacion);
+
+///RESUMEN///////////////////////////////////////
 
     cout << "RESUMEN" << endl;
 
-    cout << endl << "ID: " << camion.get_idCamion();
+    cout << endl << "ID: " << cliente.get_idCliente();
 
-    cout << endl << "Marca: " << camion.get_marca();
+    cout << endl << "Razon social / Nombre " << cliente.get_Nombre_RazonSocial();
 
-    cout << endl << "Modelo: " << camion.get_modelo();
+    cout << endl << "Direccion " << cliente.get_Direccion();
 
-    cout << endl << "Patente: " << camion.get_patente();
+    cout << endl << "Telefono " <<cliente.get_Telefono();
 
-    cout << endl << "Año: " << camion.get_anio();
+    cout << endl << "Email " << cliente.get_Email();
 
-    cout << endl << "Fecha ultima verificacion: ";
-    fechaVerificacion.Mostrar();
-    if(verificacionVencida(fechaVerificacion)){
-        cout << endl << "Verificacion vencida, el camion se dará de alta como 'no apto para circular' hasta modificar la verificacion.";
-        camion.set_aptoCircular(0);
-    }else{cout << endl << "Apto Circular ✔";}
+    cout << endl << "Estado " << cliente.get_estado();
 
-    cout << endl << "Peso máximo: " << camion.get_pesoCarga();
 
-    cout << endl << "Volumen máximo: " << camion.get_volumenCarga();
 
-/// CONFIRMACION Y GUARDADO /////////////////////////////////////////////////////////////////////////
 
-    cout << endl << endl << "Confirmar alta de camion?";
+    cout << endl << "ultimo id  " << clienteArchivo.get_ultimoID() << endl << endl;
+
+
+
+///CONFIRMACION Y GUARDADO//////////////////////////////////
+
+
+    cout << endl << endl << "Confirmar alta de Cliente";
 
     int opcion;
 
-    do{
+    do
+    {
         cout << endl << "1 - Confirmar";
         cout << endl << "2 - Volver a ingresar" << endl;
         cout << endl;
         cin >> opcion;
-    }while (opcion != 1 && opcion != 2);
+    }
+    while (opcion != 1 && opcion != 2);
 
-    if (opcion == 1){
-        if(caArchivo.guardarCamion(camion)){
+    if (opcion == 1)
+    {
+        if(clienteArchivo.guardarCliente( cliente))
+        {
             system("cls");
-            cout << "GUARDADO CORRECTO ✔ " << endl << _getch() ;
+            cout << "GUARDADO CORRECTO ✔ " << endl;
 
         }
     }
-    else {return;}
+    else
+    {
+        return;
+    }
 
-    */
+
+
+
+
 
 }
+void clientesManager::bajaCliente(){
+
+    system("cls");
+
+  Clientes cliente;
+  clientesArchivo clienteArchivo;
+
+    int opcionNumerica;
+
+
+      mostrarTodos();
+
+    cout << endl << endl << "Por favor, seleccionar el ID del Cliente a dar de baja: ";
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || opcionNumerica <= 0) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else{
+
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            cout << endl << "ID seleccionado: " << opcionNumerica << endl << endl;
+            system("pause");
+            break; // Salir del bucle, entrada válida
+        }
+    }
+
+    system("cls");
+
+    int posicion;
+    int cantidadRegistros = clienteArchivo.getCantidadClientes();
+    bool idEncontrado = false;
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(clienteArchivo.leerClientes(i,cliente)){
+            if (cliente.get_idCliente()==opcionNumerica&& cliente.get_estado()==1){
+                cliente.mostrar();
+                posicion = i;
+                idEncontrado = true;
+                cout << endl << endl << "Desea dar de baja este Cliente?";
+                cout << endl << "1. SI" << endl << "2. NO" << endl;
+                break;
+            }
+        }else{
+            cout << "Lectura incorrecta";
+            system("pause");
+            return;
+        }
+
+    }
+
+    if(!idEncontrado){
+        cout << endl << "El ID seleccionado no existe en los registros" << endl << endl;
+        system("pause");
+        return;
+    }
+
+    cout << endl;
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2)) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else if(opcionNumerica == 1){
+             cliente.set_estado(0);
+            if(clienteArchivo.guardarClienteModificado(posicion, cliente)){
+                system("cls");
+                cout << "GUARDADO CORRECTO ✔ " << endl << _getch() ;
+                return;
+            }else{
+                cout << "Error en el guardado" << _getch() ;
+                return;
+            }
+        }else if(opcionNumerica == 2){
+            return;
+        }
+
+    }
+
+}
+
+
+/*
+bool  clientesManager::validacion( string parametro){
+
+while (true)
+    {
+        cout << endl << endl << "Ingresar: " parametro;
+        cin >> parametro;
+        if (cin.fail())
+        {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            continue;
+        }
+        if (choferes.set_experiencia(experiencia))
+        {
+            cout << " Guardado correcto ✔" << endl;
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+
+            break; // Salir del bucle, entrada válida
+        }
+        else
+        {
+            cout << "Invalido." << endl;
+        }
+    }
+
+
+
+}
+
+*/
+
+
+bool clientesManager::actualizarCliente(){}

@@ -11,7 +11,7 @@ public:
 void cargarChofer();
 bool licenciaVencida(const Fecha &fecha);
 bool actualizarLicencia();
-bool bajaChofer();
+void bajaChofer();
 void modificarChofer();
 void mostrarCantidadRegistros();
 void listarTodos();

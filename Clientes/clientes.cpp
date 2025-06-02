@@ -1,44 +1,74 @@
+
 #include "Clientes.h"
 #include <cstring>  // para strcpy y strlen
 
+#include <iostream>
+using namespace std;
+#include <iomanip>
+
 // Constructor
 Clientes::Clientes() {
-    _idCliente = 0;
-    _nombre_RazonSocial[0] = '\0';
-    _direccion[0] = '\0';
-    _telefono[0] = '\0';
-    _email[0] = '\0';
-    _cantidadViajesRealizados = 0;
+    set_IdCliente(-1);
+    set_Nombre_RazonSocial("");
+    set_Direccion("");
+    set_Telefono("");
+    set_Email("");
+    set_CantidadViajesRealizados(0);
+    set_estado(1);
 }
 
 // Setters
 
 void Clientes::set_IdCliente(int idCliente) {
-    _idCliente = idCliente;
+    _idCliente = idCliente + 1;
 }
 
-void Clientes::set_Nombre_RazonSocial(const char* nombre_RazonSocial) {
-    strncpy(_nombre_RazonSocial, nombre_RazonSocial, sizeof(_nombre_RazonSocial) - 1);
-    _nombre_RazonSocial[sizeof(_nombre_RazonSocial) - 1] = '\0';  // asegurar null terminator
+
+
+
+bool Clientes::set_Nombre_RazonSocial(std::string  nombre_RazonSocial) {
+    if(nombre_RazonSocial.length()< sizeof(_nombre_RazonSocial)){
+
+        strcpy(_nombre_RazonSocial,nombre_RazonSocial.c_str());
+        return true;
+
+    } else {return false;}
 }
 
-void Clientes::set_Direccion(const char* direccion) {
-    strncpy(_direccion, direccion, sizeof(_direccion) - 1);
-    _direccion[sizeof(_direccion) - 1] = '\0';
+bool Clientes::set_Direccion(std::string  direccion) {
+
+    if(direccion.length()< sizeof(_direccion)){
+
+        strcpy(_direccion,direccion.c_str());
+        return true;
+
+    } else {return false;}
 }
 
-void Clientes::set_Telefono(const char* telefono) {
-    strncpy(_telefono, telefono, sizeof(_telefono) - 1);
-    _telefono[sizeof(_telefono) - 1] = '\0';
+bool Clientes::set_Telefono(std::string  telefono) {
+    if(telefono.length()< sizeof(_telefono)){
+
+        strcpy(_telefono,telefono.c_str());
+        return true;
+
+    } else {return false;}
 }
 
-void Clientes::set_Email(const char* email) {
-    strncpy(_email, email, sizeof(_email) - 1);
-    _email[sizeof(_email) - 1] = '\0';
+bool Clientes::set_Email(std::string  email) {
+    if(email.length()< sizeof(_email)){
+
+        strcpy(_email,email.c_str());
+        return true;
+
+    } else {return false;}
 }
 
 void Clientes::set_CantidadViajesRealizados(int cantidadViajesRealizados) {
     _cantidadViajesRealizados = cantidadViajesRealizados;
+}
+
+void Clientes::set_estado(bool estado){
+    _estado = estado;
 }
 
 // Getters
@@ -67,3 +97,25 @@ int Clientes::get_Cantidad_Viajes_Realizados() const {
     return _cantidadViajesRealizados;
 }
 
+bool Clientes::get_estado()const{
+    return _estado;
+}
+
+void Clientes::mostrar()const{
+
+/*    string aptoCircular, disponibilidad;
+
+    if (get_aptoCircular()){aptoCircular = "✔";}else{aptoCircular = "🚫";}
+    if (get_enViaje()){disponibilidad = "❌";}else{disponibilidad = "✔";}
+
+*/
+
+    cout << left;
+    cout << setw(3) << get_idCliente()
+    << setw(10) << get_Nombre_RazonSocial()
+    << setw(30) << get_Direccion()
+    << setw(30) << get_Telefono()
+    << setw(6) << get_Email()
+    << setw(7) << get_Cantidad_Viajes_Realizados();
+
+}

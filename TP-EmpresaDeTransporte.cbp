@@ -36,9 +36,11 @@
 		<Unit filename="Carga/carga.h" />
 		<Unit filename="Ciudades/ciudades.cpp" />
 		<Unit filename="Ciudades/ciudades.h" />
-		<Unit filename="ClientesManager.h" />
 		<Unit filename="Clientes/Clientes.h" />
 		<Unit filename="Clientes/ClientesArchivo.h" />
+		<Unit filename="Clientes/ClientesManager.h" />
+		<Unit filename="Clientes/clientes.cpp" />
+		<Unit filename="Clientes/clientesArchivo.cpp" />
 		<Unit filename="Clientes/clientesManager.cpp" />
 		<Unit filename="Fecha/fecha.cpp" />
 		<Unit filename="Fecha/fecha.h" />
@@ -59,6 +61,8 @@
 		<Unit filename="menues/menuCamiones.h" />
 		<Unit filename="menues/menuChoferes.cpp" />
 		<Unit filename="menues/menuChoferes.h" />
+		<Unit filename="menues/menuClientes.cpp" />
+		<Unit filename="menues/menuClientes.h" />
 		<Unit filename="menues/menuPrincipal.cpp" />
 		<Unit filename="menues/menuPrincipal.h" />
 		<Unit filename="menues/menuViajes.cpp" />

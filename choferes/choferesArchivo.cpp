@@ -27,6 +27,7 @@ bool choferesArchivo::guardarChofer(Choferes registro)
     result = fwrite(&registro, sizeof(Choferes), 1, pFile);
 
     fclose(pFile);
+
     return result;
 
 }
@@ -110,6 +111,20 @@ bool choferesArchivo::modificarChofer(Choferes reg, int pos) {
     fclose(pFile);
     return escribio;
 }
+
+bool choferesArchivo::guardarChoferModificado(int pos, Choferes &choferes){
+
+    FILE *pfile = fopen("choferes.dat", "rb+");
+    if(pfile == NULL){
+        return false;
+    }
+    fseek(pfile, sizeof(Choferes) * pos, SEEK_SET);
+    bool modifico = fwrite(&choferes, sizeof(Choferes), 1, pfile);
+    fclose(pfile);
+    return modifico;
+
+}
+
 
 int choferesArchivo::get_ultimoID(){
 

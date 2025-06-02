@@ -1,5 +1,6 @@
+
 #pragma once
-#include "../Fecha/fecha.h"
+
 
 
 class clientesManager{
@@ -7,7 +8,12 @@ class clientesManager{
 
 public:
 
+    void mostrarTodos();
     void altaCliente();
+    void bajaCliente();
+    bool actualizarCliente();
+
+    bool validacion(string parametro);
 
 
 
