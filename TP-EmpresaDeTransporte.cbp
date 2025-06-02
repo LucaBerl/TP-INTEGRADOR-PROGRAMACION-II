@@ -54,8 +54,6 @@
 		<Unit filename="choferes/choferesArchivo.h" />
 		<Unit filename="choferes/choferesManager.cpp" />
 		<Unit filename="choferes/choferesManager.h" />
-		<Unit filename="clientes.cpp" />
-		<Unit filename="clientesArchivo.cpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="menues/menuCamiones.cpp" />
 		<Unit filename="menues/menuCamiones.h" />
