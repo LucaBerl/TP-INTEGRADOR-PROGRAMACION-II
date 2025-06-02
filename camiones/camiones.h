@@ -2,7 +2,7 @@
 #pragma once
 #include "../Fecha/fecha.h"
 #include <string>
-
+#include <vector>
 
 class Camiones{
 
@@ -24,6 +24,9 @@ private:
 public:
 
 void mostrar()const;
+void listarMarcas() const;
+std::vector<std::string> catalogoMarcas() const;
+std::string validarMarca(int nro) const;
 
 
 // Constructor

@@ -1,7 +1,7 @@
 
 #pragma once
 #include "../Fecha/fecha.h"
-
+#include<string>
 
 class camionesManager{
 
@@ -19,7 +19,10 @@ public:
     void mostrarVerificaciones();
     void modificarVerificacion();
     void mostrarPorAntiguedad();
-
-
+    void modificarChofer();
+    void encabezadoAlta(std::string marca, std::string modelo, std::string patente);
+    bool esLetra(char letra);
+    bool esNumero (int nro);
+    bool validarPatente(std::string patente);
 
 };
