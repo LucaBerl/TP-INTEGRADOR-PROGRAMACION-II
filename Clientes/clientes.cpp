@@ -101,7 +101,7 @@ bool Clientes::get_estado()const{
     return _estado;
 }
 
-void Clientes::mostrar()const{
+void Clientes::mostrar(int estado )const{
 
 /*    string aptoCircular, disponibilidad;
 
@@ -110,12 +110,20 @@ void Clientes::mostrar()const{
 
 */
 
-    cout << left;
+    if(get_estado() == estado){
+
+
+        cout << left;
     cout << setw(3) << get_idCliente()
     << setw(10) << get_Nombre_RazonSocial()
     << setw(30) << get_Direccion()
     << setw(30) << get_Telefono()
     << setw(6) << get_Email()
     << setw(7) << get_Cantidad_Viajes_Realizados();
+
+
+
+    }
+
 
 }

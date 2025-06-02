@@ -49,7 +49,7 @@ void clientesManager::mostrarTodos(){
         if(clientArchivo.leerClientes(i,clientes)){
                  if (clientes.get_estado() == 1){
 
-                    clientes.mostrar();
+                    clientes.mostrar(1);
                     cout << endl;
 
 
@@ -280,7 +280,7 @@ void clientesManager::bajaCliente(){
 
         if(clienteArchivo.leerClientes(i,cliente)){
             if (cliente.get_idCliente()==opcionNumerica&& cliente.get_estado()==1){
-                cliente.mostrar();
+                cliente.mostrar(1);
                 posicion = i;
                 idEncontrado = true;
                 cout << endl << endl << "Desea dar de baja este Cliente?";
@@ -363,4 +363,248 @@ while (true)
 */
 
 
-bool clientesManager::actualizarCliente(){}
+void clientesManager::actualizarCliente(){
+
+
+
+    system("cls");
+
+  Clientes cliente;
+  clientesArchivo clienteArchivo;
+
+    int opcionNumerica;
+
+
+    int  cantidadViajesRealizados;
+    string nombreRazonsocial, direccion, telefono,email;
+    bool validacion;
+
+      mostrarTodos();
+
+    cout << endl << endl << "Por favor, seleccionar el ID del Cliente a modificar: ";
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || opcionNumerica <= 0) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else{
+
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            cout << endl << "ID seleccionado: " << opcionNumerica << endl << endl;
+            system("pause");
+            break; // Salir del bucle, entrada válida
+        }
+    }
+
+    system("cls");
+
+    int posicion;
+    int cantidadRegistros = clienteArchivo.getCantidadClientes();
+    bool idEncontrado = false;
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(clienteArchivo.leerClientes(i,cliente)){
+            if (cliente.get_idCliente()==opcionNumerica&& cliente.get_estado()==1){
+                cliente.mostrar(1);
+                posicion = i;
+                idEncontrado = true;
+                cout << endl << endl << "Desea modificar el siguiente Cliente?";
+                cout << endl << "1. SI" << endl << "2. NO" << endl;
+                break;
+            }
+        }else{
+            cout << "Lectura incorrecta";
+            system("pause");
+            return;
+        }
+
+    }
+
+    if(!idEncontrado){
+        cout << endl << "El ID seleccionado no existe en los registros" << endl << endl;
+        system("pause");
+        return;
+    }
+
+    cout << endl;
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2)) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else if(opcionNumerica == 1){
+           cin.ignore();
+   do
+    {
+        cout << endl << endl << "Ingresar Razon social o nombre : ";
+        getline(cin, nombreRazonsocial);
+
+        validacion = cliente.set_Nombre_RazonSocial(nombreRazonsocial);
+
+        if (validacion)
+        {
+            cout << " Guardado correcto ✔" << endl;
+        }
+        else
+        {
+            cout << endl << "Nombre inválido, o demasiado largo. Intente de vuelta" << endl;
+        }
+
+    }
+    while (!validacion);
+
+///direccion//////////////////////////////////////////////////
+
+    do
+    {
+        cout << endl << endl << "Ingresar direccion: ";
+        getline(cin, direccion);
+
+        validacion = cliente.set_Direccion(direccion);
+
+        if (validacion)
+        {
+            cout << " Guardado correcto ✔" << endl;
+        }
+        else
+        {
+            cout << endl << "Direccion inválida, o demasiado largo. Intente de vuelta" << endl;
+        }
+
+    }
+    while (!validacion);
+
+///Telefono////////////////////////////////////////
+
+     do
+    {
+        cout << endl << endl << "Ingresar Telefono: ";
+        getline(cin, telefono);
+
+        validacion = cliente.set_Telefono(telefono);
+
+        if (validacion)
+        {
+            cout << " Guardado correcto ✔" << endl;
+        }
+        else
+        {
+            cout << endl << "Telefono inválido, o demasiado largo. Intente de vuelta" << endl;
+        }
+
+    }
+    while (!validacion);
+
+///Email//////////////////////////////////////
+
+    do
+    {
+        cout << endl << endl << "Ingresar Email: ";
+        getline(cin, email);
+
+        validacion = cliente.set_Email(email);
+
+        if (validacion)
+        {
+            cout << " Guardado correcto ✔" << endl;
+        }
+        else
+        {
+            cout << endl << "Apellido inválido, o demasiado largo. Intente de vuelta" << endl;
+        }
+
+    }
+    while (!validacion);
+
+
+
+            if(clienteArchivo.guardarClienteModificado(posicion, cliente)){
+                system("cls");
+                cout << " CLIENTE MODIFICADO CORRECTO ✔ " << endl << _getch() ;
+                return  ;
+            }else{
+                cout << "Error en la modificacion del Cliente" << _getch() ;
+                return ;
+            }
+        }else if(opcionNumerica == 2){
+            return ;
+        }
+
+    }
+
+}
+
+
+void clientesManager::mostrarClienteInactivos(){
+
+
+clientesArchivo clientArchivo;
+    Clientes clientes;
+
+
+    cout << left << fixed << setprecision(0);
+
+  /*
+  int _idCliente;
+  char _nombre_RazonSocial[50];
+  char _direccion[50];
+  char _telefono[15];
+  char _email[50];
+  int _cantidadViajesRealizados;
+
+
+  */
+
+    system("cls");
+
+    cout << left;
+    cout << setw(3) << "ID   "
+    << setw(15) << "RAZON SOCIAL / NOMBRE   "
+    << setw(15) << "DIRECCION"
+    << setw(15) << "TELEFONO"
+    << setw(15) << "EMAIL"
+    << setw(3) << "CANTIDAD VIAJES REALIZADOS";
+
+
+    cout << endl << "----------------------------------------------------------------------------------------------------------------" << endl;
+
+
+    int cantidadRegistros = clientArchivo.getCantidadClientes();
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(clientArchivo.leerClientes(i,clientes)){
+                 if (clientes.get_estado() == 0){
+
+                    clientes.mostrar(0);
+
+                    cout << endl;
+
+
+                }
+
+
+            }else{cout << "Lectura incorrecta";}
+
+   }
+
+    cout << endl << endl;
+    system("pause");
+}
+
+
+
+
+
+
+
+
+
+

@@ -18,7 +18,7 @@ private:
 
 public:
 
-    void mostrar()const;
+    void mostrar(int estado )const;
 
  // constructor
 

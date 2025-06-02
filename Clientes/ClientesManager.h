@@ -11,7 +11,9 @@ public:
     void mostrarTodos();
     void altaCliente();
     void bajaCliente();
-    bool actualizarCliente();
+    void actualizarCliente();
+
+    void mostrarClienteInactivos();
 
     bool validacion(string parametro);
 
