@@ -48,7 +48,7 @@ bool clientesArchivo::guardarCliente(const Clientes &cliente){
 
 }
 
-bool clientesArchivo::leerClientes(int pos, Clientes &clientes)
+bool clientesArchivo::leerClientes(int pos, Clientes &cliente)
 {
     FILE* pFile;
     bool lecturaCorrecta;
@@ -60,7 +60,7 @@ bool clientesArchivo::leerClientes(int pos, Clientes &clientes)
 
     fseek(pFile,sizeof(Clientes)*pos,SEEK_SET);
 
-    lecturaCorrecta = fread(&clientes,sizeof(Clientes),1,pFile);
+    lecturaCorrecta = fread(&cliente,sizeof(Clientes),1,pFile);
 
     fclose(pFile);
 
@@ -93,5 +93,18 @@ int clientesArchivo::get_ultimoID(){
     fclose(pFile);
 
     return ultimo;
+
+}
+
+bool clientesArchivo::guardarClienteModificado(int pos, Clientes &cliente){
+
+    FILE *pfile = fopen("clientes.dat", "rb+");
+    if(pfile == NULL){
+        return false;
+    }
+    fseek(pfile, sizeof(Clientes) * pos, SEEK_SET);
+    bool modifico = fwrite(&cliente, sizeof(Clientes), 1, pfile);
+    fclose(pfile);
+    return modifico;
 
 }

@@ -99,7 +99,7 @@ void menuChoferes::menu_abm()
         cout << endl << endl;
 
     }
-    while(opcion != '4');
+    while(opcion != '5');
 }
 
 void menuChoferes::menu_listados()

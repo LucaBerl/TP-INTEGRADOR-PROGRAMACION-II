@@ -361,7 +361,29 @@ void choferesManager::bajaChofer(){
             cin.ignore(1000, '\n'); // Descarta el resto de la línea
             cout << endl << "Ingreso incorrecto, intente nuevamente: ";
         }else if(opcionNumerica == 1){
-            choferes.set_estado(0);
+
+            if (choferes.get_asignado() == true){
+
+                camionesArchivo caArchivo;
+                Camiones camion;
+                if (caArchivo.buscarCamionPorId(choferes.get_camionAsignado().get_idCamion(), camion)){
+
+                    int posicionCamion = caArchivo.buscarRegistro(choferes.get_camionAsignado().get_idCamion());
+
+                    if (posicionCamion >= 0){
+
+                        camion.set_choferAsignado(0);
+                        if(caArchivo.guardarCamionModificado(posicionCamion,camion)){
+                            choferes.set_estado(0);
+                        }
+                        else {
+                            cout << endl << "Sincronización incorrecta" << endl;
+                            system("pause");
+                            return;
+                        }
+                    }
+                }
+            }
             if(cArchivo.guardarChoferModificado(posicion,choferes)){
                 system("cls");
                 cout << "GUARDADO CORRECTO ✔ " << endl << _getch() ;
@@ -438,8 +460,7 @@ void choferesManager::listarTodos()
     system("pause");
 }
 
-void choferesManager::listarSinCamion()
-{
+void choferesManager::listarSinCamion(){
     choferesArchivo cArchivo;
     Choferes choferes;
     cout << left << fixed << setprecision(0);
@@ -899,7 +920,13 @@ bool choferesManager::sincronizarCamionesAsignados() {
 
                 if (caArchivo.buscarCamionPorId(idCamion, camion)) {
 
-                    chofer.set_camionAsignado(camion);
+                    if (camion.get_estado()){
+                        chofer.set_camionAsignado(camion);
+                    }
+                    else{
+                        chofer.set_camionAsignado(Camiones());
+                        chofer.set_asignado(0);
+                    }
 
                     if (!cArchivo.modificarChofer(chofer, i)) {
 

@@ -2,6 +2,7 @@
 using namespace std;
 #include "menuClientes.h"
 #include "../Clientes/ClientesManager.h"
+#include "../Clientes/Clientes.h"
 #include <conio.h>
 #include <windows.h>
 
@@ -16,7 +17,6 @@ void menuClientes::mostrar(){
     cout << "=======================================" << endl;
     cout << "1. ALTA/BAJA/ACTUALIZACIÓN" << endl;
     cout << "2. LISTADOS" << endl;
-    cout << "3. LISTADOS" << endl;
     cout << endl;
     cout << "4. VOLVER AL MENÚ PRINCIPAL" << endl;
     cout << "=======================================" << endl;
@@ -32,7 +32,7 @@ void menuClientes::mostrar(){
                 menulistados();
                 break;
             case '3':
-                menulistados();
+
                 break;
             case '4':
                 return;
@@ -96,6 +96,7 @@ void menuClientes::menu_abm(){
 
 void menuClientes::menulistados(){
 
+    Clientes cliente;
 
     clientesManager clientManager;
 
@@ -108,7 +109,7 @@ void menuClientes::menulistados(){
     cout << "=======================================" << endl;
     cout << "1. LISTAR TODOS" << endl;
     cout << "2. LISTAR EN VIAJE" << endl;
-    cout << "3. LISTAR DISPONIBLES INACTIVOS" << endl;
+    cout << "3. LISTAR CLIENTES INACTIVOS OR ELIMINADOS" << endl;
     cout << endl;
     cout << "4. VOLVER AL MENÚ CLIENTES" << endl;
     cout << "=======================================" << endl;
@@ -124,7 +125,7 @@ void menuClientes::menulistados(){
 
                 break;
             case '3':
-
+                clientManager.mostrarClienteInactivos();
                 break;
             case '4':
                 return;

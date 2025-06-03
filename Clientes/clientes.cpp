@@ -8,12 +8,13 @@ using namespace std;
 
 // Constructor
 Clientes::Clientes() {
-    set_IdCliente(0);
+    set_IdCliente(-1);
     set_Nombre_RazonSocial("");
     set_Direccion("");
     set_Telefono("");
     set_Email("");
     set_CantidadViajesRealizados(0);
+    set_estado(1);
 }
 
 // Setters
@@ -66,6 +67,10 @@ void Clientes::set_CantidadViajesRealizados(int cantidadViajesRealizados) {
     _cantidadViajesRealizados = cantidadViajesRealizados;
 }
 
+void Clientes::set_estado(bool estado){
+    _estado = estado;
+}
+
 // Getters
 
 int Clientes::get_idCliente() const {
@@ -92,7 +97,11 @@ int Clientes::get_Cantidad_Viajes_Realizados() const {
     return _cantidadViajesRealizados;
 }
 
-void Clientes::mostrar()const{
+bool Clientes::get_estado()const{
+    return _estado;
+}
+
+void Clientes::mostrar(int estado )const{
 
 /*    string aptoCircular, disponibilidad;
 
@@ -101,12 +110,20 @@ void Clientes::mostrar()const{
 
 */
 
-    cout << left;
+    if(get_estado() == estado){
+
+
+        cout << left;
     cout << setw(3) << get_idCliente()
     << setw(10) << get_Nombre_RazonSocial()
     << setw(30) << get_Direccion()
     << setw(30) << get_Telefono()
     << setw(6) << get_Email()
     << setw(7) << get_Cantidad_Viajes_Realizados();
+
+
+
+    }
+
 
 }
