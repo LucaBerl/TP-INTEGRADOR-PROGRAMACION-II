@@ -20,6 +20,7 @@ class Fecha{
         bool set_Dia(int dia);
         bool set_Mes(int mes);
         bool set_Anio(int anio);
+        bool validarFecha(int dia, int mes, int anio);
 
         int get_Dia()const;
         int get_Mes()const;

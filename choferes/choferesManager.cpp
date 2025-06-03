@@ -941,3 +941,8 @@ bool choferesManager::sincronizarCamionesAsignados() {
 
     return true;
 }
+
+void choferesManager::modificarChofer()
+{
+
+}

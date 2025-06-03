@@ -85,3 +85,25 @@ bool Fecha::Cargar(int dia, int mes, int anio){
     }
     return true;
 }
+
+// Validar Fecha
+
+bool Fecha::validarFecha(int dia, int mes, int anio){
+    // Años
+    if(anio < 1900 || anio > 2050) return false;
+
+    // Meses
+    if(mes< 1 || mes > 12) return false;
+
+    // Dias
+
+    int cantDias[] = {31,28,31,30,31,30,31,31,30,31,30,31}; // Dias de cada mes en años normales
+
+    if((anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0)){ // calculo para febrero en año bisiesto
+        cantDias[1] = 29; // Febrero pasa a tener 1 dia mas
+    }
+
+    if (dia <1 || dia > cantDias[mes - 1]) return false; // aca se valida el dia finalmente
+
+    return true; // Si ninguno de los pasos dio FALSE se returna TRUE
+}
