@@ -15,6 +15,7 @@ public:
     bool guardarCamion(const Camiones &camion);
     bool guardarCamionModificado(int pos,Camiones &camion);
     bool buscarCamionPorId(int idBuscado,Camiones &camionEncontrado);
+    int buscarRegistro(int id);
 
 
 

@@ -122,3 +122,26 @@ bool camionesArchivo::buscarCamionPorId(int idBuscado,Camiones &camionEncontrado
     return false;
 
 }
+
+int camionesArchivo::buscarRegistro(int id) {
+    FILE *pFile;
+    int tamRegistro = sizeof(Camiones);
+    Camiones camion;
+    int posicion = 0;
+
+    pFile = fopen("camiones.dat", "rb");
+    if (pFile == nullptr) {
+        return -2;
+    }
+
+    while (fread(&camion, tamRegistro, 1, pFile) == 1) {
+        if (camion.get_idCamion() == id) {
+            fclose(pFile);
+            return posicion;
+        }
+        posicion++;
+    }
+
+    fclose(pFile);
+    return -1;
+}

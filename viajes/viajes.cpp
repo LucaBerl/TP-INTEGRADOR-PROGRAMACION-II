@@ -11,7 +11,7 @@ using namespace std;
 
 Viajes::Viajes(){
 
-set_id(-1);
+set_id(0);
 set_chofer(Choferes());
 set_ciudadOrigen(Ciudades());
 set_ciudadDestino(Ciudades());
@@ -21,7 +21,7 @@ set_fechaLlegada({});
 set_tipoCarga("");
 set_pesoTransportado(0);
 set_volumenTransportado(1);
-set_estado(0);
+set_estado(1);
 
 
 }

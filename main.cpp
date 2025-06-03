@@ -23,11 +23,15 @@ int main()
 
 /// Pendientes :
 
-/// -Terminar choferes (principalmente el alta, los listados pueden venir despues) V
-/// -Asignacion de camiones a los choferes V
-/// -Terminar viajes con la asignacion de choferes
+/// -Terminar choferes (principalmente el alta, los listados pueden venir despues) (Listo)
+/// -Asignacion de camiones a los choferes (Listo)
+/// -Terminar viajes con la asignacion de choferes (Listo)
+/// -Si damos de baja un camion con chofer, el chofer debe quedar sin asignacion y viceversa. (Listo)
+/// -La actualizacion de verificacion tambien tiene que hacerse en los camiones asignados a choferes. (Listo)
+
+/// -Actualizar estados de viaje para chofere y camiones
+/// -Agregar kilometros recorridos en choferes y camiones despues de guardar cada viaje
 /// -Clase clientes y acoplar
 /// -Clase Usuarios
 
-/// si damos de baja un camion con chofer, el chofer debe quedar sin asignacion y viceversa.
-/// la actualizacion de verificacion tambien tiene que hacerse en los camiones asignados a choferes. V
+

@@ -3,6 +3,7 @@ using namespace std;
 #include "camionesManager.h"
 #include "camiones.h"
 #include "camionesArchivo.h"
+#include "../choferes/choferesManager.h"
 #include <ctime>
 #include <conio.h>
 #include <iomanip>
@@ -295,6 +296,7 @@ void camionesManager::bajaCamion(){
                 break;
             }
         }else{
+            system("cls");
             cout << "Lectura incorrecta";
             system("pause");
             return;
@@ -319,12 +321,21 @@ void camionesManager::bajaCamion(){
             cout << endl << "Ingreso incorrecto, intente nuevamente: ";
         }else if(opcionNumerica == 1){
             camion.set_estado(0);
-            if(caArchivo.guardarCamionModificado(posicion,camion)){
-                system("cls");
-                cout << "GUARDADO CORRECTO ✔ " << endl << _getch() ;
-                return;
+            choferesManager cManager;
+            if(cManager.sincronizarCamionesAsignados()){
+                if(caArchivo.guardarCamionModificado(posicion,camion)){
+                    system("cls");
+                    cout << "GUARDADO CORRECTO ✔ " << endl << _getch() ;
+                    return;
+                }else{
+                    system("cls");
+                    cout << "Error en el guardado" << _getch() ;
+                    return;
+                }
             }else{
-                cout << "Error en el guardado" << _getch() ;
+                system("cls");
+                cout << endl << endl << "Sincronización incorrecta";
+                system("pause");
                 return;
             }
         }else if(opcionNumerica == 2){
@@ -368,7 +379,7 @@ bool camionesManager::actualizarVerificacion(){
 
                     camion.set_aptoCircular(0);
                     if(!caArchivo.guardarCamionModificado(i,camion)){
-
+                        system("cls");
                         cout << "Actualizacion incorrecta";
                         system("pause");
                         return false;
@@ -380,7 +391,7 @@ bool camionesManager::actualizarVerificacion(){
                 if(!verificacionVencida(ultimaVerificacion)){
                     camion.set_aptoCircular(1);
                     if(!caArchivo.guardarCamionModificado(i,camion)){
-
+                        system("cls");
                         cout << "Actualizacion incorrecta";
                         system("pause");
                         return false;
@@ -389,6 +400,7 @@ bool camionesManager::actualizarVerificacion(){
 
             }
         }else{
+            system("cls");
             cout << "Lectura incorrecta en la posicion: " << i << endl;
             return false;
         }
