@@ -20,30 +20,25 @@ void viajesManager::crearViaje(){
     cout << endl << "SECCION DE CREACION DE VIAJES" << endl;
     Viajes viaje;
 
-//    Pasos:
-//
+    if(!actualizarEstados()){
+        system("cls");
+        cout << endl << endl << "Error en sincronización de datos" << endl << endl;
+        system("pause");
+        return;
+    }
 
-//        Paso 1: Elegir tipo de carga(lista predefinida), peso y volumen.
-//        Paso 2 : Mostrar choferes disponibles segun: disponibilidad, peso maximo de camion asignado y volumen maximo de camion asignado.
-//        Paso 3 : Elegir chofer para viaje
-//        Paso 4: Seleccionar ciudades origen/destino
-//        Paso 5: Calcular distancia y tiempo de viaje
-//        Paso 6: Mostrar resumen de todos los datos
-//        Paso 7: Confirmar viaje y guardar en archivos (archivos viajes.dat, choferes.dat y camiones.dat )
-
-
-///Paso 1:
-seleccionarCarga(viaje);
-///Paso 2 y 3:
-if(!seleccionarChofer(viaje)){
-    return;
-}
-///Paso 4:
-seleccionarCiudades(viaje);
-///Paso 5:
-calcularTiempo(viaje);
-///Paso 6 y 7
-mostrarResumen(viaje);
+    ///Paso 1:
+    seleccionarCarga(viaje);
+    ///Paso 2 y 3:
+    if(!seleccionarChofer(viaje)){
+        return;
+    }
+    ///Paso 4:
+    seleccionarCiudades(viaje);
+    ///Paso 5:
+    calcularTiempo(viaje);
+    ///Paso 6 y 7
+    mostrarResumen(viaje);
 
 }
 
@@ -237,21 +232,21 @@ system("pause");
 
 void viajesManager::calcularTiempo(Viajes &viaje){
 
-system("cls");
+    system("cls");
 
- //time_t es long long int
+    //time_t es long long int
 
-//    struct tm {
-//  int tm_sec;   // segundos (0–60)
-//  int tm_min;   // minutos (0–59)
-//  int tm_hour;  // horas (0–23)
-//  int tm_mday;  // día del mes (1–31)
-//  int tm_mon;   // mes (0–11)  --> enero = 0, diciembre = 11
-//  int tm_year;  // años desde 1900 --> para 2025, valor = 125
-//  int tm_wday;  // día de la semana (0–6) --> domingo = 0
-//  int tm_yday;  // día del año (0–365)
-//  int tm_isdst; // horario de verano (positivo si está activo, 0 si no)
-//}
+    //    struct tm {
+    //  int tm_sec;   // segundos (0–60)
+    //  int tm_min;   // minutos (0–59)
+    //  int tm_hour;  // horas (0–23)
+    //  int tm_mday;  // día del mes (1–31)
+    //  int tm_mon;   // mes (0–11)  --> enero = 0, diciembre = 11
+    //  int tm_year;  // años desde 1900 --> para 2025, valor = 125
+    //  int tm_wday;  // día de la semana (0–6) --> domingo = 0
+    //  int tm_yday;  // día del año (0–365)
+    //  int tm_isdst; // horario de verano (positivo si está activo, 0 si no)
+    //
 
     float segundos;
     const float velocidad_promedio = 90;
@@ -427,7 +422,12 @@ void viajesManager::listarActivos(){
     viajesArchivo vArchivo;
     Viajes viaje;
 
-    actualizarEstados();
+    if(!actualizarEstados()){
+        system("cls");
+        cout << endl << endl << "Error en sincronización de datos" << endl << endl;
+        system("pause");
+        return;
+    }
 
     int cantidadRegistros = vArchivo.get_cantidadRegistros();
 
@@ -468,7 +468,12 @@ void viajesManager::listarHistorial(){
     viajesArchivo vArchivo;
     Viajes viaje;
 
-    actualizarEstados();
+    if(!actualizarEstados()){
+        system("cls");
+        cout << endl << endl << "Error en sincronización de datos" << endl << endl;
+        system("pause");
+        return;
+    }
 
     int cantidadRegistros = vArchivo.get_cantidadRegistros();
 

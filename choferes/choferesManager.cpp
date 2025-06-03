@@ -5,14 +5,14 @@
 #include "../camiones/camiones.h"
 #include "../camiones/camionesManager.h"
 #include "../camiones/camionesArchivo.h"
+#include "../viajes/viajesManager.h"
 #include <ctime>
 #include <conio.h>
 #include <iomanip>
 
 using namespace std;
 
-void choferesManager::cargarChofer()
-{
+void choferesManager::cargarChofer(){
 
     system("cls");
 
@@ -30,31 +30,6 @@ void choferesManager::cargarChofer()
 
 ///ID///////////////////////////////////////////////////////////////////////
 
-//    while (true)
-//    {
-//        cout << endl << endl << "Ingresar ID: ";
-//        cin >> id;
-//        if (cin.fail())
-//        {
-//            cin.clear(); // Limpia el estado de error
-//            cin.ignore(1000, '\n'); // Descarta el resto de la línea
-//            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
-//            continue;
-//        }
-//        if (choferes.set_id(id))
-//        {
-//            cout << " Guardado correcto ✔" << endl;
-//            cin.ignore(1000, '\n'); // Por si quedan residuos
-//
-//            break; // Salir del bucle, entrada válida
-//        }
-//        else
-//        {
-//            cout << "ID invalido." << endl;
-//        }
-//    }
-
-/// Creacion de ID automatica
 
     choferes.set_id(cArchivo.get_ultimoID());
 
@@ -291,13 +266,14 @@ void choferesManager::cargarChofer()
 
 }
 
-//BAJA/////////////////////////////////////////
+
 void choferesManager::bajaChofer(){
 
     system("cls");
 
     Choferes choferes;
     choferesArchivo cArchivo;
+
 
     int opcionNumerica;
 
@@ -402,8 +378,7 @@ void choferesManager::bajaChofer(){
 
 
 
-void choferesManager::mostrarCantidadRegistros()
-{
+void choferesManager::mostrarCantidadRegistros(){
     choferesArchivo cArchivo;
 
     int cantidadRegistros=cArchivo.getCantidadRegistros();
@@ -412,15 +387,20 @@ void choferesManager::mostrarCantidadRegistros()
 }
 
 
-void choferesManager::listarTodos()
-{
+void choferesManager::listarTodos(){
 
 
     choferesArchivo cArchivo;
     Choferes choferes;
     cout << left << fixed << setprecision(0);
 
-    ///Actualizar en viaje o no
+    viajesManager vManager;
+    if(!vManager.actualizarEstados()){
+        system("cls");
+        cout << endl << endl << "Error en sincronización de datos" << endl << endl;
+        system("pause");
+        return;
+    }
 
     if(!actualizarLicencia()){
         cout << "Error al actualizar datos";
@@ -465,7 +445,13 @@ void choferesManager::listarSinCamion(){
     Choferes choferes;
     cout << left << fixed << setprecision(0);
 
-    ///Actualizar en viaje o no
+    viajesManager vManager;
+    if(!vManager.actualizarEstados()){
+        system("cls");
+        cout << endl << endl << "Error en sincronización de datos" << endl << endl;
+        system("pause");
+        return;
+    }
 
     if(!actualizarLicencia()){
         cout << "Error al actualizar datos";
@@ -504,13 +490,20 @@ void choferesManager::listarSinCamion(){
     cout << endl << endl;
     system("pause");
 }
+
 void choferesManager::listarConCamion(){
 
     choferesArchivo cArchivo;
     Choferes choferes;
     cout << left << fixed << setprecision(0);
 
-    ///Actualizar en viaje o no
+    viajesManager vManager;
+    if(!vManager.actualizarEstados()){
+        system("cls");
+        cout << endl << endl << "Error en sincronización de datos" << endl << endl;
+        system("pause");
+        return;
+    }
 
     if(!actualizarLicencia()){
         cout << "Error al actualizar datos";
@@ -576,8 +569,7 @@ void choferesManager::listarConCamion(){
     }
 }*/
 
-bool choferesManager::licenciaVencida(const Fecha &fecha)
-{
+bool choferesManager::licenciaVencida(const Fecha &fecha){
 
     struct tm fechaVencimiento = {};
     /// Fecha de vencimiento = fecha original + 1 año
@@ -942,7 +934,6 @@ bool choferesManager::sincronizarCamionesAsignados() {
     return true;
 }
 
-void choferesManager::modificarChofer()
-{
+void choferesManager::modificarChofer(){
 
 }

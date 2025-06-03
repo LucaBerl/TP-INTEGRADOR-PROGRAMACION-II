@@ -4,6 +4,7 @@ using namespace std;
 #include "camiones.h"
 #include "camionesArchivo.h"
 #include "../choferes/choferesManager.h"
+#include "../viajes/viajesManager.h"
 #include <ctime>
 #include <conio.h>
 #include <iomanip>
@@ -329,6 +330,14 @@ void camionesManager::bajaCamion(){
 
     system("cls");
 
+    viajesManager vManager;
+    if(!vManager.actualizarEstados()){
+        system("cls");
+        cout << endl << endl << "Error en sincronización de datos" << endl << endl;
+        system("pause");
+        return;
+    }
+
     Camiones camion;
     camionesArchivo caArchivo;
 
@@ -494,7 +503,13 @@ void camionesManager::listarTodos(){
     Camiones camion;
     cout << left << fixed << setprecision(0);
 
-    ///Actualizar en viaje o no
+    viajesManager vManager;
+    if(!vManager.actualizarEstados()){
+        system("cls");
+        cout << endl << endl << "Error en sincronización de datos" << endl << endl;
+        system("pause");
+        return;
+    }
 
     if(!actualizarVerificacion()){
         cout << "Error al actualizar datos";
@@ -541,7 +556,13 @@ void camionesManager::listarEnViaje(){
     Camiones camion;
     cout << left << fixed << setprecision(0);
 
-    ///Actualizar en viaje o no
+    viajesManager vManager;
+    if(!vManager.actualizarEstados()){
+        system("cls");
+        cout << endl << endl << "Error en sincronización de datos" << endl << endl;
+        system("pause");
+        return;
+    }
 
     if(!actualizarVerificacion()){
         cout << "Error al actualizar datos";
@@ -588,7 +609,13 @@ void camionesManager::listarSinAsignar(){
     Camiones camion;
     cout << left << fixed << setprecision(0);
 
-    ///Actualizar en viaje o no
+    viajesManager vManager;
+    if(!vManager.actualizarEstados()){
+        system("cls");
+        cout << endl << endl << "Error en sincronización de datos" << endl << endl;
+        system("pause");
+        return;
+    }
 
     if(!actualizarVerificacion()){
         cout << "Error al actualizar datos";
@@ -645,7 +672,13 @@ void camionesManager::mostrarKmPorCamion(){
     Camiones camion;
     cout << left << fixed << setprecision(0);
 
-    ///Actualizar en viaje o no
+    viajesManager vManager;
+    if(!vManager.actualizarEstados()){
+        system("cls");
+        cout << endl << endl << "Error en sincronización de datos" << endl << endl;
+        system("pause");
+        return;
+    }
 
     if(!actualizarVerificacion()){
         cout << "Error al actualizar datos";
@@ -705,7 +738,13 @@ void camionesManager::mostrarVerificaciones(){
     Camiones camion;
     cout << left << fixed << setprecision(0);
 
-    ///Actualizar en viaje o no
+    viajesManager vManager;
+    if(!vManager.actualizarEstados()){
+        system("cls");
+        cout << endl << endl << "Error en sincronización de datos" << endl << endl;
+        system("pause");
+        return;
+    }
 
     if(!actualizarVerificacion()){
         cout << "Error al actualizar datos";
@@ -760,7 +799,13 @@ void camionesManager::modificarVerificacion(){
     Camiones camion;
     cout << left << fixed << setprecision(0);
 
-    ///Actualizar en viaje o no
+    viajesManager vManager;
+    if(!vManager.actualizarEstados()){
+        system("cls");
+        cout << endl << endl << "Error en sincronización de datos" << endl << endl;
+        system("pause");
+        return;
+    }
 
     if(!actualizarVerificacion()){
         cout << "Error al actualizar datos";
@@ -893,7 +938,13 @@ void camionesManager::mostrarPorAntiguedad(){
     Camiones camion;
     cout << left << fixed << setprecision(0);
 
-    ///Actualizar en viaje o no
+    viajesManager vManager;
+    if(!vManager.actualizarEstados()){
+        system("cls");
+        cout << endl << endl << "Error en sincronización de datos" << endl << endl;
+        system("pause");
+        return;
+    }
 
     if(!actualizarVerificacion()){
         cout << "Error al actualizar datos";
