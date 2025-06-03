@@ -389,10 +389,27 @@ bool viajesManager::actualizarEstados(){
 
         if(vArchivo.leerViaje(i,viaje)){
 
-            if (viaje.get_estado() == 1 && viaje.segundosRestantes() == 0){
+            if (viaje.get_estado() == 1 && viaje.segundosRestantes() == 0 ){
 
                 viaje.set_estado(0);
-                if(!vArchivo.guardarViajeModificado(i,viaje)){return false;}
+
+                choferesArchivo cArchivo;
+                int posicionChofer = cArchivo.buscarRegistro(viaje.get_chofer().get_id());
+                camionesArchivo caArchivo;
+                int posicionCamion = caArchivo.buscarRegistro(viaje.get_chofer().get_camionAsignado().get_idCamion());
+
+                Choferes choferViaje = viaje.get_chofer();
+                Camiones camionViaje = viaje.get_chofer().get_camionAsignado();
+
+                choferViaje.set_enViaje(0);
+                camionViaje.set_enViaje(0);
+
+                if(!vArchivo.guardarViajeModificado(i,viaje) || !cArchivo.guardarChoferModificado(posicionChofer,choferViaje) || !caArchivo.guardarCamionModificado(posicionCamion,camionViaje)){
+
+                    return false;
+
+                }
+
 
             }
 
@@ -475,6 +492,7 @@ void viajesManager::listarHistorial(){
             if(viaje.get_estado() == false){
 
                 viaje.mostrarViaje();
+                cout << endl;
 
             }
 

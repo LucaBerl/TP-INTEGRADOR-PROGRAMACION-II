@@ -29,7 +29,8 @@ int main()
 /// -Si damos de baja un camion con chofer, el chofer debe quedar sin asignacion y viceversa. (Listo)
 /// -La actualizacion de verificacion tambien tiene que hacerse en los camiones asignados a choferes. (Listo)
 
-/// -Actualizar estados de viaje para chofere y camiones
+/// -Actualizar estados de viaje para chofere y camiones (Listo)
+/// -Asignar la actualizacion de viaje en los menues
 /// -Agregar kilometros recorridos en choferes y camiones despues de guardar cada viaje
 /// -Clase clientes y acoplar
 /// -Clase Usuarios
