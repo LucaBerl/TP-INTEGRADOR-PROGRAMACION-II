@@ -204,27 +204,30 @@ bool viajesManager::seleccionarChofer(Viajes &viaje){
 
 void viajesManager::seleccionarCiudades(Viajes &viaje){
 
-system("cls");
-Ciudades ciudadd, ciudad1, ciudad2;
+    system("cls");
+    Ciudades ciudadd, ciudad1, ciudad2;
 
-//cin.ignore();
+    //cin.ignore();
+    cout << endl << endl << "Establecer origen y destino: " << endl << endl;
 
-cout << endl << "Busqueda de la 1er ciudad" << endl << endl;
-ciudad1 = ciudadd.buscarCiudad();
+    cout << endl << "Búsqueda de la ciudad de origen" << endl << endl;
+    ciudad1 = ciudadd.buscarCiudad();
 
-cout << endl << "Busqueda de la 2da ciudad:" << endl << endl;
-ciudad2 = ciudadd.buscarCiudad();
+    system("cls");
+
+    cout << endl << "Búsqueda de la ciudad de destino:" << endl << endl;
+    ciudad2 = ciudadd.buscarCiudad();
 
 
-// Calcular la distancia entre las dos ciudades
-double distancia = 1.2*ciudad1.calcularDistancia(ciudad2);
-cout << endl << endl << "Distancia entre " << ciudad1.getCiudad() << " y " << ciudad2.getCiudad() << ": " << distancia << " km" << endl << endl;
+    // Calcular la distancia entre las dos ciudades
+    double distancia = 1.2*ciudad1.calcularDistancia(ciudad2);
+    cout << endl << endl << "Distancia entre " << ciudad1.getCiudad() << " y " << ciudad2.getCiudad() << ": " << distancia << " km" << endl << endl;
 
-viaje.set_ciudadOrigen(ciudad1);
-viaje.set_ciudadDestino(ciudad2);
-viaje.set_distancia(distancia);
+    viaje.set_ciudadOrigen(ciudad1);
+    viaje.set_ciudadDestino(ciudad2);
+    viaje.set_distancia(distancia);
 
-system("pause");
+    system("pause");
 
 }
 
@@ -509,6 +512,54 @@ void viajesManager::listarHistorial(){
     cout << endl << endl;
 
     cout << "Ingresar un ID de viaje para obtener informacion mas detallada del mismo" << endl << endl;
+
+    int opcion;
+
+    while (true) {
+        cin >> opcion;
+
+        if (cin.fail() || opcion <= 0) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else{
+
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            cout << endl << "ID seleccionado: " << opcion << endl << endl;
+            system("pause");
+            break; // Salir del bucle, entrada válida
+        }
+    }
+
+    bool  viajeEncontrado = false;
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(vArchivo.leerViaje(i,viaje)){
+
+            if(viaje.get_estado() == false && viaje.get_id() == opcion){
+
+                cout << endl << "Viaje N°: " << opcion << endl << endl << endl;
+                viajeEncontrado = true;
+                cout << endl << "Ciudad Origen: " << viaje.get_ciudadOrigen().getCiudad() << endl
+                << "Ciudad Destino: " << viaje.get_ciudadDestino().getCiudad() << endl
+                << "Distancia: " << viaje.get_distancia() << endl
+                << "Tipo de carga: " << viaje.get_tipoCarga() << endl
+                << "Peso: " << viaje.get_pesoTransportado() << endl
+                << "Volumen: " << viaje.get_volumenTransportado() << endl
+                << "Chofer: " << viaje.get_chofer().get_nombre() << " " << viaje.get_chofer().get_apellido() << endl
+                << "Experiencia: " << viaje.get_chofer().get_experiencia() << endl
+                << "Dni: " << viaje.get_chofer().get_dni() << endl
+                << "Camión: " << viaje.get_chofer().get_camionAsignado().get_marca() << " " << viaje.get_chofer().get_camionAsignado().get_modelo() << endl
+                << "Patente: " << viaje.get_chofer().get_camionAsignado().get_patente() << endl << endl;
+                break;
+
+            }
+
+        }else{cout << "No se pudo leer el viaje";}
+
+    }
+
     system("pause");
 }
 
