@@ -12,7 +12,6 @@ void cargarChofer();
 bool licenciaVencida(const Fecha &fecha);
 bool actualizarLicencia();
 void bajaChofer();
-void modificarChofer();
 void mostrarCantidadRegistros();
 void listarTodos();
 void listarSinCamion();
@@ -21,5 +20,6 @@ void listarEnViaje();
 void asignarCamion();
 void desasignarCamion();
 bool sincronizarCamionesAsignados();
+void mostrarKmPorChofer();
 
 };

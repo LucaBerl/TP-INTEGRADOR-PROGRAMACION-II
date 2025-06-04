@@ -78,7 +78,7 @@ void Camiones::set_kmMensuales(){
     }
 }
 bool Camiones::set_kmMensuales(float km,int mes){
-    if (mes > 0 && mes < 13){
+    if (mes > 0 && mes < 13 && km >0){
         _kmMensuales[mes-1] += km;
         return true;
     }else{return false;}

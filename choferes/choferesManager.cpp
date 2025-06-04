@@ -9,7 +9,6 @@
 #include <ctime>
 #include <conio.h>
 #include <iomanip>
-
 using namespace std;
 
 void choferesManager::cargarChofer(){
@@ -266,7 +265,6 @@ void choferesManager::cargarChofer(){
 
 }
 
-
 void choferesManager::bajaChofer(){
 
     system("cls");
@@ -376,8 +374,6 @@ void choferesManager::bajaChofer(){
 
 }
 
-
-
 void choferesManager::mostrarCantidadRegistros(){
     choferesArchivo cArchivo;
 
@@ -385,7 +381,6 @@ void choferesManager::mostrarCantidadRegistros(){
 
     cout<<"La cantidad de registros son: "<<cantidadRegistros<<endl;
 }
-
 
 void choferesManager::listarTodos(){
 
@@ -544,30 +539,57 @@ void choferesManager::listarConCamion(){
 
 }
 
+void choferesManager::listarEnViaje(){
 
-/*void choferesManager::listarEnViaje()
-{
     choferesArchivo cArchivo;
-    Choferes registro;
+    Choferes choferes;
+    cout << left << fixed << setprecision(0);
 
-    int cantidad = cArchivo.getCantidadRegistros();
-    cout<<"Los choferes en viaje son: "<<endl;
-    for(int i=0; i<cantidad; i++)
-    {
-        registro=cArchivo.leer(i);
-
-        if(registro.get_enViaje())
-        {
-            cout<<"----------"<<endl;
-            cout<<"ID: "<<registro.get_id()<<endl;
-            cout<<"dni: "<<registro.get_dni()<<endl;
-            cout<<"Apellido: "<<registro.get_apellido()<<endl;
-            cout<<"Nombre: "<<registro.get_nombre()<<endl;
-            cout<<"Experiencia: "<<registro.get_experiencia()<<endl;
-            cout<<"Es apto para circular: "<<registro.get_aptoCircular()<<endl;
-        }
+    viajesManager vManager;
+    if(!vManager.actualizarEstados()){
+        system("cls");
+        cout << endl << endl << "Error en sincronización de datos" << endl << endl;
+        system("pause");
+        return;
     }
-}*/
+
+    if(!actualizarLicencia()){
+        cout << "Error al actualizar datos";
+        return;
+    }
+
+    system("cls");
+
+    cout << left;
+    cout << setw(6) << "ID"
+    << setw(10) << "DNI"
+    << setw(20) << "NOMBRE"
+    << setw(20) << "APELLIDO"
+    << setw(7) << "EXP."
+    << setw(15) << "VENC. LIC."
+    << setw(8) << "APTO"
+    << setw(12) << "EN VIAJE"
+    << setw(30) << "CAMIÓN";
+
+    cout << endl << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
+
+
+    int cantidadRegistros = cArchivo.getCantidadRegistros();
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(cArchivo.leerChoferes(i,choferes)){
+            if (choferes.get_estado() == true && choferes.get_enViaje() == true){
+                choferes.mostrar();
+                cout << endl;
+            }
+        }else{cout << "Lectura incorrecta";}
+
+    }
+
+    cout << endl << endl;
+    system("pause");
+}
 
 bool choferesManager::licenciaVencida(const Fecha &fecha){
 
@@ -934,6 +956,68 @@ bool choferesManager::sincronizarCamionesAsignados() {
     return true;
 }
 
-void choferesManager::modificarChofer(){
+void choferesManager::mostrarKmPorChofer(){
+
+    choferesArchivo chArchivo;
+    Choferes chofer;
+    cout << left << fixed << setprecision(0);
+
+    viajesManager vManager;
+    if(!vManager.actualizarEstados()){
+        system("cls");
+        cout << endl << endl << "Error en sincronización de datos" << endl << endl;
+        system("pause");
+        return;
+    }
+
+    if(!actualizarLicencia()){
+        cout << "Error al actualizar datos";
+        return;
+    }
+
+    system("cls");
+
+    cout << left;
+    cout << setw(3) << "ID"
+    << setw(30) << "NOMBRE"
+    << setw(30) << "APELLIDO"
+    << setw(7) << "ENE"
+    << setw(7) << "FEB"
+    << setw(7) << "MAR"
+    << setw(7) << "ABR"
+    << setw(7) << "MAY"
+    << setw(7) << "JUN"
+    << setw(7) << "JUL"
+    << setw(7) << "AGO"
+    << setw(7) << "SEP"
+    << setw(7) << "OCT"
+    << setw(7) << "NOV"
+    << setw(7) << "DIC" << endl;
+
+    cout << "---------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+
+
+    int cantidadRegistros = chArchivo.getCantidadRegistros();
+    const float *km;
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(chArchivo.leerChoferes(i,chofer)){
+            if (chofer.get_estado() == 1){
+                km = chofer.get_kmMensuales();
+                cout << setw(3) << chofer.get_id()
+                << setw(30) << chofer.get_nombre()
+                << setw(30) << chofer.get_apellido();
+                for (int j = 0;j < 12; j++){
+                    cout << setw(7) << km[j];
+                }
+                cout << endl;
+            }
+
+        }else{cout << "Lectura incorrecta";}
+
+    }
+
+    cout << endl << endl;
+    system("pause");
 
 }

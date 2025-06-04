@@ -69,10 +69,9 @@ void menuChoferes::menu_abm()
         cout << "=======================================" << endl;
         cout << "1. ALTA NUEVO CHOFER" << endl;
         cout << "2. BAJA CHOFER" << endl;
-        cout << "3. MODIFICAR CHOFER" << endl;
-        cout << "4. ACTUALIZAR LICENCIA" << endl;
+        cout << "3. ACTUALIZAR LICENCIA" << endl;
         cout << endl;
-        cout << "5. VOLVER AL MENÚ CHOFERES" << endl;
+        cout << "4. VOLVER AL MENÚ CHOFERES" << endl;
         cout << "=======================================" << endl;
         cout << "Ingrese una opción: ";
 
@@ -99,7 +98,7 @@ void menuChoferes::menu_abm()
         cout << endl << endl;
 
     }
-    while(opcion != '5');
+    while(opcion != '4');
 }
 
 void menuChoferes::menu_listados()
@@ -135,7 +134,7 @@ void menuChoferes::menu_listados()
             cManager.listarTodos();
             break;
         case '2':
-//        cManager.listarEnViaje();
+            cManager.listarEnViaje();
             break;
         case '3':
             cManager.listarSinCamion();
@@ -144,7 +143,7 @@ void menuChoferes::menu_listados()
             cManager.listarConCamion();
             break;
         case '5':
-
+            cManager.mostrarKmPorChofer();
             break;
         case '6':
 
@@ -162,45 +161,3 @@ void menuChoferes::menu_listados()
     while(opcion != '7');
 
 }
-
-//void menuChoferes::menu_informes()
-//{
-//
-//    system("cls");
-//
-//    int opcion;
-//
-//    do
-//    {
-//        cout << "=======================================" << endl;
-//        cout << "        INFORMES" << endl;
-//        cout << "=======================================" << endl;
-//        cout << "1. CANTIDAD DE KM POR CHOFER" << endl;
-//        cout << "2. HORAS MANEJADAS POR CHOFER" << endl;
-//        cout << endl;
-//        cout << "3. VOLVER AL MENÚ CHOFERES" << endl;
-//        cout << "=======================================" << endl;
-//        cout << "Ingrese una opcion: ";
-//
-//        cin >> opcion;
-//
-//        switch(opcion)
-//        {
-//        case 1:
-//
-//            break;
-//        case 2:
-//
-//            break;
-//        case 3:
-//            return;
-//            break;
-//        default:
-//            cout << "Opción inválida. Por favor, intente de nuevo." << endl;
-//        }
-//
-//        cout << endl << endl;
-//
-//    }
-//    while(opcion != 4);
-//}

@@ -691,14 +691,14 @@ void camionesManager::mostrarKmPorCamion(){
     cout << setw(3) << "ID"
     << setw(30) << "MARCA"
     << setw(30) << "MODELO"
-    << setw(5) << "ENE"
-    << setw(5) << "FEB"
-    << setw(5) << "MAR"
-    << setw(5) << "ABR"
-    << setw(5) << "MAY"
-    << setw(5) << "JUN"
-    << setw(5) << "JUL"
-    << setw(5) << "AGO"
+    << setw(7) << "ENE"
+    << setw(7) << "FEB"
+    << setw(7) << "MAR"
+    << setw(7) << "ABR"
+    << setw(7) << "MAY"
+    << setw(7) << "JUN"
+    << setw(7) << "JUL"
+    << setw(7) << "AGO"
     << setw(5) << "SEP"
     << setw(5) << "OCT"
     << setw(5) << "NOV"
@@ -718,7 +718,7 @@ void camionesManager::mostrarKmPorCamion(){
                 << setw(30) << camion.get_marca()
                 << setw(30) << camion.get_modelo();
                 for (int j = 0;j < 12; j++){
-                    cout << setw(5) << km[i];
+                    cout << setw(7) << km[j];
                 }
                 cout << endl;
             }

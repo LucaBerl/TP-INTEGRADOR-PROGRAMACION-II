@@ -207,7 +207,7 @@ void viajesManager::seleccionarCiudades(Viajes &viaje){
 system("cls");
 Ciudades ciudadd, ciudad1, ciudad2;
 
-cin.ignore();
+//cin.ignore();
 
 cout << endl << "Busqueda de la 1er ciudad" << endl << endl;
 ciudad1 = ciudadd.buscarCiudad();
@@ -292,7 +292,7 @@ void viajesManager::calcularTiempo(Viajes &viaje){
 
 // Paso 6 y 7:
 
-void viajesManager::mostrarResumen(Viajes &viaje){ /// Aca vamos a mostrar el resumen del viaje y confirmarlo. Luego lo guardamos en archivo.
+void viajesManager::mostrarResumen(Viajes &viaje){
 
 
 viajesArchivo vArchivo;
@@ -338,7 +338,9 @@ int opcionNumerica;
             Camiones camionViaje = viaje.get_chofer().get_camionAsignado();
 
             choferViaje.set_enViaje(1);
+            choferViaje.set_kmMensuales(viaje.get_distancia(),viaje.get_fechaLlegada().tm_mon+1);
             camionViaje.set_enViaje(1);
+            camionViaje.set_kmMensuales(viaje.get_distancia(),viaje.get_fechaLlegada().tm_mon+1);
 
             if (vArchivo.guardarViaje(viaje) && cArchivo.guardarChoferModificado(posicionChofer,choferViaje) && caArchivo.guardarCamionModificado(posicionCamion,camionViaje)){
 

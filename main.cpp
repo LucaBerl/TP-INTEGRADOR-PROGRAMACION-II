@@ -35,8 +35,8 @@ int main()
 /// -La actualizacion de verificacion tambien tiene que hacerse en los camiones asignados a choferes. (Listo)
 
 /// -Actualizar estados de viaje para chofere y camiones (Listo)
-/// -Asignar la actualizacion de viaje en los menues
-/// -Agregar kilometros recorridos en choferes y camiones despues de guardar cada viaje
+/// -Asignar la actualizacion de viaje en los menues (Listo)
+/// -Agregar kilometros recorridos en choferes y camiones despues de guardar cada viaje (Listo)
 /// -Litados choferes
 /// -Clase clientes y acoplar
 /// -Clase Usuarios
