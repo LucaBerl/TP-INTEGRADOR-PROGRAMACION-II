@@ -298,8 +298,7 @@ void viajesManager::mostrarResumen(Viajes &viaje){
 viajesArchivo vArchivo;
 
 system("cls");
-cout << endl << "Espacio para mostrar resumen y guardar viaje." << endl << endl;
-system("pause");
+
 cout << left << fixed << setprecision(0);
 
 cout << endl << "🆔 Viaje: " << vArchivo.get_ultimoID() + 1;
