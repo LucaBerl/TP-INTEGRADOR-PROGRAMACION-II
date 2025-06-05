@@ -86,7 +86,7 @@ void clientesManager::altaCliente(){
 
 ///ALTA CHOFER//////////////////////////////////////////////////////////////
 
-    cout<< endl << "ALTA CLIENTE";
+    cout<< endl << "ALTA CLIENTE  (presiones enter para continuar )";
 
 
 
@@ -112,7 +112,7 @@ void clientesManager::altaCliente(){
         }
         else
         {
-            cout << endl << "Nombre inválido, o demasiado largo. Intente de vuelta" << endl;
+            cout << endl << "Nombre inválido, no cumple con el minimo o supera el maximo de caracteres. Intente de vuelta" << endl;
         }
 
     }
@@ -133,7 +133,7 @@ void clientesManager::altaCliente(){
         }
         else
         {
-            cout << endl << "Direccion inválida, o demasiado largo. Intente de vuelta" << endl;
+            cout << endl << "Direccion inválida, no cumple con el minimo o supera el maximo de caracteres. Intente nuevamente" << endl;
         }
 
     }
@@ -175,7 +175,7 @@ void clientesManager::altaCliente(){
         }
         else
         {
-            cout << endl << "Apellido inválido, o demasiado largo. Intente de vuelta" << endl;
+            cout << endl << "Apellido inválido, no cumple con el minimo o supera el maximo de caracteres. Intente nuevamente" << endl;
         }
 
     }
@@ -200,7 +200,7 @@ void clientesManager::altaCliente(){
 
 
 
-    cout << endl << "ultimo id  " << clienteArchivo.get_ultimoID() << endl << endl;
+
 
 
 

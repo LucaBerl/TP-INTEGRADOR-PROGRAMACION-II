@@ -27,7 +27,7 @@ void Clientes::set_IdCliente(int idCliente) {
 
 
 bool Clientes::set_Nombre_RazonSocial(std::string  nombre_RazonSocial) {
-    if(nombre_RazonSocial.length()< sizeof(_nombre_RazonSocial)){
+    if(nombre_RazonSocial.length()< sizeof(_nombre_RazonSocial)&&nombre_RazonSocial.length()>2){
 
         strcpy(_nombre_RazonSocial,nombre_RazonSocial.c_str());
         return true;
@@ -37,7 +37,7 @@ bool Clientes::set_Nombre_RazonSocial(std::string  nombre_RazonSocial) {
 
 bool Clientes::set_Direccion(std::string  direccion) {
 
-    if(direccion.length()< sizeof(_direccion)){
+    if(direccion.length()< sizeof(_direccion)&&direccion.length()>2){
 
         strcpy(_direccion,direccion.c_str());
         return true;
@@ -46,7 +46,7 @@ bool Clientes::set_Direccion(std::string  direccion) {
 }
 
 bool Clientes::set_Telefono(std::string  telefono) {
-    if(telefono.length()< sizeof(_telefono)){
+    if(telefono.length()< sizeof(_telefono)&&telefono.length()>4){
 
         strcpy(_telefono,telefono.c_str());
         return true;
@@ -55,7 +55,7 @@ bool Clientes::set_Telefono(std::string  telefono) {
 }
 
 bool Clientes::set_Email(std::string  email) {
-    if(email.length()< sizeof(_email)){
+    if(email.length()< sizeof(_email)&&email.length()>6){
 
         strcpy(_email,email.c_str());
         return true;
