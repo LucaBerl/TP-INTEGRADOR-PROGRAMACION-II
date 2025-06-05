@@ -5,7 +5,9 @@ using namespace std;
 #include "menuChoferes.h"
 #include "menuCamiones.h"
 #include "menuClientes.h"
+#include "menuUsuarios.h"
 #include <conio.h>
+
 
 
 void menuPrincipal::mostrar(){
@@ -16,6 +18,7 @@ void menuPrincipal::mostrar(){
     menuChoferes menuCh;
     menuCamiones menuCa;
     menuClientes menuClient;
+    menuUsuarios menuUs;
 
 
 
@@ -30,8 +33,9 @@ void menuPrincipal::mostrar(){
     cout << "2. CHOFERES" << endl;
     cout << "3. CAMIONES" << endl;
     cout << "4. CLIENTES" << endl;
+    cout << "5. USUARIOS" << endl;
     cout << endl;
-    cout << "5. SALIR" << endl;
+    cout << "6. SALIR" << endl;
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
@@ -52,6 +56,9 @@ void menuPrincipal::mostrar(){
                 menuClient.mostrar();
                 break;
             case '5':
+                menuUs.mostrar();
+                break;
+            case '6':
                 return;
                 break;
             default:
@@ -60,5 +67,5 @@ void menuPrincipal::mostrar(){
 
       cout << endl << endl;
 
-    } while(opcion != '5');
+    } while(opcion != '6');
 }

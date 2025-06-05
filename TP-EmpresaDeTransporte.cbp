@@ -44,6 +44,12 @@
 		<Unit filename="Clientes/clientesManager.cpp" />
 		<Unit filename="Fecha/fecha.cpp" />
 		<Unit filename="Fecha/fecha.h" />
+		<Unit filename="Usuarios/usuarios.cpp" />
+		<Unit filename="Usuarios/usuarios.h" />
+		<Unit filename="Usuarios/usuariosArchivo.cpp" />
+		<Unit filename="Usuarios/usuariosArchivo.h" />
+		<Unit filename="Usuarios/usuariosManager.cpp" />
+		<Unit filename="Usuarios/usuariosManager.h" />
 		<Unit filename="camiones/camiones.cpp" />
 		<Unit filename="camiones/camiones.h" />
 		<Unit filename="camiones/camionesArchivo.cpp" />

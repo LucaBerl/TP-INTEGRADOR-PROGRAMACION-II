@@ -70,19 +70,5 @@ bool get_estado()const;
 };
 
 
-//private:
-//    char usuario[10];
-//    int contrasena;
-//    int idUsuario;
-//    int rolUsuario;
-//
-//
-//private:
-//    int IdCliente;
-//    char razonSocial[30];
-//    char direccion[50];
-//    char telefono[15];
-//    char email[50];
-//    int cantViajesRealizados;
 
 

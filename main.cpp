@@ -1,6 +1,7 @@
 #include <iostream>
 #include "menues/menuPrincipal.h"
 #include <windows.h>
+#include <ctime>
 #include "viajes/viajesManager.h"
 #include "Clientes/ClientesArchivo.h"
 using namespace std;
@@ -9,6 +10,8 @@ using namespace std;
 
 int main()
 {
+    srand(time(NULL));
+
     viajesManager vManager;
     if(!vManager.actualizarEstados()){
         system("cls");
@@ -37,6 +40,7 @@ int main()
 /// -Actualizar estados de viaje para chofere y camiones (Listo)
 /// -Asignar la actualizacion de viaje en los menues (Listo)
 /// -Agregar kilometros recorridos en choferes y camiones despues de guardar cada viaje (Listo)
+/// -Ver kilometros
 /// -Informar estado de licencias y actualizar licencias en seccion choferes
 /// -Clase clientes y acoplar
 /// -Clase Usuarios

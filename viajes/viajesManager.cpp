@@ -300,11 +300,13 @@ void viajesManager::mostrarResumen(Viajes &viaje){
 
 viajesArchivo vArchivo;
 
+viaje.set_id(vArchivo.get_ultimoID());
+
 system("cls");
 
 cout << left << fixed << setprecision(0);
 
-cout << endl << "🆔 Viaje: " << vArchivo.get_ultimoID() + 1;
+cout << endl << "🆔 Viaje: " << viaje.get_id();
 cout << endl << "🧑‍✈️ Chofer: " << viaje.get_chofer().get_nombre() << "  " << viaje.get_chofer().get_apellido() << " (ID = " << viaje.get_chofer().get_id() << ")";
 cout << endl << "📍 Origen: " << viaje.get_ciudadOrigen().getCiudad() << " -- " << viaje.get_ciudadOrigen().getProvincia();
 cout << endl << "🏁 Destino: " << viaje.get_ciudadDestino().getCiudad() << " -- " << viaje.get_ciudadDestino().getProvincia();
