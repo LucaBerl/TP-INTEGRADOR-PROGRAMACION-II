@@ -15,5 +15,6 @@ public:
     void listarActivos();
     void listarHistorial();
     bool listarChoferesDisponibles(Viajes &viaje);
+    bool listarClientes(Viajes &viaje);
 
 };

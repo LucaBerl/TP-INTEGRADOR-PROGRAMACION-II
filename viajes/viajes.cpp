@@ -22,7 +22,7 @@ set_tipoCarga("");
 set_pesoTransportado(0);
 set_volumenTransportado(1);
 set_estado(1);
-
+set_cliente(Clientes());
 
 }
 
@@ -73,6 +73,9 @@ void Viajes::set_estado(bool estado){
   _estado = estado;
 }
 
+void Viajes::set_cliente(const Clientes &cliente){
+    _cliente = cliente;
+}
 
 ///Getters:
 
@@ -108,6 +111,10 @@ float Viajes::get_volumenTransportado()const{
 }
 bool Viajes::get_estado() const{
     return _estado;
+}
+
+const Clientes& Viajes::get_cliente() const{
+    return _cliente;
 }
 
 /////////////////////////////////////////////////////////////////

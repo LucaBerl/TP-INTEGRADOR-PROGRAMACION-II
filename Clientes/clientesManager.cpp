@@ -35,7 +35,7 @@ void clientesManager::mostrarTodos(){
     << setw(15) << "RAZON SOCIAL / NOMBRE   "
     << setw(15) << "DIRECCION"
     << setw(15) << "TELEFONO"
-    << setw(15) << "EMAIL"
+    << setw(15) << "EMAIL    "
     << setw(3) << "CANTIDAD VIAJES REALIZADOS";
 
 

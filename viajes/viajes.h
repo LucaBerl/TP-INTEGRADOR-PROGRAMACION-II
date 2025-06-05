@@ -20,7 +20,7 @@ private:
   float _pesoTransportado;
   float _volumenTransportado;
   bool _estado;
-  Clientes cliente;
+  Clientes _cliente;
 
 public:
 

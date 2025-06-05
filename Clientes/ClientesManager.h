@@ -15,7 +15,7 @@ public:
 
     void mostrarClienteInactivos();
 
-    bool validacion(string parametro);
+//    bool validacion(string parametro);
 
 
 

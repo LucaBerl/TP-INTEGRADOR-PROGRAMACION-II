@@ -8,6 +8,9 @@
 #include "../choferes/choferesManager.h"
 #include "../camiones/camionesManager.h"
 #include "../camiones/camionesArchivo.h"
+#include "../Clientes/ClientesManager.h"
+#include "../Clientes/Clientes.h"
+#include "../Clientes/ClientesArchivo.h"
 #include <iomanip>
 #include <iostream>
 #include <conio.h>
@@ -37,7 +40,9 @@ void viajesManager::crearViaje(){
     seleccionarCiudades(viaje);
     ///Paso 5:
     calcularTiempo(viaje);
-    ///Paso 6 y 7
+    ///Paso 6
+    listarClientes(viaje);
+    ///Paso 7 y 8
     mostrarResumen(viaje);
 
 }
@@ -646,5 +651,18 @@ bool viajesManager::listarChoferesDisponibles(Viajes &viaje){
 
     return true;
 
+
+}
+
+bool viajesManager::listarClientes(Viajes &viaje){
+
+    clientesManager clienteManager;
+    clientesArchivo clienteArchivo;
+    Clientes cliente;
+
+
+    clienteManager.mostrarTodos();
+
+    return true;
 
 }
