@@ -71,6 +71,8 @@
 		<Unit filename="menues/menuClientes.h" />
 		<Unit filename="menues/menuPrincipal.cpp" />
 		<Unit filename="menues/menuPrincipal.h" />
+		<Unit filename="menues/menuUsuarios.cpp" />
+		<Unit filename="menues/menuUsuarios.h" />
 		<Unit filename="menues/menuViajes.cpp" />
 		<Unit filename="menues/menuViajes.h" />
 		<Unit filename="viajes/viajes.cpp" />

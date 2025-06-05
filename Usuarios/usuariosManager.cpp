@@ -2,7 +2,9 @@
 #include <cstring>
 #include <cstdlib>
 #include <functional>
+#include <conio.h>
 #include "usuariosManager.h"
+#include "usuariosArchivo.h"
 using namespace std;
 
 string usuariosManager::generarSalt() {
@@ -39,7 +41,7 @@ void usuariosManager::establecerNombre(Usuario &usuario){
 
     while (true){
         system("cls");
-        cout << "Nombre de usuario (letras y/o números, sin espacios): ";
+        cout << "Nombre de usuario (letras y/o números, sin espacios, máximo 10 caracteres): ";
         cin >> nombreUsuario;
         if (usuario.set_nombre(nombreUsuario)){
             cout << endl << endl << "Usuario válido: " << usuario.get_nombre() << endl << endl;
@@ -77,12 +79,163 @@ void usuariosManager::establecerNombre(Usuario &usuario){
 
 void usuariosManager::establecerContrasena(Usuario &usuario){
 
+    const int MAX = 10; ///Cantidad máxima de caracteres
+    char contrasena[MAX]; /// Cadena que contiene la contraseña
+    char contrasena2[MAX];
+    bool guardado = false;
+
+
+
+    do{
+        system("cls");
+        int indice = 0; /// Indice del caracter que vamos ingresando
+        char ch; /// Caracter que vamos ingresando
+
+
+        cout << "Ingrese su contraseña (numeros y/o letras, sin espacios, máximo 10 caracteres): ";
+
+        while (true) {
+            ch = _getch(); /// Espera a que el usuario presione una tecla y la guarda en ch, sin mostrarla en pantalla.
+
+            if (ch == 13) { /// ch == 13 seria el enter en codigo ASCII, se rompe bucle y termina de ingresar la contrasena
+                break;
+
+            } else if ((ch == 8 || ch == 127) && indice > 0) {
+
+                indice--;          ///ch==8 y ch==127 son retrocesos, si se presionan y el indice es > 0 (o sea ya se escribio algo) el indice retrocede uno
+                cout << "\b \b";  /// y aca borramos visualmente el último *
+
+            } else if (indice < MAX - 1 && (isalpha(ch) || isdigit(ch))) {
+
+                contrasena[indice++] = ch; /// Si no se ha alcanzado el limite de caracteres, y el ingresado es una letra o un numero, lo sumamos a la cadena
+                cout << '*';               /// imprimimos un asterisco para que quede mas pro
+            }
+        }
+
+        contrasena[indice] = '\0'; /// una vez que presionamos enter y salimos del bucle, guardamos el ultimo char como \0 para indicar la terminacion de la cadena
+
+
+
+
+        int indice2 = 0;
+
+        cout << endl << endl << "Ingrese nuevamente su contraseña: ";
+
+        while (true) {
+            ch = _getch(); /// Espera a que el usuario presione una tecla y la guarda en ch, sin mostrarla en pantalla.
+
+            if (ch == 13) { /// ch == 13 seria el enter en codigo ASCII, se rompe bucle y termina de ingresar la contrasena
+                break;
+
+            } else if ((ch == 8 || ch == 127) && indice2 > 0) {
+
+                indice2--;          ///ch==8 y ch==127 son retrocesos, si se presionan y el indice es > 0 (o sea ya se escribio algo) el indice retrocede uno
+                cout << "\b \b";  /// y aca borramos visualmente el último *
+
+            } else if (indice2 < MAX - 1 && (isalpha(ch) || isdigit(ch))) {
+
+                contrasena2[indice2++] = ch; /// Si no se ha alcanzado el limite de caracteres, y el ingresado es una letra o un numero, lo sumamos a la cadena
+                cout << '*';               /// imprimimos un asterisco para que quede mas pro
+            }
+        }
+
+        contrasena2[indice2] = '\0'; /// una vez que presionamos enter y salimos del bucle, guardamos el ultimo char como \0 para indicar la terminacion de la cadena
+
+
+
+        if (strcmp(contrasena, contrasena2) == 0){
+
+            string salt = generarSalt();
+            usuario.set_salt(salt);
+            usuario.set_hashContrasena(calcularHash(contrasena,usuario.get_salt()));
+            cout << endl << endl << "Contraseña guardada exitosamente ✔" << endl << endl;
+            guardado = true;
+            system("pause");
+
+
+        }
+        else{
+            cout << endl << endl << "Contraseñas no coinciden, volver a ingresar" << endl << endl;
+            system("pause");
+        }
+
+    }while(guardado == false);
+
+
+
+
 }
 
 void usuariosManager::establecerRol(Usuario &usuario){
+
+    system("cls");
+    cout << endl << "Establecer rol de usuario";
+    cout << endl << endl << "1. Supervisor: Acceso a todas las funciones del programa.";
+    cout << endl << "2. Operador: Acceso a todas las funciones, salvo creación de viajes." << endl << endl;
+    cout << "Rol: ";
+
+    int opcion;
+
+    while (true) {
+        cin >> opcion;
+
+        if (cin.fail() || (opcion != 1 && opcion != 2)) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else if(opcion == 1){
+            system("cls");
+            if(usuario.set_rolUsuario(opcion)){
+                cout << "ROL (1) GUARDADO ✔ " << endl << endl  ;
+                system("pause");
+                break;
+            }
+
+        }else if(opcion == 2){
+            system("cls");
+            if(usuario.set_rolUsuario(opcion)){
+                cout << "ROL (2) GUARDADO ✔ " << endl << endl  ;
+                system("pause");
+                break;
+            }
+        }
+
+    }
+
 
 }
 
 void usuariosManager::resumen_y_guardado(Usuario &usuario){
 
+    usuariosArchivo uArchivo;
+    usuario.set_idUsuario(uArchivo.get_ultimoID());
+    string rol;
+    if (usuario.get_rolUsuario() == 1){rol = "Supervisor";}else{rol = "Operador";}
+
+    cout << endl << "🆔 Usuario N°: " << usuario.get_idUsuario();
+    cout << endl << "🧑‍✈️ Nombre: " << usuario.get_nombre();
+    cout << endl << "📍 Rol: " << rol;
+    cout << endl << endl;
+
+    cout << endl << endl << "Confirmar usuario?" << endl;
+    cout << endl << "1. SI" << endl << "2. NO" << endl << endl;
+    int opcionNumerica;
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2)) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else if(opcionNumerica == 1){
+
+            ///guardar
+        }
+        else if (opcionNumerica == 2){
+
+            ///salir
+        }
+
+    }
 }
