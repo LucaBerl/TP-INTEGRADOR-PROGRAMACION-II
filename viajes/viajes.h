@@ -2,6 +2,7 @@
 #pragma once
 #include "../Ciudades/ciudades.h"
 #include "../choferes/choferes.h"
+#include "../Clientes/Clientes.h"
 #include <ctime>
 #include <string>
 
@@ -19,6 +20,7 @@ private:
   float _pesoTransportado;
   float _volumenTransportado;
   bool _estado;
+  Clientes cliente;
 
 public:
 
@@ -42,6 +44,7 @@ bool set_tipoCarga(std::string tipoCarga);
 bool set_pesoTransportado(float pesoCarga);
 bool set_volumenTransportado(float volumenCarga);
 void set_estado(bool estado);
+void set_cliente(const Clientes &cliente);
 
 // Getters:
 
@@ -56,7 +59,7 @@ std::string get_tipoCarga() const;
 float get_pesoTransportado()const;
 float get_volumenTransportado()const;
 bool get_estado() const;
-
+const Clientes& get_cliente() const;
 };
 
 
