@@ -33,12 +33,11 @@ void menuUsuarios::mostrar(){
                 uManager.crearUsuario();
                 break;
             case '2':
-                uManager.validarUsuario();
+                uManager.bajaUsuario();
                 break;
             case '3':
-
+                uManager.cambiarRol();
                 break;
-
             case '4':
                 uManager.listarUsuarios();
                 break;

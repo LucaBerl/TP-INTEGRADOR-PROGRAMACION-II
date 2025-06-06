@@ -16,5 +16,7 @@ public:
     void resumen_y_guardado(Usuario &usuario);
     void listarUsuarios();
     int validarUsuario();
+    void bajaUsuario();
+    void cambiarRol();
 
 };

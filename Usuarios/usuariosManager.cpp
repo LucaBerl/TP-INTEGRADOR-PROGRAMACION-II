@@ -381,3 +381,172 @@ int usuariosManager::validarUsuario(){
 
 
 }
+
+void usuariosManager::bajaUsuario(){
+
+    listarUsuarios();
+
+    int opcionNumerica;
+    usuariosArchivo uArchivo;
+    Usuario usuario;
+
+    cout << endl << endl << "Por favor, seleccionar el ID de usuario a dar de baja: ";
+
+    while (true) {
+
+        cin >> opcionNumerica;
+
+        if (cin.fail() || opcionNumerica <= 0) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else{
+
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            cout << endl << "ID seleccionado: " << opcionNumerica << endl << endl;
+            system("pause");
+            break; // Salir del bucle, entrada válida
+        }
+    }
+
+    system("cls");
+
+    int posicion, cantidadRegistros = uArchivo.get_cantidadRegistros();
+    bool idEncontrado = false;
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(uArchivo.leerUsuario(i,usuario)){
+            if (usuario.get_idUsuario() == opcionNumerica && usuario.get_estado() == 1){
+                cout << endl << endl << "Usuario: " << usuario.get_nombre();
+                posicion = i;
+                idEncontrado = true;
+                cout << endl << endl << "Desea dar de baja este usuario?";
+                cout << endl << "1. SI" << endl << "2. NO" << endl;
+                break;
+            }
+        }else{
+            system("cls");
+            cout << "Lectura incorrecta";
+            system("pause");
+            return;
+        }
+
+    }
+
+    if(!idEncontrado){
+        cout << endl << "El ID seleccionado no existe en los registros" << endl << endl;
+        system("pause");
+        return;
+    }
+
+    cout << endl;
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2)) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else if(opcionNumerica == 1){
+            usuario.set_estado(0);
+            if(uArchivo.guardarUsuarioModificado(posicion,usuario)){
+                system("cls");
+                cout << "USUARIO ELIMINADO ✔ " << endl << _getch() ;
+                return;
+            }else{
+                system("cls");
+                cout << "Error en la baja de usuario" << _getch() ;
+                return;
+            }
+        }else if(opcionNumerica == 2){
+            return;
+        }
+
+    }
+}
+
+void usuariosManager::cambiarRol(){
+
+    listarUsuarios();
+
+    int opcionNumerica;
+    usuariosArchivo uArchivo;
+    Usuario usuario;
+
+    cout << endl << endl << "Por favor, seleccionar el ID de usuario que desea cambiarle el rol: ";
+
+    while (true) {
+
+        cin >> opcionNumerica;
+
+        if (cin.fail() || opcionNumerica <= 0) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else{
+
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            cout << endl << "ID seleccionado: " << opcionNumerica << endl << endl;
+            system("pause");
+            break; // Salir del bucle, entrada válida
+        }
+    }
+
+    system("cls");
+
+    int posicion, cantidadRegistros = uArchivo.get_cantidadRegistros();
+    bool idEncontrado = false;
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(uArchivo.leerUsuario(i,usuario)){
+            if (usuario.get_idUsuario() == opcionNumerica && usuario.get_estado() == 1){
+                cout << endl << endl << "Usuario: " << usuario.get_nombre();
+                posicion = i;
+                idEncontrado = true;
+                cout << endl << endl << "Que rol desea asignarle?";
+                cout << endl << "1. Supervisor" << endl << "2. Operador" << endl;
+                break;
+            }
+        }else{
+            system("cls");
+            cout << "Lectura incorrecta";
+            system("pause");
+            return;
+        }
+
+    }
+
+    if(!idEncontrado){
+        cout << endl << "El ID seleccionado no existe en los registros" << endl << endl;
+        system("pause");
+        return;
+    }
+
+    cout << endl;
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2)) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else if(opcionNumerica == 1 || opcionNumerica == 2){
+            usuario.set_rolUsuario(opcionNumerica);
+            if(uArchivo.guardarUsuarioModificado(posicion,usuario)){
+                system("cls");
+                cout << "USUARIO MODIFICADO ✔ " << endl << _getch() ;
+                return;
+            }else{
+                system("cls");
+                cout << "Error en la modificacion de usuario" << _getch() ;
+                return;
+            }
+        }
+
+    }
+
+}
