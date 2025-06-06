@@ -11,6 +11,7 @@ Usuario::Usuario(){
     set_salt("");
     set_hashContrasena(0);
     set_rolUsuario(2);
+    set_estado(true);
 
 }
 
@@ -51,6 +52,10 @@ bool Usuario::set_rolUsuario(int rol){
     }else {return false;}
 }
 
+void Usuario::set_estado(bool estado){
+    _estado = estado;
+}
+
 
 
 std::string Usuario::get_nombre()const{
@@ -67,4 +72,7 @@ int Usuario::get_idUsuario()const{
 }
 int Usuario::get_rolUsuario()const{
     return _rolUsuario;
+}
+bool Usuario::get_estado()const{
+    return _estado;
 }

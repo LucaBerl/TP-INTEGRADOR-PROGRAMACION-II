@@ -46,3 +46,4 @@ void menuViajes::mostrar(){
 
     } while(opcion != '4');
 }
+

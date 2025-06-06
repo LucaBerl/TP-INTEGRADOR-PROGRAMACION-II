@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <functional>
 #include <conio.h>
+#include <iomanip>
 #include "usuariosManager.h"
 #include "usuariosArchivo.h"
 using namespace std;
@@ -229,13 +230,154 @@ void usuariosManager::resumen_y_guardado(Usuario &usuario){
             cin.ignore(1000, '\n'); // Descarta el resto de la línea
             cout << endl << "Ingreso incorrecto, intente nuevamente: ";
         }else if(opcionNumerica == 1){
+            usuariosArchivo uArchivo;
+            if(uArchivo.guardarUsuario(usuario)){
+                system("cls");
+                cout << "USUARIO GUARDADO CORRECTAMENTE ✔ " << endl << endl;
+                system("pause");
+                break;
 
-            ///guardar
+            }
+
         }
         else if (opcionNumerica == 2){
-
-            ///salir
+            break;
         }
 
     }
+}
+
+void usuariosManager::listarUsuarios(){
+
+    system("cls");
+
+    usuariosArchivo uArchivo;
+    Usuario usuario;
+
+    cout << left;
+    cout << setw(6) << "ID"
+    << setw(15) << "NOMBRE"
+    << setw(15) << "ROL";
+
+    cout << endl << "------------------------------------------" << endl;
+
+
+    int cantidadRegistros = uArchivo.get_cantidadRegistros();
+
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(uArchivo.leerUsuario(i,usuario)){
+            if (usuario.get_estado() == 1){
+                string rol;
+                if (usuario.get_rolUsuario() == 1){rol = "Supervisor";}else{rol = "Operador";}
+                cout << setw(6) << usuario.get_idUsuario()
+                << setw(15) << usuario.get_nombre()
+                << setw(15) << rol;
+                cout << endl;
+            }
+        }else{cout << "Lectura incorrecta";}
+
+    }
+
+    cout << endl << endl;
+    system("pause");
+
+}
+
+int usuariosManager::validarUsuario(){
+
+    usuariosArchivo uArchivo;
+    Usuario usuario, usuarioValido;
+    char contrasena[20];
+    bool usuarioEncontrado = false;
+    bool passCorrecta = false;
+    string nombreUsuario, pass;
+    int cont = 0;
+    size_t passHasheada;
+
+    int cantidadRegistros = uArchivo.get_cantidadRegistros();
+
+    while (true){
+        system("cls");
+        cout << endl << "Nombre de usuario: ";
+        cin >> nombreUsuario;
+        usuarioEncontrado = false;
+        for(int i = 0;i < cantidadRegistros; i++){
+
+            if(uArchivo.leerUsuario(i,usuario)){
+                if (usuario.get_estado() == 1 && usuario.get_nombre() == nombreUsuario){
+                    usuarioValido = usuario;
+                    usuarioEncontrado = true;
+                    break;
+                }
+            }else{
+                system("cls");
+                cout << "Lectura incorrecta de registro" << endl << endl;
+                system("pause");
+                return 0;
+            }
+
+        }
+
+        if (!usuarioEncontrado){
+            cout << endl << endl << "Usuario incorrecto" << endl << endl;
+            system("pause");
+        }
+        else{break;}
+
+    }
+
+
+    while (true){
+
+        system("cls");
+        cout << endl << "Contraseña: ";
+
+
+
+        int indice = 0; /// Indice del caracter que vamos ingresando
+        char ch; /// Caracter que vamos ingresando
+
+        while (true) {
+            ch = _getch(); /// Espera a que el usuario presione una tecla y la guarda en ch, sin mostrarla en pantalla.
+
+            if (ch == 13) { /// ch == 13 seria el enter en codigo ASCII, se rompe bucle y termina de ingresar la contrasena
+                break;
+
+            } else if ((ch == 8 || ch == 127) && indice > 0) {
+
+                indice--;          ///ch==8 y ch==127 son retrocesos, si se presionan y el indice es > 0 (o sea ya se escribio algo) el indice retrocede uno
+                cout << "\b \b";  /// y aca borramos visualmente el último *
+
+            }else if (indice < 19){
+                contrasena[indice++] = ch;
+                cout << '*'; // Mostrar asterisco
+            }
+        }
+        contrasena[indice] = '\0';
+
+        pass = contrasena;
+
+        cont++;
+
+        passHasheada = calcularHash(pass,usuarioValido.get_salt());
+
+        if (passHasheada == usuarioValido.get_hashContrasena()){
+            system("cls");
+            cout << endl << "Acceso correcto, bienvenido" << endl << endl;
+            system("pause");
+            return usuarioValido.get_rolUsuario();
+        }
+
+        if (cont == 3){
+            system("cls");
+            cout << endl << "Demasiados intentos, volver a intentar mas tarde" << endl << endl;
+            system("pause");
+            return 0;
+        }
+
+    }
+
+
 }

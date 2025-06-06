@@ -14,5 +14,7 @@ public:
     void establecerContrasena(Usuario &usuario);
     void establecerRol(Usuario &usuario);
     void resumen_y_guardado(Usuario &usuario);
+    void listarUsuarios();
+    int validarUsuario();
 
 };
