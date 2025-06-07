@@ -3,7 +3,7 @@
 class menuPrincipal{
 
   public:
-    void mostrar();
-    
+    void mostrar(int &rol);
+
 
 };

@@ -5,7 +5,7 @@ class menuClientes {
 
   public:
 
-    void mostrar();
+    void mostrar(int &rol);
     void menu_abm();
     void menulistados();
 

@@ -4,7 +4,7 @@ using namespace std;
 #include "menuUsuarios.h"
 #include "../Usuarios/usuariosManager.h"
 
-void menuUsuarios::mostrar(){
+void menuUsuarios::mostrar(int &rol){
 
     system("cls");
 
@@ -30,13 +30,31 @@ void menuUsuarios::mostrar(){
 
     switch(opcion) {
             case '1':
-                uManager.crearUsuario();
+                if (rol == 1){
+                    uManager.crearUsuario();
+                }else{
+                    system("cls");
+                    cout << endl << "Acceso restringido, no posee los permisos 🔒" << endl << endl;
+                    system("pause");
+                }
                 break;
             case '2':
-                uManager.bajaUsuario();
+                if(rol == 1){
+                    uManager.bajaUsuario();
+                }else{
+                    system("cls");
+                    cout << endl << "Acceso restringido, no posee los permisos 🔒" << endl << endl;
+                    system("pause");
+                }
                 break;
             case '3':
-                uManager.cambiarRol();
+                if (rol == 1){
+                    uManager.cambiarRol();
+                }else{
+                    system("cls");
+                    cout << endl << "Acceso restringido, no posee los permisos 🔒" << endl << endl;
+                    system("pause");
+                }
                 break;
             case '4':
                 uManager.listarUsuarios();

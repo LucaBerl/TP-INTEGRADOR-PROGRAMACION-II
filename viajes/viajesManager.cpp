@@ -65,7 +65,7 @@ void viajesManager::seleccionarCarga(Viajes &viaje){
         if(opcionCarga>0 && opcionCarga<22){
             if(viaje.set_tipoCarga(tCarga.get_tipoCarga(opcionCarga-1))){
 
-                cout << endl << "Opcion guardada '" << viaje.get_tipoCarga() << "' , presione cualquier tecla para continuar ..." << _getch() << endl;
+                cout << endl << "Opcion guardada '" << viaje.get_tipoCarga() << "'" << endl << endl;
             }
             else{cout << endl << "No se pudo guardar la carga" << endl;}
         }else{cout << endl << "Opcion invalida, presione cualquier tecla para volver a intentar ..." << _getch() <<  endl;}
@@ -404,8 +404,11 @@ bool viajesManager::actualizarEstados(){
                 camionesArchivo caArchivo;
                 int posicionCamion = caArchivo.buscarRegistro(viaje.get_chofer().get_camionAsignado().get_idCamion());
 
-                Choferes choferViaje = viaje.get_chofer();
-                Camiones camionViaje = viaje.get_chofer().get_camionAsignado();
+                Choferes choferViaje;
+                Camiones camionViaje;
+
+                cArchivo.leerChoferes(posicionChofer, choferViaje);
+                caArchivo.leerCamion(posicionCamion, camionViaje);
 
                 choferViaje.set_enViaje(0);
                 camionViaje.set_enViaje(0);

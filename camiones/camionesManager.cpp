@@ -576,7 +576,7 @@ void camionesManager::listarEnViaje(){
     << setw(30) << "MARCA"
     << setw(30) << "MODELO" << endl;
 
-    cout << "--------------------------------------------------------------" << endl;
+    cout << "----------------------------------------------------------------------------" << endl;
 
 
     int cantidadRegistros = caArchivo.get_cantidadRegistros();
@@ -589,9 +589,10 @@ void camionesManager::listarEnViaje(){
                 << setw(30) << camion.get_marca()
                 << setw(30) << camion.get_modelo()
                 << setw (10) << "En viaje 🚚🧭";
+                cout << endl;
 
             }
-            cout << endl;
+
         }else{cout << "Lectura incorrecta";}
 
     }
@@ -699,10 +700,10 @@ void camionesManager::mostrarKmPorCamion(){
     << setw(7) << "JUN"
     << setw(7) << "JUL"
     << setw(7) << "AGO"
-    << setw(5) << "SEP"
-    << setw(5) << "OCT"
-    << setw(5) << "NOV"
-    << setw(5) << "DIC" << endl;
+    << setw(7) << "SEP"
+    << setw(7) << "OCT"
+    << setw(7) << "NOV"
+    << setw(7) << "DIC" << endl;
 
     cout << "---------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 
@@ -1023,7 +1024,7 @@ void camionesManager::mostrarPorAntiguedad(){
 
     for (int i = 0; i < cant ; i++) {
         if (pcamion[i].get_aptoCircular() == 1){aptoCircular = "✔";}else{aptoCircular = "🚫";}
-        if (pcamion[i].get_choferAsignado() == 0){asignado = "✖";}else{aptoCircular = "✔";}
+        if (pcamion[i].get_choferAsignado() == 0){asignado = "❌";}else{asignado = "✔";}
         cout << setw(3) << pcamion[i].get_idCamion()
         << setw(10) << pcamion[i].get_patente()
         << setw(30) << pcamion[i].get_marca()

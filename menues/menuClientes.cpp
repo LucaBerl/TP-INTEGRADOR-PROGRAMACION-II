@@ -6,7 +6,7 @@ using namespace std;
 #include <conio.h>
 #include <windows.h>
 
-void menuClientes::mostrar(){
+void menuClientes::mostrar(int &rol){
 
     char opcion;
 

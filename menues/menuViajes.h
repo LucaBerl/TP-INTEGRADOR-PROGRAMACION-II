@@ -5,7 +5,7 @@ class menuViajes {
 
   public:
 
-    void mostrar();
+    void mostrar(int &rol);
 
 
 };

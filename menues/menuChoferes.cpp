@@ -5,7 +5,7 @@ using namespace std;
 #include <conio.h>
 #include <windows.h>
 
-void menuChoferes::mostrar()
+void menuChoferes::mostrar(int &rol)
 {
     choferesManager cManager;
     char opcion;
@@ -29,7 +29,13 @@ void menuChoferes::mostrar()
         switch(opcion)
         {
         case '1':
-            menu_abm();
+            if (rol == 1){
+                menu_abm();
+            }else{
+                system("cls");
+                cout << endl << "Acceso restringido, no posee los permisos 🔒" << endl << endl;
+                system("pause");
+            }
             break;
         case '2':
             menu_listados();

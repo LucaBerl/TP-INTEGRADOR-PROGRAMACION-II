@@ -21,5 +21,6 @@ void asignarCamion();
 void desasignarCamion();
 bool sincronizarCamionesAsignados();
 void mostrarKmPorChofer();
-
+bool buscarChoferesParaAsignar();
+bool buscarChoferesParaDesasignar();
 };

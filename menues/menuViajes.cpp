@@ -5,7 +5,7 @@ using namespace std;
 #include <conio.h>
 #include <windows.h>
 
-void menuViajes::mostrar(){
+void menuViajes::mostrar(int &rol){
 
     char opcion;
     viajesManager vManager;
@@ -27,7 +27,13 @@ void menuViajes::mostrar(){
 
     switch(opcion) {
             case '1':
-                vManager.crearViaje();
+                if (rol == 1){
+                    vManager.crearViaje();
+                }else{
+                    system("cls");
+                    cout << endl << "Acceso restringido 🔒🔒" << endl << endl;
+                    system("pause");
+                }
                 break;
             case '2':
                 vManager.listarActivos();

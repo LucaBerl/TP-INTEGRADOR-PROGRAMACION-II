@@ -10,7 +10,7 @@ using namespace std;
 
 
 
-void menuPrincipal::mostrar(){
+void menuPrincipal::mostrar(int &rol){
 
     system("cls");
 
@@ -43,20 +43,20 @@ void menuPrincipal::mostrar(){
 
     switch(opcion) {
             case '1':
-                menuV.mostrar();
+                menuV.mostrar(rol);
                 break;
             case '2':
-                menuCh.mostrar();
+                menuCh.mostrar(rol);
                 break;
             case '3':
-                menuCa.mostrar();
+                menuCa.mostrar(rol);
                 break;
 
             case '4':
-                menuClient.mostrar();
+                menuClient.mostrar(rol);
                 break;
             case '5':
-                menuUs.mostrar();
+                menuUs.mostrar(rol);
                 break;
             case '6':
                 return;

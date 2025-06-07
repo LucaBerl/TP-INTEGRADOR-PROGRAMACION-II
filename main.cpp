@@ -4,6 +4,7 @@
 #include <ctime>
 #include "viajes/viajesManager.h"
 #include "Clientes/ClientesArchivo.h"
+#include "Usuarios/usuariosManager.h"
 using namespace std;
 
 
@@ -11,6 +12,12 @@ using namespace std;
 int main()
 {
     srand(time(NULL));
+    usuariosManager uManager;
+    int rol = uManager.validarUsuario();
+
+    if (rol == 0){
+        return 0;
+    }
 
     viajesManager vManager;
     if(!vManager.actualizarEstados()){
@@ -23,7 +30,7 @@ int main()
     menuPrincipal mp;
 
 
-    mp.mostrar();
+    mp.mostrar(rol);
 
 
     return 0;
@@ -43,6 +50,6 @@ int main()
 /// -Ver kilometros
 /// -Informar estado de licencias y actualizar licencias en seccion choferes
 /// -Clase clientes y acoplar
-/// -Clase Usuarios
+/// -Clase Usuarios (Listo)
 
 

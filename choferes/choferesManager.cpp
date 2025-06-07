@@ -661,6 +661,13 @@ void choferesManager::asignarCamion(){
     choferesArchivo cArchivo;
     Choferes chofer;
 
+    if(!buscarChoferesParaAsignar()){
+        system("cls");
+        cout << "Actualmente, no hay choferes disponibles para asignar" << endl << endl;
+        system("pause");
+        return;
+    }
+
     listarSinCamion();
 
     cout << endl << endl << "Por favor, seleccionar ID de chofer para asignarle camión: ";
@@ -805,6 +812,14 @@ void choferesManager::desasignarCamion(){
 
     choferesArchivo cArchivo;
     Choferes chofer;
+
+    if(!buscarChoferesParaDesasignar()){
+        system("cls");
+        cout << "Actualmente, no hay choferes con camión asignado" << endl << endl;
+        system("pause");
+        return;
+    }
+
 
     listarConCamion();
 
@@ -1019,5 +1034,53 @@ void choferesManager::mostrarKmPorChofer(){
 
     cout << endl << endl;
     system("pause");
+
+}
+
+bool choferesManager::buscarChoferesParaAsignar(){
+
+    choferesArchivo cArchivo;
+    Choferes chofer;
+    int cantidadRegistrosChoferes = cArchivo.getCantidadRegistros();
+
+    for(int i = 0;i < cantidadRegistrosChoferes; i++){
+
+        if(cArchivo.leerChoferes(i,chofer)){
+            if (chofer.get_estado() == true && chofer.get_asignado() == false){
+                return 1;
+            }
+        }else{
+            cout << "Lectura incorrecta";
+            system("pause");
+            return 0;
+        }
+
+    }
+
+    return 0;
+
+}
+
+bool choferesManager::buscarChoferesParaDesasignar(){
+
+    choferesArchivo cArchivo;
+    Choferes chofer;
+    int cantidadRegistrosChoferes = cArchivo.getCantidadRegistros();
+
+    for(int i = 0;i < cantidadRegistrosChoferes; i++){
+
+        if(cArchivo.leerChoferes(i,chofer)){
+            if (chofer.get_estado() == true && chofer.get_asignado() == true){
+                return 1;
+            }
+        }else{
+            cout << "Lectura incorrecta";
+            system("pause");
+            return 0;
+        }
+
+    }
+
+    return 0;
 
 }
