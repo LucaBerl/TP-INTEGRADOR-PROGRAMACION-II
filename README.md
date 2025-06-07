@@ -1,85 +1,187 @@
 
 Carrera: Técnico Universitario en Programación
+
+
 Materia: Programación II
+
 Tema: TP Final - Integrador
 
 
 
+
 Integrantes de la cátedra
+
 Kloster, Daniel - Profesor
+
 Wenner, Maximiliano - Profesor
+
 Lara Campos, Brian - Profesor
+
 Simón, Angel  - Profesor
+
 Malvicino, Maximiliano Raúl - Ayudante
+
+
 
 TP Final Programación II. 2025 1C
 
 Integrantes del Grupo N° 52 : 
+
 Camila Milagros Ontivero → Legajo: 31729
+
 Franco Damian Brandan → Legajo: 31782
+
 Nicolas Lautaro Cragno → Legajo: 25109
+
 Lucas Berlingeri → Legajo: 31718
+
+
 
 Nombre: Empresa de Transporte
 
+
+
 Tema: Sistema de gestión para asignación y control de los viajes que desarrolla una empresa de logística/transporte, con sus respectivos choferes y camiones.
+
+
 
 Descripción: El sistema tiene como objetivo principal gestionar de manera eficiente los viajes de larga distancia de una empresa de transporte. El programa puede incorporar tanto choferes como camiones, con sus principales características y atributos. Se podrá asignar a cada chofer un camión, para luego generar y seguir en tiempo real una salida entre dos ciudades determinadas, transportando un tipo de carga en específico. A través de una interfaz basada en menús, el usuario puede administrar choferes, camiones, viajes, clientes y cargas, así como realizar consultas e informes detallados.
 
 
 Archivos a utilizar:
+
+
 1. Archivo de Camiones (camiones.dat):
+
   int _idCamion;		// Identificación única 
+
   char _patente[8];		// Patente
+
   char _marca[30];		// Nombre de marca
+
   char _modelo[30];		// Nombre de modelo
+
   int _anio;			// Año de fabricación	
+
   float _pesoCarga;		// Peso máximo soportado
+
   float _volumenCarga;		// Volumen máximo soportado
+
   float _kmMensuales[12];	// Kilómetros recorridos por mes en un año
+
   Fecha _ultimaVerificacion;	// Fecha en la que se le hizo la ultima verificación al camión
+
   bool _aptoCircular; 		// Luego de 1 año de pasada la fecha de la ultima verificación, si no se ha actualizado, se vence y este bool pasa a "false"
+
   bool _enViaje; 		// Si el camion se encuentra en viaje = true , si no = false
+
   bool _choferAsignado;  	// Si le asignamos un camión a un chofer, el estado pasa a "true"
+
   bool _estado;  		// Define si el registro esta activo o esta dado de baja
 
+
 2. Archivo de Choferes (choferes.dat):
+
   int _id;			// Identificador unico
+
   bool _asignado; 		// Booleano para verificar si tiene o no tiene camion asignado
+
   Camiones _camionAsignado;   	// Objeto del camion que se le asigna al chofer
+
   int _dni;			// DNI de chofer		
+
   char _nombre[30];		// Nombre del chofer
+
   char _apellido[30];		// Apellido del chofer
+
   int _experiencia;		// Experiencia en años
+
   Fecha _vencimientoLicencia;	// Fecha de vencimiento de la licencia de conducir
+
   bool _aptoCircular;		// Si la licencia está vencida, este bool toma el valor de "false"
+
   bool _enViaje;		// Booleano para determinar si el chofer esta o no en viaje
+
   float _kmMensuales[12];	// Kilómetros recorridos por mes en un año
+
   bool _estado; 		// Define si el registro esta activo o esta dado de baja
 
+
 3. Archivo de Viajes (viajes.dat):
+
   int _id;			// Identificador unico
+
   Choferes _chofer;		// Objeto chofer, que representa al chofer encargado de realizar el viaje
+
   Ciudades _ciudadOrigen;	// Objeto ciudad, que representa la ciudad de origen del viaje
+
   Ciudades _ciudadDestino;	// Objeto ciudad, que representa la ciudad de destino del viaje
+
   float _distancia;		// Distancia entre las ciudades
+
   struct tm _fechaSalida;	// Fecha de salida --> Representada en struct tm para luego hacer calculos con time(), para obtener tiempos estimados de viaje y tiempos restantes de finalizacion de viaje.
+
   struct tm _fechaLlegada;	// Fecha de llegada --> Representada en struct tm para luego hacer calculos con time(), para obtener tiempos estimados de viaje y tiempos restantes de finalizacion de viaje.
+
   char _tipoCarga[30];		// Tipo de carga transportada
+
   float _pesoTransportado;	// Peso transportado en el viaje
+
   float _volumenTransportado;	// Volumen transportado en el viaje
+
   bool _estado;			// Estado true = "viaje en curso" o false = "viaje finalizado"
+
   Clientes _cliente;		// Cliente al cual se le presta el servicio
+
 
 4. Archivo de Ciudades (ciudades.dat) (Archivo precargado) :
 
+  char codigo[50];		// Codigo ciudad
+
+  char provincia[50];		// Nombre provincia
+
+  char ciudad[50];		// Nombre ciudad
+
+  double lat;			// Latitud en grados
+
+  double lng;			// Longitud en grados
+
+
 5. Archivo de Usuarios (usuarios.dat):
+
+   char _nombre[11];		// Nombre de usuario
+
+   char _salt[10];            	// Salt aleatorio ( el salt es un conjunto de caracteres aleatorios que se le agrega al hash de la contraseña para hacerla mas segura)
+
+   size_t _hashContrasena;    	// Contraseña hasheada ( se hashea el string contraseña y el string salt)
+
+   int _idUsuario;		// Identificacion unica de usuario
+
+   int _rolUsuario;           	// 1- Supervisor , 2- Operador -- Diferentes permisos dentro del programa.
+
+   bool _estado;		// Estado de usuario, activo = "true", inactivo = "false
+
 
 6.Archivo de Clientes (clientes.dat):
 
+  int _idCliente;		// Identificador de cliente
+
+  char _nombre_RazonSocial[50];	// Nombre o razon social del cliente
+
+  char _direccion[50];		// Direccion o domicilio fiscal
+
+  char _telefono[25];		// Telefono
+
+  char _email[50];		// Email
+
+  int _cantidadViajesRealizados;// Cantidad de viajes realizados por el cliente
+
+  bool _estado;  		// Estado de cliente, activo o inactivo.
 
 
-Clases a desarrollar:
+
+
+CLASES A DESARROLLAR:
 
 -Camiones → Atributos principales de los camiones, getters, setters y funciones de mostrar.
 
@@ -128,36 +230,54 @@ Clases a desarrollar:
 -UsuariosArchivo -> métodos para leer, buscar, agregar o modificar el archivo usuarios.
 
 
-Reportes/Listados:
-
-Listado de camiones disponibles
-Muestra todos los camiones activos del sistema, junto con sus datos principales: patente,   carga, marca y modelo.
-
-Listado de camiones con verificación vencida
-Muestra aquellos camiones a los cuales se les ha vencido la verificación técnica
 
 
-Listado de kilómetros recorridos por camión
-Muestra los kilómetros recorridos por mes, por cada camión.
 
-Listado de choferes activos
-Muestra los choferes que están en servicio, incluyendo nombre, DNI,  disponibilidad y horario de llegada 
+REPORTES/LISTADOS:
 
-Listado de kilómetros recorridos por chofer
-Muestra los kilómetros recorridos por mes, por cada chofer.
+Viajes:
 
 
-Viajes realizados por un chofer
-Permite seleccionar un chofer y visualizar todos los viajes que ha realizado, incluyendo origen, destino, fechas
+Viajes Activos: Muestra aquellos viajes que se encuentran en transcurso.
 
-Historial de viajes
-Muestra todos los viajes realizados
-
-Viajes Activos
-Muestra aquellos viajes que se encuentran en transcurso
-
-Clientes
-Muestra los clientes, sus datos  y si tiene viajes realizados con la empresa 
+Historial de viajes: Muestra todos los viajes realizados hasta la fecha.
 
 
+
+Choferes:
+
+
+Choferes: Lista todos los Choferes que se encuentran guardados en archivo cuyo estado es activo.
+
+Choferes en viaje: Lista los Choferes que se encuentran actualmente en viaje.
+
+Choferes sin camión: Lista aquellos choferes que no tienen asignado un camión actualmente.
+
+Choferes con camión: Lista aquellos choferes que tienen asignado un camión actualmente.
+
+Cantidad de kilómetros por chofer: Informa la cantidad acumulada de kilómetros recorridos por un chofer en un mes determinado del año en curso.
+
+Estado de licencias: Informa el estado de las licencias de conducir de los choferes, si están vencidas o si están vigentes.
+
+
+
+Camiones:
+
+
+Camiones: Lista todos los Camiones que se encuentran guardados en archivo cuyo estado es activo.
+
+Camiones en viaje: Lista los Camiones que se encuentran actualmente en viaje.
+
+Disponibles para asignar: Lista todos los camiones que se encuentran en condiciones de ser asignados a un chofer.
+
+Por antigüedad: Lista los camiones de menor a mayor según su antigüedad.
+
+Cantidad de kilómetros por camión: Informa la cantidad acumulada de kilómetros recorridos por un camión en un mes determinado del año en curso.
+
+Estado de verificaciones: Informa el estado de las verificaciones técnicas de los camiones. Si están vencidas o si se encuentran vigentes.
+
+
+Usuarios:
+
+Listar usuarios: Ofrece una lista de los usuarios activos y sus IDs.
 

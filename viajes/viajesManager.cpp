@@ -614,9 +614,9 @@ bool viajesManager::listarChoferesDisponibles(Viajes &viaje){
     << setw(20) << "APELLIDO"
     << setw(7) << "EXP."
     << setw(15) << "VENC. LIC."
+    << setw(30) << "CAMIÓN"
     << setw(8) << "APTO"
-    << setw(12) << "EN VIAJE"
-    << setw(30) << "CAMIÓN";
+    << setw(12) << "EN VIAJE";
 
     cout << endl << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
 

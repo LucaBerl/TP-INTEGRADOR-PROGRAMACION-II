@@ -7,7 +7,6 @@ class Clientes{
 
 private:
   int _idCliente;
-
   char _nombre_RazonSocial[50];
   char _direccion[50];
   char _telefono[25];
