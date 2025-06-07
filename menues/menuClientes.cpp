@@ -108,7 +108,7 @@ void menuClientes::menulistados(){
     cout << "        LISTADOS DE CLIENTES" << endl;
     cout << "=======================================" << endl;
     cout << "1. LISTAR TODOS" << endl;
-    cout << "2. LISTAR EN VIAJE" << endl;
+    cout << "2. HISTORIAL CLIENTES DE CLIENTES" << endl;
     cout << "3. LISTAR CLIENTES INACTIVOS OR ELIMINADOS" << endl;
     cout << endl;
     cout << "4. VOLVER AL MENÚ CLIENTES" << endl;
@@ -122,7 +122,7 @@ void menuClientes::menulistados(){
                 clientManager.mostrarTodos();
                 break;
             case '2':
-
+                clientManager.viajesClientes();
                 break;
             case '3':
                 clientManager.mostrarClienteInactivos();

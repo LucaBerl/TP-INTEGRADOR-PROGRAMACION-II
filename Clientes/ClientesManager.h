@@ -12,7 +12,7 @@ public:
     void altaCliente();
     void bajaCliente();
     void actualizarCliente();
-
+    void viajesClientes();
     void mostrarClienteInactivos();
 
 //    bool validacion(string parametro);

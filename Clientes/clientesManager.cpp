@@ -7,6 +7,9 @@ using namespace std;
 #include <conio.h>
 #include <iomanip>
 #include "clientesManager.h"
+#include "../viajes/viajesManager.h"
+#include "../viajes/viajes.h"
+#include "../viajes/viajesArchivo.h"
 
 
 void clientesManager::mostrarTodos(){
@@ -600,6 +603,71 @@ clientesArchivo clientArchivo;
 }
 
 
+
+
+void clientesManager::viajesClientes(){
+
+     system("cls");
+    viajesArchivo vArchivo;
+    Viajes viaje;
+    viajesManager viajesManger;
+    clientesArchivo clientesArchivo;
+
+
+    if(!viajesManger.actualizarEstados()){
+        system("cls");
+        cout << endl << endl << "Error en sincronización de datos" << endl << endl;
+        system("pause");
+        return;
+    }
+
+    int cantidadRegistros = vArchivo.get_cantidadRegistros();
+
+
+    cout << left; // Alinear a la izquierda todo
+
+    // Encabezado
+   cout << left;
+    cout << setw(4)  << "ID"
+     << setw(20) << "Nombre/Empresa"
+     << setw(15) << "Direccion"
+     << setw(15) << "Origen"
+     << setw(15) << "Destino"
+     << setw(15) << "Distancia"
+     << setw(10) << "Estado";
+
+cout << endl << string(119, '-') << endl;
+
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+
+
+        if(vArchivo.leerViaje(i,viaje)){
+
+            if(viaje.get_estado() == true){
+
+                cout << setw(4)  << viaje.get_cliente().get_idCliente()
+     << setw(20) <<viaje.get_cliente().get_Nombre_RazonSocial()
+     << setw(15) << viaje.get_cliente().get_Direccion()
+     << setw(15) << viaje.get_ciudadOrigen().getCiudad()
+     << setw(15) << viaje.get_ciudadDestino().getCiudad()
+     << setw(10) << viaje.get_distancia();
+
+
+  cout << "        ";
+  cout << setw(10) << viaje.get_estado()
+     << endl;
+
+            }
+
+        }else{cout << "No se pudo leer el viaje";}
+
+    }
+
+    cout << endl << endl;
+    system("pause");
+}
 
 
 
