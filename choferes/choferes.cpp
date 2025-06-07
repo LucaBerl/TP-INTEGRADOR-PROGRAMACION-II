@@ -185,9 +185,9 @@ void Choferes::mostrar()const{
     string enviaje;
     string camion;
 
-    if (get_aptoCircular()){aptoCircular = "✔";} else{aptoCircular = "🚫";}
-    if (get_enViaje()){enviaje = "✔" ;}else{enviaje = "❌" ;}
-    if (get_asignado()){camion = string(get_camionAsignado().get_marca()) + " " + string(get_camionAsignado().get_modelo());}else{camion = "❌"; }
+    if (get_aptoCircular()){aptoCircular = "✅";} else{aptoCircular = "❌";}
+    if (get_enViaje()){enviaje = "✅" ;}else{enviaje = "❌" ;}
+    if (get_asignado()){camion = string(get_camionAsignado().get_marca()) + " " + string(get_camionAsignado().get_modelo());}else{camion = "Sin Camion"; }
 
     cout << left;
     cout << setw(6) << get_id()
@@ -196,9 +196,9 @@ void Choferes::mostrar()const{
     << setw(20) << get_apellido()
     << setw(7) << get_experiencia()
     << setw(15) << get_vencimientoLicencia().toString()
+    << setw(30) << camion
     << setw(12) << aptoCircular
-    << setw(12) << enviaje
-    << setw(30) << camion;
+    << setw(12) << enviaje;
 
 }
 

@@ -47,7 +47,7 @@ int main()
 /// -Actualizar estados de viaje para chofere y camiones (Listo)
 /// -Asignar la actualizacion de viaje en los menues (Listo)
 /// -Agregar kilometros recorridos en choferes y camiones despues de guardar cada viaje (Listo)
-/// -Ver kilometros
+/// -Ver kilometros (Listo)
 /// -Informar estado de licencias y actualizar licencias en seccion choferes
 /// -Clase clientes y acoplar
 /// -Clase Usuarios (Listo)

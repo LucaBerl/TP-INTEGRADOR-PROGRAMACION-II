@@ -324,7 +324,7 @@ cout << endl << "🧊 Volumen transportado: " << viaje.get_volumenTransportado()
 cout << endl << endl;
 
 cout << endl << endl << "Confirmar viaje?" << endl;
-cout << endl << "1. SI" << endl << "2. NO" << endl;
+cout << endl << "1. SI" << endl << "2. NO" << endl << endl << "-->";
 int opcionNumerica;
 
     while (true) {

@@ -411,9 +411,9 @@ void choferesManager::listarTodos(){
     << setw(20) << "APELLIDO"
     << setw(7) << "EXP."
     << setw(15) << "VENC. LIC."
+    << setw(30) << "CAMIÓN"
     << setw(8) << "APTO"
-    << setw(12) << "EN VIAJE"
-    << setw(30) << "CAMIÓN";
+    << setw(12) << "EN VIAJE";
 
     cout << endl << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
 
@@ -462,9 +462,9 @@ void choferesManager::listarSinCamion(){
     << setw(20) << "APELLIDO"
     << setw(7) << "EXP."
     << setw(15) << "VENC. LIC."
+    << setw(30) << "CAMIÓN"
     << setw(8) << "APTO"
-    << setw(12) << "EN VIAJE"
-    << setw(30) << "CAMIÓN";
+    << setw(12) << "EN VIAJE";
 
     cout << endl << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
 
@@ -514,9 +514,9 @@ void choferesManager::listarConCamion(){
     << setw(20) << "APELLIDO"
     << setw(7) << "EXP."
     << setw(15) << "VENC. LIC."
+    << setw(30) << "CAMIÓN"
     << setw(8) << "APTO"
-    << setw(12) << "EN VIAJE"
-    << setw(30) << "CAMIÓN";
+    << setw(12) << "EN VIAJE";
 
     cout << endl << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
 
@@ -567,9 +567,9 @@ void choferesManager::listarEnViaje(){
     << setw(20) << "APELLIDO"
     << setw(7) << "EXP."
     << setw(15) << "VENC. LIC."
+    << setw(30) << "CAMIÓN"
     << setw(8) << "APTO"
-    << setw(12) << "EN VIAJE"
-    << setw(30) << "CAMIÓN";
+    << setw(12) << "EN VIAJE";
 
     cout << endl << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
 
@@ -594,9 +594,9 @@ void choferesManager::listarEnViaje(){
 bool choferesManager::licenciaVencida(const Fecha &fecha){
 
     struct tm fechaVencimiento = {};
-    /// Fecha de vencimiento = fecha original + 1 año
+    /// Fecha de vencimiento
 
-    fechaVencimiento.tm_year = fecha.get_Anio() - 1900 + 1;
+    fechaVencimiento.tm_year = fecha.get_Anio() - 1900;
     fechaVencimiento.tm_mon  = fecha.get_Mes() - 1;
     fechaVencimiento.tm_mday = fecha.get_Dia();
 

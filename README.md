@@ -1,7 +1,7 @@
 
 Carrera: Técnico Universitario en Programación
 Materia: Programación II
-Tema: TP Final
+Tema: TP Final - Integrador
 
 
 
@@ -29,11 +29,54 @@ Descripción: El sistema tiene como objetivo principal gestionar de manera efici
 
 Archivos a utilizar:
 1. Archivo de Camiones (camiones.dat):
+  int _idCamion;		// Identificación única 
+  char _patente[8];		// Patente
+  char _marca[30];		// Nombre de marca
+  char _modelo[30];		// Nombre de modelo
+  int _anio;			// Año de fabricación	
+  float _pesoCarga;		// Peso máximo soportado
+  float _volumenCarga;		// Volumen máximo soportado
+  float _kmMensuales[12];	// Kilómetros recorridos por mes en un año
+  Fecha _ultimaVerificacion;	// Fecha en la que se le hizo la ultima verificación al camión
+  bool _aptoCircular; 		// Luego de 1 año de pasada la fecha de la ultima verificación, si no se ha actualizado, se vence y este bool pasa a "false"
+  bool _enViaje; 		// Si el camion se encuentra en viaje = true , si no = false
+  bool _choferAsignado;  	// Si le asignamos un camión a un chofer, el estado pasa a "true"
+  bool _estado;  		// Define si el registro esta activo o esta dado de baja
+
 2. Archivo de Choferes (choferes.dat):
+  int _id;			// Identificador unico
+  bool _asignado; 		// Booleano para verificar si tiene o no tiene camion asignado
+  Camiones _camionAsignado;   	// Objeto del camion que se le asigna al chofer
+  int _dni;			// DNI de chofer		
+  char _nombre[30];		// Nombre del chofer
+  char _apellido[30];		// Apellido del chofer
+  int _experiencia;		// Experiencia en años
+  Fecha _vencimientoLicencia;	// Fecha de vencimiento de la licencia de conducir
+  bool _aptoCircular;		// Si la licencia está vencida, este bool toma el valor de "false"
+  bool _enViaje;		// Booleano para determinar si el chofer esta o no en viaje
+  float _kmMensuales[12];	// Kilómetros recorridos por mes en un año
+  bool _estado; 		// Define si el registro esta activo o esta dado de baja
+
 3. Archivo de Viajes (viajes.dat):
+  int _id;			// Identificador unico
+  Choferes _chofer;		// Objeto chofer, que representa al chofer encargado de realizar el viaje
+  Ciudades _ciudadOrigen;	// Objeto ciudad, que representa la ciudad de origen del viaje
+  Ciudades _ciudadDestino;	// Objeto ciudad, que representa la ciudad de destino del viaje
+  float _distancia;		// Distancia entre las ciudades
+  struct tm _fechaSalida;	// Fecha de salida --> Representada en struct tm para luego hacer calculos con time(), para obtener tiempos estimados de viaje y tiempos restantes de finalizacion de viaje.
+  struct tm _fechaLlegada;	// Fecha de llegada --> Representada en struct tm para luego hacer calculos con time(), para obtener tiempos estimados de viaje y tiempos restantes de finalizacion de viaje.
+  char _tipoCarga[30];		// Tipo de carga transportada
+  float _pesoTransportado;	// Peso transportado en el viaje
+  float _volumenTransportado;	// Volumen transportado en el viaje
+  bool _estado;			// Estado true = "viaje en curso" o false = "viaje finalizado"
+  Clientes _cliente;		// Cliente al cual se le presta el servicio
+
 4. Archivo de Ciudades (ciudades.dat) (Archivo precargado) :
+
 5. Archivo de Usuarios (usuarios.dat):
-6.Archivo de Clientes (clientes.dat)
+
+6.Archivo de Clientes (clientes.dat):
+
 
 
 Clases a desarrollar:

@@ -231,15 +231,15 @@ camion.set_ultimaVerificacion(fechaVerificacion);
      while (true) {
         system("cls");
         encabezadoAlta(marca, modelo, patente);
-        cout << endl << endl << "Volumen máximo de carga (Entre 1 y 150 mts\u00B3): ";
-        cin >> volumen;
+        cout << endl << endl << "Peso máximo de carga (Entre 500 y 70.000 kg): ";
+        cin >> peso;
         if (cin.fail()) {
             cin.clear(); // Limpia el estado de error
             cin.ignore(1000, '\n'); // Descarta el resto de la línea
             cout << endl << "Ingreso incorrecto, intente nuevamente: ";
             continue;
         }
-        if (camion.set_volumenCarga(volumen)){
+        if (camion.set_pesoCarga(peso)){
             cout << " Guardado correcto ✔" << endl;
             cin.ignore(1000, '\n'); // Por si quedan residuos
 
@@ -249,8 +249,6 @@ camion.set_ultimaVerificacion(fechaVerificacion);
         }
     }
 
-    camion.set_idCamion(caArchivo.get_ultimoID());
-    system("cls");
 
 /// VOLUMEN /////////////////////////////////////////////////////////////////////////////////////////
 
