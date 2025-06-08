@@ -18,7 +18,7 @@ void menuClientes::mostrar(int &rol){
     cout << "1. ALTA/BAJA/ACTUALIZACIÓN" << endl;
     cout << "2. LISTADOS" << endl;
     cout << endl;
-    cout << "4. VOLVER AL MENÚ PRINCIPAL" << endl;
+    cout << "ESC. VOLVER AL MENÚ PRINCIPAL" << endl;
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
@@ -31,10 +31,7 @@ void menuClientes::mostrar(int &rol){
             case '2':
                 menulistados();
                 break;
-            case '3':
-
-                break;
-            case '4':
+            case 27:
                 return;
                 break;
             default:
@@ -43,7 +40,7 @@ void menuClientes::mostrar(int &rol){
 
       cout << endl << endl;
 
-    } while(opcion != '4');
+    } while(opcion != 27);
 
 
 
@@ -65,7 +62,7 @@ void menuClientes::menu_abm(){
     cout << "2. BAJA CLIENTE" << endl;
     cout << "3. ACTUALIZAR CLIENTE" << endl;
     cout << endl;
-    cout << "4. VOLVER AL MENÚ CLIENTES" << endl;
+    cout << "ESC. VOLVER AL MENÚ CLIENTES" << endl;
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
@@ -81,7 +78,7 @@ void menuClientes::menu_abm(){
             case '3':
                 clientManager.actualizarCliente();
                 break;
-            case '4':
+            case 27:
                 return;
                 break;
             default:
@@ -90,7 +87,7 @@ void menuClientes::menu_abm(){
 
       cout << endl << endl;
 
-    } while(opcion != '4');
+    } while(opcion != 27);
 }
 
 
@@ -111,7 +108,7 @@ void menuClientes::menulistados(){
     cout << "2. HISTORIAL CLIENTES DE CLIENTES" << endl;
     cout << "3. LISTAR CLIENTES INACTIVOS OR ELIMINADOS" << endl;
     cout << endl;
-    cout << "4. VOLVER AL MENÚ CLIENTES" << endl;
+    cout << "ESC. VOLVER AL MENÚ CLIENTES" << endl;
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
@@ -127,7 +124,7 @@ void menuClientes::menulistados(){
             case '3':
                 clientManager.mostrarClienteInactivos();
                 break;
-            case '4':
+            case 27:
                 return;
                 break;
             default:
@@ -136,6 +133,6 @@ void menuClientes::menulistados(){
 
       cout << endl << endl;
 
-    } while(opcion != '4');
+    } while(opcion != 27);
 
 }

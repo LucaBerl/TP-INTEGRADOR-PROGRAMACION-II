@@ -20,7 +20,7 @@ void menuChoferes::mostrar(int &rol)
         cout << "3. ASIGNAR CAMIÓN" << endl;
         cout << "4. DESASIGNAR CAMIÓN" << endl;
         cout << endl;
-        cout << "5. VOLVER AL MENÚ PRINCIPAL" << endl;
+        cout << "ESC. VOLVER AL MENÚ PRINCIPAL" << endl;
         cout << "=======================================" << endl;
         cout << "Ingrese una opción: ";
 
@@ -46,7 +46,7 @@ void menuChoferes::mostrar(int &rol)
         case '4':
             cManager.desasignarCamion();
             break;
-        case '5':
+        case 27:
             return;
             break;
         default:
@@ -56,7 +56,7 @@ void menuChoferes::mostrar(int &rol)
         cout << endl << endl;
 
     }
-    while(opcion != '5');
+    while(opcion != 27);
 }
 
 void menuChoferes::menu_abm()
@@ -77,7 +77,7 @@ void menuChoferes::menu_abm()
         cout << "2. BAJA CHOFER" << endl;
         cout << "3. ACTUALIZAR LICENCIA" << endl;
         cout << endl;
-        cout << "4. VOLVER AL MENÚ CHOFERES" << endl;
+        cout << "ESC. VOLVER AL MENÚ CHOFERES" << endl;
         cout << "=======================================" << endl;
         cout << "Ingrese una opción: ";
 
@@ -94,7 +94,7 @@ void menuChoferes::menu_abm()
         case '3':
             cManager.actualizarLicencia();
             break;
-        case '4':
+        case 27:
             return;
             break;
         default:
@@ -104,7 +104,7 @@ void menuChoferes::menu_abm()
         cout << endl << endl;
 
     }
-    while(opcion != '4');
+    while(opcion != 27);
 }
 
 void menuChoferes::menu_listados()
@@ -128,7 +128,7 @@ void menuChoferes::menu_listados()
         cout << "5. INFORMAR CANTIDAD DE KM POR CHOFER" << endl;
         cout << "6. INFORMAR ESTADO DE LICENCIAS" << endl; //ESTABA HORAS MANEJADAS, PERO ES DIFICIL.
         cout << endl;
-        cout << "7. VOLVER AL MENÚ CHOFERES" << endl;
+        cout << "ESC. VOLVER AL MENÚ CHOFERES" << endl;
         cout << "=======================================" << endl;
         cout << "Ingrese una opción: ";
 
@@ -154,7 +154,7 @@ void menuChoferes::menu_listados()
         case '6':
 
             break;
-        case '7':
+        case 27:
             return;
             break;
         default:
@@ -164,6 +164,6 @@ void menuChoferes::menu_listados()
         cout << endl << endl;
 
     }
-    while(opcion != '7');
+    while(opcion != 27);
 
 }

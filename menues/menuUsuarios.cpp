@@ -22,7 +22,7 @@ void menuUsuarios::mostrar(int &rol){
     cout << "3. CAMBIAR ROL DE USUARIO" << endl;
     cout << "4. MOSTRAR USUARIOS" << endl;
     cout << endl;
-    cout << "5. SALIR" << endl;
+    cout << "ESC. SALIR" << endl;
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
@@ -59,7 +59,7 @@ void menuUsuarios::mostrar(int &rol){
             case '4':
                 uManager.listarUsuarios();
                 break;
-            case '5':
+            case 27:
                 return;
                 break;
             default:
@@ -68,5 +68,5 @@ void menuUsuarios::mostrar(int &rol){
 
       cout << endl << endl;
 
-    } while(opcion != '5');
+    } while(opcion != 27);
 }

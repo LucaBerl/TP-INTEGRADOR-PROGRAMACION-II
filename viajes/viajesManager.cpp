@@ -446,7 +446,7 @@ void viajesManager::listarActivos(){
 
     int cantidadRegistros = vArchivo.get_cantidadRegistros();
 
-    cout << left; // Alinear a la izquierda todo
+    cout << left << fixed << setprecision(0);
 
     // Encabezado
    cout << left;
@@ -494,7 +494,8 @@ void viajesManager::listarHistorial(){
 
     int cantidadRegistros = vArchivo.get_cantidadRegistros();
 
-    cout << left;
+
+    cout << left << fixed << setprecision(2);
     cout << setw(3)  << "ID"
      << setw(40) << "Chofer"
      << setw(33) << "Origen"

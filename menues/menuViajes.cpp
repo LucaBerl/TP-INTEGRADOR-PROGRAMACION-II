@@ -19,7 +19,7 @@ void menuViajes::mostrar(int &rol){
     cout << "2. VIAJES ACTIVOS" << endl;
     cout << "3. HISTORIAL DE VIAJES" << endl;
     cout << endl;
-    cout << "4. VOLVER AL MENÚ PRINCIPAL" << endl;
+    cout << "ESC. VOLVER AL MENÚ PRINCIPAL" << endl;
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
@@ -41,7 +41,7 @@ void menuViajes::mostrar(int &rol){
             case '3':
                 vManager.listarHistorial();
                 break;
-            case '4':
+            case 27:
                 return;
                 break;
             default:
@@ -50,6 +50,6 @@ void menuViajes::mostrar(int &rol){
 
       cout << endl << endl;
 
-    } while(opcion != '4');
+    } while(opcion != 27);
 }
 

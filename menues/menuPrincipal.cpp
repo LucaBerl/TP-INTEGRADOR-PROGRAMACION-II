@@ -35,7 +35,7 @@ void menuPrincipal::mostrar(int &rol){
     cout << "4. CLIENTES" << endl;
     cout << "5. USUARIOS" << endl;
     cout << endl;
-    cout << "6. SALIR" << endl;
+    cout << "ESC. SALIR" << endl;
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
@@ -58,7 +58,7 @@ void menuPrincipal::mostrar(int &rol){
             case '5':
                 menuUs.mostrar(rol);
                 break;
-            case '6':
+            case 27:
                 return;
                 break;
             default:
@@ -67,5 +67,5 @@ void menuPrincipal::mostrar(int &rol){
 
       cout << endl << endl;
 
-    } while(opcion != '6');
+    } while(opcion != 27);
 }

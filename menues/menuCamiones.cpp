@@ -17,7 +17,7 @@ void menuCamiones::mostrar(int &rol){
     cout << "1. ALTA/BAJA/ACTUALIZACIÓN" << endl;
     cout << "2. LISTADOS/REPORTES" << endl;
     cout << endl;
-    cout << "3. VOLVER AL MENÚ PRINCIPAL" << endl;
+    cout << "ESC. VOLVER AL MENÚ PRINCIPAL" << endl;
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
@@ -36,7 +36,7 @@ void menuCamiones::mostrar(int &rol){
             case '2':
                 menu_listados();
                 break;
-            case '3':
+            case 27:
                 return;
                 break;
             default:
@@ -45,7 +45,7 @@ void menuCamiones::mostrar(int &rol){
 
       cout << endl << endl;
 
-    } while(opcion != '3');
+    } while(opcion != 27);
 
 
 
@@ -67,7 +67,7 @@ void menuCamiones::menu_abm(){
     cout << "2. BAJA CAMION" << endl;
     cout << "3. ACTUALIZAR VERIFICACION" << endl;
     cout << endl;
-    cout << "4. VOLVER AL MENÚ CAMIONES" << endl;
+    cout << "ESC. VOLVER AL MENÚ CAMIONES" << endl;
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
@@ -83,7 +83,7 @@ void menuCamiones::menu_abm(){
             case '3':
                 caManager.modificarVerificacion();
                 break;
-            case '4':
+            case 27:
                 return;
                 break;
             default:
@@ -92,7 +92,7 @@ void menuCamiones::menu_abm(){
 
       cout << endl << endl;
 
-    } while(opcion != '4');
+    } while(opcion != 27);
 }
 
 void menuCamiones::menu_listados(){
@@ -114,7 +114,7 @@ void menuCamiones::menu_listados(){
     cout << "5. INFORMAR CANTIDAD DE KM POR CAMION" << endl;
     cout << "6. INFORMAR ESTADO DE VERIFICACIONES" << endl;
     cout << endl;
-    cout << "7. VOLVER AL MENÚ CAMIONES" << endl;
+    cout << "ESC. VOLVER AL MENÚ CAMIONES" << endl;
     cout << "=======================================" << endl;
     cout << "Ingrese una opcion: ";
 
@@ -139,7 +139,7 @@ void menuCamiones::menu_listados(){
             case '6':
                 caManager.mostrarVerificaciones();
                 break;
-            case '7':
+            case 27:
                 return;
                 break;
             default:
@@ -148,7 +148,7 @@ void menuCamiones::menu_listados(){
 
       cout << endl << endl;
 
-    } while(opcion != '7');
+    } while(opcion != 27);
 
 }
 
