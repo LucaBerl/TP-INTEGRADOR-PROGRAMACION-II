@@ -18,5 +18,6 @@ public:
     int validarUsuario();
     void bajaUsuario();
     void cambiarRol();
+    bool nombreUsuarioExistente(std::string nombreUsuario);
 
 };

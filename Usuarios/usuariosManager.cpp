@@ -129,12 +129,18 @@ void usuariosManager::establecerNombre(Usuario &usuario){
         system("cls");
         cout << "Nombre de usuario (letras y/o números, sin espacios, máximo 10 caracteres): ";
         cin >> nombreUsuario;
-        if (usuario.set_nombre(nombreUsuario)){
-            cout << endl << endl << "Usuario válido: " << usuario.get_nombre() << endl << endl;
-            break;
+        if(!nombreUsuarioExistente(nombreUsuario)){
+            if (usuario.set_nombre(nombreUsuario)){
+                cout << endl << endl << "Usuario válido: " << usuario.get_nombre() << endl << endl;
+                break;
+            }
+            else{
+                cout << endl << endl << "Usuario incorrecto, intente nuevamente" << endl << endl;
+                system("pause");
+            }
         }
         else{
-            cout << endl << endl << "Usuario incorrecto, intente nuevamente" << endl << endl;
+            cout << endl << endl << "El usuario ya existe, elija otro" << endl << endl;
             system("pause");
         }
     }
@@ -548,5 +554,29 @@ void usuariosManager::cambiarRol(){
         }
 
     }
+
+}
+
+bool usuariosManager::nombreUsuarioExistente(string nombreUsuario){
+
+
+    usuariosArchivo uArchivo;
+    Usuario usuario;
+
+
+    int cantidadRegistros = uArchivo.get_cantidadRegistros();
+
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(uArchivo.leerUsuario(i,usuario)){
+            if (usuario.get_estado() == true && usuario.get_nombre() == nombreUsuario){
+                return true;
+            }
+        }else{cout << "Lectura incorrecta";}
+
+    }
+
+    return false;
 
 }
