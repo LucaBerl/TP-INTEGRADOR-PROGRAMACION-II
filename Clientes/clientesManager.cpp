@@ -13,59 +13,41 @@ using namespace std;
 
 
 void clientesManager::mostrarTodos(){
-{
 
 
-    clientesArchivo clientArchivo;
+clientesArchivo clientArchivo;
     Clientes clientes;
-    cout << left << fixed << setprecision(0);
-
-  /*
-  int _idCliente;
-  char _nombre_RazonSocial[50];
-  char _direccion[50];
-  char _telefono[15];
-  char _email[50];
-  int _cantidadViajesRealizados;
-
-
-  */
 
     system("cls");
 
-    cout << left;
-    cout << setw(3) << "ID   "
-    << setw(15) << "RAZON SOCIAL / NOMBRE   "
-    << setw(15) << "DIRECCION"
-    << setw(15) << "TELEFONO"
-    << setw(15) << "EMAIL    "
-    << setw(3) << "CANTIDAD VIAJES REALIZADOS";
+    cout << left << fixed;
 
+    // Encabezado alineado con los mismos setw que los datos
+    cout << setw(5)  << "ID"
+         << setw(30) << "RAZON SOCIAL / NOMBRE"
+         << setw(30) << "DIRECCION"
+         << setw(20) << "TELEFONO"
+         << setw(25) << "EMAIL"
+         << setw(10) << "VIAJES";
 
-    cout << endl << "----------------------------------------------------------------------------------------------------------------" << endl;
-
+    cout << endl << string(120, '-') << endl;
 
     int cantidadRegistros = clientArchivo.getCantidadClientes();
 
-    for(int i = 0;i < cantidadRegistros; i++){
-
-        if(clientArchivo.leerClientes(i,clientes)){
-                 if (clientes.get_estado() == 1){
-
-                    clientes.mostrar(1);
-                    cout << endl;
-
-
-                }
-
-
-            }else{cout << "Lectura incorrecta";}
-
-   }
+    for (int i = 0; i < cantidadRegistros; i++) {
+        if (clientArchivo.leerClientes(i, clientes)) {
+            if (clientes.get_estado() == 1) {
+                clientes.mostrar(1);
+                cout << endl;
+            }
+        } else {
+            cout << "Lectura incorrecta" << endl;
+        }
+    }
 
     cout << endl << endl;
     system("pause");
-}
+
 
 
 }
@@ -548,55 +530,35 @@ void clientesManager::actualizarCliente(){
 void clientesManager::mostrarClienteInactivos(){
 
 
-clientesArchivo clientArchivo;
+    clientesArchivo clientArchivo;
     Clientes clientes;
-
-
-    cout << left << fixed << setprecision(0);
-
-  /*
-  int _idCliente;
-  char _nombre_RazonSocial[50];
-  char _direccion[50];
-  char _telefono[15];
-  char _email[50];
-  int _cantidadViajesRealizados;
-
-
-  */
 
     system("cls");
 
-    cout << left;
-    cout << setw(3) << "ID   "
-    << setw(15) << "RAZON SOCIAL / NOMBRE   "
-    << setw(15) << "DIRECCION"
-    << setw(15) << "TELEFONO"
-    << setw(15) << "EMAIL"
-    << setw(3) << "CANTIDAD VIAJES REALIZADOS";
+    cout << left << fixed;
 
+    // Encabezado de tabla
+   cout << setw(5)  << "ID"
+         << setw(30) << "RAZON SOCIAL / NOMBRE"
+         << setw(30) << "DIRECCION"
+         << setw(20) << "TELEFONO"
+         << setw(25) << "EMAIL"
+         << setw(10) << "VIAJES";
 
-    cout << endl << "----------------------------------------------------------------------------------------------------------------" << endl;
-
+    cout << endl << string(120, '-') << endl;
 
     int cantidadRegistros = clientArchivo.getCantidadClientes();
 
-    for(int i = 0;i < cantidadRegistros; i++){
-
-        if(clientArchivo.leerClientes(i,clientes)){
-                 if (clientes.get_estado() == 0){
-
-                    clientes.mostrar(0);
-
-                    cout << endl;
-
-
-                }
-
-
-            }else{cout << "Lectura incorrecta";}
-
-   }
+    for(int i = 0; i < cantidadRegistros; i++) {
+        if(clientArchivo.leerClientes(i, clientes)) {
+            if(clientes.get_estado() == 0) {
+                clientes.mostrar(0);
+                cout << endl;
+            }
+        } else {
+            cout << "Lectura incorrecta" << endl;
+        }
+    }
 
     cout << endl << endl;
     system("pause");
@@ -654,9 +616,19 @@ cout << endl << string(119, '-') << endl;
      << setw(15) << viaje.get_ciudadDestino().getCiudad()
      << setw(10) << viaje.get_distancia();
 
+     string estadoDeviaje;
 
-  cout << "        ";
-  cout << setw(10) << viaje.get_estado()
+     if(viaje.get_estado()){
+         estadoDeviaje="En Viaje";
+
+     }else{
+        estadoDeviaje="Finalizado";
+
+     }
+
+
+  cout << "     ";
+  cout << setw(10) << estadoDeviaje
      << endl;
 
             }

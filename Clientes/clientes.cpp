@@ -103,26 +103,14 @@ bool Clientes::get_estado()const{
 
 void Clientes::mostrar(int estado )const{
 
-/*    string aptoCircular, disponibilidad;
-
-    if (get_aptoCircular()){aptoCircular = "✔";}else{aptoCircular = "🚫";}
-    if (get_enViaje()){disponibilidad = "❌";}else{disponibilidad = "✔";}
-
-*/
-
-    if(get_estado() == estado){
-
-
-        cout << left;
-    cout << setw(3) << get_idCliente()
-    << setw(10) << get_Nombre_RazonSocial()
-    << setw(30) << get_Direccion()
-    << setw(30) << get_Telefono()
-    << setw(6) << get_Email()
-    << setw(7) << get_Cantidad_Viajes_Realizados();
-
-
-
+if(get_estado() == estado) {
+        cout << left
+             << setw(5) << get_idCliente()
+             << setw(30) << get_Nombre_RazonSocial()
+             << setw(30) << get_Direccion()
+             << setw(20) << get_Telefono()
+             << setw(30) << get_Email()
+             << setw(10) << get_Cantidad_Viajes_Realizados();
     }
 
 
