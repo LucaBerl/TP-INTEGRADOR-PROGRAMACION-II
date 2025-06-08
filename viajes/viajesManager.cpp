@@ -485,6 +485,9 @@ void viajesManager::listarHistorial(){
     viajesArchivo vArchivo;
     Viajes viaje;
 
+
+    clientesArchivo clienteArchivo;
+
     if(!actualizarEstados()){
         system("cls");
         cout << endl << endl << "Error en sincronización de datos" << endl << endl;
@@ -511,7 +514,13 @@ void viajesManager::listarHistorial(){
 
         if(vArchivo.leerViaje(i,viaje)){
 
-            if(viaje.get_estado() == false){
+             if(viaje.get_estado() == false){
+
+                Clientes cliente = viaje.get_cliente();  // copia
+                int cantidad = cliente.get_Cantidad_Viajes_Realizados();
+                cliente.set_CantidadViajesRealizados(cantidad + 1);
+
+                clienteArchivo.guardarClienteModificado(viaje.get_cliente().get_idCliente(),cliente);
 
                 viaje.mostrarViaje();
                 cout << endl;
@@ -668,7 +677,7 @@ bool viajesManager::listarClientes(Viajes &viaje){
 
      system("cls");
 
-    cout << endl << "A continuación, se mostrará una lista de Clientes en nuestro sistema, por favor si el cliente no existe, Por favor puede crear nuevo Cliente en Menu de Clientes ";
+    cout << endl << "A continuación, se mostrará una lista de Clientes en nuestro sistema, si el cliente no existe, puede crear un nuevo Cliente en Menu de Clientes ";
 
     cout << endl << endl;
 
