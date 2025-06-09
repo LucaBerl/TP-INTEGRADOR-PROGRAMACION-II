@@ -151,17 +151,13 @@ void Viajes::mostrarViajeActivo(){
 
 
 
-cout << setw(4)  << get_id()
-     << setw(20) << choferCompleto
-     << setw(15) << get_ciudadOrigen().getCiudad()
-     << setw(15) << get_ciudadDestino().getCiudad()
-     << setw(15) << get_tipoCarga();
-    cout << setw(10);
-   cout << (to_string(horas)+"h " +to_string(minutos)+"m");
-
-  cout << "        ";
-  cout << setw(10) << get_cliente().get_idCliente()
-     << endl;
+    cout << setw(4)  << get_id()
+    << setw(40) << choferCompleto
+    << setw(33) << get_ciudadOrigen().getCiudad()
+    << setw(33) << get_ciudadDestino().getCiudad()
+    << setw(30) << get_tipoCarga()
+    << setw(15) << (to_string(horas)+"h " +to_string(minutos)+"m")
+    << setw(30) << get_cliente().get_Nombre_RazonSocial() << endl;
 
 // Mostrar tiempo restante
    // cout << horas << "h " << minutos << "m" << endl;

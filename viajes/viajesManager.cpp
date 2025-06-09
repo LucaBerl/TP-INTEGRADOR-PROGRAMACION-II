@@ -450,15 +450,15 @@ void viajesManager::listarActivos(){
 
     // Encabezado
    cout << left;
-    cout << setw(4)  << "ID"
-     << setw(20) << "Chofer"
-     << setw(15) << "Origen"
-     << setw(15) << "Destino"
-     << setw(15) << "Carga"
+    cout << setw(3)  << "ID"
+     << setw(40) << "Chofer"
+     << setw(33) << "Origen"
+     << setw(33) << "Destino"
+     << setw(30) << "Carga"
      << setw(15) << "Llegada en"
-     << setw(10) << "IDCliente";
+     << setw(30) << "Cliente";
 
-cout << endl << string(119, '-') << endl;
+cout << endl << string(185, '-') << endl;
 
 
     for(int i = 0;i < cantidadRegistros; i++){
