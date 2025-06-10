@@ -569,7 +569,7 @@ void clientesManager::mostrarClienteInactivos(){
 
 void clientesManager::viajesClientes(){
 
-     system("cls");
+    system("cls");
     viajesArchivo vArchivo;
     Viajes viaje;
     viajesManager viajesManger;
