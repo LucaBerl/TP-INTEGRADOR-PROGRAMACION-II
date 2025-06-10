@@ -92,7 +92,7 @@ void menuChoferes::menu_abm()
             cManager.bajaChofer();
             break;
         case '3':
-            cManager.actualizarLicencia();
+            cManager.modificarLicencia();
             break;
         case 27:
             return;

@@ -11,7 +11,8 @@
 #include <iomanip>
 using namespace std;
 
-void choferesManager::cargarChofer(){
+void choferesManager::cargarChofer()
+{
 
     system("cls");
 
@@ -265,7 +266,10 @@ void choferesManager::cargarChofer(){
 
 }
 
-void choferesManager::bajaChofer(){
+///BAJA CHOFER////////////////////////////////////////////////////
+
+void choferesManager::bajaChofer()
+{
 
     system("cls");
 
@@ -279,14 +283,18 @@ void choferesManager::bajaChofer(){
 
     cout << endl << endl << "Por favor, seleccionar el ID del camión a dar de baja: ";
 
-    while (true) {
+    while (true)
+    {
         cin >> opcionNumerica;
 
-        if (cin.fail() || opcionNumerica <= 0) {
+        if (cin.fail() || opcionNumerica <= 0)
+        {
             cin.clear(); // Limpia el estado de error
             cin.ignore(1000, '\n'); // Descarta el resto de la línea
             cout << endl << "Ingreso incorrecto, intente nuevamente: ";
-        }else{
+        }
+        else
+        {
 
             cin.ignore(1000, '\n'); // Por si quedan residuos
             cout << endl << "ID seleccionado: " << opcionNumerica << endl << endl;
@@ -300,10 +308,13 @@ void choferesManager::bajaChofer(){
     int posicion, cantidadRegistros = cArchivo.getCantidadRegistros();
     bool idEncontrado = false;
 
-    for(int i = 0;i < cantidadRegistros; i++){
+    for(int i = 0; i < cantidadRegistros; i++)
+    {
 
-        if(cArchivo.leerChoferes(i,choferes)){
-            if (choferes.get_id() == opcionNumerica && choferes.get_estado() == 1){
+        if(cArchivo.leerChoferes(i,choferes))
+        {
+            if (choferes.get_id() == opcionNumerica && choferes.get_estado() == 1)
+            {
                 choferes.mostrar();
                 posicion = i;
                 idEncontrado = true;
@@ -311,7 +322,9 @@ void choferesManager::bajaChofer(){
                 cout << endl << "1. SI" << endl << "2. NO" << endl;
                 break;
             }
-        }else{
+        }
+        else
+        {
             cout << "Lectura incorrecta";
             system("pause");
             return;
@@ -319,7 +332,8 @@ void choferesManager::bajaChofer(){
 
     }
 
-    if(!idEncontrado){
+    if(!idEncontrado)
+    {
         cout << endl << "El ID seleccionado no existe en los registros" << endl << endl;
         system("pause");
         return;
@@ -327,30 +341,39 @@ void choferesManager::bajaChofer(){
 
     cout << endl;
 
-    while (true) {
+    while (true)
+    {
         cin >> opcionNumerica;
 
-        if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2)) {
+        if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2))
+        {
             cin.clear(); // Limpia el estado de error
             cin.ignore(1000, '\n'); // Descarta el resto de la línea
             cout << endl << "Ingreso incorrecto, intente nuevamente: ";
-        }else if(opcionNumerica == 1){
+        }
+        else if(opcionNumerica == 1)
+        {
 
-            if (choferes.get_asignado() == true){
+            if (choferes.get_asignado() == true)
+            {
 
                 camionesArchivo caArchivo;
                 Camiones camion;
-                if (caArchivo.buscarCamionPorId(choferes.get_camionAsignado().get_idCamion(), camion)){
+                if (caArchivo.buscarCamionPorId(choferes.get_camionAsignado().get_idCamion(), camion))
+                {
 
                     int posicionCamion = caArchivo.buscarRegistro(choferes.get_camionAsignado().get_idCamion());
 
-                    if (posicionCamion >= 0){
+                    if (posicionCamion >= 0)
+                    {
 
                         camion.set_choferAsignado(0);
-                        if(caArchivo.guardarCamionModificado(posicionCamion,camion)){
+                        if(caArchivo.guardarCamionModificado(posicionCamion,camion))
+                        {
                             choferes.set_estado(0);
                         }
-                        else {
+                        else
+                        {
                             cout << endl << "Sincronización incorrecta" << endl;
                             system("pause");
                             return;
@@ -358,15 +381,20 @@ void choferesManager::bajaChofer(){
                     }
                 }
             }
-            if(cArchivo.guardarChoferModificado(posicion,choferes)){
+            if(cArchivo.guardarChoferModificado(posicion,choferes))
+            {
                 system("cls");
                 cout << "GUARDADO CORRECTO ✔ " << endl << _getch() ;
                 return;
-            }else{
+            }
+            else
+            {
                 cout << "Error en el guardado" << _getch() ;
                 return;
             }
-        }else if(opcionNumerica == 2){
+        }
+        else if(opcionNumerica == 2)
+        {
             return;
         }
 
@@ -374,7 +402,10 @@ void choferesManager::bajaChofer(){
 
 }
 
-void choferesManager::mostrarCantidadRegistros(){
+///MOSTRAR CANTIDAD DE REGISTROS///////////////////////////////////////////////////
+
+void choferesManager::mostrarCantidadRegistros()
+{
     choferesArchivo cArchivo;
 
     int cantidadRegistros=cArchivo.getCantidadRegistros();
@@ -382,7 +413,10 @@ void choferesManager::mostrarCantidadRegistros(){
     cout<<"La cantidad de registros son: "<<cantidadRegistros<<endl;
 }
 
-void choferesManager::listarTodos(){
+///LISTAR TODOS////////////////////////////////////////////////////
+
+void choferesManager::listarTodos()
+{
 
 
     choferesArchivo cArchivo;
@@ -390,14 +424,16 @@ void choferesManager::listarTodos(){
     cout << left << fixed << setprecision(0);
 
     viajesManager vManager;
-    if(!vManager.actualizarEstados()){
+    if(!vManager.actualizarEstados())
+    {
         system("cls");
         cout << endl << endl << "Error en sincronización de datos" << endl << endl;
         system("pause");
         return;
     }
 
-    if(!actualizarLicencia()){
+    if(!actualizarLicencia())
+    {
         cout << "Error al actualizar datos";
         return;
     }
@@ -406,28 +442,35 @@ void choferesManager::listarTodos(){
 
     cout << left;
     cout << setw(6) << "ID"
-    << setw(10) << "DNI"
-    << setw(20) << "NOMBRE"
-    << setw(20) << "APELLIDO"
-    << setw(7) << "EXP."
-    << setw(15) << "VENC. LIC."
-    << setw(30) << "CAMIÓN"
-    << setw(8) << "APTO"
-    << setw(12) << "EN VIAJE";
+         << setw(10) << "DNI"
+         << setw(20) << "NOMBRE"
+         << setw(20) << "APELLIDO"
+         << setw(7) << "EXP."
+         << setw(15) << "VENC. LIC."
+         << setw(30) << "CAMIÓN"
+         << setw(8) << "APTO"
+         << setw(12) << "EN VIAJE";
 
     cout << endl << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
 
 
     int cantidadRegistros = cArchivo.getCantidadRegistros();
 
-    for(int i = 0;i < cantidadRegistros; i++){
+    for(int i = 0; i < cantidadRegistros; i++)
+    {
 
-        if(cArchivo.leerChoferes(i,choferes)){
-            if (choferes.get_estado() == 1){
+        if(cArchivo.leerChoferes(i,choferes))
+        {
+            if (choferes.get_estado() == 1)
+            {
                 choferes.mostrar();
                 cout << endl;
             }
-        }else{cout << "Lectura incorrecta";}
+        }
+        else
+        {
+            cout << "Lectura incorrecta";
+        }
 
     }
 
@@ -435,20 +478,25 @@ void choferesManager::listarTodos(){
     system("pause");
 }
 
-void choferesManager::listarSinCamion(){
+///LSITAR SIN CAMION/////////////////////////////////////////////////////////
+
+void choferesManager::listarSinCamion()
+{
     choferesArchivo cArchivo;
     Choferes choferes;
     cout << left << fixed << setprecision(0);
 
     viajesManager vManager;
-    if(!vManager.actualizarEstados()){
+    if(!vManager.actualizarEstados())
+    {
         system("cls");
         cout << endl << endl << "Error en sincronización de datos" << endl << endl;
         system("pause");
         return;
     }
 
-    if(!actualizarLicencia()){
+    if(!actualizarLicencia())
+    {
         cout << "Error al actualizar datos";
         return;
     }
@@ -457,28 +505,35 @@ void choferesManager::listarSinCamion(){
 
     cout << left;
     cout << setw(6) << "ID"
-    << setw(10) << "DNI"
-    << setw(20) << "NOMBRE"
-    << setw(20) << "APELLIDO"
-    << setw(7) << "EXP."
-    << setw(15) << "VENC. LIC."
-    << setw(30) << "CAMIÓN"
-    << setw(8) << "APTO"
-    << setw(12) << "EN VIAJE";
+         << setw(10) << "DNI"
+         << setw(20) << "NOMBRE"
+         << setw(20) << "APELLIDO"
+         << setw(7) << "EXP."
+         << setw(15) << "VENC. LIC."
+         << setw(30) << "CAMIÓN"
+         << setw(8) << "APTO"
+         << setw(12) << "EN VIAJE";
 
     cout << endl << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
 
 
     int cantidadRegistros = cArchivo.getCantidadRegistros();
 
-    for(int i = 0;i < cantidadRegistros; i++){
+    for(int i = 0; i < cantidadRegistros; i++)
+    {
 
-        if(cArchivo.leerChoferes(i,choferes)){
-            if (choferes.get_estado() == true && choferes.get_asignado() == false){
+        if(cArchivo.leerChoferes(i,choferes))
+        {
+            if (choferes.get_estado() == true && choferes.get_asignado() == false)
+            {
                 choferes.mostrar();
                 cout << endl;
             }
-        }else{cout << "Lectura incorrecta";}
+        }
+        else
+        {
+            cout << "Lectura incorrecta";
+        }
 
     }
 
@@ -486,21 +541,26 @@ void choferesManager::listarSinCamion(){
     system("pause");
 }
 
-void choferesManager::listarConCamion(){
+///LISTAR CON CAMION////////////////////////////////////////////////////////
+
+void choferesManager::listarConCamion()
+{
 
     choferesArchivo cArchivo;
     Choferes choferes;
     cout << left << fixed << setprecision(0);
 
     viajesManager vManager;
-    if(!vManager.actualizarEstados()){
+    if(!vManager.actualizarEstados())
+    {
         system("cls");
         cout << endl << endl << "Error en sincronización de datos" << endl << endl;
         system("pause");
         return;
     }
 
-    if(!actualizarLicencia()){
+    if(!actualizarLicencia())
+    {
         cout << "Error al actualizar datos";
         return;
     }
@@ -509,28 +569,35 @@ void choferesManager::listarConCamion(){
 
     cout << left;
     cout << setw(6) << "ID"
-    << setw(10) << "DNI"
-    << setw(20) << "NOMBRE"
-    << setw(20) << "APELLIDO"
-    << setw(7) << "EXP."
-    << setw(15) << "VENC. LIC."
-    << setw(30) << "CAMIÓN"
-    << setw(8) << "APTO"
-    << setw(12) << "EN VIAJE";
+         << setw(10) << "DNI"
+         << setw(20) << "NOMBRE"
+         << setw(20) << "APELLIDO"
+         << setw(7) << "EXP."
+         << setw(15) << "VENC. LIC."
+         << setw(30) << "CAMIÓN"
+         << setw(8) << "APTO"
+         << setw(12) << "EN VIAJE";
 
     cout << endl << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
 
 
     int cantidadRegistros = cArchivo.getCantidadRegistros();
 
-    for(int i = 0;i < cantidadRegistros; i++){
+    for(int i = 0; i < cantidadRegistros; i++)
+    {
 
-        if(cArchivo.leerChoferes(i,choferes)){
-            if (choferes.get_estado() == true && choferes.get_asignado() == true){
+        if(cArchivo.leerChoferes(i,choferes))
+        {
+            if (choferes.get_estado() == true && choferes.get_asignado() == true)
+            {
                 choferes.mostrar();
                 cout << endl;
             }
-        }else{cout << "Lectura incorrecta";}
+        }
+        else
+        {
+            cout << "Lectura incorrecta";
+        }
 
     }
 
@@ -539,21 +606,26 @@ void choferesManager::listarConCamion(){
 
 }
 
-void choferesManager::listarEnViaje(){
+///LISTAR EN VIAJE//////////////////////////////////////////////////////
+
+void choferesManager::listarEnViaje()
+{
 
     choferesArchivo cArchivo;
     Choferes choferes;
     cout << left << fixed << setprecision(0);
 
     viajesManager vManager;
-    if(!vManager.actualizarEstados()){
+    if(!vManager.actualizarEstados())
+    {
         system("cls");
         cout << endl << endl << "Error en sincronización de datos" << endl << endl;
         system("pause");
         return;
     }
 
-    if(!actualizarLicencia()){
+    if(!actualizarLicencia())
+    {
         cout << "Error al actualizar datos";
         return;
     }
@@ -562,28 +634,35 @@ void choferesManager::listarEnViaje(){
 
     cout << left;
     cout << setw(6) << "ID"
-    << setw(10) << "DNI"
-    << setw(20) << "NOMBRE"
-    << setw(20) << "APELLIDO"
-    << setw(7) << "EXP."
-    << setw(15) << "VENC. LIC."
-    << setw(30) << "CAMIÓN"
-    << setw(8) << "APTO"
-    << setw(12) << "EN VIAJE";
+         << setw(10) << "DNI"
+         << setw(20) << "NOMBRE"
+         << setw(20) << "APELLIDO"
+         << setw(7) << "EXP."
+         << setw(15) << "VENC. LIC."
+         << setw(30) << "CAMIÓN"
+         << setw(8) << "APTO"
+         << setw(12) << "EN VIAJE";
 
     cout << endl << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
 
 
     int cantidadRegistros = cArchivo.getCantidadRegistros();
 
-    for(int i = 0;i < cantidadRegistros; i++){
+    for(int i = 0; i < cantidadRegistros; i++)
+    {
 
-        if(cArchivo.leerChoferes(i,choferes)){
-            if (choferes.get_estado() == true && choferes.get_enViaje() == true){
+        if(cArchivo.leerChoferes(i,choferes))
+        {
+            if (choferes.get_estado() == true && choferes.get_enViaje() == true)
+            {
                 choferes.mostrar();
                 cout << endl;
             }
-        }else{cout << "Lectura incorrecta";}
+        }
+        else
+        {
+            cout << "Lectura incorrecta";
+        }
 
     }
 
@@ -591,7 +670,10 @@ void choferesManager::listarEnViaje(){
     system("pause");
 }
 
-bool choferesManager::licenciaVencida(const Fecha &fecha){
+///LICENCIA VENCIDA///////////////////////////////////////////////////////
+
+bool choferesManager::licenciaVencida(const Fecha &fecha)
+{
 
     struct tm fechaVencimiento = {};
     /// Fecha de vencimiento
@@ -606,36 +688,48 @@ bool choferesManager::licenciaVencida(const Fecha &fecha){
     return (tiempoActual >= tiempoVencimiento); /// Devuelve true si la licencia está vencida, y false si todavia no lo está.
 }
 
-bool choferesManager::actualizarLicencia(){
+///ACTUALIZAR LICENCIA////////////////////////////////////////////
+
+bool choferesManager::actualizarLicencia()
+{
 
     choferesArchivo cArchivo;
     Choferes chofer;
 
     int cantidadRegistros = cArchivo.getCantidadRegistros();
 
-    for(int i = 0;i < cantidadRegistros; i++){
+    for(int i = 0; i < cantidadRegistros; i++)
+    {
 
-        if(cArchivo.leerChoferes(i,chofer)){
+        if(cArchivo.leerChoferes(i,chofer))
+        {
 
-            if (chofer.get_estado() == true && chofer.get_aptoCircular() == true){
+            if (chofer.get_estado() == true && chofer.get_aptoCircular() == true)
+            {
 
                 Fecha ultimaVerificacion = chofer.get_vencimientoLicencia();
-                if(licenciaVencida(ultimaVerificacion)){
+                if(licenciaVencida(ultimaVerificacion))
+                {
 
                     chofer.set_aptoCircular(0);
-                    if(!cArchivo.modificarChofer(chofer,i)){
+                    if(!cArchivo.modificarChofer(chofer,i))
+                    {
 
                         cout << "Actualizacion incorrecta";
                         system("pause");
                         return false;
                     }
                 }
-            }else if(chofer.get_estado() == true && chofer.get_aptoCircular() == false){
+            }
+            else if(chofer.get_estado() == true && chofer.get_aptoCircular() == false)
+            {
 
                 Fecha ultimaVerificacion = chofer.get_vencimientoLicencia();
-               if(!licenciaVencida(ultimaVerificacion)){
+                if(!licenciaVencida(ultimaVerificacion))
+                {
                     chofer.set_aptoCircular(1);
-                    if(!cArchivo.modificarChofer(chofer,i)){
+                    if(!cArchivo.modificarChofer(chofer,i))
+                    {
 
                         cout << "Actualizacion incorrecta";
                         system("pause");
@@ -644,7 +738,9 @@ bool choferesManager::actualizarLicencia(){
                 }
 
             }
-        }else{
+        }
+        else
+        {
             cout << "Lectura incorrecta en la posicion: " << i << endl;
             return false;
         }
@@ -656,12 +752,242 @@ bool choferesManager::actualizarLicencia(){
 
 }
 
-void choferesManager::asignarCamion(){
+///MOSTRAR LICENCIAS///////////////////////////////////////////////
+void choferesManager::mostrarLicencias()
+{
+
+    choferesArchivo cArchivo;
+    Choferes chofer;
+    cout << left << fixed << setprecision(0);
+
+    if(!actualizarLicencia())
+    {
+        cout << "Error al actualizar datos";
+        return;
+    }
+
+    system("cls");
+
+    cout << left;
+    cout << setw(3) << "ID"
+         << setw(30) << "NOMBRE"
+         << setw(30) << "APELLIDO"
+         << setw(15) << "ULT. ACT."
+         << setw(10) << "ESTADO" << endl;
+
+    cout << "---------------------------------------------------------------------------------------" << endl;
+
+
+    int cantidadRegistros = cArchivo.getCantidadRegistros();
+    string  estado;
+
+    for(int i = 0; i < cantidadRegistros; i++)
+    {
+
+        if(cArchivo.leerChoferes(i,chofer))
+        {
+            if (chofer.get_estado() == 1)
+            {
+                if (licenciaVencida(chofer.get_vencimientoLicencia()))
+                {
+                    estado = "❗VENCIDA";
+                }
+                else
+                {
+                    estado = "✔";
+                }
+                cout << setw(3) << chofer.get_id()
+                     << setw(30) << chofer.get_nombre()
+                     << setw(30) << chofer.get_apellido()
+                     << setw(15) << chofer.get_vencimientoLicencia().toString()
+                     << setw (10) << estado;
+                cout << endl;
+            }
+
+        }
+        else
+        {
+            cout << "Lectura incorrecta en la posicion: " << i << endl;
+            system("pause");
+            break;
+        }
+
+    }
+
+    cout << endl << endl;
+    system("pause");
+
+
+}
+///MODIFICAR LICENCIA/////////////////////////////////////////////
+void choferesManager::modificarLicencia()
+{
+
+    choferesArchivo cArchivo;
+    Choferes chofer;
+    cout << left << fixed << setprecision(0);
+
+
+    if(!actualizarLicencia())
+    {
+        cout << "Error al actualizar datos";
+        return;
+    }
+
+    system("cls");
+
+    cout << left;
+    cout << setw(3) << "ID"
+         << setw(30) << "NOMBRE"
+         << setw(30) << "APELLIDO"
+         << setw(15) << "ULT. ACT."
+         << setw(10) << "ESTADO" << endl;
+
+    cout << "---------------------------------------------------------------------------------------" << endl;
+
+
+    int cantidadRegistros = cArchivo.getCantidadRegistros();
+    string  estado = "❗VENCIDA";
+
+    for(int i = 0; i < cantidadRegistros; i++)
+    {
+
+        if(cArchivo.leerChoferes(i,chofer))
+        {
+            if (chofer.get_estado() == 1 && licenciaVencida(chofer.get_vencimientoLicencia()) == 1)
+            {
+                cout << setw(3) << chofer.get_id()
+                     << setw(30) << chofer.get_nombre()
+                     << setw(30) << chofer.get_apellido()
+                     << setw(15) << chofer.get_vencimientoLicencia().toString()
+                     << setw (10) << estado;
+                cout << endl;
+            }
+
+        }
+        else
+        {
+            cout << "Lectura incorrecta en la posicion: " << i << endl;
+            system("pause");
+            break;
+        }
+
+    }
+
+    cout << endl << endl;
+
+    cout << endl << endl << "Por favor, seleccionar el ID del chofer para actualizar la licencia de conducir: ";
+
+    int opcionNumerica;
+
+    while (true)
+    {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || opcionNumerica <= 0)
+        {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }
+        else
+        {
+
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            cout << endl << "ID seleccionado: " << opcionNumerica << endl << endl;
+            system("pause");
+            break; // Salir del bucle, entrada válida
+        }
+    }
+
+    int posicion;
+    bool idEncontrado = false;
+
+    for(int i = 0; i < cantidadRegistros; i++)
+    {
+
+        if(cArchivo.leerChoferes(i,chofer))
+        {
+            if (chofer.get_id() == opcionNumerica && licenciaVencida(chofer.get_vencimientoLicencia()) == 1)
+            {
+                posicion = i;
+                idEncontrado = true;
+                break;
+            }
+        }
+        else
+        {
+            cout << "Lectura incorrecta";
+            system("pause");
+            return;
+        }
+
+    }
+
+    if (!idEncontrado)
+    {
+        system("cls");
+        cout << "El ID no existe o no pertenece a un chofer que tenga que actualizar su licencia" << endl << endl;
+        system("pause");
+        return;
+    }
+    else
+    {
+        system("cls");
+
+        time_t t = time(NULL);
+        struct tm tiempoHoy = *localtime(&t);
+        Fecha fechaHoy(tiempoHoy.tm_mday,tiempoHoy.tm_mon+1,tiempoHoy.tm_year+1900);
+
+
+        cout << "SE ACTUALIZARA LICENCIA DEL CHOFER PARA EL DIA DE HOY " << fechaHoy.toString() << endl;
+        cout << endl << "1.Confirmar";
+        cout << endl << "2.Volver" << endl;
+
+        while (true)
+        {
+            cin >> opcionNumerica;
+
+            if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2))
+            {
+                cin.clear(); // Limpia el estado de error
+                cin.ignore(1000, '\n'); // Descarta el resto de la línea
+                cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            }
+            else if(opcionNumerica == 1)
+            {
+                chofer.set_vencimientoLicencia(fechaHoy);
+                if(cArchivo.guardarChoferModificado(posicion,chofer))
+                {
+                    system("cls");
+                    cout << "GUARDADO CORRECTO ✔ " << endl << _getch() ;
+                    return;
+                }
+                else
+                {
+                    cout << "Error en el guardado" << _getch() ;
+                    return;
+                }
+            }
+            else if(opcionNumerica == 2)
+            {
+                return;
+            }
+
+        }
+    }
+
+}
+///ASIGNAR CAMION///////////////////////////////////////////////
+
+void choferesManager::asignarCamion()
+{
 
     choferesArchivo cArchivo;
     Choferes chofer;
 
-    if(!buscarChoferesParaAsignar()){
+    if(!buscarChoferesParaAsignar())
+    {
         system("cls");
         cout << "Actualmente, no hay choferes disponibles para asignar" << endl << endl;
         system("pause");
@@ -674,14 +1000,18 @@ void choferesManager::asignarCamion(){
 
     int opcion;
 
-    while (true) {
+    while (true)
+    {
         cin >> opcion;
 
-        if (cin.fail() || opcion <= 0) {
+        if (cin.fail() || opcion <= 0)
+        {
             cin.clear(); // Limpia el estado de error
             cin.ignore(1000, '\n'); // Descarta el resto de la línea
             cout << endl << "Ingreso incorrecto, intente nuevamente: ";
-        }else{
+        }
+        else
+        {
 
             cin.ignore(1000, '\n'); // Por si quedan residuos
             cout << endl << "ID seleccionado: " << opcion << endl << endl;
@@ -694,15 +1024,20 @@ void choferesManager::asignarCamion(){
     bool idChoferEncontrado = false;
     int cantidadRegistrosChoferes = cArchivo.getCantidadRegistros();
 
-    for(int i = 0;i < cantidadRegistrosChoferes; i++){
+    for(int i = 0; i < cantidadRegistrosChoferes; i++)
+    {
 
-        if(cArchivo.leerChoferes(i,chofer)){
-            if (chofer.get_id() == opcion && chofer.get_estado() == true && chofer.get_asignado() == false){
+        if(cArchivo.leerChoferes(i,chofer))
+        {
+            if (chofer.get_id() == opcion && chofer.get_estado() == true && chofer.get_asignado() == false)
+            {
                 posicionChofer = i;
                 idChoferEncontrado = true;
                 break;
             }
-        }else{
+        }
+        else
+        {
             cout << "Lectura incorrecta";
             system("pause");
             return;
@@ -710,7 +1045,8 @@ void choferesManager::asignarCamion(){
 
     }
 
-    if (!idChoferEncontrado){
+    if (!idChoferEncontrado)
+    {
         system("cls");
         cout << "El ID no existe o no pertenece a un chofer al que se le pueda asignar un camión" << endl << endl;
         system("pause");
@@ -727,14 +1063,18 @@ void choferesManager::asignarCamion(){
 
     cout << endl << endl << "Por favor, seleccionar el ID de camión para asignarle al chofer: ";
 
-    while (true) {
+    while (true)
+    {
         cin >> opcion;
 
-        if (cin.fail() || opcion <= 0) {
+        if (cin.fail() || opcion <= 0)
+        {
             cin.clear(); // Limpia el estado de error
             cin.ignore(1000, '\n'); // Descarta el resto de la línea
             cout << endl << "Ingreso incorrecto, intente nuevamente: ";
-        }else{
+        }
+        else
+        {
 
             cin.ignore(1000, '\n'); // Por si quedan residuos
             cout << endl << "ID seleccionado: " << opcion << endl << endl;
@@ -747,15 +1087,20 @@ void choferesManager::asignarCamion(){
     bool idCamionEncontrado = false;
     int cantidadRegistrosCamiones = caArchivo.get_cantidadRegistros();
 
-    for(int i = 0;i < cantidadRegistrosCamiones; i++){
+    for(int i = 0; i < cantidadRegistrosCamiones; i++)
+    {
 
-        if(caArchivo.leerCamion(i,camion)){
-            if (camion.get_idCamion() == opcion && camion.get_estado() == true){
+        if(caArchivo.leerCamion(i,camion))
+        {
+            if (camion.get_idCamion() == opcion && camion.get_estado() == true)
+            {
                 posicionCamion = i;
                 idCamionEncontrado = true;
                 break;
             }
-        }else{
+        }
+        else
+        {
             cout << "Lectura incorrecta";
             system("pause");
             return;
@@ -763,7 +1108,8 @@ void choferesManager::asignarCamion(){
 
     }
 
-    if (!idCamionEncontrado){
+    if (!idCamionEncontrado)
+    {
         system("cls");
         cout << "El ID no existe o no pertenece a un chofer al que se le pueda asignar un camión" << endl << endl;
         system("pause");
@@ -775,28 +1121,37 @@ void choferesManager::asignarCamion(){
     system("cls");
 
     cout << "Al chofer: '" << chofer.get_nombre() << " " << chofer.get_apellido() << "' Se le asignará el camion: '" << camion.get_marca()
-    << " " << camion.get_modelo() << "'" << endl << endl << "1. Confirmar" << endl << "2.Volver" << endl;
+         << " " << camion.get_modelo() << "'" << endl << endl << "1. Confirmar" << endl << "2.Volver" << endl;
 
-    while (true) {
+    while (true)
+    {
         cin >> opcion;
 
-        if (cin.fail() || (opcion != 1 && opcion != 2)) {
+        if (cin.fail() || (opcion != 1 && opcion != 2))
+        {
             cin.clear(); // Limpia el estado de error
             cin.ignore(1000, '\n'); // Descarta el resto de la línea
             cout << endl << "Ingreso incorrecto, intente nuevamente: ";
-        }else if(opcion == 1){
+        }
+        else if(opcion == 1)
+        {
             camion.set_choferAsignado(1);
             chofer.set_asignado(1);
             chofer.set_camionAsignado(camion);
-            if(caArchivo.guardarCamionModificado(posicionCamion,camion) && cArchivo.modificarChofer(chofer,posicionChofer)){
+            if(caArchivo.guardarCamionModificado(posicionCamion,camion) && cArchivo.modificarChofer(chofer,posicionChofer))
+            {
                 system("cls");
                 cout << "ASIGNACIÓN CORRECTA ✔ " << endl << _getch() ;
                 return;
-            }else{
+            }
+            else
+            {
                 cout << "Error en el guardado" << _getch() ;
                 return;
             }
-        }else if(opcion == 2){
+        }
+        else if(opcion == 2)
+        {
             return;
         }
 
@@ -808,12 +1163,17 @@ void choferesManager::asignarCamion(){
 
 }
 
-void choferesManager::desasignarCamion(){
+
+///DESASIGNAR CAMION////////////////////////////////////////////
+
+void choferesManager::desasignarCamion()
+{
 
     choferesArchivo cArchivo;
     Choferes chofer;
 
-    if(!buscarChoferesParaDesasignar()){
+    if(!buscarChoferesParaDesasignar())
+    {
         system("cls");
         cout << "Actualmente, no hay choferes con camión asignado" << endl << endl;
         system("pause");
@@ -827,14 +1187,18 @@ void choferesManager::desasignarCamion(){
 
     int opcion;
 
-    while (true) {
+    while (true)
+    {
         cin >> opcion;
 
-        if (cin.fail() || opcion <= 0) {
+        if (cin.fail() || opcion <= 0)
+        {
             cin.clear(); // Limpia el estado de error
             cin.ignore(1000, '\n'); // Descarta el resto de la línea
             cout << endl << "Ingreso incorrecto, intente nuevamente: ";
-        }else{
+        }
+        else
+        {
 
             cin.ignore(1000, '\n'); // Por si quedan residuos
             cout << endl << "ID seleccionado: " << opcion << endl << endl;
@@ -847,15 +1211,20 @@ void choferesManager::desasignarCamion(){
     bool idChoferEncontrado = false;
     int cantidadRegistrosChoferes = cArchivo.getCantidadRegistros();
 
-    for(int i = 0;i < cantidadRegistrosChoferes; i++){
+    for(int i = 0; i < cantidadRegistrosChoferes; i++)
+    {
 
-        if(cArchivo.leerChoferes(i,chofer)){
-            if (chofer.get_id() == opcion && chofer.get_estado() == true && chofer.get_asignado() == true){
+        if(cArchivo.leerChoferes(i,chofer))
+        {
+            if (chofer.get_id() == opcion && chofer.get_estado() == true && chofer.get_asignado() == true)
+            {
                 posicionChofer = i;
                 idChoferEncontrado = true;
                 break;
             }
-        }else{
+        }
+        else
+        {
             cout << "Lectura incorrecta";
             system("pause");
             return;
@@ -863,7 +1232,8 @@ void choferesManager::desasignarCamion(){
 
     }
 
-    if (!idChoferEncontrado){
+    if (!idChoferEncontrado)
+    {
         system("cls");
         cout << "El ID no existe o no pertenece a un chofer al que se le pueda quitar la asignación de un camión" << endl << endl;
         system("pause");
@@ -877,31 +1247,40 @@ void choferesManager::desasignarCamion(){
     camionesArchivo caArchivo;
 
     cout << "Al chofer: '" << chofer.get_nombre() << " " << chofer.get_apellido() << "' Se le quitará la asignación del camion: '" << chofer.get_camionAsignado().get_marca()
-    << " " << chofer.get_camionAsignado().get_modelo() << "'" << endl << endl << "1. Confirmar" << endl << "2.Volver" << endl;
+         << " " << chofer.get_camionAsignado().get_modelo() << "'" << endl << endl << "1. Confirmar" << endl << "2.Volver" << endl;
 
 
 
-    while (true) {
+    while (true)
+    {
         cin >> opcion;
 
-        if (cin.fail() || (opcion != 1 && opcion != 2)) {
+        if (cin.fail() || (opcion != 1 && opcion != 2))
+        {
             cin.clear(); // Limpia el estado de error
             cin.ignore(1000, '\n'); // Descarta el resto de la línea
             cout << endl << "Ingreso incorrecto, intente nuevamente: ";
-        }else if(opcion == 1){
+        }
+        else if(opcion == 1)
+        {
 
             int cantidadRegistrosCamiones = caArchivo.get_cantidadRegistros();
             int idCamion = chofer.get_camionAsignado().get_idCamion();
             int posicionCamion;
 
-            for(int i = 0;i < cantidadRegistrosCamiones; i++){
+            for(int i = 0; i < cantidadRegistrosCamiones; i++)
+            {
 
-                if(caArchivo.leerCamion(i,camion)){
-                    if (camion.get_idCamion() == idCamion && camion.get_estado() == true){
+                if(caArchivo.leerCamion(i,camion))
+                {
+                    if (camion.get_idCamion() == idCamion && camion.get_estado() == true)
+                    {
                         posicionCamion = i;
                         break;
                     }
-                }else{
+                }
+                else
+                {
                     cout << "Lectura incorrecta";
                     system("pause");
                     return;
@@ -911,15 +1290,20 @@ void choferesManager::desasignarCamion(){
             camion.set_choferAsignado(0);
             chofer.set_asignado(0);
             chofer.set_camionAsignado(Camiones());
-            if(caArchivo.guardarCamionModificado(posicionCamion,camion) && cArchivo.modificarChofer(chofer,posicionChofer)){
+            if(caArchivo.guardarCamionModificado(posicionCamion,camion) && cArchivo.modificarChofer(chofer,posicionChofer))
+            {
                 system("cls");
                 cout << "DESASIGNACIÓN CORRECTA ✔ " << endl << _getch() ;
                 return;
-            }else{
+            }
+            else
+            {
                 cout << "Error en el guardado" << _getch() ;
                 return;
             }
-        }else if(opcion == 2){
+        }
+        else if(opcion == 2)
+        {
             return;
         }
 
@@ -930,7 +1314,10 @@ void choferesManager::desasignarCamion(){
 
 }
 
-bool choferesManager::sincronizarCamionesAsignados() {
+///SINCRONIZAR CAMIONES ASIGNADOS////////////////////////////////////////////////
+
+bool choferesManager::sincronizarCamionesAsignados()
+{
 
     choferesArchivo cArchivo;
     camionesArchivo caArchivo;
@@ -939,25 +1326,32 @@ bool choferesManager::sincronizarCamionesAsignados() {
 
     int cantidadChoferes = cArchivo.getCantidadRegistros();
 
-    for (int i = 0; i < cantidadChoferes; i++) {
+    for (int i = 0; i < cantidadChoferes; i++)
+    {
 
-        if (cArchivo.leerChoferes(i, chofer)) {
+        if (cArchivo.leerChoferes(i, chofer))
+        {
 
-            if (chofer.get_estado() && chofer.get_asignado()) {
+            if (chofer.get_estado() && chofer.get_asignado())
+            {
 
                 int idCamion = chofer.get_camionAsignado().get_idCamion();
 
-                if (caArchivo.buscarCamionPorId(idCamion, camion)) {
+                if (caArchivo.buscarCamionPorId(idCamion, camion))
+                {
 
-                    if (camion.get_estado()){
+                    if (camion.get_estado())
+                    {
                         chofer.set_camionAsignado(camion);
                     }
-                    else{
+                    else
+                    {
                         chofer.set_camionAsignado(Camiones());
                         chofer.set_asignado(0);
                     }
 
-                    if (!cArchivo.modificarChofer(chofer, i)) {
+                    if (!cArchivo.modificarChofer(chofer, i))
+                    {
 
                         cout << "Error actualizando chofer en posición " << i << endl;
                         return false;
@@ -971,21 +1365,27 @@ bool choferesManager::sincronizarCamionesAsignados() {
     return true;
 }
 
-void choferesManager::mostrarKmPorChofer(){
+
+///MOSTRAR KM////////////////////////////////////////////////////
+
+void choferesManager::mostrarKmPorChofer()
+{
 
     choferesArchivo chArchivo;
     Choferes chofer;
     cout << left << fixed << setprecision(0);
 
     viajesManager vManager;
-    if(!vManager.actualizarEstados()){
+    if(!vManager.actualizarEstados())
+    {
         system("cls");
         cout << endl << endl << "Error en sincronización de datos" << endl << endl;
         system("pause");
         return;
     }
 
-    if(!actualizarLicencia()){
+    if(!actualizarLicencia())
+    {
         cout << "Error al actualizar datos";
         return;
     }
@@ -994,41 +1394,49 @@ void choferesManager::mostrarKmPorChofer(){
 
     cout << left;
     cout << setw(3) << "ID"
-    << setw(30) << "NOMBRE"
-    << setw(30) << "APELLIDO"
-    << setw(7) << "ENE"
-    << setw(7) << "FEB"
-    << setw(7) << "MAR"
-    << setw(7) << "ABR"
-    << setw(7) << "MAY"
-    << setw(7) << "JUN"
-    << setw(7) << "JUL"
-    << setw(7) << "AGO"
-    << setw(7) << "SEP"
-    << setw(7) << "OCT"
-    << setw(7) << "NOV"
-    << setw(7) << "DIC" << endl;
+         << setw(30) << "NOMBRE"
+         << setw(30) << "APELLIDO"
+         << setw(7) << "ENE"
+         << setw(7) << "FEB"
+         << setw(7) << "MAR"
+         << setw(7) << "ABR"
+         << setw(7) << "MAY"
+         << setw(7) << "JUN"
+         << setw(7) << "JUL"
+         << setw(7) << "AGO"
+         << setw(7) << "SEP"
+         << setw(7) << "OCT"
+         << setw(7) << "NOV"
+         << setw(7) << "DIC" << endl;
 
     cout << "---------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 
 
     int cantidadRegistros = chArchivo.getCantidadRegistros();
     const float *km;
-    for(int i = 0;i < cantidadRegistros; i++){
+    for(int i = 0; i < cantidadRegistros; i++)
+    {
 
-        if(chArchivo.leerChoferes(i,chofer)){
-            if (chofer.get_estado() == 1){
+        if(chArchivo.leerChoferes(i,chofer))
+        {
+            if (chofer.get_estado() == 1)
+            {
                 km = chofer.get_kmMensuales();
                 cout << setw(3) << chofer.get_id()
-                << setw(30) << chofer.get_nombre()
-                << setw(30) << chofer.get_apellido();
-                for (int j = 0;j < 12; j++){
+                     << setw(30) << chofer.get_nombre()
+                     << setw(30) << chofer.get_apellido();
+                for (int j = 0; j < 12; j++)
+                {
                     cout << setw(7) << km[j];
                 }
                 cout << endl;
             }
 
-        }else{cout << "Lectura incorrecta";}
+        }
+        else
+        {
+            cout << "Lectura incorrecta";
+        }
 
     }
 
@@ -1037,19 +1445,28 @@ void choferesManager::mostrarKmPorChofer(){
 
 }
 
-bool choferesManager::buscarChoferesParaAsignar(){
+///BUSCAR CHOFER PARA ASIGNAR////////////////////////////////////////////
+
+
+bool choferesManager::buscarChoferesParaAsignar()
+{
 
     choferesArchivo cArchivo;
     Choferes chofer;
     int cantidadRegistrosChoferes = cArchivo.getCantidadRegistros();
 
-    for(int i = 0;i < cantidadRegistrosChoferes; i++){
+    for(int i = 0; i < cantidadRegistrosChoferes; i++)
+    {
 
-        if(cArchivo.leerChoferes(i,chofer)){
-            if (chofer.get_estado() == true && chofer.get_asignado() == false){
+        if(cArchivo.leerChoferes(i,chofer))
+        {
+            if (chofer.get_estado() == true && chofer.get_asignado() == false)
+            {
                 return 1;
             }
-        }else{
+        }
+        else
+        {
             cout << "Lectura incorrecta";
             system("pause");
             return 0;
@@ -1061,19 +1478,27 @@ bool choferesManager::buscarChoferesParaAsignar(){
 
 }
 
-bool choferesManager::buscarChoferesParaDesasignar(){
+///BUSCAR CHOFER PARA DESASIGNAR///////////////////////////////////////////
+
+bool choferesManager::buscarChoferesParaDesasignar()
+{
 
     choferesArchivo cArchivo;
     Choferes chofer;
     int cantidadRegistrosChoferes = cArchivo.getCantidadRegistros();
 
-    for(int i = 0;i < cantidadRegistrosChoferes; i++){
+    for(int i = 0; i < cantidadRegistrosChoferes; i++)
+    {
 
-        if(cArchivo.leerChoferes(i,chofer)){
-            if (chofer.get_estado() == true && chofer.get_asignado() == true){
+        if(cArchivo.leerChoferes(i,chofer))
+        {
+            if (chofer.get_estado() == true && chofer.get_asignado() == true)
+            {
                 return 1;
             }
-        }else{
+        }
+        else
+        {
             cout << "Lectura incorrecta";
             system("pause");
             return 0;

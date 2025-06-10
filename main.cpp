@@ -11,6 +11,8 @@ using namespace std;
 
 int main()
 {
+
+    SetConsoleOutputCP(CP_UTF8);
     srand(time(NULL));
     usuariosManager uManager;
     int rol = uManager.validarUsuario();
@@ -48,7 +50,7 @@ int main()
 /// -Asignar la actualizacion de viaje en los menues (Listo)
 /// -Agregar kilometros recorridos en choferes y camiones despues de guardar cada viaje (Listo)
 /// -Ver kilometros (Listo)
-/// -Informar estado de licencias y actualizar licencias en seccion choferes
+/// -Informar estado de licencias y actualizar licencias en seccion choferes (Listo)
 /// -Clase clientes y acoplar
 /// -Clase Usuarios (Listo)
 
