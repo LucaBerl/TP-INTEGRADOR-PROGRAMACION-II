@@ -685,7 +685,7 @@ bool choferesManager::licenciaVencida(const Fecha &fecha)
     time_t tiempoVencimiento = mktime(&fechaVencimiento);
     time_t tiempoActual = time(NULL);
 
-    return (tiempoActual >= tiempoVencimiento); /// Devuelve true si la licencia está vencida, y false si todavia no lo está.
+    return (tiempoActual > tiempoVencimiento); /// Devuelve true si la licencia está vencida, y false si todavia no lo está.
 }
 
 ///ACTUALIZAR LICENCIA////////////////////////////////////////////
@@ -707,8 +707,8 @@ bool choferesManager::actualizarLicencia()
             if (chofer.get_estado() == true && chofer.get_aptoCircular() == true)
             {
 
-                Fecha ultimaVerificacion = chofer.get_vencimientoLicencia();
-                if(licenciaVencida(ultimaVerificacion))
+                Fecha ultimaRenovacion = chofer.get_vencimientoLicencia();
+                if(licenciaVencida(ultimaRenovacion))
                 {
 
                     chofer.set_aptoCircular(0);
@@ -724,8 +724,8 @@ bool choferesManager::actualizarLicencia()
             else if(chofer.get_estado() == true && chofer.get_aptoCircular() == false)
             {
 
-                Fecha ultimaVerificacion = chofer.get_vencimientoLicencia();
-                if(!licenciaVencida(ultimaVerificacion))
+                Fecha ultimaRenovacion = chofer.get_vencimientoLicencia();
+                if(!licenciaVencida(ultimaRenovacion))
                 {
                     chofer.set_aptoCircular(1);
                     if(!cArchivo.modificarChofer(chofer,i))
@@ -937,10 +937,10 @@ void choferesManager::modificarLicencia()
 
         time_t t = time(NULL);
         struct tm tiempoHoy = *localtime(&t);
-        Fecha fechaHoy(tiempoHoy.tm_mday,tiempoHoy.tm_mon+1,tiempoHoy.tm_year+1900);
+        Fecha fechaHoy(tiempoHoy.tm_mday,tiempoHoy.tm_mon+1,tiempoHoy.tm_year+1901);
 
 
-        cout << "SE ACTUALIZARA LICENCIA DEL CHOFER PARA EL DIA DE HOY " << fechaHoy.toString() << endl;
+        cout << "SE ACTUALIZARA LICENCIA DEL CHOFER PARA EL DIA DE HOY, CON VENCIMIENTO A UN AÑO: " << fechaHoy.toString() << endl;
         cout << endl << "1.Confirmar";
         cout << endl << "2.Volver" << endl;
 
