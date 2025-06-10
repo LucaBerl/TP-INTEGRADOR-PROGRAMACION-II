@@ -34,7 +34,7 @@ void Camiones::set_idCamion(int ultimo){
 }
 bool Camiones::set_patente(std::string patente){
 
-    if (patente.length() < sizeof(_patente) && ( patente.length() == 6 || patente.length() == 7 )){
+    if (  patente.length() == 6 || patente.length() == 7 && patente.length() < sizeof(_patente) ){
         for (char &c : patente) {
             c = toupper(c);
         }
@@ -43,13 +43,13 @@ bool Camiones::set_patente(std::string patente){
     } else {return false;}
 }
 bool Camiones::set_marca(std::string marca){
-    if (marca.length() < sizeof(_marca)){
+    if (marca.length() < sizeof(_marca)&&marca.length()>2){
         strcpy(_marca,marca.c_str());
         return true;
     } else {return false;}
 }
 bool Camiones::set_modelo(std::string modelo){
-    if (modelo.length() < sizeof(_modelo)){
+    if (modelo.length() < sizeof(_modelo)&&modelo.length()>2){
         strcpy(_modelo,modelo.c_str());
         return true;
     } else {return false;}

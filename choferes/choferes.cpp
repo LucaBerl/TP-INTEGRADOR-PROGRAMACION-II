@@ -55,7 +55,7 @@ bool Choferes::set_dni(int dni)
 }
 bool Choferes::set_nombre(std::string nombre)
 {
-    if(nombre.length() < sizeof(_nombre))
+    if(nombre.length() < sizeof(_nombre)&&nombre.length()>1)
     {
         strcpy(_nombre,nombre.c_str());
         return true;
@@ -67,7 +67,7 @@ bool Choferes::set_nombre(std::string nombre)
 }
 bool Choferes::set_apellido(std::string apellido)
 {
-    if(apellido.length() < sizeof(_apellido))
+    if(apellido.length() < sizeof(_apellido)&&apellido.length()>1)
     {
         strcpy(_apellido,apellido.c_str());
         return true;

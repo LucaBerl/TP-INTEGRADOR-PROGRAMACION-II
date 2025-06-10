@@ -23,11 +23,18 @@ void Clientes::set_IdCliente(int idCliente) {
     _idCliente = idCliente + 1;
 }
 
-
+bool soloLetrasYEspacios(const std::string& texto) {
+    for (char c : texto) {
+        if (!isalpha(c) && c != ' ') {
+            return false; // si no es letra ni espacio, es inválido
+        }
+    }
+    return true;
+}
 
 
 bool Clientes::set_Nombre_RazonSocial(std::string  nombre_RazonSocial) {
-    if(nombre_RazonSocial.length()< sizeof(_nombre_RazonSocial)&&nombre_RazonSocial.length()>2){
+    if(nombre_RazonSocial.length()< sizeof(_nombre_RazonSocial)&&nombre_RazonSocial.length()>2&&soloLetrasYEspacios(nombre_RazonSocial)){
 
         strcpy(_nombre_RazonSocial,nombre_RazonSocial.c_str());
         return true;
@@ -115,3 +122,6 @@ if(get_estado() == estado) {
 
 
 }
+
+
+
