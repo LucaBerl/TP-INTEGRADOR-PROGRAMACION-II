@@ -24,5 +24,10 @@ public:
     bool esLetra(char letra);
     bool esNumero (int nro);
     bool validarPatente(std::string patente);
+    void editarCamion();
+    void editarMarca(int posicion);
+    void editarPatente(int posicion);
+    void editarAnio(int posicion);
+    void editarPesoVolumen(int posicion);
 
 };

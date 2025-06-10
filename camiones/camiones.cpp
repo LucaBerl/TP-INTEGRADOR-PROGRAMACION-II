@@ -149,7 +149,17 @@ bool Camiones::get_estado()const{
 
 
 ////////////////////////////
+void Camiones::mostrarResumido(){
 
+    cout << endl << endl;
+    cout << "Marca: " << get_marca() << endl;
+    cout << "Modelo: " << get_modelo() << endl;
+    cout << "Año: " << get_anio() << endl;
+    cout << "Patente: " << get_patente() << endl;
+    cout << "Peso: " << get_pesoCarga() << endl;
+    cout << "Volúmen: " << get_volumenCarga() << endl;
+
+}
 void Camiones::mostrar()const{
 
     string aptoCircular, disponibilidad;

@@ -27,6 +27,7 @@ void mostrar()const;
 void listarMarcas() const;
 std::vector<std::string> catalogoMarcas() const;
 std::string validarMarca(int nro) const;
+void mostrarResumido();
 
 
 // Constructor

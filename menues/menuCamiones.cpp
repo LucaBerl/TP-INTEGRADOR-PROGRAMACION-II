@@ -7,6 +7,9 @@ using namespace std;
 
 void menuCamiones::mostrar(int &rol){
 
+
+    camionesManager caManager;
+
     char opcion;
 
     do{
@@ -16,6 +19,7 @@ void menuCamiones::mostrar(int &rol){
     cout << "=======================================" << endl;
     cout << "1. ALTA/BAJA/ACTUALIZACIÓN" << endl;
     cout << "2. LISTADOS/REPORTES" << endl;
+    cout << "3. EDICIÓN" << endl;
     cout << endl;
     cout << "ESC. VOLVER AL MENÚ PRINCIPAL" << endl;
     cout << "=======================================" << endl;
@@ -35,6 +39,15 @@ void menuCamiones::mostrar(int &rol){
                 break;
             case '2':
                 menu_listados();
+                break;
+            case '3':
+                if (rol == 1){
+                    caManager.editarCamion();
+                }else{
+                    system("cls");
+                    cout << endl << "Acceso restringido 🔒🔒" << endl << endl;
+                    system("pause");
+                }
                 break;
             case 27:
                 return;
@@ -103,24 +116,24 @@ void menuCamiones::menu_listados(){
     char opcion;
 
     do{
-    system("cls");
-    cout << "=======================================" << endl;
-    cout << "        LISTADOS DE CAMIONES" << endl;
-    cout << "=======================================" << endl;
-    cout << "1. LISTAR TODOS" << endl;
-    cout << "2. LISTAR EN VIAJE" << endl;
-    cout << "3. LISTAR DISPONIBLES PARA ASIGNAR A CHOFER" << endl;
-    cout << "4. LISTAR CAMIONES POR ANTIGÜEDAD" << endl;
-    cout << "5. INFORMAR CANTIDAD DE KM POR CAMION" << endl;
-    cout << "6. INFORMAR ESTADO DE VERIFICACIONES" << endl;
-    cout << endl;
-    cout << "ESC. VOLVER AL MENÚ CAMIONES" << endl;
-    cout << "=======================================" << endl;
-    cout << "Ingrese una opcion: ";
+        system("cls");
+        cout << "=======================================" << endl;
+        cout << "        LISTADOS DE CAMIONES" << endl;
+        cout << "=======================================" << endl;
+        cout << "1. LISTAR TODOS" << endl;
+        cout << "2. LISTAR EN VIAJE" << endl;
+        cout << "3. LISTAR DISPONIBLES PARA ASIGNAR A CHOFER" << endl;
+        cout << "4. LISTAR CAMIONES POR ANTIGÜEDAD" << endl;
+        cout << "5. INFORMAR CANTIDAD DE KM POR CAMION" << endl;
+        cout << "6. INFORMAR ESTADO DE VERIFICACIONES" << endl;
+        cout << endl;
+        cout << "ESC. VOLVER AL MENÚ CAMIONES" << endl;
+        cout << "=======================================" << endl;
+        cout << "Ingrese una opcion: ";
 
-    opcion = getch();
+        opcion = getch();
 
-    switch(opcion) {
+        switch(opcion) {
             case '1':
                 caManager.listarTodos();
                 break;
@@ -144,6 +157,59 @@ void menuCamiones::menu_listados(){
                 break;
             default:
                 cout << "Opción inválida. Por favor, intente de nuevo." << endl;
+        }
+
+      cout << endl << endl;
+
+    } while(opcion != 27);
+
+}
+
+void menuCamiones::menu_edicion(int posicion){
+
+
+    camionesManager caManager;
+
+    char opcion;
+
+    do{
+    system("cls");
+    cout << "=======================================" << endl;
+    cout << "  SELECCIONE UNA OPCIÓN PARA EDITAR" << endl;
+    cout << "=======================================" << endl;
+    cout << "1. MARCA Y MODELO" << endl;
+    cout << "2. PATENTE" << endl;
+    cout << "3. AÑO" << endl;
+    cout << "4. PESO Y VOLUMEN SOPORTADO" << endl;
+    cout << endl;
+    cout << "ESC. VOLVER AL MENÚ CAMIONES" << endl;
+    cout << "=======================================" << endl;
+    cout << "Ingrese una opcion: ";
+
+    opcion = getch();
+
+    switch(opcion) {
+        case '1':
+            caManager.editarMarca(posicion);
+            return;
+            break;
+        case '2':
+            caManager.editarPatente(posicion);
+            break;
+        case '3':
+            caManager.editarAnio(posicion);
+            break;
+        case '4':
+            caManager.editarPesoVolumen(posicion);
+            break;
+        case 27:
+            return;
+            break;
+        default:
+            system("cls");
+            cout << "Opción inválida. Por favor, intente de nuevo." << endl;
+            system("pause");
+            break;
         }
 
       cout << endl << endl;

@@ -9,6 +9,7 @@ class menuCamiones {
     void menu_abm();
     void menu_listados();
     void menu_informes();
+    void menu_edicion(int posicion);
 
 
 };
