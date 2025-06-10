@@ -29,9 +29,12 @@ void menuChoferes::mostrar(int &rol)
         switch(opcion)
         {
         case '1':
-            if (rol == 1){
+            if (rol == 1)
+            {
                 menu_abm();
-            }else{
+            }
+            else
+            {
                 system("cls");
                 cout << endl << "Acceso restringido, no posee los permisos 🔒" << endl << endl;
                 system("pause");
@@ -152,7 +155,7 @@ void menuChoferes::menu_listados()
             cManager.mostrarKmPorChofer();
             break;
         case '6':
-
+            cManager.mostrarLicencias();
             break;
         case 27:
             return;
