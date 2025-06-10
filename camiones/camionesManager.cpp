@@ -166,6 +166,7 @@ void camionesManager::altaCamion(){
             cout << " Guardado correcto ✔" << endl;
         } else {
             cout << endl << "Patente inválida. Debe tener 6 O 7 caracteres. Intente de vuelta" << endl;
+            system("pause");
         }
     system("cls");
     }while (!validacion);

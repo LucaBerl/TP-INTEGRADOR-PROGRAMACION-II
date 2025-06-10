@@ -937,10 +937,12 @@ void choferesManager::modificarLicencia()
 
         time_t t = time(NULL);
         struct tm tiempoHoy = *localtime(&t);
-        Fecha fechaHoy(tiempoHoy.tm_mday,tiempoHoy.tm_mon+1,tiempoHoy.tm_year+1901);
+
+        Fecha fechaHoy(tiempoHoy.tm_mday,tiempoHoy.tm_mon+1,tiempoHoy.tm_year+1905);
 
 
-        cout << "SE ACTUALIZARA LICENCIA DEL CHOFER PARA EL DIA DE HOY, CON VENCIMIENTO A UN AÑO: " << fechaHoy.toString() << endl;
+        cout << "SE ACTUALIZARA LICENCIA DEL CHOFER PARA EL DIA DE HOY CON CINCO AÑOS MAS DE VIGENCIA" << fechaHoy.toString() << endl;
+
         cout << endl << "1.Confirmar";
         cout << endl << "2.Volver" << endl;
 

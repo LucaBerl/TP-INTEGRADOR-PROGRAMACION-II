@@ -426,7 +426,7 @@ void clientesManager::actualizarCliente(){
             cout << endl << "Ingreso incorrecto, intente nuevamente: ";
         }else if(opcionNumerica == 1){
            cin.ignore();
-   do
+ /* do
     {
         cout << endl << endl << "Ingresar Razon social o nombre : ";
         getline(cin, nombreRazonsocial);
@@ -507,7 +507,64 @@ void clientesManager::actualizarCliente(){
 
     }
     while (!validacion);
+*/
+  int opcionCampo;
+do {
+    cout << "\nSeleccione el campo a modificar:\n";
+    cout << "1. Nombre o Razon Social\n";
+    cout << "2. Direccion\n";
+    cout << "3. Telefono\n";
+    cout << "4. Email\n";
+    cout << "5. Finalizar modificaciones\n";
+    cout << "Opcion: ";
+    cin >> opcionCampo;
+    cin.ignore();
 
+    switch(opcionCampo) {
+        case 1:
+            do {
+                cout << "\nNuevo Nombre o Razon Social: ";
+                getline(cin, nombreRazonsocial);
+                validacion = cliente.set_Nombre_RazonSocial(nombreRazonsocial);
+                if (!validacion) cout << "Nombre inválido. Intente de nuevo.\n";
+            } while (!validacion);
+            break;
+
+        case 2:
+            do {
+                cout << "\nNueva Direccion: ";
+                getline(cin, direccion);
+                validacion = cliente.set_Direccion(direccion);
+                if (!validacion) cout << "Direccion inválida. Intente de nuevo.\n";
+            } while (!validacion);
+            break;
+
+        case 3:
+            do {
+                cout << "\nNuevo Telefono: ";
+                getline(cin, telefono);
+                validacion = cliente.set_Telefono(telefono);
+                if (!validacion) cout << "Telefono inválido. Intente de nuevo.\n";
+            } while (!validacion);
+            break;
+
+        case 4:
+            do {
+                cout << "\nNuevo Email: ";
+                getline(cin, email);
+                validacion = cliente.set_Email(email);
+                if (!validacion) cout << "Email inválido. Intente de nuevo.\n";
+            } while (!validacion);
+            break;
+
+        case 5:
+            cout << "\nFinalizando modificaciones...\n";
+            break;
+
+        default:
+            cout << "Opcion invalida, intente otra vez.\n";
+    }
+} while (opcionCampo != 5);
 
 
             if(clienteArchivo.guardarClienteModificado(posicion, cliente)){
