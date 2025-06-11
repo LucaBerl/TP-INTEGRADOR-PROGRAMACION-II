@@ -1,15 +1,8 @@
+# Trabajo Práctico Integrador - Programación II
 
-Carrera: Técnico Universitario en Programación
+Carrera Técnico Universitario en Programación - UTN Gral. Pacheco
 
-
-Materia: Programación II
-
-Tema: TP Final - Integrador
-
-
-
-
-Integrantes de la cátedra
+## Integrantes de la cátedra:
 
 Kloster, Daniel - Profesor
 
@@ -19,13 +12,9 @@ Lara Campos, Brian - Profesor
 
 Simón, Angel  - Profesor
 
-Malvicino, Maximiliano Raúl - Ayudante
+Malvicino, Maximiliano Raúl - Ayudante 
 
-
-
-TP Final Programación II. 2025 1C
-
-Integrantes del Grupo N° 52 : 
+## Integrantes del Grupo N° 52 :
 
 Camila Milagros Ontivero → Legajo: 31729
 
@@ -35,24 +24,19 @@ Nicolas Lautaro Cragno → Legajo: 25109
 
 Lucas Berlingeri → Legajo: 31718
 
-
+## Sobre el proyecto
 
 Nombre: Empresa de Transporte
 
-
-
 Tema: Sistema de gestión para asignación y control de los viajes que desarrolla una empresa de logística/transporte, con sus respectivos choferes y camiones.
-
-
 
 Descripción: El sistema tiene como objetivo principal gestionar de manera eficiente los viajes de larga distancia de una empresa de transporte. El programa puede incorporar tanto choferes como camiones, con sus principales características y atributos. Se podrá asignar a cada chofer un camión, para luego generar y seguir en tiempo real una salida entre dos ciudades determinadas, transportando un tipo de carga en específico. A través de una interfaz basada en menús, el usuario puede administrar choferes, camiones, viajes, clientes y cargas, así como realizar consultas e informes detallados.
 
+## Archivos a utilizar
 
-Archivos a utilizar:
+### 1. Archivo de Camiones (camiones.dat):
 
-
-1. Archivo de Camiones (camiones.dat):
-
+```c++
   int _idCamion;		// Identificación única 
 
   char _patente[8];		// Patente
@@ -79,9 +63,9 @@ Archivos a utilizar:
 
   bool _estado;  		// Define si el registro esta activo o esta dado de baja
 
-
-2. Archivo de Choferes (choferes.dat):
-
+```
+### 2. Archivo de Choferes (choferes.dat):
+```c++
   int _id;			// Identificador unico
 
   bool _asignado; 		// Booleano para verificar si tiene o no tiene camion asignado
@@ -106,8 +90,9 @@ Archivos a utilizar:
 
   bool _estado; 		// Define si el registro esta activo o esta dado de baja
 
-
-3. Archivo de Viajes (viajes.dat):
+```
+### 3. Archivo de Viajes (viajes.dat):
+```c++
 
   int _id;			// Identificador unico
 
@@ -132,11 +117,11 @@ Archivos a utilizar:
   bool _estado;			// Estado true = "viaje en curso" o false = "viaje finalizado"
 
   Clientes _cliente;		// Cliente al cual se le presta el servicio
+```
 
-
-4. Archivo de Ciudades (ciudades.dat) (Archivo precargado) :
-
-  char codigo[50];		// Codigo ciudad
+### 4. Archivo de Ciudades (ciudades.dat) (Archivo precargado) :
+```c++
+ char codigo[50];		// Codigo ciudad
 
   char provincia[50];		// Nombre provincia
 
@@ -145,11 +130,10 @@ Archivos a utilizar:
   double lat;			// Latitud en grados
 
   double lng;			// Longitud en grados
-
-
-5. Archivo de Usuarios (usuarios.dat):
-
-   char _nombre[11];		// Nombre de usuario
+```
+### 5. Archivo de Usuarios (usuarios.dat):
+```c++
+ char _nombre[11];		// Nombre de usuario
 
    char _salt[10];            	// Salt aleatorio ( el salt es un conjunto de caracteres aleatorios que se le agrega al hash de la contraseña para hacerla mas segura)
 
@@ -160,10 +144,10 @@ Archivos a utilizar:
    int _rolUsuario;           	// 1- Supervisor , 2- Operador -- Diferentes permisos dentro del programa.
 
    bool _estado;		// Estado de usuario, activo = "true", inactivo = "false
+```
 
-
-6.Archivo de Clientes (clientes.dat):
-
+### 6.Archivo de Clientes (clientes.dat):
+```c++
   int _idCliente;		// Identificador de cliente
 
   char _nombre_RazonSocial[50];	// Nombre o razon social del cliente
@@ -178,10 +162,8 @@ Archivos a utilizar:
 
   bool _estado;  		// Estado de cliente, activo o inactivo.
 
-
-
-
-CLASES A DESARROLLAR:
+```
+## CLASES A DESARROLLAR:
 
 -Camiones → Atributos principales de los camiones, getters, setters y funciones de mostrar.
 
@@ -225,17 +207,13 @@ CLASES A DESARROLLAR:
 
 -Usuarios → Se pretende darle seguridad al programa mediante usuarios, todavía no se encuentra creada. En un futuro, si es necesario, se podría separar en manager y archivo.
 
--UsuariosManager -> Articulador, todo lo que se muestra relacionado a usuarios pasa por  esta clase (altas, bajas, modificaciones, listados, etc)
+-UsuariosManager → Articulador, todo lo que se muestra relacionado a usuarios pasa por  esta clase (altas, bajas, modificaciones, listados, etc)
 
--UsuariosArchivo -> métodos para leer, buscar, agregar o modificar el archivo usuarios.
+-UsuariosArchivo → métodos para leer, buscar, agregar o modificar el archivo usuarios.
 
+## REPORTES/LISTADOS:
 
-
-
-
-REPORTES/LISTADOS:
-
-Viajes:
+### Viajes:
 
 
 Viajes Activos: Muestra aquellos viajes que se encuentran en transcurso.
@@ -244,7 +222,7 @@ Historial de viajes: Muestra todos los viajes realizados hasta la fecha.
 
 
 
-Choferes:
+### Choferes:
 
 
 Choferes: Lista todos los Choferes que se encuentran guardados en archivo cuyo estado es activo.
@@ -261,7 +239,7 @@ Estado de licencias: Informa el estado de las licencias de conducir de los chofe
 
 
 
-Camiones:
+### Camiones:
 
 
 Camiones: Lista todos los Camiones que se encuentran guardados en archivo cuyo estado es activo.
@@ -277,7 +255,10 @@ Cantidad de kilómetros por camión: Informa la cantidad acumulada de kilómetro
 Estado de verificaciones: Informa el estado de las verificaciones técnicas de los camiones. Si están vencidas o si se encuentran vigentes.
 
 
-Usuarios:
+### Usuarios:
 
 Listar usuarios: Ofrece una lista de los usuarios activos y sus IDs.
 
+## Link al informe en Google Docs
+
+[docs.google.com](https://docs.google.com/document/d/1pq_TDDivYBAc_3_Yh06L9ztnjRJtFKcwA0GI-gm8-oo/edit?tab=t.0)
