@@ -163,101 +163,101 @@ Descripción: El sistema tiene como objetivo principal gestionar de manera efici
   bool _estado;  		// Estado de cliente, activo o inactivo.
 
 ```
-## CLASES A DESARROLLAR:
+### CLASES A DESARROLLAR:
 
--Camiones → Atributos principales de los camiones, getters, setters y funciones de mostrar.
+- Camiones → Atributos principales de los camiones, getters, setters y funciones de mostrar.
 
--CamionesArchivo → métodos para leer, buscar, agregar o modificar el archivo camiones.
+- CamionesArchivo → métodos para leer, buscar, agregar o modificar el archivo camiones.
 
--CamionesManager → Articulador, todo lo que se muestra relacionado a camiones pasa por  esta clase (altas, bajas, modificaciones, listados, etc).
+- CamionesManager → Articulador, todo lo que se muestra relacionado a camiones pasa por  esta clase (altas, bajas, modificaciones, listados, etc).
 
--Choferes → Atributos principales de los choferes, getters, setters y funciones de mostrar.
+- Choferes → Atributos principales de los choferes, getters, setters y funciones de mostrar.
 
--ChoferesArchivo → Métodos para leer, buscar, agregar o modificar el archivo choferes.
+- ChoferesArchivo → Métodos para leer, buscar, agregar o modificar el archivo choferes.
 
--ChoferesManager → Articulador, todo lo que se muestra relacionado a choferes pasa por  esta clase (altas, bajas, modificaciones, listados, etc)
+- ChoferesManager → Articulador, todo lo que se muestra relacionado a choferes pasa por  esta clase (altas, bajas, modificaciones, listados, etc)
 
--Viajes  → Atributos principales de los viajes, getters, setters y funciones de mostrar.
+- Viajes  → Atributos principales de los viajes, getters, setters y funciones de mostrar.
 
--ViajesArchivo → Métodos para leer, buscar, agregar o modificar el archivo Viajes.
+- ViajesArchivo → Métodos para leer, buscar, agregar o modificar el archivo Viajes.
 
--ViajesManager → Se podría decir que es la clase principal, el motor y la razón de ser del programa, esta clase va a estar conectada a casi la totalidad del resto de las clases. En ella se registran los viajes.
+- ViajesManager → Se podría decir que es la clase principal, el motor y la razón de ser del programa, esta clase va a estar conectada a casi la totalidad del resto de las clases. En ella se registran los viajes.
 
--Clientes → Atributos principales de los clientes, getters, setters y funciones de mostrar.
+- Clientes → Atributos principales de los clientes, getters, setters y funciones de mostrar.
 
--ClientesManager → Articulador, todo lo que se muestra relacionado a Clientes pasa por  esta clase (altas, bajas, modificaciones, listados, etc)
+- ClientesManager → Articulador, todo lo que se muestra relacionado a Clientes pasa por  esta clase (altas, bajas, modificaciones, listados, etc)
 
--ClientesArchivo → Métodos para leer, buscar, agregar o modificar el archivo Clientes.
+- ClientesArchivo → Métodos para leer, buscar, agregar o modificar el archivo Clientes.
 
--menuPrincipal → Menú principal, de él se desprenden el resto de los menúes.
+- menuPrincipal → Menú principal, de él se desprenden el resto de los menúes.
 
--menuCamiones → Menú para sección camiones.
+- menuCamiones → Menú para sección camiones.
 
--menuChoferes → Menú para sección choferes.
+- menuChoferes → Menú para sección choferes.
 
--menuViajes → Menú para sección Viajes.
+- menuViajes → Menú para sección Viajes.
 
--menuClientes → Menú para sección Clientes.
+- menuClientes → Menú para sección Clientes.
 
--Fecha → Clase para manejar diferentes fechas en el programa
+- Fecha → Clase para manejar diferentes fechas en el programa
 
--Ciudades → Clase utilizada para buscar y establecer la distancia entre dos ciudades. Basada en el archivo “Ciudades” que contiene una base de datos de una gran cantidad de localidades de Argentina con sus respectivas coordenadas geográficas.
+- Ciudades → Clase utilizada para buscar y establecer la distancia entre dos ciudades. Basada en el archivo “Ciudades” que contiene una base de datos de una gran cantidad de localidades de Argentina con sus respectivas coordenadas geográficas.
 
--Carga → Clase utilizada para establecer diferentes tipos de cargas a transportar
+- Carga → Clase utilizada para establecer diferentes tipos de cargas a transportar
 
--Usuarios → Se pretende darle seguridad al programa mediante usuarios, todavía no se encuentra creada. En un futuro, si es necesario, se podría separar en manager y archivo.
+- Usuarios → Se pretende darle seguridad al programa mediante usuarios, todavía no se encuentra creada. En un futuro, si es necesario, se podría separar en manager y archivo.
 
--UsuariosManager → Articulador, todo lo que se muestra relacionado a usuarios pasa por  esta clase (altas, bajas, modificaciones, listados, etc)
+- UsuariosManager → Articulador, todo lo que se muestra relacionado a usuarios pasa por  esta clase (altas, bajas, modificaciones, listados, etc)
 
--UsuariosArchivo → métodos para leer, buscar, agregar o modificar el archivo usuarios.
+- UsuariosArchivo → métodos para leer, buscar, agregar o modificar el archivo usuarios.
 
 ## REPORTES/LISTADOS:
 
 ### Viajes:
 
 
-Viajes Activos: Muestra aquellos viajes que se encuentran en transcurso.
+- Viajes Activos: Muestra aquellos viajes que se encuentran en transcurso.
 
-Historial de viajes: Muestra todos los viajes realizados hasta la fecha.
+- Historial de viajes: Muestra todos los viajes realizados hasta la fecha.
 
 
 
 ### Choferes:
 
 
-Choferes: Lista todos los Choferes que se encuentran guardados en archivo cuyo estado es activo.
+- Choferes: Lista todos los Choferes que se encuentran guardados en archivo cuyo estado es activo.
 
-Choferes en viaje: Lista los Choferes que se encuentran actualmente en viaje.
+- Choferes en viaje: Lista los Choferes que se encuentran actualmente en viaje.
 
-Choferes sin camión: Lista aquellos choferes que no tienen asignado un camión actualmente.
+- Choferes sin camión: Lista aquellos choferes que no tienen asignado un camión actualmente.
 
-Choferes con camión: Lista aquellos choferes que tienen asignado un camión actualmente.
+- Choferes con camión: Lista aquellos choferes que tienen asignado un camión actualmente.
 
-Cantidad de kilómetros por chofer: Informa la cantidad acumulada de kilómetros recorridos por un chofer en un mes determinado del año en curso.
+- Cantidad de kilómetros por chofer: Informa la cantidad acumulada de kilómetros recorridos por un chofer en un mes determinado del año en curso.
 
-Estado de licencias: Informa el estado de las licencias de conducir de los choferes, si están vencidas o si están vigentes.
+- Estado de licencias: Informa el estado de las licencias de conducir de los choferes, si están vencidas o si están vigentes.
 
 
 
 ### Camiones:
 
 
-Camiones: Lista todos los Camiones que se encuentran guardados en archivo cuyo estado es activo.
+- Camiones: Lista todos los Camiones que se encuentran guardados en archivo cuyo estado es activo.
 
-Camiones en viaje: Lista los Camiones que se encuentran actualmente en viaje.
+- Camiones en viaje: Lista los Camiones que se encuentran actualmente en viaje.
 
-Disponibles para asignar: Lista todos los camiones que se encuentran en condiciones de ser asignados a un chofer.
+- Disponibles para asignar: Lista todos los camiones que se encuentran en condiciones de ser asignados a un chofer.
 
-Por antigüedad: Lista los camiones de menor a mayor según su antigüedad.
+- Por antigüedad: Lista los camiones de menor a mayor según su antigüedad.
 
-Cantidad de kilómetros por camión: Informa la cantidad acumulada de kilómetros recorridos por un camión en un mes determinado del año en curso.
+- Cantidad de kilómetros por camión: Informa la cantidad acumulada de kilómetros recorridos por un camión en un mes determinado del año en curso.
 
-Estado de verificaciones: Informa el estado de las verificaciones técnicas de los camiones. Si están vencidas o si se encuentran vigentes.
+- Estado de verificaciones: Informa el estado de las verificaciones técnicas de los camiones. Si están vencidas o si se encuentran vigentes.
 
 
 ### Usuarios:
 
-Listar usuarios: Ofrece una lista de los usuarios activos y sus IDs.
+- Listar usuarios: Ofrece una lista de los usuarios activos y sus IDs.
 
 ## Link al informe en Google Docs
 
