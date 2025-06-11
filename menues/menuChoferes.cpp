@@ -19,6 +19,7 @@ void menuChoferes::mostrar(int &rol)
         cout << "2. LISTADOS/REPORTES" << endl;
         cout << "3. ASIGNAR CAMIÓN" << endl;
         cout << "4. DESASIGNAR CAMIÓN" << endl;
+        cout << "5. EDITAR CHOFER" << endl;
         cout << endl;
         cout << "ESC. VOLVER AL MENÚ PRINCIPAL" << endl;
         cout << "=======================================" << endl;
@@ -48,6 +49,18 @@ void menuChoferes::mostrar(int &rol)
             break;
         case '4':
             cManager.desasignarCamion();
+            break;
+        case '5':
+            if (rol == 1)
+            {
+                cManager.editarChofer();
+            }
+            else
+            {
+                system("cls");
+                cout << endl << "Acceso restringido, no posee los permisos 🔒" << endl << endl;
+                system("pause");
+            }
             break;
         case 27:
             return;
@@ -171,3 +184,50 @@ void menuChoferes::menu_listados()
 
 }
 
+void menuChoferes::menu_edicion(int posicion){
+
+    choferesManager cManager;
+
+    char opcion;
+
+    do{
+    system("cls");
+    cout << "=======================================" << endl;
+    cout << "  SELECCIONE UNA OPCIÓN PARA EDITAR" << endl;
+    cout << "=======================================" << endl;
+    cout << "1. NOMBRE Y APELLIDO" << endl;
+    cout << "2. DNI" << endl;
+    cout << "3. EXPERIENCIA" << endl;
+    cout << endl;
+    cout << "ESC. VOLVER AL MENÚ CAMIONES" << endl;
+    cout << "=======================================" << endl;
+    cout << "Ingrese una opcion: ";
+
+    opcion = getch();
+
+    switch(opcion) {
+        case '1':
+            cManager.editarNombre(posicion);
+            break;
+        case '2':
+            cManager.editarDni(posicion);
+            break;
+        case '3':
+            cManager.editarExperiencia(posicion);
+            break;
+        case 27:
+            return;
+            break;
+        default:
+            system("cls");
+            cout << "Opción inválida. Por favor, intente de nuevo." << endl;
+            system("pause");
+            break;
+        }
+
+      cout << endl << endl;
+
+    } while(opcion != 27);
+
+
+}

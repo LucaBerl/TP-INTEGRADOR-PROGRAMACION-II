@@ -1207,15 +1207,208 @@ void camionesManager::editarMarca(int posicion){
 
 void camionesManager::editarPatente(int posicion){
 
-}
+    system("cls");
 
+    camionesArchivo caArchivo;
+    Camiones camion;
+
+    caArchivo.leerCamion(posicion,camion);
+    string patente;
+    int opcionNumerica;
+
+    while (true) {
+        cout << endl << endl << "Ingresar nueva patente: ";
+
+        getline(cin >> ws, patente);
+
+        if (camion.set_patente(patente)) {
+            system("cls");
+            cout << " Guardado correcto ✔" << endl << endl;
+            system("pause");
+            break;
+        } else {
+            system("cls");
+            cout << endl << "Patente inválida. Debe tener 6 O 7 caracteres. Intente de vuelta" << endl << endl;
+            system("pause");
+        }
+
+    }
+
+    system("cls");
+    camion.mostrarResumido();
+    cout << endl << endl << "¿Confirmar edición? :";
+    cout << endl << "1. SI" << endl << "2. NO" << endl << endl << "--> ";
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2)) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else if(opcionNumerica == 2){
+            return;
+        }else if(opcionNumerica == 1){
+            if(caArchivo.guardarCamionModificado(posicion,camion)){
+            system("cls");
+            cout << "GUARDADO CORRECTO ✔ " << endl << endl;
+            system("pause");
+            return;
+            }
+            else{
+                system("cls");
+                cout << "ERROR EN EL GUARDADO ❌ " << endl << endl;
+                system("pause");
+                return;
+            }
+        }
+
+    }
+
+}
 
 void camionesManager::editarAnio(int posicion){
 
+    system("cls");
+
+    camionesArchivo caArchivo;
+    Camiones camion;
+
+    caArchivo.leerCamion(posicion,camion);
+    int anio;
+    int opcionNumerica;
+
+    while (true) {
+        cout << endl << endl << "Ingresar nuevo año de patentamiento: ";
+        cin >> anio;
+        if (cin.fail()) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            continue;
+        }
+        if (camion.set_anio(anio)){
+            cout << " Guardado correcto ✔" << endl;
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+
+            break; // Salir del bucle, entrada válida
+        }else {
+            cout << "Año inválido. Debe estar entre 1960 y 2025." << endl;
+        }
+    }
+
+    system("cls");
+    camion.mostrarResumido();
+    cout << endl << endl << "¿Confirmar edición? :";
+    cout << endl << "1. SI" << endl << "2. NO" << endl << endl << "--> ";
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2)) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else if(opcionNumerica == 2){
+            return;
+        }else if(opcionNumerica == 1){
+            if(caArchivo.guardarCamionModificado(posicion,camion)){
+            system("cls");
+            cout << "GUARDADO CORRECTO ✔ " << endl << endl;
+            system("pause");
+            return;
+            }
+            else{
+                system("cls");
+                cout << "ERROR EN EL GUARDADO ❌ " << endl << endl;
+                system("pause");
+                return;
+            }
+        }
+
+    }
+
 }
 
-
 void camionesManager::editarPesoVolumen(int posicion){
+
+    system("cls");
+
+    camionesArchivo caArchivo;
+    Camiones camion;
+
+    caArchivo.leerCamion(posicion,camion);
+    int peso,volumen;
+    int opcionNumerica;
+
+   while (true) {
+        cout << endl << endl << "Ingresar nuevo peso máximo soportado (Entre 500 y 70.000 kg): ";
+        cin >> peso;
+        if (cin.fail()) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            continue;
+        }
+        if (camion.set_pesoCarga(peso)){
+            cout << " Guardado correcto ✔" << endl;
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+
+            break; // Salir del bucle, entrada válida
+        }else {
+            cout << "Peso fuera de rango, intente de vuelta" << endl;
+        }
+    }
+
+    while (true) {
+        cout << endl << endl << "Volumen máximo de carga (Entre 1 y 150 mts\u00B3): ";
+        cin >> volumen;
+        if (cin.fail()) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            continue;
+        }
+        if (camion.set_volumenCarga(volumen)){
+            cout << " Guardado correcto ✔" << endl;
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+
+            break; // Salir del bucle, entrada válida
+        }else {
+            cout << "Volumen fuera de rango, intente de vuelta" << endl;
+        }
+    }
+
+    system("cls");
+    camion.mostrarResumido();
+    cout << endl << endl << "¿Confirmar edición? :";
+    cout << endl << "1. SI" << endl << "2. NO" << endl << endl << "--> ";
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2)) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else if(opcionNumerica == 2){
+            return;
+        }else if(opcionNumerica == 1){
+            if(caArchivo.guardarCamionModificado(posicion,camion)){
+            system("cls");
+            cout << "GUARDADO CORRECTO ✔ " << endl << endl;
+            system("pause");
+            return;
+            }
+            else{
+                system("cls");
+                cout << "ERROR EN EL GUARDADO ❌ " << endl << endl;
+                system("pause");
+                return;
+            }
+        }
+
+    }
 
 }
 

@@ -6,6 +6,7 @@
 #include "../camiones/camionesManager.h"
 #include "../camiones/camionesArchivo.h"
 #include "../viajes/viajesManager.h"
+#include "../menues/menuChoferes.h"
 #include <ctime>
 #include <conio.h>
 #include <iomanip>
@@ -478,7 +479,7 @@ void choferesManager::listarTodos()
     system("pause");
 }
 
-///LSITAR SIN CAMION/////////////////////////////////////////////////////////
+///LISTAR SIN CAMION/////////////////////////////////////////////////////////
 
 void choferesManager::listarSinCamion()
 {
@@ -1509,5 +1510,309 @@ bool choferesManager::buscarChoferesParaDesasignar()
     }
 
     return 0;
+
+}
+
+void choferesManager::editarChofer(){
+
+    system("cls");
+
+    Choferes chofer;
+    choferesArchivo chArchivo;
+
+    int opcionNumerica;
+
+    listarTodos();
+
+    cout << endl << endl << "Por favor, seleccionar el ID del chofer que desea editar: ";
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || opcionNumerica <= 0) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else{
+
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            cout << endl << "ID seleccionado: " << opcionNumerica << endl << endl;
+            system("pause");
+            break; // Salir del bucle, entrada válida
+        }
+    }
+
+    system("cls");
+
+    int posicion, cantidadRegistros = chArchivo.getCantidadRegistros();
+    bool idEncontrado = false;
+
+    for(int i = 0;i < cantidadRegistros; i++){
+
+        if(chArchivo.leerChoferes(i,chofer)){
+            if (chofer.get_id() == opcionNumerica && chofer.get_estado() == 1){
+                chofer.mostrarResumido();
+                posicion = i;
+                idEncontrado = true;
+                cout << endl << endl << "Desea editar éste chofer?";
+                cout << endl << "1. SI" << endl << "2. NO" << endl << endl << "--> ";
+                break;
+            }
+        }else{
+            system("cls");
+            cout << "Lectura incorrecta";
+            system("pause");
+            return;
+        }
+
+    }
+
+    if(!idEncontrado){
+        cout << endl << "El ID seleccionado no existe en los registros" << endl << endl;
+        system("pause");
+        return;
+    }
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2)) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else if(opcionNumerica == 2){
+            return;
+        }else if(opcionNumerica == 1){
+            menuChoferes menu;
+            menu.menu_edicion(posicion);
+            break;
+        }
+
+    }
+
+}
+
+void choferesManager::editarDni(int posicion){
+
+    system("cls");
+
+    choferesArchivo chArchivo;
+    Choferes chofer;
+
+    chArchivo.leerChoferes(posicion,chofer);
+    int dni;
+    int opcionNumerica;
+
+    while (true){
+        cout << endl << endl << "Ingresar nuevo DNI: ";
+        cin >> dni;
+        if (cin.fail())
+        {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            continue;
+        }
+        if (chofer.set_dni(dni))
+        {
+            system("cls");
+            cout << " Guardado correcto ✔" << endl << endl;
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            system("pause");
+
+            break; // Salir del bucle, entrada válida
+        }
+        else
+        {
+            system("cls");
+            cout << "DNI invalido." << endl << endl;
+            system("pause");
+        }
+    }
+
+    system("cls");
+    chofer.mostrarResumido();
+    cout << endl << endl << "¿Confirmar edición? :";
+    cout << endl << "1. SI" << endl << "2. NO" << endl << endl << "--> ";
+
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2)) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else if(opcionNumerica == 2){
+            return;
+        }else if(opcionNumerica == 1){
+            if(chArchivo.guardarChoferModificado(posicion,chofer)){
+            system("cls");
+            cout << "GUARDADO CORRECTO ✔ " << endl << endl;
+            system("pause");
+            return;
+            }
+            else{
+                system("cls");
+                cout << "ERROR EN EL GUARDADO ❌ " << endl << endl;
+                system("pause");
+                return;
+            }
+        }
+
+    }
+
+
+}
+
+void choferesManager::editarNombre(int posicion){
+
+    system("cls");
+
+    choferesArchivo chArchivo;
+    Choferes chofer;
+
+    chArchivo.leerChoferes(posicion,chofer);
+    string nombre,apellido;
+    int opcionNumerica;
+
+    while (true) {
+        cout << endl << endl << "Ingresar nueva nombre: ";
+
+        getline(cin >> ws, nombre);
+
+        if (chofer.set_nombre(nombre)) {
+            system("cls");
+            cout << " Guardado correcto ✔" << endl << endl;
+            system("pause");
+            break;
+        } else {
+            system("cls");
+            cout << endl << "Nombre inválido, o demasiado largo. Intente de vuelta" << endl << endl;
+            system("pause");
+        }
+
+    }
+
+    while (true) {
+        cout << endl << endl << "Ingresar nuevo apellido: ";
+
+        getline(cin >> ws, apellido);
+
+        if (chofer.set_apellido(apellido)) {
+            system("cls");
+            cout << " Guardado correcto ✔" << endl << endl;
+            system("pause");
+            break;
+        } else {
+            system("cls");
+            cout << endl << "Apellido inválido, o demasiado largo. Intente de vuelta" << endl << endl;
+            system("pause");
+        }
+
+    }
+
+    system("cls");
+    chofer.mostrarResumido();
+    cout << endl << endl << "¿Confirmar edición? :";
+    cout << endl << "1. SI" << endl << "2. NO" << endl << endl << "--> ";
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2)) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else if(opcionNumerica == 2){
+            return;
+        }else if(opcionNumerica == 1){
+            if(chArchivo.guardarChoferModificado(posicion,chofer)){
+            system("cls");
+            cout << "GUARDADO CORRECTO ✔ " << endl << endl;
+            system("pause");
+            return;
+            }
+            else{
+                system("cls");
+                cout << "ERROR EN EL GUARDADO ❌ " << endl << endl;
+                system("pause");
+                return;
+            }
+        }
+
+    }
+
+}
+
+void choferesManager::editarExperiencia(int posicion){
+
+    system("cls");
+
+    choferesArchivo chArchivo;
+    Choferes chofer;
+
+    chArchivo.leerChoferes(posicion,chofer);
+    int experiencia;
+    int opcionNumerica;
+
+    while (true){
+        cout << endl << endl << "Ingresar nueva experiencia: ";
+        cin >> experiencia;
+        if (cin.fail())
+        {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            continue;
+        }
+        if (chofer.set_experiencia(experiencia))
+        {
+            system("cls");
+            cout << " Guardado correcto ✔" << endl << endl;
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            system("pause");
+
+            break; // Salir del bucle, entrada válida
+        }
+        else
+        {
+            system("cls");
+            cout << "Ingreso invalido, intente de nuevo." << endl << endl;
+            system("pause");
+        }
+    }
+
+    system("cls");
+    chofer.mostrarResumido();
+    cout << endl << endl << "¿Confirmar edición? :";
+    cout << endl << "1. SI" << endl << "2. NO" << endl << endl << "--> ";
+
+
+    while (true) {
+        cin >> opcionNumerica;
+
+        if (cin.fail() || (opcionNumerica != 1 && opcionNumerica != 2)) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else if(opcionNumerica == 2){
+            return;
+        }else if(opcionNumerica == 1){
+            if(chArchivo.guardarChoferModificado(posicion,chofer)){
+            system("cls");
+            cout << "GUARDADO CORRECTO ✔ " << endl << endl;
+            system("pause");
+            return;
+            }
+            else{
+                system("cls");
+                cout << "ERROR EN EL GUARDADO ❌ " << endl << endl;
+                system("pause");
+                return;
+            }
+        }
+
+    }
 
 }

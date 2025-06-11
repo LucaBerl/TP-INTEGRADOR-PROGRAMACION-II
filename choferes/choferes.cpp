@@ -203,5 +203,13 @@ void Choferes::mostrar()const{
 }
 
 
+void Choferes::mostrarResumido()const{
 
+    cout << endl << endl;
+    cout << "Nombre: " << get_nombre() << endl;
+    cout << "Apellido: " << get_apellido() << endl;
+    cout << "DNI: " << get_dni() << endl;
+    cout << "Experiencia: " << get_experiencia() << endl;
+
+}
 

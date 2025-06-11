@@ -9,17 +9,17 @@ class Choferes
 
 private:
     int _id;
-    bool _asignado;  //booleano para verificar si tiene o no tiene camion asignado
-    Camiones _camionAsignado;  //Objeto del camion que se le asigna al chofer
+    bool _asignado;
+    Camiones _camionAsignado;
     int _dni;
     char _nombre[30];
     char _apellido[30];
     int _experiencia;
     Fecha _vencimientoLicencia;
     bool _aptoCircular;
-    bool _enViaje; /// CAMBIAR A _ENVIAJE
+    bool _enViaje;
     float _kmMensuales[12];
-    bool _estado; //define si el registro esta o no activo
+    bool _estado;
 
 
 
@@ -27,6 +27,7 @@ private:
 public:
 
     void mostrar () const;
+    void mostrarResumido()const;
 
     //Constructor:
 

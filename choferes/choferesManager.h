@@ -25,4 +25,8 @@ bool sincronizarCamionesAsignados();
 void mostrarKmPorChofer();
 bool buscarChoferesParaAsignar();
 bool buscarChoferesParaDesasignar();
+void editarChofer();
+void editarDni(int posicion);
+void editarNombre(int posicion);
+void editarExperiencia(int posicion);
 };
