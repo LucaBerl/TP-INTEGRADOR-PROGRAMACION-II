@@ -414,6 +414,24 @@ bool viajesManager::actualizarEstados(){
                 choferViaje.set_enViaje(0);
                 camionViaje.set_enViaje(0);
 
+                // Actualiza cantidad de viajes en cliente
+                Clientes cliente = viaje.get_cliente();
+
+                 clientesArchivo clienteArchivo;
+                int posCliente = clienteArchivo.buscarRegistro(cliente.get_idCliente());
+
+                   if (posCliente >= 0) {
+                       if (clienteArchivo.leerClientes(posCliente, cliente)) {
+                           int cantidad = cliente.get_Cantidad_Viajes_Realizados();
+                            cliente.set_CantidadViajesRealizados(cantidad + 1);
+
+                             clienteArchivo.guardarClienteModificado(posCliente, cliente);
+
+
+                              viaje.set_cliente(cliente);
+                          }
+                  }
+
                 if(!vArchivo.guardarViajeModificado(i,viaje) || !cArchivo.guardarChoferModificado(posicionChofer,choferViaje) || !caArchivo.guardarCamionModificado(posicionCamion,camionViaje)){
 
                     return false;
@@ -426,6 +444,7 @@ bool viajesManager::actualizarEstados(){
         }else{return false;}
 
     }
+
 
     return true;
 

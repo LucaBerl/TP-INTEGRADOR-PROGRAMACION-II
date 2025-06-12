@@ -18,6 +18,8 @@ public:
 
     bool guardarClienteModificado(int pos,Clientes &cliente);
 
+    int buscarRegistro(int idCliente) ;
+
 
 
 

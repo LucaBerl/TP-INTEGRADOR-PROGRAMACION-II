@@ -172,9 +172,9 @@ void clientesManager::altaCliente(){
 
     cout << endl << "ID: " << cliente.get_idCliente();
 
-    cout << endl << "Razon social / Nombre " << cliente.get_Nombre_RazonSocial();
+    cout << endl << " Cliente " << cliente.get_Nombre_RazonSocial();
 
-    cout << endl << "Direccion " << cliente.get_Direccion();
+    cout << endl << "Direccion  " << cliente.get_Direccion();
 
     cout << endl << "Telefono " <<cliente.get_Telefono();
 
@@ -664,7 +664,7 @@ cout << endl << string(119, '-') << endl;
 
         if(vArchivo.leerViaje(i,viaje)){
 
-            if(viaje.get_estado() == true){
+
 
                 cout << setw(4)  << viaje.get_cliente().get_idCliente()
      << setw(20) <<viaje.get_cliente().get_Nombre_RazonSocial()
@@ -688,7 +688,7 @@ cout << endl << string(119, '-') << endl;
   cout << setw(10) << estadoDeviaje
      << endl;
 
-            }
+
 
         }else{cout << "No se pudo leer el viaje";}
 

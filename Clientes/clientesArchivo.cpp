@@ -108,3 +108,23 @@ bool clientesArchivo::guardarClienteModificado(int pos, Clientes &cliente){
     return modifico;
 
 }
+
+
+int clientesArchivo::buscarRegistro(int idCliente) {
+    FILE* pfile = fopen("clientes.dat", "rb");
+    if (pfile == nullptr) return -1;
+
+    Clientes cliente;
+    int pos = 0;
+
+    while (fread(&cliente, sizeof(Clientes), 1, pfile)) {
+        if (cliente.get_idCliente() == idCliente) {
+            fclose(pfile);
+            return pos;
+        }
+        pos++;
+    }
+
+    fclose(pfile);
+    return -1; // No se encontró
+}
