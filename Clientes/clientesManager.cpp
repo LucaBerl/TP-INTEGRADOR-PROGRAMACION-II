@@ -168,25 +168,19 @@ void clientesManager::altaCliente(){
 
 ///RESUMEN///////////////////////////////////////
 
+    system("cls");
+
     cout << "RESUMEN" << endl;
 
     cout << endl << "ID: " << cliente.get_idCliente();
 
-    cout << endl << " Cliente " << cliente.get_Nombre_RazonSocial();
+    cout << endl << "Cliente " << cliente.get_Nombre_RazonSocial();
 
     cout << endl << "Direccion  " << cliente.get_Direccion();
 
     cout << endl << "Telefono " <<cliente.get_Telefono();
 
     cout << endl << "Email " << cliente.get_Email();
-
-    cout << endl << "Estado " << cliente.get_estado();
-
-
-
-
-
-
 
 
 ///CONFIRMACION Y GUARDADO//////////////////////////////////
@@ -211,6 +205,7 @@ void clientesManager::altaCliente(){
         {
             system("cls");
             cout << "GUARDADO CORRECTO ✔ " << endl;
+            system("pause");
 
         }
     }
@@ -646,16 +641,16 @@ void clientesManager::viajesClientes(){
     cout << left; // Alinear a la izquierda todo
 
     // Encabezado
-   cout << left;
+    cout << left;
     cout << setw(4)  << "ID"
-     << setw(20) << "Nombre/Empresa"
-     << setw(15) << "Direccion"
-     << setw(15) << "Origen"
-     << setw(15) << "Destino"
-     << setw(15) << "Distancia"
-     << setw(10) << "Estado";
+    << setw(30) << "Nombre/Empresa"
+    << setw(30) << "Direccion"
+    << setw(33) << "Origen"
+    << setw(33) << "Destino"
+    << setw(20) << "Distancia"
+    << setw(15) << "Estado";
 
-cout << endl << string(119, '-') << endl;
+    cout << endl << string(163, '-') << endl;
 
 
     for(int i = 0;i < cantidadRegistros; i++){
@@ -664,29 +659,20 @@ cout << endl << string(119, '-') << endl;
 
         if(vArchivo.leerViaje(i,viaje)){
 
+            string estadoDeviaje;
+            if(viaje.get_estado()){estadoDeviaje="En Viaje";}else{estadoDeviaje="Finalizado";}
+
+            cout << setw(4)  << viaje.get_cliente().get_idCliente()
+            << setw(30) <<viaje.get_cliente().get_Nombre_RazonSocial()
+            << setw(30) << viaje.get_cliente().get_Direccion()
+            << setw(33) << viaje.get_ciudadOrigen().getCiudad()
+            << setw(33) << viaje.get_ciudadDestino().getCiudad()
+            << setw(15) << viaje.get_distancia();
 
 
-                cout << setw(4)  << viaje.get_cliente().get_idCliente()
-     << setw(20) <<viaje.get_cliente().get_Nombre_RazonSocial()
-     << setw(15) << viaje.get_cliente().get_Direccion()
-     << setw(15) << viaje.get_ciudadOrigen().getCiudad()
-     << setw(15) << viaje.get_ciudadDestino().getCiudad()
-     << setw(10) << viaje.get_distancia();
-
-     string estadoDeviaje;
-
-     if(viaje.get_estado()){
-         estadoDeviaje="En Viaje";
-
-     }else{
-        estadoDeviaje="Finalizado";
-
-     }
-
-
-  cout << "     ";
-  cout << setw(10) << estadoDeviaje
-     << endl;
+            cout << "     ";
+            cout << setw(15) << estadoDeviaje
+            << endl;
 
 
 

@@ -30,24 +30,15 @@ void viajesManager::crearViaje(){
         return;
     }
 
-    ///Paso 1:
+
     seleccionarCarga(viaje);
-    ///Paso 2 y 3:
-    if(!seleccionarChofer(viaje)){
-        return;
-    }
-    ///Paso 4:
+    if(!seleccionarChofer(viaje)){return;}
     seleccionarCiudades(viaje);
-    ///Paso 5:
     calcularTiempo(viaje);
-    ///Paso 6
-    listarClientes(viaje);
-    ///Paso 7 y 8
-    mostrarResumen(viaje);
+    seleccionarCliente(viaje);
+    mostrarResumen_GuardarViaje(viaje);
 
 }
-
-/// Paso 1:
 
 void viajesManager::seleccionarCarga(Viajes &viaje){
 
@@ -112,8 +103,6 @@ void viajesManager::seleccionarCarga(Viajes &viaje){
     }
 
 }
-
-///Paso 2 y 3:
 
 bool viajesManager::seleccionarChofer(Viajes &viaje){
 
@@ -205,8 +194,6 @@ bool viajesManager::seleccionarChofer(Viajes &viaje){
 
 }
 
-/// Paso 4:
-
 void viajesManager::seleccionarCiudades(Viajes &viaje){
 
     system("cls");
@@ -235,8 +222,6 @@ void viajesManager::seleccionarCiudades(Viajes &viaje){
     system("pause");
 
 }
-
-//Paso 5:
 
 void viajesManager::calcularTiempo(Viajes &viaje){
 
@@ -298,9 +283,83 @@ void viajesManager::calcularTiempo(Viajes &viaje){
 
 }
 
-// Paso 6 y 7:
+bool viajesManager::seleccionarCliente(Viajes &viaje){
 
-void viajesManager::mostrarResumen(Viajes &viaje){
+    clientesManager clienteManager;
+    clientesArchivo clienteArchivo;
+    Clientes cliente;
+
+    system("cls");
+
+    cout << endl << "A continuación, se mostrará una lista de Clientes en nuestro sistema, si el cliente no existe, puede crear un nuevo Cliente en Menu de Clientes ";
+
+    cout << endl << endl;
+
+    system("pause");
+
+    clienteManager.mostrarTodos();
+
+    cout << endl << endl << "Indicar ID de Cliente  del Viaje : ";
+    int opcion;
+    while (true) {
+        cin >> opcion;
+
+        if (cin.fail() || opcion <= 0) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+        }else{
+
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+            cout << endl << "ID seleccionado: " << opcion << endl << endl;
+            system("pause");
+            break; // Salir del bucle, entrada válida
+        }
+    }
+
+    bool idChoferEncontrado = false;
+    int cantidadRegistrosClientes = clienteArchivo.getCantidadClientes();
+
+    for(int i = 0;i < cantidadRegistrosClientes; i++){
+        if(clienteArchivo.leerClientes(i, cliente)){
+            if(cliente.get_idCliente() == opcion){
+
+                idChoferEncontrado = true;
+
+
+
+
+                    viaje.set_cliente(cliente);
+                    system("cls");
+                    cout << "Cliente '" << viaje.get_cliente().get_Nombre_RazonSocial() << " " << viaje.get_cliente().get_Direccion()
+                    << "' asignado correctamente al viaje" << endl << endl;
+                    system("pause");
+                    return true;
+
+
+
+            }
+        } else {
+            system("cls");
+            cout << "Lectura incorrecta" << endl << endl;
+            system("pause");
+            return false;
+
+        }
+    }
+
+    if (!idChoferEncontrado){
+        system("cls");
+        cout << "El ID no existe o no pertenece a un Cliente " << endl << endl;
+        system("pause");
+        return false;
+    }
+
+
+
+}
+
+void viajesManager::mostrarResumen_GuardarViaje(Viajes &viaje){
 
 
 viajesArchivo vArchivo;
@@ -383,7 +442,6 @@ int opcionNumerica;
 
 
 }
-
 
 bool viajesManager::actualizarEstados(){
 
@@ -553,25 +611,27 @@ void viajesManager::listarHistorial(){
 
     cout << endl << endl;
 
-    cout << "Ingresar un ID de viaje para obtener informacion mas detallada del mismo" << endl << endl;
+    cout << "Ingresar un ID de viaje para obtener informacion mas detallada del mismo, o '0' para salir..." << endl << endl;
 
     int opcion;
 
     while (true) {
         cin >> opcion;
 
-        if (cin.fail() || opcion <= 0) {
+        if (cin.fail() || opcion < 0) {
             cin.clear(); // Limpia el estado de error
             cin.ignore(1000, '\n'); // Descarta el resto de la línea
             cout << endl << "Ingreso incorrecto, intente nuevamente: ";
         }else{
-
+            if (opcion == 0){return;}
             cin.ignore(1000, '\n'); // Por si quedan residuos
             cout << endl << "ID seleccionado: " << opcion << endl << endl;
             system("pause");
             break; // Salir del bucle, entrada válida
         }
     }
+
+
 
     bool  viajeEncontrado = false;
 
@@ -593,13 +653,21 @@ void viajesManager::listarHistorial(){
                 << "Experiencia: " << viaje.get_chofer().get_experiencia() << endl
                 << "Dni: " << viaje.get_chofer().get_dni() << endl
                 << "Camión: " << viaje.get_chofer().get_camionAsignado().get_marca() << " " << viaje.get_chofer().get_camionAsignado().get_modelo() << endl
-                << "Patente: " << viaje.get_chofer().get_camionAsignado().get_patente() << endl << endl;
+                << "Patente: " << viaje.get_chofer().get_camionAsignado().get_patente() << endl
+                << "Cliente: " << viaje.get_cliente().get_Nombre_RazonSocial() << endl << endl;
                 break;
 
             }
 
         }else{cout << "No se pudo leer el viaje";}
 
+    }
+
+    if (!viajeEncontrado){
+        system("cls");
+        cout << "El ID de viaje seleccionado no existe ... " << endl << endl;
+        system("pause");
+        return;
     }
 
     system("pause");
@@ -689,78 +757,3 @@ bool viajesManager::listarChoferesDisponibles(Viajes &viaje){
 
 }
 
-bool viajesManager::listarClientes(Viajes &viaje){
-
-    clientesManager clienteManager;
-    clientesArchivo clienteArchivo;
-    Clientes cliente;
-
-     system("cls");
-
-    cout << endl << "A continuación, se mostrará una lista de Clientes en nuestro sistema, si el cliente no existe, puede crear un nuevo Cliente en Menu de Clientes ";
-
-    cout << endl << endl;
-
-    system("pause");
-
-    clienteManager.mostrarTodos();
-
-    cout << endl << endl << "Indicar ID de Cliente  del Viaje : ";
-    int opcion;
-    while (true) {
-        cin >> opcion;
-
-        if (cin.fail() || opcion <= 0) {
-            cin.clear(); // Limpia el estado de error
-            cin.ignore(1000, '\n'); // Descarta el resto de la línea
-            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
-        }else{
-
-            cin.ignore(1000, '\n'); // Por si quedan residuos
-            cout << endl << "ID seleccionado: " << opcion << endl << endl;
-            system("pause");
-            break; // Salir del bucle, entrada válida
-        }
-    }
-
-    bool idChoferEncontrado = false;
-    int cantidadRegistrosClientes = clienteArchivo.getCantidadClientes();
-
-    for(int i = 0;i < cantidadRegistrosClientes; i++){
-        if(clienteArchivo.leerClientes(i, cliente)){
-            if(cliente.get_idCliente() == opcion){
-
-                idChoferEncontrado = true;
-
-
-
-
-                    viaje.set_cliente(cliente);
-                    system("cls");
-                    cout << "Cliente '" << viaje.get_cliente().get_Nombre_RazonSocial() << " " << viaje.get_cliente().get_Direccion()
-                    << "' asignado correctamente al viaje" << endl << endl;
-                    system("pause");
-                    return true;
-
-
-
-            }
-        } else {
-            system("cls");
-            cout << "Lectura incorrecta" << endl << endl;
-            system("pause");
-            return false;
-
-        }
-    }
-
-    if (!idChoferEncontrado){
-        system("cls");
-        cout << "El ID no existe o no pertenece a un Cliente " << endl << endl;
-        system("pause");
-        return false;
-    }
-
-
-
-}

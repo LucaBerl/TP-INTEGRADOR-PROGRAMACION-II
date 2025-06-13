@@ -10,11 +10,11 @@ public:
     bool seleccionarChofer(Viajes &viaje);
     void seleccionarCiudades(Viajes &viaje);
     void calcularTiempo(Viajes &viaje);
-    void mostrarResumen(Viajes &viaje);
+    void mostrarResumen_GuardarViaje(Viajes &viaje);
     bool actualizarEstados();
     void listarActivos();
     void listarHistorial();
     bool listarChoferesDisponibles(Viajes &viaje);
-    bool listarClientes(Viajes &viaje);
+    bool seleccionarCliente(Viajes &viaje);
 
 };
