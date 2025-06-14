@@ -1345,6 +1345,7 @@ bool choferesManager::sincronizarCamionesAsignados()
 
                     if (camion.get_estado())
                     {
+
                         chofer.set_camionAsignado(camion);
                     }
                     else

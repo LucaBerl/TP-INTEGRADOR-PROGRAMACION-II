@@ -106,7 +106,7 @@ void menuClientes::menulistados(){
     cout << "=======================================" << endl;
     cout << "1. LISTAR TODOS" << endl;
     cout << "2. HISTORIAL VIAJES DE CLIENTES" << endl;
-    cout << "3. LISTAR CLIENTES INACTIVOS OR ELIMINADOS" << endl;
+    cout << "3. LISTAR CLIENTES INACTIVOS O ELIMINADOS" << endl;
     cout << endl;
     cout << "ESC. VOLVER AL MENÚ CLIENTES" << endl;
     cout << "=======================================" << endl;

@@ -121,18 +121,18 @@ bool viajesManager::seleccionarChofer(Viajes &viaje){
         return false;
     }
 
-    cout << endl << endl << "Indicar ID de chofer para realizar el viaje : ";
+    cout << endl << endl << "Indicar ID de chofer para realizar el viaje o presione '0' para salir : ";
     int opcion;
 
     while (true) {
         cin >> opcion;
 
-        if (cin.fail() || opcion <= 0) {
+        if (cin.fail() || opcion < 0) {
             cin.clear(); // Limpia el estado de error
             cin.ignore(1000, '\n'); // Descarta el resto de la línea
             cout << endl << "Ingreso incorrecto, intente nuevamente: ";
         }else{
-
+            if (opcion == 0){return 0;}
             cin.ignore(1000, '\n'); // Por si quedan residuos
             cout << endl << "ID seleccionado: " << opcion << endl << endl;
             system("pause");
@@ -317,24 +317,21 @@ bool viajesManager::seleccionarCliente(Viajes &viaje){
         }
     }
 
-    bool idChoferEncontrado = false;
+    bool idClienteEncontrado = false;
     int cantidadRegistrosClientes = clienteArchivo.getCantidadClientes();
 
     for(int i = 0;i < cantidadRegistrosClientes; i++){
         if(clienteArchivo.leerClientes(i, cliente)){
-            if(cliente.get_idCliente() == opcion){
+            if(cliente.get_idCliente() == opcion && cliente.get_estado() == true){
 
-                idChoferEncontrado = true;
+                idClienteEncontrado = true;
 
-
-
-
-                    viaje.set_cliente(cliente);
-                    system("cls");
-                    cout << "Cliente '" << viaje.get_cliente().get_Nombre_RazonSocial() << " " << viaje.get_cliente().get_Direccion()
-                    << "' asignado correctamente al viaje" << endl << endl;
-                    system("pause");
-                    return true;
+                viaje.set_cliente(cliente);
+                system("cls");
+                cout << "Cliente '" << viaje.get_cliente().get_Nombre_RazonSocial() << " " << viaje.get_cliente().get_Direccion()
+                << "' asignado correctamente al viaje" << endl << endl;
+                system("pause");
+                return true;
 
 
 
@@ -348,7 +345,7 @@ bool viajesManager::seleccionarCliente(Viajes &viaje){
         }
     }
 
-    if (!idChoferEncontrado){
+    if (!idClienteEncontrado){
         system("cls");
         cout << "El ID no existe o no pertenece a un Cliente " << endl << endl;
         system("pause");
@@ -369,6 +366,7 @@ viaje.set_id(vArchivo.get_ultimoID());
 system("cls");
 
 cout << left << fixed << setprecision(0);
+cout << "RESUMEN" << endl << endl;
 
 cout << endl << "🆔 Viaje: " << viaje.get_id();
 cout << endl << "🧑‍✈️ Chofer: " << viaje.get_chofer().get_nombre() << "  " << viaje.get_chofer().get_apellido() << " (ID = " << viaje.get_chofer().get_id() << ")";
@@ -465,6 +463,7 @@ bool viajesManager::actualizarEstados(){
 
                 Choferes choferViaje;
                 Camiones camionViaje;
+                Clientes cliente;
 
                 cArchivo.leerChoferes(posicionChofer, choferViaje);
                 caArchivo.leerCamion(posicionCamion, camionViaje);
@@ -472,25 +471,18 @@ bool viajesManager::actualizarEstados(){
                 choferViaje.set_enViaje(0);
                 camionViaje.set_enViaje(0);
 
-                // Actualiza cantidad de viajes en cliente
-                Clientes cliente = viaje.get_cliente();
+                clientesArchivo clienteArchivo;
+                int posCliente = clienteArchivo.buscarRegistro(viaje.get_cliente().get_idCliente());
 
-                 clientesArchivo clienteArchivo;
-                int posCliente = clienteArchivo.buscarRegistro(cliente.get_idCliente());
+                if (posCliente >= 0) {
+                    if (clienteArchivo.leerClientes(posCliente, cliente)) {
+                        int cantidad = cliente.get_Cantidad_Viajes_Realizados();
+                        cliente.set_CantidadViajesRealizados(cantidad + 1);
 
-                   if (posCliente >= 0) {
-                       if (clienteArchivo.leerClientes(posCliente, cliente)) {
-                           int cantidad = cliente.get_Cantidad_Viajes_Realizados();
-                            cliente.set_CantidadViajesRealizados(cantidad + 1);
+                    }
+                }
 
-                             clienteArchivo.guardarClienteModificado(posCliente, cliente);
-
-
-                              viaje.set_cliente(cliente);
-                          }
-                  }
-
-                if(!vArchivo.guardarViajeModificado(i,viaje) || !cArchivo.guardarChoferModificado(posicionChofer,choferViaje) || !caArchivo.guardarCamionModificado(posicionCamion,camionViaje)){
+                if(!vArchivo.guardarViajeModificado(i,viaje) || !clienteArchivo.guardarClienteModificado(posCliente, cliente) || !cArchivo.guardarChoferModificado(posicionChofer,choferViaje) || !caArchivo.guardarCamionModificado(posicionCamion,camionViaje)){
 
                     return false;
 
@@ -592,13 +584,7 @@ void viajesManager::listarHistorial(){
 
         if(vArchivo.leerViaje(i,viaje)){
 
-             if(viaje.get_estado() == false){
-
-                Clientes cliente = viaje.get_cliente();  // copia
-                int cantidad = cliente.get_Cantidad_Viajes_Realizados();
-                cliente.set_CantidadViajesRealizados(cantidad + 1);
-
-                clienteArchivo.guardarClienteModificado(viaje.get_cliente().get_idCliente(),cliente);
+            if(viaje.get_estado() == false){
 
                 viaje.mostrarViaje();
                 cout << endl;
