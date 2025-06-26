@@ -63,6 +63,7 @@ void menuPrincipal::mostrar(int &rol){
                 break;
             default:
                 cout << "Opción inválida. Por favor, intente de nuevo." << endl;
+                system("pause");
         }
 
       cout << endl << endl;

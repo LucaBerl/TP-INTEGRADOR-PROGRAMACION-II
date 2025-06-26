@@ -3,7 +3,7 @@ using namespace std;
 #include "camiones.h"
 #include <cstring>
 #include <iomanip>
-#include <vector>
+
 
 // Constructor
 
@@ -180,35 +180,5 @@ void Camiones::mostrar()const{
 
 }
 
-////////////////////////////////
-
-std::vector<std::string> Camiones::catalogoMarcas() const{
-    return{
-        "Mercedez-Benz", "Volvo", "Scania", "Iveco", "Ford", "Volkswagen"
-    };
-}
-
-void Camiones::listarMarcas()const{
-    vector<std::string> marcas = catalogoMarcas();
-
-    cout<<"Marcas disponibles"<<endl;
-
-    for(size_t i = 0; i < marcas.size(); i++){
-        cout<<" " << (i + 1) << "-" << marcas[i] << " | " ;
-    }
-    cout<<" "<< (marcas.size() + 1) << ") Otra (ingresar manualmente)";
-}
-
-std::string Camiones::validarMarca(int nro) const{
-    std::string marcaSeleccionada;
-    vector<std::string> marcas = catalogoMarcas();
-    if (nro >= 1 && nro <= static_cast<int>(marcas.size())){
-        marcaSeleccionada = marcas[nro - 1];
-    } else{
-        marcaSeleccionada = "Otra";
-    }
-
-    return marcaSeleccionada;
-}
 
 

@@ -12,94 +12,6 @@ using namespace std;
 #include <string>
 
 
-// Encabezado
-void camionesManager::encabezadoAlta(std::string marca = "", std::string modelo = "", std::string patente = ""){
-int contPasos = 0;
-
-    system("cls");
-    cout << endl;
-    cout << "                    ALTA DE CAMION" << endl;
-
-    if (marca  != "") contPasos++;
-    if (modelo != "") contPasos++;
-    if (patente != "") contPasos++;
-
-    switch (contPasos) {
-        case 1:
-            cout << marca << endl;
-            break;    // ← aquí faltaba ‘;’
-        case 2:
-            cout << marca << " - " << modelo << endl;
-            break;    // ← aquí faltaba ‘;’
-        case 3:
-            cout << marca << " - " << modelo << " (" << patente << ")" << endl;
-            break;    // ← aquí faltaba ‘;’
-        default:
-            cout << endl << endl;
-    }
-
-    cout << " ---------------------------------------------------------------------" << endl;
-}
-
-// Verificar formato de patente
-
-bool camionesManager::esLetra(char letra){                      // VALIDA INGREO DE LETRAS
-    if(letra >= 'A' && letra <= 'Z' || letra >= 'a' && letra <= 'z'){
-        return true;
-    } else { return false; }
-}
-
-bool camionesManager::esNumero(int nro){                        // VALIDA INGRESO DE NUMEROS
-    if(nro >= 0 && nro <= 9){
-        return true;
-    } else { return false;}
-}
-
-bool camionesManager::validarPatente(std::string patente){      // VALIDA INGRESO DE LA PANTENTE
-    int largo = patente.size();
-    switch(largo){
-        case 6:{
-         int verificado=0;
-            for(int i=0; i<3; i++){
-                if(esLetra(patente[i])){
-                    verificado++;
-                }
-            }
-            for (int x=3; x<largo; x++){
-                if(esNumero(patente[x])){
-                    verificado++;
-                }
-            }
-            if(verificado==largo) return true;
-        }
-        case 7:{
-        int verificado = 0;
-            for(int i = 0; i< 2; i++){
-                if(esLetra(patente[i])){
-                    verificado++;
-                }
-            }
-            for(int x = 2; x<5;x++){
-                if(esNumero(patente[x])){
-                    verificado++;
-                }
-            }
-            for(int z=5; z<largo;z++){
-                if(esLetra(patente[z])){
-                    verificado++;
-                }
-            }
-            if(verificado==largo){
-                return true;
-            }
-        }
-        default:
-            return false;
-            break;
-    }
-}
-
-// Formulario de alta
 void camionesManager::altaCamion(){
 
     system("cls");
@@ -108,72 +20,71 @@ void camionesManager::altaCamion(){
     Fecha fechaVerificacion;
     camionesArchivo caArchivo;
 
-   string marca, modelo, patente;
+    string marca, modelo, patente;
     int dia, mes, anioFecha,anio, seleccion_marca;
     float peso, volumen;
     bool validacion;
 
 ///MARCA/////////////////////////////////////////////////////////////////////////////////////////////
-     do {
-        encabezadoAlta(marca, modelo, patente);
-        camion.listarMarcas();
-        cout << endl << endl << "Seleccionar: ";
+    while (true) {
+        cout << endl << endl << "Ingresar marca: ";
 
-        cin >> seleccion_marca;
+        getline(cin >> ws, marca);
 
-        marca = camion.validarMarca(seleccion_marca);
+        if (camion.set_marca(marca)) {
+            system("cls");
+            cout << " Guardado correcto ✔" << endl << endl;
 
-        if(marca == "Otra"){
-            cout << "Ingreso manual: ";
-            getline(cin >> ws, marca);
-        }
-
-        validacion = camion.set_marca(marca);
-
-
-        if (validacion) {
-            cout << " Guardado correcto ✔ - (" << marca << ")" << endl;
+            break;
         } else {
-            cout << endl << "Nombre inválido, o demasiado largo. Intente de vuelta" << endl;
-        }
-
-        system("cls");
-
-    } while (!validacion);
-
-///MODELO////////////////////////////////////////////////////////////////////////////////////////////
-    do{
-    encabezadoAlta(marca, modelo, patente);
-    cout << endl << endl << "Ingresar modelo: ";
-    getline(cin >> ws, modelo);
-    validacion = camion.set_modelo(modelo);
-
-        if (validacion) {
-            cout << " Guardado correcto ✔" << endl;
-        } else {
-            cout << endl << "Nombre inválido, o demasiado largo. Intente de vuelta" << endl;
-        }
-        system("cls");
-    }while (!validacion);
-///PATENTE///////////////////////////////////////////////////////////////////////////////////////////
-
-    do{
-    encabezadoAlta(marca, modelo, patente);
-    cout << endl << endl << "Ingresar patente (AA123AA o AAA123): ";
-    getline(cin, patente);
-    validacion = camion.set_patente(patente);
-
-        if (validacion) {
-            cout << " Guardado correcto ✔" << endl;
-        } else {
-            cout << endl << "Patente inválida. Debe tener 6 O 7 caracteres. Intente de vuelta" << endl;
+            system("cls");
+            cout << endl << "Nombre inválido, o demasiado largo. Intente de vuelta" << endl << endl;
             system("pause");
         }
-    system("cls");
-    }while (!validacion);
+
+    }
+
+
+///MODELO////////////////////////////////////////////////////////////////////////////////////////////
+    while (true) {
+        cout << endl << endl << "Ingresar  modelo: ";
+
+        getline(cin >> ws, modelo);
+
+        if (camion.set_modelo(modelo)) {
+            system("cls");
+            cout << " Guardado correcto ✔" << endl << endl;
+
+            break;
+        } else {
+            system("cls");
+            cout << endl << "Nombre inválido, o demasiado largo. Intente de vuelta" << endl << endl;
+            system("pause");
+        }
+
+    }
+///PATENTE///////////////////////////////////////////////////////////////////////////////////////////
+
+  while (true) {
+        cout << endl << endl << "Ingresar patente: ";
+
+        getline(cin >> ws, patente);
+
+        if (camion.set_patente(patente)) {
+            system("cls");
+            cout << " Guardado correcto ✔" << endl << endl;
+
+            break;
+        } else {
+            system("cls");
+            cout << endl << "Patente inválida. Debe tener 6 O 7 caracteres. Intente de vuelta" << endl << endl;
+            system("pause");
+        }
+
+    }
+
 ///AÑO///////////////////////////////////////////////////////////////////////////////////////////////
     while (true) {
-        encabezadoAlta(marca, modelo, patente);
         cout << endl << endl << "Ingresar año de patentamiento: ";
         cin >> anio;
         if (cin.fail()) {
@@ -195,44 +106,71 @@ void camionesManager::altaCamion(){
     }
 ///VERIFICACION//////////////////////////////////////////////////////////////////////////////////////
 
-    system("cls");
-encabezadoAlta(marca, modelo, patente);
-cout << "Ingresar fecha de última verificacion (formato: DD/MM/AAAA): ";
+cout << endl << endl << "Ingresar fecha de última verificacion: ";
 
-while (true) {
-    string input;
-    int dia, mes, anioFecha;
-    char barra1, barra2;
-
-    getline(cin, input);
-    stringstream ss(input);
-
-    if (ss >> dia >> barra1 >> mes >> barra2 >> anioFecha &&
-        barra1 == '/' && barra2 == '/') {
-
-        if (fechaVerificacion.validarFecha(dia, mes, anioFecha)) {
-            fechaVerificacion.set_Dia(dia);
-            fechaVerificacion.set_Mes(mes);
-            fechaVerificacion.set_Anio(anioFecha);
-
-            cout << "Fecha guardada correctamente ✔" << endl;
-            break;
-        } else {
-            cout << "Fecha inválida, intente nuevamente (ejemplo: 15/06/2025): ";
+    while (true) {
+        cout << endl << "Dia: ";
+        cin >> dia;
+        if (cin.fail()) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            continue;
         }
+        if (fechaVerificacion.set_Dia(dia)){
+            cout << " Guardado correcto ✔" << endl;
+            cin.ignore(1000, '\n'); // Por si quedan residuos
 
-    } else {
-        cout << "Formato incorrecto, intente nuevamente (ejemplo: 15/06/2025): ";
+            break; // Salir del bucle, entrada válida
+        }else {
+            cout << "Dia inválido, ingrese nuevamente" << endl;
+        }
     }
-}
 
-camion.set_ultimaVerificacion(fechaVerificacion);
+    while (true) {
+        cout << endl << "Mes: ";
+        cin >> mes;
+        if (cin.fail()) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            continue;
+        }
+        if (fechaVerificacion.set_Mes(mes)){
+            cout << " Guardado correcto ✔" << endl;
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+
+            break; // Salir del bucle, entrada válida
+        }else {
+            cout << "Mes inválido, ingrese nuevamente" << endl;
+        }
+    }
+
+    while (true) {
+        cout << "Año: ";
+        cin >> anioFecha;
+        if (cin.fail()) {
+            cin.clear(); // Limpia el estado de error
+            cin.ignore(1000, '\n'); // Descarta el resto de la línea
+            cout << endl << "Ingreso incorrecto, intente nuevamente: ";
+            continue;
+        }
+        if (fechaVerificacion.set_Anio(anioFecha)){
+            cout << " Guardado correcto ✔" << endl;
+            cin.ignore(1000, '\n'); // Por si quedan residuos
+
+            break; // Salir del bucle, entrada válida
+        }else {
+            cout << "Año inválido, ingrese nuevamente" << endl;
+        }
+    }
+
+    camion.set_ultimaVerificacion(fechaVerificacion);
 
 ///PESO//////////////////////////////////////////////////////////////////////////////////////////////
 
-     while (true) {
-        system("cls");
-        encabezadoAlta(marca, modelo, patente);
+    while (true) {
+
         cout << endl << endl << "Peso máximo de carga (Entre 500 y 70.000 kg): ";
         cin >> peso;
         if (cin.fail()) {

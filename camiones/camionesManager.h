@@ -19,11 +19,6 @@ public:
     void mostrarVerificaciones();
     void modificarVerificacion();
     void mostrarPorAntiguedad();
-    void modificarChofer();
-    void encabezadoAlta(std::string marca, std::string modelo, std::string patente);
-    bool esLetra(char letra);
-    bool esNumero (int nro);
-    bool validarPatente(std::string patente);
     void editarCamion();
     void editarMarca(int posicion);
     void editarPatente(int posicion);
