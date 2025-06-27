@@ -147,10 +147,6 @@ void Viajes::mostrarViajeActivo(){
 // Datos del viaje
     string choferCompleto = get_chofer().get_nombre() + " " + get_chofer().get_apellido();
 
-
-
-
-
     cout << setw(4)  << get_id()
     << setw(40) << choferCompleto
     << setw(33) << get_ciudadOrigen().getCiudad()

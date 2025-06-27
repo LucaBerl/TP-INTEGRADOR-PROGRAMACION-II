@@ -2,15 +2,11 @@
 #include <cstdio>
 #include <iomanip>
 #include <cstring>
-#include <cmath> // Para funciones matemáticas como sin, cos, sqrt, atan2
+#include <cmath> // Para funciones matemáticas
 #include "ciudades.h"
-
 using namespace std;
 
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
-
+const double PI = 3.14159265358979323846;
 
 const double R = 6371.0; // Radio de la Tierra en km
 
@@ -151,10 +147,10 @@ void Ciudades::mostrar_ciudad() {
 
 double Ciudades::calcularDistancia(const Ciudades& otraCiudad) {
     // Convertir grados a radianes
-    double lat1 = lat * M_PI / 180.0;
-    double lon1 = lng * M_PI / 180.0;
-    double lat2 = otraCiudad.lat * M_PI / 180.0;
-    double lon2 = otraCiudad.lng * M_PI / 180.0;
+    double lat1 = lat * PI / 180.0;
+    double lon1 = lng * PI / 180.0;
+    double lat2 = otraCiudad.lat * PI / 180.0;
+    double lon2 = otraCiudad.lng * PI / 180.0;
 
 
     // Diferencias de latitudes y longitudes

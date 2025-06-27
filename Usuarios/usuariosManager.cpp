@@ -9,11 +9,14 @@
 using namespace std;
 
 string usuariosManager::generarSalt() {
+
     const char caracteres[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     string salt;
+
     for (int i = 0; i < 6; ++i) {
         salt += caracteres[rand() % (sizeof(caracteres) - 1)];
     }
+
     return salt;
 }
 
@@ -424,8 +427,6 @@ int usuariosManager::validarUsuario(){
 
         system("cls");
         cout << endl << "Contraseña: ";
-
-
 
         int indice = 0; /// Indice del caracter que vamos ingresando
         char ch; /// Caracter que vamos ingresando

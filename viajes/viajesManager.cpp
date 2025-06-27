@@ -156,8 +156,8 @@ bool viajesManager::seleccionarChofer(Viajes &viaje){
                 chofer.get_aptoCircular() &&    /// El chofer tiene la licencia vigente?
                 !chofer.get_enViaje() &&    /// El chofer ya se encuentra en viaje ?
                 chofer.get_camionAsignado().get_aptoCircular() &&   /// El camion asignado al chofer, tiene la verificacion vigente ?
-                viaje.get_pesoTransportado() < chofer.get_camionAsignado().get_pesoCarga() &&   /// El camion asignado al chofer, soporta el peso de la carga?
-                viaje.get_volumenTransportado() < chofer.get_camionAsignado().get_volumenCarga();   /// El camion asignado al chofer, soporta el volumen de la carga?
+                viaje.get_pesoTransportado() <= chofer.get_camionAsignado().get_pesoCarga() &&   /// El camion asignado al chofer, soporta el peso de la carga?
+                viaje.get_volumenTransportado() <= chofer.get_camionAsignado().get_volumenCarga();   /// El camion asignado al chofer, soporta el volumen de la carga?
 
                 if (cumpleCondiciones) {
 
@@ -715,8 +715,8 @@ bool viajesManager::listarChoferesDisponibles(Viajes &viaje){
                 chofer.get_aptoCircular() &&    /// El chofer tiene la licencia vigente?
                 !chofer.get_enViaje() &&    /// El chofer ya se encuentra en viaje ?
                 chofer.get_camionAsignado().get_aptoCircular() &&   /// El camion asignado al chofer, tiene la verificacion vigente ?
-                viaje.get_pesoTransportado() < chofer.get_camionAsignado().get_pesoCarga() &&   /// El camion asignado al chofer, soporta el peso de la carga?
-                viaje.get_volumenTransportado() < chofer.get_camionAsignado().get_volumenCarga();   /// El camion asignado al chofer, soporta el volumen de la carga?
+                viaje.get_pesoTransportado() <= chofer.get_camionAsignado().get_pesoCarga() &&   /// El camion asignado al chofer, soporta el peso de la carga?
+                viaje.get_volumenTransportado() <= chofer.get_camionAsignado().get_volumenCarga();   /// El camion asignado al chofer, soporta el volumen de la carga?
 
             if (cumpleCondiciones) {
                 chofer.mostrar();
