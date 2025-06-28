@@ -382,6 +382,9 @@ void choferesManager::bajaChofer()
                     }
                 }
             }
+            else{
+                choferes.set_estado(0);
+            }
             if(cArchivo.guardarChoferModificado(posicion,choferes))
             {
                 system("cls");
