@@ -6,6 +6,8 @@
 #include "../camiones/camionesManager.h"
 #include "../camiones/camionesArchivo.h"
 #include "../viajes/viajesManager.h"
+#include "../viajes/viajesArchivo.h"
+#include "../viajes/viajes.h"
 #include "../menues/menuChoferes.h"
 #include <ctime>
 #include <conio.h>
@@ -1681,7 +1683,7 @@ void choferesManager::editarNombre(int posicion){
     int opcionNumerica;
 
     while (true) {
-        cout << endl << endl << "Ingresar nueva nombre: ";
+        cout << endl << endl << "Ingresar nuevo nombre: ";
 
         getline(cin >> ws, nombre);
 
@@ -1731,6 +1733,24 @@ void choferesManager::editarNombre(int posicion){
         }else if(opcionNumerica == 2){
             return;
         }else if(opcionNumerica == 1){
+
+            viajesArchivo vArchivo;
+            viajesManager vManager;
+            Viajes viaje;
+            int cantidadRegistros = vArchivo.get_cantidadRegistros();
+            for(int i = 0;i < cantidadRegistros; i++){
+
+                if(vArchivo.leerViaje(i,viaje)){
+
+                    if (chofer.get_id() == viaje.get_chofer().get_id()){
+
+                        viaje.set_chofer(chofer);
+                        vArchivo.guardarViajeModificado(i,viaje);
+                    }
+
+                }
+
+            }
             if(chArchivo.guardarChoferModificado(posicion,chofer)){
             system("cls");
             cout << "GUARDADO CORRECTO ✔ " << endl << endl;

@@ -4,6 +4,8 @@ using namespace std;
 #include "camiones.h"
 #include "camionesArchivo.h"
 #include "../choferes/choferesManager.h"
+#include "../choferes/choferes.h"
+#include "../choferes/choferesArchivo.h"
 #include "../viajes/viajesManager.h"
 #include "../menues/menuCamiones.h"
 #include <ctime>
@@ -1124,6 +1126,27 @@ void camionesManager::editarMarca(int posicion){
         }else if(opcionNumerica == 2){
             return;
         }else if(opcionNumerica == 1){
+
+            choferesArchivo chArchivo;
+            choferesManager chManager;
+            Choferes chofer;
+            int cantidadRegistros = chArchivo.getCantidadRegistros();
+            for(int i = 0;i < cantidadRegistros; i++){
+
+                if(chArchivo.leerChoferes(i,chofer)){
+
+                    if(chofer.get_asignado()){
+
+                        if (chofer.get_camionAsignado().get_idCamion() == camion.get_idCamion()){
+
+                            chofer.set_camionAsignado(camion);
+                            chArchivo.guardarChoferModificado(i,chofer);
+                        }
+                    }
+                }
+
+            }
+
             if(caArchivo.guardarCamionModificado(posicion,camion)){
             system("cls");
             cout << "GUARDADO CORRECTO ✔ " << endl << endl;
